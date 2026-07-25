@@ -3,6 +3,8 @@
 
 #include "sh2_common.h"
 
+#define SPACK_ENV_MAX 32
+
 // total size: 0x10
 typedef struct SPACK_OT_DATA {
     // Members
@@ -28,13 +30,13 @@ typedef struct SPACK_ENV_DATA {
 } SPACK_ENV_DATA;
 
 // total size: 0x10
-struct SPACK_STATIC_DATA {
+typedef struct SPACK_STATIC_DATA {
     // Members
     u_short GifNLOOP; // offset 0x0, size 0x2
     u_short DmaQwc; // offset 0x2, size 0x2
     u_int PRE_PRIM_FLG_NREG; // offset 0x4, size 0x4
     u_long REGS; // offset 0x8, size 0x4
-};
+} SPACK_STATIC_DATA;
 
 // total size: 0x60
 typedef struct SPACK_DATA {
@@ -63,11 +65,23 @@ typedef struct SPACK_DATA {
 } SPACK_DATA;
 
 SPACK_DATA* spkInit(void);
-
+void spkResetOT(void);
+void spkResetOT2(void);
+void spkOpenGiftag(void* giftag /* r7 */, u_int w /* r2 */, u_short envid /* r2 */);
 void spkOpenDGiftag(u_long giftag1 /* r2 */, u_long giftag2 /* r2 */, u_int w /* r2 */, u_short envid /* r2 */);
-
 void spkCloseGiftag(void);
 void spkCloseOpenDGiftag(u_long giftag1 /* r18 */, u_long giftag2 /* r17 */);
+void spkStartPacketS(u_long128* adr /* r2 */);
+void spkOpenGiftagS(void* giftag /* r2 */);
+void spkOpenDGiftagS(u_long giftag1 /* r2 */, u_long giftag2 /* r2 */);
+void spkCloseGiftagS(void);
+u_long128* spkEndPacketS(void);
+void spkSetEnvPacket(u_long128* adr /* r17 */, u_short envid /* r2 */);
+void spkStartEnvLoadImage(u_short envid /* r2 */);
+void spkSetEnvLoadImage(void* image, short bp, short bw, short psm, short x, short y, short w, short h);
+void spkEndEnvLoadImage(void);
+void spkSetOTPacketS(u_long128* adr /* r19 */, u_int w /* r18 */, u_char envid /* r17 */);
+void spkSetOTPacketS_asm(void);
 
 extern struct SPACK_DATA spack;
 
