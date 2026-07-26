@@ -2,6 +2,10 @@
 #include "SH2_common/pad.h"
 #include "SH2_common/playing_info.h"
 
+#include "sce/libgraph.h"
+
+#include "Fog/spack.h"
+
 #include "Font/font.h"
 #include "Font/dic.h"
 
@@ -355,7 +359,157 @@ INCLUDE_ASM("asm/nonmatchings/Item/otn_option", fade_in);
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_option", fade_out);
 
-INCLUDE_ASM("asm/nonmatchings/Item/otn_option", look_board);
+void look_board(void) {
+    spkOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_PACKED, 1),
+        SCE_GIF_PACKED_AD,
+        0xFFFF0006,
+        0
+    );
+    (*spack.pos++) = SCE_GS_SET_TEST(0, 0, 0, 0, 0, 0, 1, 1);
+    (*spack.pos++) = SCE_GS_TEST_1;
+    spkCloseOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_REGLIST, 8),
+        GIF_REG(SCE_GS_PRIM,  0) |
+        GIF_REG(SCE_GS_RGBAQ, 1) |
+        GIF_REG(SCE_GS_XYZF2, 2) |
+        GIF_REG(SCE_GS_XYZF2, 3) |
+        GIF_REG(SCE_GS_XYZF2, 4) |
+        GIF_REG(SCE_GS_XYZF2, 5) |
+        GIF_REG(SCE_GS_XYZF2, 6) |
+        GIF_REG(SCE_GS_XYZF2, 7)
+    );
+    (*spack.pos++) = SCE_GS_SET_PRIM(SCE_GS_PRIM_TRISTRIP, 0, 0, 0, SCE_GS_TRUE /* alpha blending */, 0, 0, 0, 0);
+    (*spack.pos++) = SCE_GS_SET_RGBAQ(0x80, 0x80, 0x80, 0x20, 0);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-210), zs(-165), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(210), zs(-165), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(-145), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(-145), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(155), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(155), zs(0), 255);
+    spkCloseGiftag();
+    spkOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_PACKED, 1),
+        SCE_GIF_PACKED_AD,
+        0xFFFF0006,
+        0
+    );
+    (*spack.pos++) = SCE_GS_SET_TEST(0, 0, 0, 0, 0, 0, 1, 1);
+    (*spack.pos++) = SCE_GS_TEST_1;
+    spkCloseOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_REGLIST, 9),
+        GIF_REG(SCE_GS_PRIM, 0)  |
+        GIF_REG(SCE_GS_RGBAQ, 1) |
+        GIF_REG(SCE_GS_XYZF2, 2) |
+        GIF_REG(SCE_GS_XYZF2, 3) |
+        GIF_REG(SCE_GS_XYZF2, 4) |
+        GIF_REG(SCE_GS_XYZF2, 5) |
+        GIF_REG(SCE_GS_XYZF2, 6) |
+        GIF_REG(SCE_GS_XYZF2, 7) |
+        GIF_REG(SCE_GS_XYZF2, 8)
+    );
+    (*spack.pos++) = SCE_GS_SET_PRIM(SCE_GS_PRIM_LINESTRIP, 0, 0, 0, SCE_GS_TRUE /* alpha blending */, 0, 0, 0, 0);
+    (*spack.pos++) = SCE_GS_SET_RGBAQ(0x60, 0x60, 0xD0, 0x30, 0);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-210), zs(-165), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(-145), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(155), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(155), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(-145), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(210), zs(-165), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-210), zs(-165), zs(0), 255);
+    spkCloseGiftag();
+    spkOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_PACKED, 1),
+        SCE_GIF_PACKED_AD,
+        0xFFFF0006,
+        0
+    );
+    (*spack.pos++) = SCE_GS_SET_TEST(0, 0, 0, 0, 0, 0, 1, 1);
+    (*spack.pos++) = SCE_GS_TEST_1;
+    spkCloseOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_REGLIST, 8),
+        GIF_REG(SCE_GS_PRIM, 0)  |
+        GIF_REG(SCE_GS_RGBAQ, 1) |
+        GIF_REG(SCE_GS_XYZF2, 2) |
+        GIF_REG(SCE_GS_XYZF2, 3) |
+        GIF_REG(SCE_GS_XYZF2, 4) |
+        GIF_REG(SCE_GS_XYZF2, 5) |
+        GIF_REG(SCE_GS_XYZF2, 6) |
+        GIF_REG(SCE_GS_XYZF2, 7)
+    );
+    (*spack.pos++) = SCE_GS_SET_PRIM(SCE_GS_PRIM_TRISTRIP, 0, 0, 0, SCE_GS_TRUE /* alpha blending */, 0, 0, 0, 0);
+    (*spack.pos++) = SCE_GS_SET_RGBAQ(0x80, 0x80, 0x80, 0x20, 0);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(161), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(161), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(185), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(185), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-210), zs(205), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(210), zs(205), zs(0), 255);
+    spkCloseGiftag();
+    spkOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_PACKED, 1),
+        SCE_GIF_PACKED_AD,
+        0xFFFF0006,
+        0);
+    (*spack.pos++) = SCE_GS_SET_TEST(0, 0, 0, 0, 0, 0, 1, 1);
+    (*spack.pos++) = SCE_GS_TEST_1;
+    spkCloseOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_REGLIST, 9),
+        GIF_REG(SCE_GS_PRIM, 0)  |
+        GIF_REG(SCE_GS_RGBAQ, 1) |
+        GIF_REG(SCE_GS_XYZF2, 2) |
+        GIF_REG(SCE_GS_XYZF2, 3) |
+        GIF_REG(SCE_GS_XYZF2, 4) |
+        GIF_REG(SCE_GS_XYZF2, 5) |
+        GIF_REG(SCE_GS_XYZF2, 6) |
+        GIF_REG(SCE_GS_XYZF2, 7) |
+        GIF_REG(SCE_GS_XYZF2, 8)
+    );
+    (*spack.pos++) = SCE_GS_SET_PRIM(SCE_GS_PRIM_LINESTRIP, 0, 0, 0, SCE_GS_TRUE /* alpha blending */, 0, 0, 0, 0);
+    (*spack.pos++) = SCE_GS_SET_RGBAQ(0x60, 0x60, 0xD0, 0x30, 0);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(161), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(185), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-210), zs(205), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(210), zs(205), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(185), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(227), zs(161), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-227), zs(161), zs(0), 255);
+    spkCloseGiftag();
+    spkOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_PACKED, 1),
+        SCE_GIF_PACKED_AD,
+        0xFFFF0006,
+        0
+    );
+    (*spack.pos++) = SCE_GS_SET_TEST(0, 0, 0, 0, 0, 0, 1, 1);
+    (*spack.pos++) = SCE_GS_TEST_1;
+    spkCloseOpenDGiftag(
+        SCE_GIF_SET_TAG(0, 1, 0, 0, SCE_GIF_REGLIST, 11),
+        GIF_REG(SCE_GS_PRIM,  0)  |
+        GIF_REG(SCE_GS_RGBAQ, 1)  |
+        GIF_REG(SCE_GS_XYZF2, 2)  |
+        GIF_REG(SCE_GS_XYZF2, 3)  |
+        GIF_REG(SCE_GS_XYZF2, 4)  |
+        GIF_REG(SCE_GS_XYZF2, 5)  |
+        GIF_REG(SCE_GS_XYZF2, 6)  |
+        GIF_REG(SCE_GS_XYZF2, 7)  |
+        GIF_REG(SCE_GS_XYZF2, 8)  |
+        GIF_REG(SCE_GS_XYZF2, 9)  |
+        GIF_REG(SCE_GS_XYZF2, 10)
+    );
+    (*spack.pos++) = SCE_GS_SET_PRIM(SCE_GS_PRIM_LINESTRIP, 0, 0, 0, SCE_GS_TRUE /* alpha blending */, 0, 0, 0, 0);
+    (*spack.pos++) = SCE_GS_SET_RGBAQ(0x60, 0x60, 0xD0, 0x30, 0);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-212), zs(-170), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-232), zs(-147), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-232), zs(187), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-212), zs(210), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(212), zs(210), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(232), zs(187), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(232), zs(-147), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(212), zs(-170), zs(0), 255);
+    (*spack.pos++) = SCE_GS_SET_XYZF(zs(-212), zs(-170), zs(0), 255);
+    spkCloseGiftag();
+}
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_option", look_cur);
 
