@@ -7,16 +7,16 @@
 
 typedef struct _CL_CHARA_LIST {
     // total size: 0xE0
-    struct _CL_HITPOLY_COLUMN col;  // offset 0x0, size 0x30
-    struct _CL_HITPOLY_COLUMN wcol; // offset 0x30, size 0x30
+    CL_HITPOLY_COLUMN col;  // offset 0x0, size 0x30
+    CL_HITPOLY_COLUMN wcol; // offset 0x30, size 0x30
     struct SubCharacter* sc;        // offset 0x60, size 0x4
-    float opos[4];                  // offset 0x70, size 0x10
-    float pos[4];                   // offset 0x80, size 0x10
-    float mvec[4];                  // offset 0x90, size 0x10
-    float wallcv[4];                // offset 0xA0, size 0x10
+    sceVu0FVECTOR opos;                  // offset 0x70, size 0x10
+    sceVu0FVECTOR pos;                   // offset 0x80, size 0x10
+    sceVu0FVECTOR mvec;                  // offset 0x90, size 0x10
+    sceVu0FVECTOR wallcv;                // offset 0xA0, size 0x10
     float mang;                     // offset 0xB0, size 0x4
     int wflg;                       // offset 0xB4, size 0x4
-    float ccvec[4];                 // offset 0xC0, size 0x10
+    sceVu0FVECTOR ccvec;                 // offset 0xC0, size 0x10
     signed short movflg;            // offset 0xD0, size 0x2
     signed short batflg;            // offset 0xD2, size 0x2
     void (*heightfunc)(float*);     // offset 0xD4, size 0x4
@@ -158,20 +158,38 @@ void clAllInitCollisionData(void);
 
 void clFrameInitCollisionData(void);
 
-void clBattleAddQue(struct _CL_BATTLE_QUE* que /* r2 */);
+void clCollectCharaPosition(void);
 
-struct _CL_BATTLE_RESULT* clBattleGetResult(u_int id /* r2 */, struct _CL_BATTLE_RESULT* before /* r2 */);
+void clSetCharaHitColumn(CL_HITPOLY_COLUMN* col, CL_HITPOLY_COLUMN* wcol, struct SubCharacter* sc, void (* func)(void));
 
-void clAddDynamicWall(struct _CL_HITPOLY_PLANE* pl /* r2 */);
+void clAddDynamicWall(CL_HITPOLY_PLANE* pl);
 
-void clAddDynamicFloor(struct _CL_HITPOLY_PLANE* pl /* r2 */);
+void clAddDynamicFloor(CL_HITPOLY_PLANE* pl);
 
-// nonmatching:
+void clBattleAddQue(CL_BATTLE_QUE* que);
 
-int clCheckSubColumnToColumn(struct _CL_HITRESULT* result /* r2 */, float (*clm0)[4] /* r2 */, float (*clm1)[4] /* r2 */);
+CL_BATTLE_RESULT* clBattleGetResult(u_int id, CL_BATTLE_RESULT* before);
 
-void clCheckHitEyes(struct _CL_VHIT_RESULT* res /* r2 */, u_int id /* r2 */, float* st /* r2 */, float* ed /* r2 */, int thru /* r2 */);
+void clBattleCheckExec(void);
 
-void clCheckHitEyesOnlyFloor(struct _CL_VHIT_RESULT* res /* r19 */, int unknown, float* sp /* r18 */, float* ep /* r17 */);
+CL_SELECT_MAP* clGetHitSectListVECHIT(float* st, float* ed);
+
+int clCheckCrossLine2BoxXZ(float (* box)[4], float* st, float* ed);
+
+int clCheckCrossLine2LineXZ(float* va0, float* va1, float* vb0, float* vb1);
+
+CL_SELECT_MAP* clGetHitSectListMOVE(float* bpos);
+
+void clCheckHitEyes(CL_VHIT_RESULT* res, u_int id, float* st, float* ed, int thru);
+
+void clCheckHitEyesOnlyFloor(CL_VHIT_RESULT* res, int unknown, float* sp, float* ep);
+
+void clCheckHitEyesOnlyFloorThru(CL_VHIT_RESULT* res, int unknown, float* sp, float* ep);
+
+void clCheckHitEyesOnlyWall(CL_VHIT_RESULT* res, float* sp, float* ep);
+
+void clCheckHitEyesOnlyFloorCeil(CL_VHIT_RESULT* res, float* sp, float* ep);
+
+int clPermitColumnExpansion(void);
 
 #endif CL_MAIN_H
