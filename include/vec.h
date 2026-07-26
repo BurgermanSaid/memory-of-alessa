@@ -27,11 +27,12 @@ static inline void vu0_sub_vector(sceVu0FVECTOR v0, sceVu0FVECTOR v1, sceVu0FVEC
 }
 
 static inline void vu0_scale_vector(sceVu0FVECTOR v0, sceVu0FVECTOR v1, float t) {
-    asm volatile("mfc1    t7,%2\n\
-	lqc2    vf4,0x0(%1)\n\
-	qmtc2    t7,vf5\n\
-	vmulx.xyzw	vf4,vf4,vf5\n\
-	sqc2    vf4,0x0(%0)\n\
+    asm volatile("\
+        mfc1        t7,  %2;\
+	    lqc2        vf4, 0x0(%1)\n\
+	    qmtc2       t7,  vf5;\
+	    vmulx.xyzw	vf4, vf4,vf5;\
+	    sqc2        vf4, 0x0(%0)\n\
 	": : "r" (v0) , "r" (v1), "f" (t):"t7", "memory");
 }
 
