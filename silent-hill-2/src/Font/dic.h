@@ -48,4 +48,6 @@
     ((c) < SJIS_82_HIRA_MAX) \
 )
 
+u_short* dicSetStr(void* str);
+
 #endif
