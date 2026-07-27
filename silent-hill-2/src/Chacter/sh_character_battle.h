@@ -49,9 +49,7 @@ typedef struct shAttackQueue {
     struct shAttackQueueOne queue[20]; // offset 0x4, size 0xA0
 } shAttackQueue;
 
-extern shAttackQueue sh2_attack_queue;
-extern float sh2_battle_wall_hit;
-extern int sh2_battle_attack_check;
+
 extern shAttackInfo sh2_attack_list[66];
 extern shPlayerWork sh2jms;
 

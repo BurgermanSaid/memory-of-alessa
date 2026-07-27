@@ -43,9 +43,9 @@ static void shBattleDamageRevise(float* damage, float* shock, SubCharacter* scp,
 static void shBattleSetEffectDamage(SubCharacter* scp, float* pos, float* vec, u_short atk);
 static void shBattleAddEffectAttack(SubCharacter* attacker, float* pos, float* vec);
 static void shBattleAttackByHumanGunshotTypeA(SubCharacter* attacker , u_short atk);
-
+static void shBattleAttackByHumanGunshotTypeB(SubCharacter* attacker, u_short atk);
 static void shBattleAttackByHumanFightType(SubCharacter* attacker, u_short atk);
-
+static void shBattleAttackByHumanFog(SubCharacter* attacker /* r18 */, u_short atk /* r17 */);
 static void shBattleAttackByHumanFinish(SubCharacter* attacker, u_short atk);
 static void shGetEnemyAttackStartPos(SubCharacter* attacker /* r18 */, u_short atk /* r8 */, float* s_pos /* r17 */, float* s_vec /* r16 */);
 static void shBattleAttackByEnemySlash(SubCharacter* attacker, u_short atk);
@@ -58,8 +58,13 @@ static void shBattleAttackByEnemyShot(SubCharacter* attacker, u_short atk);
 
 static void shBattleAddAttackQueue(SubCharacter* scp /* r2 */, u_char wep_no /* r2 */, u_short atk_no /* r2 */);
 
-extern /* static */ float max_range_1171;
-extern /* static */ float min_range_1172;
+// bss
+
+float sh2_battle_wall_hit = 0.0f;
+int sh2_battle_attack_check = 0;
+shAttackQueue sh2_attack_queue;
+static float max_range_1171;
+static float min_range_1172;
 
 static void shBattleDamageRevise(float* damage, float* shock, SubCharacter* scp, CL_BATTLE_RESULT* result) {
     if (scp->battle.status & 0x40) {
@@ -162,7 +167,99 @@ static void shBattleAttackByHumanGunshotTypeA(SubCharacter * attacker /* r20 */,
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/sh_character_battle", shBattleAttackByHumanGunshotTypeB);
+static void shBattleAttackByHumanGunshotTypeB(SubCharacter* attacker, u_short atk) {
+    int i; // r16
+    sceVu0FVECTOR vec = {0}; // r29+0x70
+    sceVu0FVECTOR rot = {0}; // r29+0x80
+    sceVu0FVECTOR gunpos; sceVu0FVECTOR gunvec;     
+    sceVu0FMATRIX unit; // r29+0xB0
+    sceVu0FMATRIX mat; // r29+0xF0    
+    float rot_spread; // r21
+    float rot_direction; // r22
+    u_short cur_frame; // r17
+    u_short st; // r2
+    u_short ed; // r18
+    CL_BATTLE_QUE que; // r29+0x130
+    int wep; // r2
+    if (atk == 5) {
+        return;
+    }
+    
+    cur_frame = shCharacterAnimeFrameGet(attacker);
+    st = sh2_attack_list[atk].atk_start;
+    ed = sh2_attack_list[atk].atk_end;
+    
+    
+    
+    if (!(cur_frame < st || cur_frame > ed || attacker->battle.atk_result)) {
+        
+        
+        
+        
+        shGetJamesWeaponEndPos(gunpos, gunvec);
+        rot[1] = shAtan2(gunvec[2], gunvec[0]);
+        rot[0] = -shAtan2(vec_length(gunvec), gunvec[1]);
+        vu0_unit_matrix(unit);
+        shRotMatrixZ(mat, unit, rot[2]); shRotMatrixX(mat, mat, rot[0]); shRotMatrixY(mat, mat, rot[1]);
+        
+        for (i = 0; i < 10; i++) { 
+            
+            
+            rot_spread = 0.5235988f * shRandF();
+            rot_direction = PI * ((2.0f * shRandF()) - 1.0f);
+            
+            
+            vec[2] = shCosF(rot_spread);
+            vec[0] = shSinF(rot_spread) * shSinF(rot_direction); 
+            vec[1] = -shSinF(rot_spread) * shCosF(rot_direction);
+            sceVu0ApplyMatrix(vec, mat, vec);
+            
+            
+            que.svs[0] = gunpos[0] + vec[0] * sh2_attack_list[atk].min_range;
+            que.svs[1] = gunpos[1] + vec[1] * sh2_attack_list[atk].min_range;
+            que.svs[2] = gunpos[2] + vec[2] * sh2_attack_list[atk].min_range;
+            que.svs[3] = 1.0f;
+            que.sve[0] = gunpos[0] + vec[0] * sh2_attack_list[atk].max_range;
+            que.sve[1] = gunpos[1] + vec[1] * sh2_attack_list[atk].max_range;
+            que.sve[2] = gunpos[2] + vec[2] * sh2_attack_list[atk].max_range;
+            que.sve[3] = 1.0f;
+            que.btlid = atk + 256;
+            que.kind = sh2_attack_list[atk].kind;
+            que.sc = attacker;
+            
+            
+            
+            
+            
+            clBattleAddQue(&que);
+        }
+        
+        
+        attacker->battle.atk_result = 1;
+        
+        
+        shBattleAddEffectAttack(attacker, gunpos, gunvec);
+        
+        
+        SeCallPos(0x2B2B, 1.0f, gunpos, 0);
+        
+        
+        
+        wep = PlayerNowItemName(sh2jms.weapon);
+        ItemWeaponShoot(wep, 1);
+        
+        sh2jms.se_on = 1;
+        
+        
+        sh2jms.d_shock = 4;
+    }
+    
+    
+    
+    if (cur_frame > ed) {
+        attacker->battle.atk_result = 0;
+    }    
+}
 
 static void shBattleAttackByHumanFightType(SubCharacter* attacker, u_short atk) {
     int jouken; // r4

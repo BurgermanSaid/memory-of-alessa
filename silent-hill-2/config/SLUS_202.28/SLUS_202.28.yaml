@@ -596,6 +596,8 @@ segments:
       - { vram: 0x03c7ea0, type: bss,  name: bss_0x03c7ea0 }
       - { vram: 0x03c84a0, type: .bss, name: Chacter/m3_sc }
       - { vram: 0x03c84d0, type: bss,  name: bss_0x03c84d0 }
+      - { vram: 0x03cece0, type: .bss, name: Chacter/sh_character_battle }
+      - { vram: 0x03cedc8, type: bss,  name: bss_0x03cedc8 }
       - { vram: 0x03cefc0, type: .bss, name: Chacter/skelton }
       - { vram: 0x03e66d0, type: bss,  name: bss_0x03e66d0 }
       - { vram: 0x0418780, type: .bss, name: Chacter_Draw/clani }
