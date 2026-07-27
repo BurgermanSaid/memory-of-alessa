@@ -777,7 +777,7 @@ static void mar_sub_run(SubCharacter* p) {
 
 const char pad_0x297e98[] = "\0\0\0\0";
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 static void mar_sub_damage(SubCharacter* p) {
     AnimeInfo* a_info = shCharacterAnimeGetInfo(p);
     float damage_angle;

@@ -49,7 +49,7 @@ SubCharacter* shCharacter_Manage_GetCharacterList() {
     return sh2chara.head;
 }
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 int shCharacter_Manage_SetDataAdresss(SubCharacter *scp)
 {
     sh2gfw_ModelDraw_MAN *pMD;

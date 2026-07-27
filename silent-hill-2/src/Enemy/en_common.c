@@ -74,7 +74,7 @@ EnLOCAL_DATA* enEntryEnemy(int kind) {
     return dp;
 }
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 void enInitData(EnLOCAL_DATA* dp /* r18 */, SubCharacter* scp /* r17 */) {
     int kind; // r16    
     void (*enInitDataFunc[15])(EnLOCAL_DATA*) = {

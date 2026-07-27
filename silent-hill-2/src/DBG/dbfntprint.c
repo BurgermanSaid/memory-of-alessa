@@ -30,7 +30,7 @@ int printline(char* cp, char* top) {
     return l;
 }
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 int printlineR(char* cp, char* top) {
     char line[128]; // r29+0x20
     int l; // r16

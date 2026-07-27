@@ -13,7 +13,7 @@ alessatool annotate \
 run `alessatool annotate --help` for more information.
 '''
 
-from sys import stdout
+from sys import stdout, stdin
 from pathlib import Path
 from subprocess import run
 from dataclasses import dataclass
@@ -35,8 +35,11 @@ class AnnotationArgs:
     verbose: bool
 
 def annotate_asm(args: AnnotationArgs):
-    with open(args.asm_path, "r") as asm_file:
-        asm_contents = asm_file.read()
+    if args.asm_path:
+        with open(args.asm_path, "r") as asm_file:
+            asm_contents = asm_file.read()
+    else:
+        asm_contents = stdin.read()
 
     asm_lines = asm_contents.splitlines()
     asm_line_index = 0
@@ -171,7 +174,7 @@ def get_line_file_path(args: AnnotationArgs):
     if args.line_file_path is not None:
         return args.line_file_path
 
-    if args.elf_path.name == SH2_SERIAL and "Event/stage" in args.asm_path.as_posix():
+    if args.elf_path.name == SH2_SERIAL and args.asm_path and "Event/stage" in args.asm_path.as_posix():
         return Path(f"{TOOLS}/alessatool/dwarf") / Path(args.asm_path.name).with_suffix(".line")
 
     return None

@@ -28,7 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/GFW/sh3gfw_Texpacket", sh3gfw_Get_RegTEX0);
 
 INCLUDE_ASM("asm/nonmatchings/GFW/sh3gfw_Texpacket", func_001B5B80);
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 int sh2gfw_Thr_d2TextureSend(void* ptm, int mode, int* cid, int* slotid) {
     sh2gfw_TexMAN* pTM = ptm; // r16
     int slot = sh2gfw_EnQue_TexSlot(pTM); // r17

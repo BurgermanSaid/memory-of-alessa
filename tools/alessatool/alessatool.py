@@ -164,7 +164,7 @@ def main():
     annotate_parser.add_argument(
         "--asm-path",
         type=Path,
-        default="-",
+        default=None,
         help="path to the asm file to annotate"
     )
     annotate_parser.add_argument(

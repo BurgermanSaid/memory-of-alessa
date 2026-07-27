@@ -88,7 +88,7 @@ INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E120_amusement
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E420_amusement_00);
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 int func_01F6E590_amusement_00(void) {
     switch (D_01F72D80_amusement_00) {              /* irregular */
     case 0:
@@ -131,7 +131,7 @@ u_int func_01F6E6A0_amusement_00(int arg0) {
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 void func_01F6E810_amusement_00(void) {
     int sp10[4];
     int sp20[4];

@@ -70,7 +70,7 @@ void func_0022EB70(SubCharacter* scp) {
     }
 }
 
-#ifdef NON_MATCHING
+#ifdef BROKEN
 void func_0022EBD0(EnemyWork* dp) {
     int i;
     SubCharacter* scp;
