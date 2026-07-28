@@ -35,6 +35,29 @@ typedef struct TextureParam {
     unsigned long tex1;  // offset 0x8, size 0x4
 } TextureParam;
 
+typedef struct Init_Gs_Packet {
+    // total size: 0x40
+    u_long giftag_tag; // offset 0x0, size 0x4
+    u_long giftag_reg; // offset 0x8, size 0x4
+    u_long test_d; // offset 0x10, size 0x4
+    u_long test_a; // offset 0x18, size 0x4
+    u_long fba_d; // offset 0x20, size 0x4
+    u_long fba_a; // offset 0x28, size 0x4
+    u_long texflush_d; // offset 0x30, size 0x4
+    u_long texflush_a; // offset 0x38, size 0x4
+} Init_Gs_Packet;
+
+
+typedef struct Packet {
+    // total size: 0x30
+    u_long giftag_tag; // offset 0x0, size 0x4
+    u_long giftag_reg; // offset 0x8, size 0x4
+    u_long TexFlush_D; // offset 0x10, size 0x4
+    u_long TexFlush_A; // offset 0x18, size 0x4
+    u_long Clamp_D; // offset 0x20, size 0x4
+    u_long Clamp_A; // offset 0x28, size 0x4
+} Packet;
+
 
 typedef struct PLightData {
     // total size: 0x80
