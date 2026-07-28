@@ -64,6 +64,7 @@ typedef struct SPACK_DATA {
     void* old_lastpos; // offset 0x58, size 0x4
 } SPACK_DATA;
 
+
 SPACK_DATA* spkInit(void);
 void spkResetOT(void);
 void spkResetOT2(void);
@@ -84,5 +85,10 @@ void spkSetOTPacketS(u_long128* adr /* r19 */, u_int w /* r18 */, u_char envid /
 void spkSetOTPacketS_asm(void);
 
 extern struct SPACK_DATA spack;
+
+static inline spkAddressData(u_long address, u_long data) {
+    (*spack.pos++) = address;
+    (*spack.pos++) = data;
+}
 
 #endif // SPACK_H
