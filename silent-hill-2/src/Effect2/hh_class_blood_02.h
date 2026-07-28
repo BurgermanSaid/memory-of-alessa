@@ -30,36 +30,6 @@ typedef struct Vertex_Infomeation_List {
     u_int Primitive_Type;     // offset 0xC, size 0x4
 } Vertex_Infomeation_List;
 
-typedef struct shBattleShot {
-    float test_a; // offset 0x0, size 0x4
-    float test_b; // offset 0x4, size 0x4
-    float test_c; // offset 0x8, size 0x4
-} shBattleShot;
-
-typedef struct shBattleFight {
-    float test_a; // offset 0x0, size 0x4
-    float test_b; // offset 0x4, size 0x4
-    float test_c; // offset 0x8, size 0x4
-} shBattleFight;
-
-typedef struct shAttackInfo {
-    u_short id;      // offset 0x0, size 0x2
-    u_short kind;    // offset 0x2, size 0x2
-    float ap;        // offset 0x4, size 0x4
-    float sp;        // offset 0x8, size 0x4
-    float min_range; // offset 0xC, size 0x4
-    float max_range; // offset 0x10, size 0x4
-    union {
-        shBattleFight fight; // offset 0x0, size 0xC
-        shBattleShot shot;   // offset 0x0, size 0xC
-    } hit_check;             // offset 0x14, size 0xC
-    u_char atk_start;        // offset 0x20, size 0x1
-    u_char atk_end;          // offset 0x21, size 0x1
-    u_char sd;               // offset 0x22, size 0x1
-    u_char eff;              // offset 0x23, size 0x1
-} shAttackInfo;
-;
-
 u_int HH_Class_Prefix_Blood_02(void);
 u_int HH_Class_Suffix_Blood_02(void);
 u_int HH_Class_Blood_02(void* pBlock, ImpactQueue_Element* pElement);

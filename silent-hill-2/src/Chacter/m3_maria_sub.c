@@ -10,6 +10,7 @@
 #include "Chacter/m3_sc.h"
 #include "Chacter/m3_play.h"
 #include "Chacter/sh_character_status.h"
+#include "Chacter/sh_character_battle.h"
 #include "Chacter/sh2_battle_list.h"
 
 #include "Collision/cl_main.h"

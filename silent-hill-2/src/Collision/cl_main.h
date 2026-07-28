@@ -82,25 +82,6 @@ typedef struct _CL_CLDHEADER {
     u_int cldofs;  // offset 0x170, size 0x4
 } CL_CLDHEADER;
 
-/*
-union
-{
-    typedef struct SubCharacter *en;       // offset 0x0, size 0x4
-    struct _CL_HITPOLY_PLANE *pl;  // offset 0x0, size 0x4
-    struct _CL_HITPOLY_COLUMN *cl; // offset 0x0, size 0x4
-} SubCharacter *en;       // offset 0x0, size 0x4;
-union
-{
-    typedef struct shBattleFight fight; // offset 0x0, size 0xC
-    struct shBattleShot shot;   // offset 0x0, size 0xC
-} shBattleFight fight; // offset 0x0, size 0xC;
-union
-{
-    typedef struct _CL_VHIT_WALL wall;   // offset 0x0, size 0x30
-    struct _CL_VHIT_CHARA chara; // offset 0x0, size 0x20
-} CL_VHIT_WALL wall;   // offset 0x0, size 0x30;
-*/
-
 typedef struct _CL_BATTLE_QUE {
     // total size: 0x50
     unsigned short kind;     // offset 0x0, size 0x2
@@ -134,7 +115,6 @@ typedef struct _CL_HITRESULT {
 
 #define CL_BATTLE_RESULT_SIZE 65
 
-extern /* static */ struct shAttackInfo sh2_attack_list[66];   // size: 0x948, address: 0x0
 extern u_char clPermColExpFlg[210];                            // size: 0xD2, address: 0x2A9880
 extern int clCollisionEnable;                                  // size: 0x4, address: 0x4917C0
 extern int clUseBattleResult;                                  // size: 0x4, address: 0x48ABE0

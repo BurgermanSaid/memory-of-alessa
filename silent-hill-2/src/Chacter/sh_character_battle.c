@@ -3,6 +3,7 @@
 #include "SH2_common/sh2dt.h"
 
 #include "Chacter/sh_character_battle.h"
+#include "Chacter/sh_character_status.h"
 #include "Chacter/chara_list.h"
 #include "Chacter/m3_sc.h"
 #include "Chacter/m3_play.h"
@@ -57,6 +58,9 @@ static void shBattleAttackByEnemyNeedle(SubCharacter* attacker, u_short atk);
 static void shBattleAttackByEnemyShot(SubCharacter* attacker, u_short atk);
 
 static void shBattleAddAttackQueue(SubCharacter* scp /* r2 */, u_char wep_no /* r2 */, u_short atk_no /* r2 */);
+
+
+extern /* static */ struct shAttackInfo sh2_attack_list[66];
 
 // bss
 

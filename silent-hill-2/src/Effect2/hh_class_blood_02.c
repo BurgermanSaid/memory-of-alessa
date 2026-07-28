@@ -2,7 +2,8 @@
 #include "hh_packet.h"
 #include "hh_class_wrapper.h"
 #include "sce/libvifpk.h"
-#include "../Chacter_Draw/sh2gfw_md_spclmapping.h"
+#include "Chacter_Draw/sh2gfw_md_spclmapping.h"
+#include "Chacter/sh_character_battle.h"
 
 static u_int Object_Initialize(HH_Object_Blood_02* pThis, ImpactQueue_Element* pElement);
 static u_int Object_Motion_00(HH_Object_Blood_02* pThis);

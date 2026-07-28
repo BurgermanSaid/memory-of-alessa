@@ -1,4 +1,5 @@
 #include "pss_videodec.h"
+#include "lib/cstring.h"
 
 int videoDecCreate(VideoDec *vd, u_char *mpegWork, int mpegWorkSize, u_long128 *data, u_long128 *tag, int tagSize, TimeStamp *pts, int n_pts)
 {
