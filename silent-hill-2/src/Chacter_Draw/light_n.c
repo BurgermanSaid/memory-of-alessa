@@ -221,19 +221,19 @@ void LightSetSpread(int n /* r2 */, float s_start /* r21 */, float s_end /* r20 
 
 static void CalcInfluence(Light* l /* r16 */, float* center /* r2 */, float radius /* r20 */) {
     switch (l->kind) {
-        case 0:
+        case LIGHT_KIND_NONE:
             l->influence  = 0.0f;
             l->influence2 = 0.0f;
             return;
-        case 1:
+        case LIGHT_KIND_PARALLEL:
             l->inf_fac = 0.2f * l->color[1];
-        case 4: /* fallthrough */
+        case LIGHT_KIND_REFLECTION: /* fallthrough */
             l->influence  = l->intensity;
             l->influence2 = l->intensity2;
             return;
 
-        case 2:
-        case 3: {
+        case LIGHT_KIND_POINT:
+        case LIGHT_KIND_3: {
             sceVu0FVECTOR diff; // r29+0x30
             float dist;         // r29+0x40
             float f_inf;        // r20
@@ -370,7 +370,7 @@ void UpdateParallels(void) {
     light_work.n_valid_parallel_matrices = (light_work.n_valid_parallels + 4) / 4;
 }
 
-static float nhm3[4] = {0.5f, 0.5f, 0.0f, 1.0f}; // @ 0x002A9550
+
 void UpdateReflections(void) {
     Light* a[12];          // r29+0x80
     int n_reflections = 0; // r16
@@ -378,7 +378,7 @@ void UpdateReflections(void) {
     sceVu0FMATRIX vwm;     // r29+0xF0
     int i;                 // r17
     Light* l;              // r2
-
+    static float nhm3[4] = {0.5f, 0.5f, 0.0f, 1.0f}; // @ 0x002A9550
     light_work.reflection_brightness = 0.0f;
     sceVu0CopyVector(light_work.reflection_color, zero_fvector);
     sceVu0CopyMatrix(light_work.nhm, zero_fmatrix);
