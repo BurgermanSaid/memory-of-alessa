@@ -4,10 +4,6 @@
 /* @note: this may belong elsewhere */
 #define EFF_VALID_ID 0xEF04
 
-static inline u_int reinterpret_as_u_int(float v) {
-    return *(u_int*) &v;
-}
-
 static inline void set_color_clamped_vec(IVector4* color, float c, IVector4* v) {
     color->x = (int) (v->x * c);
     color->y = (int) (v->y * c);

@@ -44,6 +44,9 @@ typedef enum bool {
 
 #define UNCACHED(p) ((char*)((u_int)p | 0x20000000))
 #define READ_UNCACHED(addr) ((((u_int)(addr)) & 0x0fffffff) | 0x20000000)
+#define UNCACHED_POINTER(addr) ((void*) ((((u_int)(addr)) & 0x0fffffff) | 0x20000000))
+#define MAIN_RAM_POINTER(addr) ((void*) (((u_int)(addr)) & 0x0fffffff))
+
 #define SCRATCHPAD_START 0x70000000
 
 #define GIF_REG(reg, n) ((u_long)(reg) << ((n) * 4))
@@ -139,6 +142,10 @@ typedef struct {
     // total size: 0x40
     float d[4][4]; // offset 0x0, size 0x40
 }  Matrix4 __attribute__((aligned(16)));
+
+static inline u_int reinterpret_as_u_int(float v) {
+    return *(u_int*) &v;
+}
 
 static inline void vec_copy(void* dst, void* src) {
     asm("\

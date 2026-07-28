@@ -4,6 +4,7 @@
 #include "sce/eetypes.h"
 #include "sh2_common.h"
 #include "sce/libdma.h"
+#include "Chacter_Draw/model3_structs.h"
 
 typedef struct TriangleNormal {
     // total size: 0xD0
@@ -161,10 +162,6 @@ typedef struct AllPacket {
     struct TriangleSpecularNormal specular_normal[2];                // offset 0xC80, size 0x360
 } AllPacket;
 
-typedef struct SMapData {
-    // total size: 0x40
-    float nhm[4][4]; // offset 0x0, size 0x40
-} SMapData;
 typedef struct ktVif1Ot2 {
     // total size: 0x20
     struct _sceDmaTag* top_1; // offset 0x0, size 0x4
@@ -184,11 +181,6 @@ typedef struct PersData {
     float xyz_max[4];  // offset 0x50, size 0x10
     float rgba_max[4]; // offset 0x60, size 0x10
 } PersData;
-typedef struct PLightData {
-    // total size: 0x80
-    float nlm[4][4]; // offset 0x0, size 0x40
-    float lcm[4][4]; // offset 0x40, size 0x40
-} PLightData;
 typedef struct Lambert0Data {
     // total size: 0x80
     float nlm[4][4]; // offset 0x0, size 0x40
@@ -198,28 +190,15 @@ typedef struct Lambert1Data {
     // total size: 0x10
     float global_ambient[4]; // offset 0x0, size 0x10
 } Lambert1Data;
-typedef struct ELightData {
-    // total size: 0x40
-    float pos[4];   // offset 0x0, size 0x10
-    float dir[4];   // offset 0x10, size 0x10
-    float col[4];   // offset 0x20, size 0x10
-    float param[4]; // offset 0x30, size 0x10
-} ELightData;
-typedef struct EMapData {
-    // total size: 0x60
-    float vwm[4][4]; // offset 0x0, size 0x40
-    float mag[4];    // offset 0x40, size 0x10
-    float offset[4]; // offset 0x50, size 0x10
-} EMapData;
 typedef struct AllData_Vu0 {
     // total size: 0x600
-    struct PLightData plight[4];                       // offset 0x0, size 0x200
-    struct ELightData elight[8];                       // offset 0x200, size 0x200
-    struct Lambert0Data lambert0;                      // offset 0x400, size 0x80
-    struct Lambert1Data lambert1;                      // offset 0x480, size 0x10
-    struct EMapData emap __attribute__((aligned(64))); // offset 0x4C0, size 0x60
-    struct SMapData smap __attribute__((aligned(64))); // offset 0x540, size 0x40
-    struct PersData pers __attribute__((aligned(64))); // offset 0x580, size 0x70
+    PLightData plight[4];                       // offset 0x0, size 0x200
+    ELightData elight[8];                       // offset 0x200, size 0x200
+    Lambert0Data lambert0;                      // offset 0x400, size 0x80
+    Lambert1Data lambert1;                      // offset 0x480, size 0x10
+    EMapData emap __attribute__((aligned(64))); // offset 0x4C0, size 0x60
+    SMapData smap __attribute__((aligned(64))); // offset 0x540, size 0x40
+    PersData pers __attribute__((aligned(64))); // offset 0x580, size 0x70
 } AllData_Vu0;
 
 typedef struct ClusterData {
