@@ -436,6 +436,8 @@ static u_char PlayerCheckKeyInputDash(u_char dash) {
     }            
 }
 
+// float memes
+#ifdef NON_MATCHING
 void PlayerCheckKeyInput(void) {
     s_char pad_local_org[4]; // r29+0x4C
     u_char pad_local[32]; // r29+0x20
@@ -659,6 +661,9 @@ void PlayerCheckKeyInput(void) {
 
 
 }
+#else
+INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play", PlayerCheckKeyInput);
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play", PlayerDamageMotionNo);
 
@@ -732,7 +737,7 @@ void PlayerSetHeight(SubCharacter* this) {
     
     if (sh2jms.ft_floor.kind == 1) {
         this->grnd_height = sh2jms.ft_floor.hobj.wall.cp[1];
-        this->grnd_normal = *(Vector4*)&sh2jms.ft_floor.hobj.wall.nl;
+        this->grnd_normal = sh2jms.ft_floor.hobj.wall.nl;
     }
     
     
