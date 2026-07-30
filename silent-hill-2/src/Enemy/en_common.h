@@ -168,6 +168,7 @@ float enCheckHitEyes2(EnLOCAL_DATA* dp /* r18 */, float* sp /* r17 */, float* ep
 void enInitPath(EnPATH_DATA* p /* r16 */, float angle /* r29+0x20 */);
 int enSetPath(EnLOCAL_DATA* dp /* r19 */, float* target /* r17 */, float* pos /* r18 */);
 
+int enCheckFloor(float* pos);
 void enGetSkeletonVector(float* vec, EnLOCAL_DATA* dp, int n);
 void enGetSkeletonMatrix(float (*mat)[4], EnLOCAL_DATA* dp, int n);
 int enGetDamageMotion(EnLOCAL_DATA* dp);
