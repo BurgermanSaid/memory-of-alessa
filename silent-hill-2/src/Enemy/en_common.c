@@ -959,7 +959,25 @@ float enCheckPlayerHitEyes(EnLOCAL_DATA* dp, float* ep) {
     return vec3_dist(p1, res->hobj.wall.cp);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckFloor);
+int enCheckFloor(float* pos) {
+    CL_VHIT_RESULT* res = &enLocalWork.HitResult;
+    sceVu0FVECTOR vec1, vec2;
+    int m; // r3
+    volatile_vec_copy(vec1, pos);
+    volatile_vec_copy(vec2, pos);
+    vec1[1] -= 100.0f;
+    vec2[1] += 100.0f;
+    clCheckHitEyesOnlyFloor(res, NULL, vec1, vec2);
+    if (res->kind == 0) {
+        return 0;
+    }
+    m = res->hobj.wall.pd->material;
+    if ((m == 9) || (m == 11)) {
+        return 2;
+    }
+    
+    return 1;
+}
 
 void enGetSkeletonVector(float* vec, EnLOCAL_DATA* dp, int n) {
     shSkelton* sp; // r5
