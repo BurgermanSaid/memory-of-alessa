@@ -1,10 +1,12 @@
 #include "Chacter/m3_play.h"
+#include "Chacter/m3_rpjames.h"
 #include "Chacter/m3_sc.h"
 #include "Chacter/sh_character_status.h"
 
 #include "Collision/cl_main.h"
 
 #include "Event/event.h"
+#include "Event/stg_name.h"
 
 #include "Multi_thr/pad/keydata.h"
 
@@ -3376,7 +3378,56 @@ INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play", PlayerGetNeckAngleX);
 
 INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play", PlayerGetNeckAngleY);
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play", PlayerInitOnConnect);
+void PlayerInitOnConnect(void) {
+
+        
+    sh2jms.column_mov.kind = sh2jms.column_atk.kind = 1;    
+    sh2jms.column_mov.weight = sh2jms.column_atk.weight = 2;
+    
+    sh2jms.column_mov.material = 6;
+    sh2jms.column_atk.material = 0;    
+    sh2jms.column_mov.shape = sh2jms.column_atk.shape = 3;    
+    
+    sh2jms.column_mov.p[0][3] = sh2jms.column_atk.p[0][3] = 1.0f;    
+    sh2jms.column_mov.p[1][0] = sh2jms.column_atk.p[0][0] = 0.0f;    
+    sh2jms.column_mov.p[1][2] = sh2jms.column_atk.p[0][2] = 0.0f;
+    
+    
+    sh2jms.column_mov.p[0][0] = sh2jms.column_atk.p[0][0] = sh2jms.player->pos.x;    
+    sh2jms.column_mov.p[0][1] = sh2jms.column_atk.p[0][1] = -50.0f + sh2jms.player->pos.y;
+    sh2jms.column_mov.p[0][2] = sh2jms.column_atk.p[0][2] = sh2jms.player->pos.z;
+    sh2jms.column_mov.p[1][1] = sh2jms.column_atk.p[1][1] = -850.0f + sh2jms.player->pos.y;    
+    sh2jms.column_mov.p[1][3] = sh2jms.column_atk.p[1][3] = 200.0f;
+    
+    
+    sh2jms.col_mov_z_hosei = 0.0f;
+    sh2jms.col_atk_z_hosei = 0.0f;    
+    
+    
+    sh2jms.player->spd = sh2jms.player->spd_org = 0.0f;
+    
+    
+    PlayerSetReverseMode();
+    
+    
+    sh2jms.room_name_prev = sh2jms.room_name_now;
+    sh2jms.room_name_now = RoomNameJms();
+    
+    if ((sh2jms.room_name_prev == 0x5D) && (sh2jms.room_name_now == 0x5E)) { // @todo: add rooms
+    
+        sh2jms.player->grnd_height = 0.0f;
+        sh2jms.dist_pos.y = 0.0f;
+    }
+
+
+
+
+
+
+
+
+
+}
 
 void PlayerStatusClear(void) {
     
