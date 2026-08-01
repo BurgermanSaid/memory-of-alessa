@@ -75,6 +75,7 @@ def annotate_asm(args: AnnotationArgs):
     prev_line_number = -1
     function_count = 0
     is_in_function_label = False
+    is_in_text_section = False
     current_vram_addr = vram_start
     annotated_asm_lines = []
 
@@ -109,6 +110,14 @@ def annotate_asm(args: AnnotationArgs):
                 )
 
             asm_line = asm_lines[asm_line_index]
+
+            if asm_line.startswith(SECTION_DIRECTIVE):
+                is_in_text_section = asm_line.startswith(TEXT_SECTION_DIRECTIVE)
+
+            if not is_in_text_section:
+                annotated_asm_lines.append(asm_line)
+                asm_line_index += 1
+                continue
 
             if line_has_vram_addr(asm_line, vram_addr_str):
                 break
@@ -193,17 +202,18 @@ def find_vram_bounds(asm_lines: list[str]):
             passed_first_label = True
             continue
 
-        if passed_first_label:
+        if passed_first_label and start is None:
             start = get_vram_addr_from_line(line)
+
+        # assumes .text section comes first
+        if line.startswith(SECTION_DIRECTIVE) and not line.startswith(TEXT_SECTION_DIRECTIVE):
             break
-    
-    for i in range(len(asm_lines) - 1, 0, -1):
-        line = asm_lines[i]
+
         vram_addr = get_vram_addr_from_line(line)
         if vram_addr is None:
             continue
+
         end = vram_addr
-        break
 
     return (start, end)
 
@@ -214,7 +224,10 @@ def get_vram_addr_from_line(line: str):
     _before_comment, after_comment = line.split("/* ", 1)
     _file_addr, vram_addr, _rest = after_comment.split(" ", 2)
 
-    return int(vram_addr, 0x10)
+    try: 
+        return int(vram_addr, 0x10)
+    except:
+        return None
 
 def line_has_vram_addr(line: str, addr_str: str) -> bool:
     if addr_str not in line or "*/" not in line:
