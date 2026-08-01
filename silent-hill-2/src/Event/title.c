@@ -1248,7 +1248,7 @@ static void titleDrawTitle(void) {
 }
 
 #ifdef NON_MATCHING
-static void titleDrawSprite(short x) {
+static void titleDrawSprite(short x, short y, short id) {
     shQzero(&TitleData.pic0, sizeof(PicDraw_Data));
     picture_set_ap(&TitleData.pic0, TitleData.pload1);
     picture_set_rgb(&TitleData.pic0, &TitleSpr[id].rgba);
