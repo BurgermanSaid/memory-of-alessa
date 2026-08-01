@@ -1648,12 +1648,10 @@ int GameendMain(void) {
                     if ((shPadTrigger(0, key_config.action) != 0) || (shPadTrigger(0, key_config.cancel) != 0) || game_over_timer > 5.0f) {
                         return 1;
                     }
-                    goto block_14;
             }
-        block_14:
-        default:
-            return 0;
     }
+
+    return 0;
 }
 
 OPD_W opd_w[6];  // size: 312, address: 18274272
