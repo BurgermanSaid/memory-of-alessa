@@ -177,7 +177,7 @@ segments:
       - [0x0bff00, c,   Multi_thr/sys/init_mt_sys]
       - [0x0c0820, asm, Multi_thr/boot/bootopt]
       - [0x0c0a70, asm, Multi_thr/boot/bootoptitem]
-      - [0x0c1200, asm, Event/title]
+      - [0x0c1200, c,   Event/title]
       - [0x0c5a20, c,   SH2_common/pad]
       - [0x0c6500, c,   DBG/dbfntprint]
       - [0x0c6b90, c,   Chacter/sh2_character_manage]
@@ -404,6 +404,8 @@ segments:
       - [0x1b9ae0, data,    data_0x1b9ae0]
       - [0x1bb580, .data,   Font/font]
       - [0x1bb5c0, data,    data_0x1bb5c0]
+      - [0x23bf80, .data,   Event/title]
+      - [0x23c5c0, data,    data_0x23c5c0]
       - [0x23e370, .data,   Event/chara_admin]
       - [0x23e3a0, data,    data_0x23e3a0]
       - [0x248700, .data,   Chacter/m3_nse]
@@ -530,7 +532,7 @@ segments:
       - [0x2920a0, rodata,  Multi_thr/pad/th_pad]
       - [0x292130, .rodata, Multi_thr/sys/init_mt_sys]
       - [0x292500, rodata,  Multi_thr/boot/bootoptitem]
-      - [0x292a10, rodata,  Event/title]
+      - [0x292a10, .rodata, Event/title]
       - [0x292d60, .rodata, SH2_common/pad]
       - [0x292d80, rodata,  rodata_0x292d80]
       - [0x292ea0, .rodata, Event/chizu]
@@ -619,6 +621,8 @@ segments:
       - { vram: 0x0e40280, type: bss,  name: bss_0x0e40280 }
       - { vram: 0x1159230, type: .bss, name: Multi_thr/filesys/fileserv }
       - { vram: 0x1159238, type: bss,  name: bss_0x1159238 }
+      - { vram: 0x116d788, type: .bss, name: Event/title }
+      - { vram: 0x116d9e8, type: bss,  name: bss_0x116d9e8 }
       - { vram: 0x116e3d0, type: .bss, name: Item/otn_itemmain }
       - { vram: 0x116e670, type: bss,  name: bss_0x116e670 }
       - { vram: 0x11b6a70, type: .bss, name: Item/otn_option }
