@@ -17,6 +17,7 @@
 #include "Effect/screen_effect.h"
 #include "MC/mc.h"
 #include "Fog/spack.h"
+#include "GFW/sh2gfw_structs.h"
 
 #include "data/fs_structs.h"
 #include "data/daily.thu/data_pic_etc.h"
@@ -429,8 +430,8 @@ void titleSetDataStartPoint(void) {
         ItemGet(SH2_ITEM_18);
         item.light_switch = 1;
         if (title_test_mode == TITLE_TEST_MODE_US) {
-            switch (title_start_point) { /* switch 1; irregular */
-                case 1:                  /* switch 1 */
+            switch (title_start_point) {
+                case 1:
                     ItemGet(SH2_ITEM_04);
                     for (i = 0; i < 3; i++) {
                         ItemGet(SH2_ITEM_05);
@@ -454,7 +455,7 @@ void titleSetDataStartPoint(void) {
                     SET_GAME_FLAG(67);
                     playing.riddle_level = 0;
                     return;
-                case 2: /* switch 1 */
+                case 2:
                     ItemGet(SH2_ITEM_04);
                     for (i = 0; i < 3; i++) {
                         ItemGet(SH2_ITEM_05);
@@ -480,8 +481,8 @@ void titleSetDataStartPoint(void) {
                     return;
             }
         } else {
-            switch (title_start_point) { /* switch 2; irregular */
-                case 1:                  /* switch 2 */
+            switch (title_start_point) {
+                case 1:
                     ItemGet(SH2_ITEM_11);
                     ItemGet(SH2_ITEM_16);
                     for (i = 0; i < 16; i++) {
@@ -489,7 +490,7 @@ void titleSetDataStartPoint(void) {
                     }
                     item.equip = 11;
                     return;
-                case 2: /* switch 2 */
+                case 2:
                     SET_GAME_FLAG(15);
                     ItemGet(SH2_ITEM_11);
                     ItemGet(SH2_ITEM_04);
@@ -504,7 +505,7 @@ void titleSetDataStartPoint(void) {
                     }
                     item.equip = 4;
                     return;
-                case 3: /* switch 2 */
+                case 3:
                     ItemGet(SH2_ITEM_11);
                     ItemGet(SH2_ITEM_04);
                     for (i = 0; i < 9; i++) {
@@ -522,7 +523,7 @@ void titleSetDataStartPoint(void) {
                     }
                     item.equip = 4;
                     return;
-                case 4: /* switch 2 */
+                case 4:
                     ItemGet(SH2_ITEM_04);
                     for (i = 0; i < 9; i++) {
                         ItemGet(SH2_ITEM_05);
@@ -580,64 +581,64 @@ static void titleInit(void) {
             sh2sys_step_3();
             return;
 
-        case 1: /* switch 1 */
+        case 1:
             wait_loop += 1;
-            switch (fsSync(1, fid)) { /* switch 2; irregular */
-                case 1:               /* switch 2 */
+            switch (fsSync(1, fid)) {
+                case 1:
                     DEBUG_LOG_ON_LINE(642, "title.tex: read finished(%d.%02d)\n", (wait_loop / 60), ((wait_loop % 60) * 100) / 60);
                     sh2sys_step_3();
                     break;
-                case 0: /* switch 2 */
+                case 0:
                     DEBUG_LOG_ON_LINE(647, "!!! illegal fid=%d\n", fid);
                     break;
-                case -1: /* switch 2 */
+                case -1:
                     if ((wait_loop % 60) == 0) {
                         DEBUG_LOG_ON_LINE(651, "title.tex: now reading(%d.)...\n", (wait_loop / 60));
                         break;
                     }
                     break;
-                case -2: /* switch 2 */
+                case -2:
                     if ((wait_loop % 60) == 0) {
                         DEBUG_LOG_ON_LINE(656, "title.tex: now waiting(%d.)...\n", (wait_loop / 60));
                         return;
                     }
                     break;
-                default: /* switch 2 */
+                default:
                     DEBUG_LOG_ON_LINE(660, "illegal return value\n");
                     break;
             }
             break;
 
-        case 2: /* switch 1 */
+        case 2:
             fid       = FcRead(data_pic_etc_start01_tex, TitleData.pload1);
             wait_loop = 0;
             sh2sys_step_3();
             return;
 
-        case 3: /* switch 1 */
+        case 3:
             titleChangeMainMenu();
             wait_loop += 1;
-            switch (fsSync(1, fid)) { /* switch 3; irregular */
-                case 1:               /* switch 3 */
+            switch (fsSync(1, fid)) {
+                case 1:
                     DEBUG_LOG_ON_LINE(681, "title.tex: read finished(%d.%02d)\n", (wait_loop / 60), (((wait_loop % 60) * 100) / 60));
                     sh2sys_step_2();
                     return;
-                case 0: /* switch 3 */
+                case 0:
                     DEBUG_LOG_ON_LINE(686, "!!! illegal fid=%d\n", fid);
                     return;
-                case -1: /* switch 3 */
+                case -1:
                     if ((wait_loop % 60) == 0) {
                         DEBUG_LOG_ON_LINE(690, "title.tex: now reading(%d.)...\n", (wait_loop / 60));
                         return;
                     }
                     break;
-                case -2: /* switch 3 */
+                case -2:
                     if ((wait_loop % 60) == 0) {
                         DEBUG_LOG_ON_LINE(695, "title.tex: now waiting(%d.)...\n", (wait_loop / 60));
                         return;
                     }
                     break;
-                default: /* switch 3 */
+                default:
                     DEBUG_LOG_ON_LINE(699, "illegal return value\n");
                     break;
             }
@@ -866,12 +867,7 @@ static void titleMainSelect(void) {
 
     TitleData.timer -= shGetDT();
     if (TitleData.timer <= 0.0f) {
-        Sh2sys.step[2] = 7;
-        Sh2sys.step[3] = 0;
-        Sh2sys.step[4] = 0;
-        Sh2sys.step[5] = 0;
-        Sh2sys.step[6] = 0;
-        Sh2sys.step[7] = 0;
+        sh2sys_set_2(7);
     }
 
     TitleData.alphar += 0.06981317f;
@@ -1123,8 +1119,6 @@ static u_char titleGetRiddleLevelFromCursor(int cur) {
 }
 
 static void titleFadeOutNewGame(void) {
-    s32 temp_a0;
-
     switch (Sh2sys.step[3]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
@@ -1157,16 +1151,17 @@ static void titleFadeOutNewGame(void) {
         TitleData.mode = SH2_TITLE_DATA_MODE_3;
         return;
     }
+
     TitleSprChgColor->timer = TitleSprChgColor->cycle;
     titleDrawTitle();
     if (title_test_mode != TITLE_TEST_MODE_US) {
         titleDrawSubMenu(2);
     }
+
     return;
 }
 
 static void titleFadeOut(void) {
-
     switch (Sh2sys.step[3]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
@@ -1201,7 +1196,6 @@ static void titleFadeOut(void) {
 }
 
 static void titleExit(void) {
-
     switch (Sh2sys.step[3]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
@@ -1234,14 +1228,14 @@ static void titleExit(void) {
 static void titleDrawTitle(void) {
     TitleSprChgColorWork* chg_color_info;
 
-    PictureLoadImage((struct sh2gfw_AREA_HEAD*) TitleData.pload0, 0, -1, -1);
+    PictureLoadImage((sh2gfw_AREA_HEAD*) TitleData.pload0, 0, -1, -1);
     shQzero(&TitleData.pic0, sizeof(PicDraw_Data));
     picture_set_ap(&TitleData.pic0, TitleData.pload0);
     TitleData.pic0.otp = 1;
     picture_set_xy(&TitleData.pic0, -4096, -3584, 4096, 3584);
     picture_set_uvst(&TitleData.pic0, 0, 0, 512, 512);
     PictureDraw(&TitleData.pic0);
-    PictureLoadImage((struct sh2gfw_AREA_HEAD*) TitleData.pload1, 2, -1, -1);
+    PictureLoadImage((sh2gfw_AREA_HEAD*) TitleData.pload1, 2, -1, -1);
     titleRenewChangeColorManagement(&TitleSprChgColor->timer, TitleSprChgColor->cycle, 1);
     titleChangeColor(TitleSpr[0].rgba, TitleSprChgColor->start_rgba, TitleSprChgColor->end_rgba, TitleSprChgColor->timer, TitleSprChgColor->cycle, 0.5f);
     titleDrawSprite(-257, -103, 0);
