@@ -104,9 +104,9 @@ void clAllInitCollisionData(void) {
     clDynamicFloorListAct = 0;
     clCharaListUse[0] = 0;
     clCharaListUse[1] = 0;
-    clDynamicWallList->use = 0;
+    clDynamicWallList[0].use = 0;
     clDynamicWallList[1].use = 0;
-    clDynamicFloorList->use = 0;
+    clDynamicFloorList[0].use = 0;
     clDynamicFloorList[1].use = 0;
     clBattleResult[CL_BATTLE_RESULT_SIZE - 1].atr = 0;
     clUseBattleResult = 0;
@@ -203,7 +203,6 @@ void clAddDynamicFloor(CL_HITPOLY_PLANE* pl /* r2 */) {
     clDynamicFloorList[clDynamicFloorListAct].use++;
 }
 
-#ifdef NON_MATCHING
 void clCollectCharaALL(void) {
     int i; // r16
     int j; // r20
@@ -311,7 +310,7 @@ void clCollectCharaALL(void) {
                             
                                 
                                 
-                                float div[5] = { 1.0f, 0.98f, 0.94f, 0.89f, 0.86f }; // r29+0xC0
+                                float div[5] = { 1.0f, 0.98f, 0.94f, 0.9f, 0.86f }; // r29+0xC0
                                 float dist; /* r29+0xE0 */
                                 wt = (col0->weight - col1->weight);
                                 if (wt < 0)
@@ -335,7 +334,7 @@ void clCollectCharaALL(void) {
                                 dist = vec_length(vec1);
                                 dist = col0->p[1][3] / dist;
                                 if (dist < 1.0f)
-                                    vu0_scale_vector(cres.cv, cres.cv, -1.0f);
+                                    vu0_scale_vector(vec1, vec1, dist);
 
 
                                 clAddCollectVector(clCharaList[clCharaListAct][j].ccvec, &vec1[0]);
@@ -476,10 +475,6 @@ void clCollectCharaALL(void) {
         else hit = 0;
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Collision/cl_main", clCollectCharaALL);
-float data_1085_0x002A9960[5] = { 1.0f, 0.98f, 0.94f, 0.9f, 0.86f };
-#endif
 
 static void clAddCollectVector(float* v0 /* r2 */, float* v1 /* r2 */) {
     float tv[4]; // r29

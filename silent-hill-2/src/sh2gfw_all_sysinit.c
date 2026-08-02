@@ -229,7 +229,7 @@ void step_init_STAGE(void) {
     
     
     
-    bgfiles = FilesGetBgBlock((enum STAGE_ID) stage->glb_crd, 0);
+    bgfiles = FilesGetBgBlock((STAGE_ID) stage->glb_crd, 0);
     if (bgfiles != NULL) {
         loadBgCAM_LoadData(0, bgfiles->cam, stage->glb_crd << 0x10);
     }
