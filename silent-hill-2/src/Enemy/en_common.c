@@ -1384,7 +1384,15 @@ INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetForbiddenArea)
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enRoomForbiddenArea);
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckForbiddenArea);
+int enCheckForbiddenArea(float* sp, float* ep, float size) {
+    int i, f; 
+    f = 0;    
+    for (i = 0; i < enLocalWork.ForbiddenNum; i++) {        
+        f |= enCheckForbiddenAreaSub(&enLocalWork.ForbiddenArea[i], sp, ep, size);
+    }
+
+    return f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckForbiddenAreaSub);
 
