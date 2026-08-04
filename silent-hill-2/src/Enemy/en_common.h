@@ -198,6 +198,8 @@ EnCOMMUNICATION* enSetCommunication(int kind, int type, float* pos, float dist, 
 
 void enResetForbiddenArea(void);
 
+int enCheckForbiddenArea(float* sp, float* ep, float size);
+int enCheckForbiddenAreaSub(EnFORBIDDENAREA* fa /* r2 */, float* sp /* r2 */, float* ep /* r2 */, float size /* r29 */);
 void enEventDriven(int event /* r2 */, int id /* r2 */);
 
 #endif
