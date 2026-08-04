@@ -937,9 +937,47 @@ float enCheckForward(EnLOCAL_DATA* dp, float* pos, float* rot, float range) {
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckHitEyes);
+float enCheckHitEyes(EnLOCAL_DATA* dp, float* sp, float* ep) {
+    CL_VHIT_RESULT* res = &enLocalWork.HitResult; // r16
+    int f = 0; // r19
+    sceVu0FVECTOR cp; // r29+0x50
+    
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckHitEyes2);
+    volatile_vec_copy(cp, ep);
+    if (enCheckForbiddenArea(sp, cp, dp->size) != 0) f = 1;
+    clCheckHitEyes(res, (u_int) dp->scp, sp, cp, 2);
+    if (res->kind == 0) 
+        if (f != 0) return vec3_dist(sp, cp);
+        else return -vec3_dist(sp, cp);    
+    if (res->kind == 3) {
+        if (((res->hobj.chara.sc)->kind < 302) && !(dp->flag & 0x200)) 
+            
+            return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
+        
+        return vec3_dist(sp, res->hobj.wall.nl);
+    }
+    
+    return vec3_dist(sp, res->hobj.wall.cp);
+}
+
+float enCheckHitEyes2(EnLOCAL_DATA* dp, float* sp, float* ep) {
+    CL_VHIT_RESULT* res = &enLocalWork.HitResult; // r16
+    
+    
+    
+    clCheckHitEyes(res, (u_int) dp->scp, sp, ep, 0);
+    if (res->kind == 0) 
+        return -vec3_dist(sp, ep);    
+    if (res->kind == 3) {
+        if (((res->hobj.chara.sc)->kind < 302) && !(dp->flag & 0x200)) {
+            
+            return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
+        }
+        return vec3_dist(sp, res->hobj.wall.nl);
+    }
+    
+    return vec3_dist(sp, res->hobj.wall.cp);
+}
 
 float enCheckPlayerHitEyes(EnLOCAL_DATA* dp, float* ep) {
     CL_VHIT_RESULT* res = &enLocalWork.HitResult; // r16
