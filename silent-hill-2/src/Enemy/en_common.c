@@ -1377,7 +1377,7 @@ void enSoundSetQueue(struct SubCharacter* scp /* r2 */, int num /* r2 */, float 
     }
 }
 
-struct EnCOMMUNICATION* enSetCommunication(int kind, int type, float* pos, float dist, int time) {
+EnCOMMUNICATION* enSetCommunication(int kind, int type, float* pos, float dist, int time) {
     int i = 0;
     EnCOMMUNICATION* p = enLocalWork.Communication;
     
@@ -1399,7 +1399,30 @@ struct EnCOMMUNICATION* enSetCommunication(int kind, int type, float* pos, float
     return p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCommunicateTribe);
+EnCOMMUNICATION* enCommunicateTribe(int kind, float* pos) {
+    EnCOMMUNICATION* mp; // r2
+    EnCOMMUNICATION* p; // r2
+    int i; // r6
+    float d; // r29    
+    float dist; // r1
+   
+    mp = NULL;
+    p = enLocalWork.Communication;
+    
+    
+    if (enLocalWork.CommunicationNum == 0) return NULL;    
+    d = MAX_FLOAT;
+    for (i = 0; i < 8; i++, p++) {
+        if (p->kind == kind) {
+            dist = vec3_dist(pos, p->pos);            
+            if ((dist < p->dist) && (dist < d)) {
+                d = dist;
+                mp = p;
+            }
+        }       
+    }
+    return mp;
+}
 
 void enResetForbiddenArea(void) {
     enLocalWork.ForbiddenNum = 0;
