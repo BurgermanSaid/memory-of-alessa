@@ -75,7 +75,7 @@ def annotate_asm(args: AnnotationArgs):
     prev_line_number = -1
     function_count = 0
     is_in_function_label = False
-    is_in_text_section = False
+    is_in_text_section = True # assumes .text section comes first
     current_vram_addr = vram_start
     annotated_asm_lines = []
 
