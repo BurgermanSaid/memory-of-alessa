@@ -1007,9 +1007,9 @@ static int DdsPlay(DramaDemo_PlayInfo * info /* r16 */) {
                 
                 fontClear();
                 demo_msg_no++;
-                DdsUnsetFlag(DDS_SUBTITLES_SHOWN);
+                DdsUnsetFlag(DDS_FLAG_SUBTITLES_SHOWN);
             }
-            if ((int) msg_frame > ((int) info->adr_msg_time[demo_msg_no].start) && !(DdsGetFlag(DDS_SUBTITLES_SHOWN))) {
+            if ((int) msg_frame > ((int) info->adr_msg_time[demo_msg_no].start) && !(DdsGetFlag(DDS_FLAG_SUBTITLES_SHOWN))) {
                 
                 fontMessageNum(msg_buffer, info->msg_start + demo_msg_no);
                 demo_status |= 8;
