@@ -88,10 +88,10 @@ BINUTILS := $(TOOLS)/binutils-$(BINUTILS_FLAVOR)
 BINUTILS_VERSION_FILE := $(BINUTILS)/version-0-10
 
 AS := $(BINUTILS)/$(BINUTILS_FLAVOR)-as
+MWCCGAP_AS_FLAGS := -mno-branch-relocs
 AS_FLAGS := \
-	-EL -march=r5900 -mabi=eabi -G=0 -mno-branch-relocs \
-	$(MWCCGAP_AS_FLAGS) -I$(INCLUDE) -I$(CONFIG) \
-	-I$(COMMON_INCLUDE)
+	-EL -march=r5900 -mabi=eabi -G=0 $(MWCCGAP_AS_FLAGS) \
+	-I$(INCLUDE) -I$(CONFIG) -I$(COMMON_INCLUDE)
 
 LD :=
 ifneq ($(NON_MATCHING),1)
