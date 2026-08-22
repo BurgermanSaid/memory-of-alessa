@@ -21,7 +21,6 @@
 #define _LIB_VU0_H_
 
 #include "sce/eetypes.h"
-#include "sce/libvu0.h"
 
 #ifdef __cplusplus
 extern "C" {
