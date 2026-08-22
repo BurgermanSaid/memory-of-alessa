@@ -1,4 +1,6 @@
 #include "subway_02.h"
+#include "sce/libvu0.h"
+#include "vec.h"
 
 int func_01F6D680_subway_02(void)
 {
@@ -307,7 +309,7 @@ void func_01F6DE80_subway_02(sceVu0FVECTOR* arg0)
         temp_v0 = (func_001C7C80_struct *) ((char *) spD0 + temp_t0);
         temp_v0->unk0 = temp_f0;
 
-        if (vec3_dot_product(spB0, sp60) < 0.0f)
+        if (sh3_vec3_dot_product(spB0, sp60) < 0.0f)
         {
             temp_v0->unk0 += 800.0f;
         }

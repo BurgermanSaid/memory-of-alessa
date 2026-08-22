@@ -2,6 +2,7 @@
 #define AMUSEMENT_01_H
 
 #include "common.h"
+#include "sce/libvu0.h"
 #include "Chacter/m3_sc.h"
 
 #define DANNY_CHARA_KIND 0x1043
@@ -314,7 +315,7 @@ float moon_candle_amusement_01(float x, float y) {        \
 }
 /* end candles */
 
-static inline float vec3_dist(sceVu0FVECTOR v, sceVu0FVECTOR w) {
+static inline float vec3_dist_amusement_01(sceVu0FVECTOR v, sceVu0FVECTOR w) {
     float d;
     asm("lwc1 %2, 0(%0)\n\
          lwc1 f8, 0(%1)\n\

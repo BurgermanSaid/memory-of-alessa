@@ -1,4 +1,5 @@
 #include "Chacter/m3_sc.h"
+#include "sce/libvu0.h"
 #include "Chacter/m3_play.h"
 #include "Chacter/skelton.h"
 #include "Heap/sh2_ch_malloc.h"
@@ -9,6 +10,7 @@
 #include "Chacter/m3_wep.h"
 #include "Chacter/m3_play_event.h"
 #include "Chacter/chara_list.h"
+#include "vec.h"
 
 static SubCharacter* shCharacterGetFreeList(void);
 static void AddFreeList(SubCharacter* scp);
