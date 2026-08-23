@@ -237,6 +237,10 @@ clean:
 	@$(MAKE) PROJECT=silent-hill-2 clean-project
 
 clean-build:
+	@$(MAKE) PROJECT=silent-hill-3 clean-project-build
+	@$(MAKE) PROJECT=silent-hill-2 clean-project-build
+
+clean-project-build:
 	rm -rf $(BUILD)
 
 clean-project:
