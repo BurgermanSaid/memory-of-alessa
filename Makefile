@@ -224,6 +224,9 @@ expected: $(YAMLS)
 compiler-info:
 	$(WIBO) $(MWCC) -help
 
+linker-info:
+	$(WIBO) $(MWLD) -help
+
 alessatool:
 	$(ALESSATOOL)
 
@@ -232,6 +235,9 @@ binutils: $(AS)
 clean:
 	@$(MAKE) PROJECT=silent-hill-3 clean-project
 	@$(MAKE) PROJECT=silent-hill-2 clean-project
+
+clean-build:
+	rm -rf $(BUILD)
 
 clean-project:
 	rm -rf $(ASM)
@@ -266,7 +272,7 @@ sh2-clean:
 $(LINKERS)/%.d: $(CONFIG)/overlay/%.yaml $(OVERLAY_SPLAT_FILES) $(SETUP)
 	$(GENERATE) $(GENERATE_OVERLAY_FLAGS) $(SPLAT_CONFIG) $<
 
-$(LINKERS)/%.d: $(CONFIG)/%.yaml $(SPLAT_FILES) $(SETUP)
+$(LINKERS)/%.d: $(CONFIG)/%.yaml $(OVERLAYS:%=$(LINKERS)/%.d) $(SPLAT_FILES) $(SETUP)
 	$(GENERATE) $(GENERATE_FLAGS) $(SPLAT_CONFIG) $<
 	$(ALESSATOOL) $(MERGE_DEPENDENCIES)
 
@@ -354,9 +360,10 @@ $(patsubst $(ASM)/%.s,$(BUILD)/asm/%.s.o, \
 endef
 ###############################################################
 PHONY_TARGETS := \
-	alessatool binutils clean clean-project compiler-info \
-	death debug deep-clean diff expected extract heaven hell \
-	progress overlays-lowercase rebuild report setup sh2 sh3 \
+	alessatool binutils clean clean-build clean-project \
+	compiler-info death debug deep-clean diff expected \
+	extract heaven hell linker-info progress \
+	overlays-lowercase rebuild report setup sh2 sh3 \
 	sh2-clean sh3-clean sh2-report sh3-report split
 .PHONY: $(PHONY_TARGETS)
 ifeq ($(filter $(PHONY_TARGETS) $(OBJDIFF_CONFIG),$(MAKECMDGOALS)),)
