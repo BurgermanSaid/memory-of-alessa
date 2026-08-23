@@ -52,7 +52,7 @@ def merge_objdiff_units(args: MergeArgs):
         "$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
         "build_base": True,
         "build_target": False,
-        "custom_args": [f"PROJECT={args.project}", "report", "-j"],
+        "custom_args": [f"PROJECT={args.project}", "NON_MATCHING=1"],
         "watch_patterns": [
             "*.c",
             "*.h",
