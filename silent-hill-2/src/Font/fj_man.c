@@ -28,6 +28,7 @@ void fjFontDrawExecVif1(void) {
 }
 
 
+#define ABORT() asm("breakc 0")
 int fjAssert_(const char *file, int line, const char *str) __attribute__((noreturn))
 {
     printf("assertion \"%s\" failed: file \"%s\", line %d\n", str, file, line);
