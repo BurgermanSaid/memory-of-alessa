@@ -57,7 +57,7 @@ static int BgCharaRelocateItemSet(int glb_crd /* r18 */, int mapno /* r19 */, in
     FilesBgBlock* bp; // r18
     fsFileIndex* p0; // r2
     fsFileIndex* p1; fsFileIndex* bp_3; s8* p1_2; s8* p1_3; s8* p1_4;
-    if ((chara_id >> 8) != 3) return 0;
+    if (GET_KIND_TYPE(chara_id) != OBJECT_SKELETAL_OUTDOOR_CHARA_KIND) return 0;
     result = CharaDataFileSearch(file, chara_id);
     cid = file[0];
     ASSERT_ON_LINE(result, 61);
@@ -150,14 +150,14 @@ void BgCharaRelocateSet(int glb_crd /* r2 */, float x /* r29+0x10 */, float z /*
 
 #line 151
 int BgCharaIsId(int chara_id /* r2 */) {
-    return (chara_id >> 8) == 3;
+    return GET_KIND_TYPE(chara_id) == OBJECT_SKELETAL_OUTDOOR_CHARA_KIND;
 }
 
 #line 155
 void* BgCharaIsLoad(int chara_id /* r2 */) {
     int i; // r3
-    
-    if (!(chara_id >> 8) == OBJECT_SKELETAL_OUTDOOR_CHARA_KIND) {
+    // @bug: 0 == 3 or 1 == 3? from a glance, i don't think this was changed in later sh2 versions?
+    if (!GET_KIND_TYPE(chara_id) == OBJECT_SKELETAL_OUTDOOR_CHARA_KIND) {
         return NULL;
     }
     for (i = 0; i < 2; i++) {
