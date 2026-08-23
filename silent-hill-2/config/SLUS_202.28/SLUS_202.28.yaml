@@ -191,9 +191,216 @@ segments:
       - [0x0ce0b0, asm, DBG/dbflag]
       - [0x0ce240, c,   Item/otn_itemmain]
       - [0x0db910, c,   FilesList/fileslist_bg]
-      - [0x0db9a0, asm, Enemy/en_fly]
-      - [0x0dc570, asm, Multi_thr/kernel/wrap_printf]
-      - [0x0dc5b0, asm, sdk]
+      - [0x0DB9A0, asm, Enemy/en_fly]
+      - { start: 0x0DBDC0, type: asm, name: unaff_001DB6C0, ld_align_segment_start: 0x8 }
+      - [0x0DC570, asm, Multi_thr/kernel/wrap_printf]
+      - [0x0DC5B0, asm, MWCC/gcc_wrapper]
+      - [0x0DC6A8, asm, sdk/lib_001DBFA8]
+      - [0x0DC6C8, asm, sdk/lib_001DBFC8]
+      - [0x0DC6E0, asm, sdk/lib_001DBFE0]
+      - [0x0DC718, asm, sdk/lib_001DC018]
+      - [0x0DC738, asm, sdk/lib_001DC038]
+      - [0x0DC770, asm, sdk/lib_001DC070]
+      - [0x0DC830, asm, sdk/lib_001DC130]
+      - [0x0DC888, asm, sdk/lib_001DC188]
+      - [0x0DDC70, asm, sdk/lib_001DD570]
+      - [0x0DDC80, asm, sdk/lib_001DD580]
+      - [0x0DDD88, asm, sdk/lib_001DD688]
+      - [0x0DDFE0, asm, sdk/lib_001DD8E0]
+      - [0x0DE018, asm, sdk/lib_001DD918]
+      - [0x0DE050, asm, sdk/lib_001DD950]
+      - [0x0DE170, asm, sdk/lib_001DDA70]
+      - [0x0DE600, asm, sdk/lib_001DDF00]
+      - [0x0DE660, asm, sdk/lib_001DDF60]
+      - [0x0DEA38, asm, sdk/lib_001DE338]
+      - [0x0DEAD0, asm, sdk/lib_001DE3D0]
+      - [0x0DED40, asm, sdk/lib_001DE640]
+      - [0x0DEE30, asm, sdk/lib_001DE730]
+      - [0x0DEE90, asm, sdk/lib_001DE790]
+      - [0x0DEFE0, asm, sdk/lib_001DE8E0]
+      - [0x0DF018, asm, sdk/lib_001DE918]
+      - [0x0DF9E8, asm, sdk/lib_001DF2E8]
+      - [0x0DFA28, asm, sdk/lib_001DF328]
+      - [0x0DFB08, asm, sdk/lib_001DF408]
+      - [0x0DFBA0, asm, sdk/lib_001DF4A0]
+      - [0x0DFC50, asm, sdk/lib_001DF550]
+      - [0x0DFD58, asm, sdk/lib_001DF658]
+      - [0x0DFE18, asm, sdk/lib_001DF718]
+      - [0x0DFE28, asm, sdk/lib_001DF728]
+      - [0x0E0E48, asm, sdk/lib_001E0748]
+      - [0x0E1870, asm, sdk/lib_001E1170]
+      - [0x0E18B0, asm, sdk/lib_001E11B0]
+      - [0x0E1910, asm, sdk/lib_001E1210]
+      - [0x0E1E80, asm, sdk/lib_001E1780]
+      - [0x0E2018, asm, sdk/lib_001E1918]
+      - [0x0E2060, asm, sdk/lib_001E1960]
+      - [0x0E20A8, asm, sdk/lib_001E19A8]
+      - [0x0E20E0, asm, sdk/lib_001E19E0]
+      - [0x0E2298, asm, sdk/lib_001E1B98]
+      - [0x0E22F8, asm, sdk/lib_001E1BF8]
+      - [0x0E2328, asm, sdk/lib_001E1C28]
+      - [0x0E2350, asm, sdk/lib_001E1C50]
+      - [0x0E2378, asm, sdk/lib_001E1C78]
+      - [0x0E24D8, asm, sdk/lib_001E1DD8]
+      - [0x0E2828, asm, sdk/lib_001E2128]
+      - [0x0E28A8, asm, sdk/lib_001E21A8]
+      - [0x0E2980, asm, sdk/lib_001E2280]
+      - [0x0E2A10, asm, sdk/lib_001E2310]
+      - [0x0E2B80, asm, sdk/lib_001E2480]
+      - [0x0E2CB0, asm, sdk/lib_001E25B0]
+      - [0x0E2E40, asm, sdk/lib_001E2740]
+      - [0x0E2F88, asm, sdk/lib_001E2888]
+      - [0x0E30A0, asm, sdk/lib_001E29A0]
+      - [0x0E31D8, asm, sdk/lib_001E2AD8]
+      - [0x0E3390, asm, sdk/lib_001E2C90]
+      - [0x0E3550, asm, sdk/lib_001E2E50]
+      - [0x0E44A8, asm, sdk/lib_001E3DA8]
+      - [0x0E4718, asm, sdk/lib_001E4018]
+      - [0x0E4970, asm, sdk/lib_001E4270]
+      - [0x0E4BE8, asm, sdk/lib_001E44E8]
+      - [0x0E5930, asm, sdk/lib_001E5230]
+      - [0x0E7250, asm, sdk/lib_001E6B50]
+      - [0x0E7E60, asm, sdk/lib_001E7760]
+      - [0x0E7EB8, asm, sdk/lib_001E77B8]
+      - [0x0E7F18, asm, sdk/lib_001E7818]
+      - [0x0E8028, asm, sdk/lib_001E7928]
+      - [0x0E9460, asm, sdk/lib_001E8D60]
+      - [0x0E9640, asm, sdk/lib_001E8F40]
+      - [0x0E9710, asm, sdk/lib_001E9010]
+      - [0x0E97A8, asm, sdk/lib_001E90A8]
+      - [0x0E9840, asm, sdk/lib_001E9140]
+      - [0x0E98F8, asm, sdk/lib_001E91F8]
+      - [0x0E99F0, asm, sdk/lib_001E92F0]
+      - [0x0E9AE0, asm, sdk/lib_001E93E0]
+      - [0x0EA590, asm, sdk/lib_001E9E90]
+      - [0x0EAC80, asm, sdk/lib_001EA580]
+      - [0x0EACE0, asm, sdk/lib_001EA5E0]
+      - [0x0EADD0, asm, sdk/lib_001EA6D0]
+      - [0x0EAEC8, asm, sdk/lib_001EA7C8]
+      - [0x0EAF60, asm, sdk/lib_001EA860]
+      - [0x0EB040, asm, sdk/lib_001EA940]
+      - [0x0EB6A8, asm, sdk/lib_001EAFA8]
+      - [0x0EB708, asm, sdk/lib_001EB008]
+      - [0x0EBCD8, asm, sdk/lib_001EB5D8]
+      - [0x0EC218, asm, sdk/lib_001EBB18]
+      - [0x0ECF10, asm, sdk/lib_001EC810]
+      - [0x0EDAF0, asm, sdk/lib_001ED3F0]
+      - [0x0EDC10, asm, sdk/lib_001ED510]
+      - [0x0EDC78, asm, sdk/lib_001ED578]
+      - [0x0EDEE8, asm, sdk/lib_001ED7E8]
+      - [0x0EDFA8, asm, sdk/lib_001ED8A8]
+      - [0x0EE070, asm, sdk/lib_001ED970]
+      - [0x0EE258, asm, sdk/lib_001EDB58]
+      - [0x0EE360, asm, sdk/lib_001EDC60]
+      - [0x0EE448, asm, sdk/lib_001EDD48]
+      - [0x0EE6E0, asm, sdk/lib_001EDFE0]
+      - [0x0EE740, asm, sdk/lib_001EE040]
+      - [0x0EE7D8, asm, sdk/lib_001EE0D8]
+      - [0x0EEAF0, asm, sdk/lib_001EE3F0]
+      - [0x0EEB30, asm, sdk/lib_001EE430]
+      - [0x0EEBB8, asm, sdk/lib_001EE4B8]
+      - [0x0EEBD8, asm, sdk/lib_001EE4D8]
+      - [0x0EEF48, asm, sdk/lib_001EE848]
+      - [0x0EF200, asm, sdk/lib_001EEB00]
+      - [0x0EFA90, asm, sdk/lib_001EF390]
+      - [0x0EFDC8, asm, sdk/lib_001EF6C8]
+      - [0x0F0048, asm, sdk/lib_001EF948]
+      - [0x0F03A8, asm, sdk/lib_001EFCA8]
+      - [0x0F0708, asm, sdk/lib_001F0008]
+      - [0x0F08E8, asm, sdk/lib_001F01E8]
+      - [0x0F0E08, asm, sdk/lib_001F0708]
+      - [0x0F1780, asm, sdk/lib_001F1080]
+      - [0x0F1EC8, asm, sdk/lib_001F17C8]
+      - [0x0F2E28, asm, sdk/lib_001F2728]
+      - [0x0F6398, asm, sdk/lib_001F5C98]
+      - [0x0F65F8, asm, sdk/lib_001F5EF8]
+      - [0x0F6F90, asm, sdk/lib_001F6890]
+      - [0x0F7240, asm, sdk/lib_001F6B40]
+      - [0x0F72A0, asm, sdk/lib_001F6BA0]
+      - [0x0F7318, asm, sdk/lib_001F6C18]
+      - [0x0F7838, asm, sdk/lib_001F7138]
+      - [0x0F7B40, asm, sdk/lib_001F7440]
+      - [0x0F7F70, asm, sdk/lib_001F7870]
+      - [0x0F8310, asm, sdk/lib_001F7C10]
+      - [0x0F85F8, asm, sdk/lib_001F7EF8]
+      - [0x0F8848, asm, sdk/lib_001F8148]
+      - [0x0F90D8, asm, sdk/lib_001F89D8]
+      - [0x0F94B8, asm, sdk/lib_001F8DB8]
+      - [0x0F95F0, asm, sdk/lib_001F8EF0]
+      - [0x0F9840, asm, sdk/lib_001F9140]
+      - [0x0FA3A8, asm, sdk/lib_001F9CA8]
+      - [0x0FA580, asm, sdk/lib_001F9E80]
+      - [0x0FA6D8, asm, sdk/lib_001F9FD8]
+      - [0x0FB028, asm, sdk/lib_001FA928]
+      - [0x0FB130, asm, sdk/lib_001FAA30]
+      - [0x0FB2F0, asm, sdk/lib_001FABF0]
+      - [0x0FB3F8, asm, sdk/lib_001FACF8]
+      - [0x0FB430, asm, sdk/lib_001FAD30]
+      - [0x0FB608, asm, sdk/lib_001FAF08]
+      - [0x0FB630, asm, sdk/lib_001FAF30]
+      - [0x0FB830, asm, sdk/lib_001FB130]
+      - [0x0FB928, asm, sdk/lib_001FB228]
+      - [0x0FBBD0, asm, sdk/lib_001FB4D0]
+      - [0x0FBCB8, asm, sdk/lib_001FB5B8]
+      - [0x0FBCD8, asm, sdk/lib_001FB5D8]
+      - [0x0FBDC0, asm, sdk/lib_001FB6C0]
+      - [0x0FBEB0, asm, sdk/lib_001FB7B0]
+      - [0x0FBFC0, asm, sdk/lib_001FB8C0]
+      - [0x0FC0C0, asm, sdk/lib_001FB9C0]
+      - [0x0FC1C0, asm, sdk/lib_001FBAC0]
+      - [0x0FC2E8, asm, sdk/lib_001FBBE8]
+      - [0x0FC428, asm, sdk/lib_001FBD28]
+      - [0x0FC930, asm, sdk/lib_001FC230]
+      - [0x0FCA48, asm, sdk/lib_001FC348]
+      - [0x0FE200, asm, sdk/lib_001FDB00]
+      - [0x102F68, asm, sdk/lib_00202868]
+      - [0x103688, asm, sdk/lib_00202F88]
+      - [0x103898, asm, sdk/lib_00203198]
+      - [0x104670, asm, sdk/lib_00203F70]
+      - [0x105240, asm, sdk/lib_00204B40]
+      - [0x105E10, asm, sdk/lib_00205710]
+      - [0x105E30, asm, sdk/lib_00205730]
+      - [0x1071D8, asm, sdk/lib_00206AD8]
+      - [0x1071E8, asm, sdk/lib_00206AE8]
+      - [0x1071F8, asm, sdk/lib_00206AF8]
+      - [0x107250, asm, sdk/lib_00206B50]
+      - [0x1072C8, asm, sdk/lib_00206BC8]
+      - [0x1072E0, asm, sdk/lib_00206BE0]
+      - [0x107388, asm, sdk/lib_00206C88]
+      - [0x1073B0, asm, sdk/lib_00206CB0]
+      - [0x1073C0, asm, sdk/lib_00206CC0]
+      - [0x107418, asm, sdk/lib_00206D18]
+      - [0x107470, asm, sdk/lib_00206D70]
+      - [0x107508, asm, sdk/lib_00206E08]
+      - [0x107578, asm, sdk/lib_00206E78]
+      - [0x1075D0, asm, sdk/lib_00206ED0]
+      - [0x1075E8, asm, sdk/lib_00206EE8]
+      - [0x107600, asm, sdk/lib_00206F00]
+      - [0x107618, asm, sdk/lib_00206F18]
+      - [0x1076E0, asm, sdk/lib_00206FE0]
+      - [0x1076F0, asm, sdk/lib_00206FF0]
+      - [0x107700, asm, sdk/lib_00207000]
+      - [0x107758, asm, sdk/lib_00207058]
+      - [0x1077B0, asm, sdk/lib_002070B0]
+      - [0x107848, asm, sdk/lib_00207148]
+      - [0x1078B8, asm, sdk/lib_002071B8]
+      - [0x107910, asm, sdk/lib_00207210]
+      - [0x107968, asm, sdk/lib_00207268]
+      - [0x107998, asm, sdk/lib_00207298]
+      - [0x1079B0, asm, sdk/lib_002072B0]
+      - [0x107A58, asm, sdk/lib_00207358]
+      - [0x107A70, asm, sdk/lib_00207370]
+      - [0x107AF0, asm, sdk/lib_002073F0]
+      - [0x107B08, asm, sdk/lib_00207408]
+      - [0x107B20, asm, sdk/lib_00207420]
+      - [0x107B38, asm, sdk/lib_00207438]
+      - [0x107B88, asm, sdk/lib_00207488]
+      - [0x107BB0, asm, sdk/lib_002074B0]
+      - [0x107BE0, asm, sdk/lib_002074E0]
+      - [0x108590, asm, sdk/lib_00207E90]
+      - [0x1088D8, asm, sdk/lib_002081D8]
+      - [0x108AF8, asm, sdk/lib_002083F8]
+      - { start: 0x109840, type: asm, name: MWCC/mwUtils_PS2, ld_align_segment_start: 0x10 }
       - [0x109850, asm, Item/item_tgs_tmp]
       - [0x109cc0, asm, Multi_thr/intc/th_vbs]
       - [0x109e90, asm, DBG/shDBG_fontHandle]
@@ -377,38 +584,104 @@ segments:
       - [0x1a6900, textbin, vutext/yuvprg/load_yuvprg0_mpg]
       - [0x1a7200, textbin, vutext/yuvprg/load_yuvprg1_mpg]
       - [0x1a7b00, .data,   Chacter/anime]
-      - [0x1a7b10, data,    data_1a7b10]
-      - [0x1a93e0, data,    data_0x1a93e0]
+      - [0x1A7B10, data,    Chacter/item_screen_obj] # vram: 0x002A7410
+      - [0x1A8290, data,    Chacter/kt] # vram: 0x002A7B90
+      - [0x1A83D0, data,    Chacter/m3_bgobj] # vram: 0x002A7CD0
+      - [0x1A87B0, data,    Chacter/m3_djames] # vram: 0x002A80B0
+      - [0x1A8D90, data,    Chacter/m3_dmaria] # vram: 0x002A8690
+      - [0x1A8E90, data,    Chacter/m3_eddie] # vram: 0x002A8790
+      - [0x1A8F70, data,    Chacter/m3_ike] # vram: 0x002A8870
+      - [0x1A8FB0, data,    Chacter/m3_laura] # vram: 0x002A88B0
+      - [0x1A9110, data,    Chacter/m3_mkn] # vram: 0x002A8A10
+      - [0x1A9140, data,    Chacter/m3_pap] # vram: 0x002A8A40
+      - [0x1A9180, data,    Chacter/m3_play] # vram: 0x002A8A80
+      - [0x1A95D0, data,    Chacter/m3_play_2d] # vram: 0x002A8ED0
+      - [0x1A9760, data,    Chacter/m3_play_3d] # vram: 0x002A9060
       - [0x1a9aa0, .data,   Chacter/m3_red]
       - [0x1a9ad0, .data,   Chacter/m3_sc]
-      - [0x1a9ae0, data,    data_0x1a9ae0]
-      # - [0x1a9b10, .data,   Chacter/m3_wep]
-      - [0x1a9ba0, data,    data_0x1a9ba0]
+      - [0x1A9AE0, data,    Chacter/m3_scu] # vram: 0x002A93E0
+      - [0x1A9B10, data,    Chacter/m3_wep] # vram: 0x002A9410
+      - [0x1A9BA0, data,    Chacter_Draw/vifot/sh_kt_vif1ot2] # vram: 0x002A94A0
+      - [0x1A9BB0, data,    Chacter_Draw/_3d_n] # vram: 0x002A94B0
       - [0x1a9c30, .data,   Chacter_Draw/clani]
       - [0x1a9c40, .data,   Chacter_Draw/light_n]
-      - [0x1a9c80, data,    data_0x1a9c80]
+      - [0x1A9C80, data,    Chacter_Draw/model3_n] # vram: 0x002A9580
+      - [0x1A9D20, data,    Chacter_Draw/model3_sub_n] # vram: 0x002A9620
+      - [0x1A9D20, data,    Chacter_Draw/model3_sub_n] # vram: 0x002A9620
+      - [0x1A9E08, data,    Chacter_Draw/model3_vu0_n] # vram: 0x002A9708
+      - [0x1A9E50, data,    Chacter_Draw/model3_vu1_n] # vram: 0x002A9750
+      - [0x1A9EF0, data,    Chacter_Draw/sh2gfw_Draw_Character] # vram: 0x002A97F0
+      - [0x1A9EF8, data,    Chacter_Draw/sh2gfw_model_light] # vram: 0x002A97F8
       - [0x1aa060, .data,   Collision/cl_main]
-      - [0x1aa0b8, data,    data_0x1aa0b8]
+      - [0x1AA0B8, data,    Effect/ef_broken_glass] # vram: 0x002A99B8
       - [0x1aa0c0, data,    Effect/ef_common_0x1aa0c0]
-      - [0x1aa160, .data,   Enemy/en_bos]
-      - [0x1aa230, data,    data_0x1aa230]
-      # - [0x1ab0a0, data,    Enemy/en_red]
-      - [0x1ab2a0, data,    data_0x1ab2a0]
+      - [0x1AA160, .data,   Enemy/en_bos] # vram: 0x002A9A60
+      - [0x1AA230, data,    Enemy/en_common] # vram: 0x002A9B30
+      - [0x1AA3E0, data,    Enemy/en_edb] # vram: 0x002A9CE0
+      - [0x1AA950, data,    Enemy/en_effect] # vram: 0x002AA250
+      - [0x1AA9A0, data,    Enemy/en_ike] # vram: 0x002AA2A0
+      - [0x1AAB00, data,    Enemy/en_mkn] # vram: 0x002AA400
+      - [0x1AAD10, data,    Enemy/en_nse] # vram: 0x002AA610
+      - [0x1AAEB0, data,    Enemy/en_pap] # vram: 0x002AA7B0
+      - [0x1AB0A0, data,    Enemy/en_red] # vram: 0x002AA9A0
+      - [0x1AB2A0, data,    Enemy/en_scu] # vram: 0x002AABA0
+      - [0x1AB998, data,    Enemy/en_tyu] # vram: 0x002AB298
+      - [0x1ABAC0, data,    Exec_Env/exec_env] # vram: 0x002AB3C0
+      - [0x1ABAE0, data,    Exec_Env/local_env] # vram: 0x002AB3E0
+      - [0x1ABB00, data,    Fog/fog] # vram: 0x002AB400
+      - [0x1ABC30, data,    Fog/fogdata] # vram: 0x002AB530
+      - [0x1ABC68, data,    SH2_common/sh_vu0] # vram: 0x002AB568
+      - [0x1ABC70, data,    Font/dic] # vram: 0x002AB570
+      - [0x1ABCC0, data,    GFW/gfw_test/kari_probe_draw] # vram: 0x002AB5C0
+      - [0x1ABD10, data,    GFW/sh2_get_drawenv] # vram: 0x002AB610
+      - [0x1ABD50, data,    GFW/sh2_set_drawenv] # vram: 0x002AB650
+      - [0x1ABD60, data,    GFW/sh2gfw_2d_filters] # vram: 0x002AB660
+      - [0x1ABE10, data,    GFW/sh2gfw_LightSet] # vram: 0x002AB710
+      - [0x1ABE40, data,    GFW/sh2gfw_Texpacket] # vram: 0x002AB740
+      - [0x1ABE50, data,    GFW/sh2gfw_globaldef] # vram: 0x002AB750
+      - [0x1AE290, data,    GFW/sh2gfw_packetVU] # vram: 0x002ADB90
+      - [0x1AE720, data,    GFW/sh2gfw_parse_and_packet] # vram: 0x002AE020
+      - [0x1AE780, data,    GFW/sh2gfw_viewclip] # vram: 0x002AE080
       - [0x1ae7c0, .data,   Lens/kari_lf_draw]
-      - [0x1aea10, data,    data_0x1aea10]
+      - [0x1aea10, data,    data_0x1aea10] # vram: 0x002AE310 not mwcc data?
       - [0x1b6ac0, .data,   Lens/lens_flare]
       - [0x1b6b10, .data,   Lens/lens_th_draw]
-      - [0x1b6b20, data,    data_0x1b6b20]
+      - [0x1B6B20, data,    Multi_thr/dma/sh_dma1] # vram: 0x002B6420
+      - [0x1B6B38, data,    Multi_thr/dma/sh_dma2] # vram: 0x002B6438
+      - [0x1B6B50, data,    Multi_thr/dma/texslot] # vram: 0x002B6450
+      - [0x1B6BA0, data,    Multi_thr/util/utilexcl] # vram: 0x002B64A0
+      - [0x1B6BB0, data,    Multi_thr/pad/lib_sh_pad] # vram: 0x002B64B0
+      - [0x1B6C00, data,    sh2shd/sh2shd_char_jms] # vram: 0x002B6500
       - [0x1b6c20, .data,   shGs/sh2gfw_GS_NewLoopEnv]
-      - [0x1b6c30, data,    data_0x1b6c30]
-      # - [0x1b87c0, .data,   sound/sh_sound]
-      - [0x1b9ae0, data,    data_0x1b9ae0]
+      - [0x1B6C30, data,    select/sound/sd0712/ee/sd_call]
+      - [0x1B8C70, data,    sound/sh_sound] # vram: 0x002B8570
+      - [0x1B9AE0, data,    view/vb_main] # vram: 0x002B93E0
+      - [0x1B9AF0, data,    view/vc_main] # vram: 0x002B93F0
+      - [0x1B9DA0, data,    sh2gfw_drawloop_main] # vram: 0x002B96A0
+      - [0x1B9DC0, data,    sh2shd/sh2shd_shadow_model] # vram: 0x002B96C0
+      - [0x1B9DD0, data,    Event/event] # vram: 0x002B96D0
+      - [0x1BA050, data,    Event/event_sub] # vram: 0x002B9950
+      - [0x1BA0F0, data,    Event/item] # vram: 0x002B99F0
+      - [0x1BA1A0, data,    Event/stg_name] # vram: 0x002B9AA0
       - [0x1ba780, .data,   Event/demoview]
       - [0x1bb3d8, data,    data_0x1bb3d8]
       - [0x1bb580, .data,   Font/font]
       - [0x1bb5c0, data,    data_0x1bb5c0]
+      - [0x1BB648, data,    unklib_002BAF48] # vram: 0x002BAF48 GCC data?? could be AS too, bin2elf?
+      - [0x23B920, data,    Multi_thr/filesys/filecmd] # vram: 0x0033B220
+      - [0x23BAB8, data,    Multi_thr/filesys/filepath] # vram: 0x0033B3B8
+      - [0x23BAD0, data,    Multi_thr/filesys/sh_cdvd] # vram: 0x0033B3D0
+      - [0x23BAF8, data,    Multi_thr/filesys/sh_chk_syscnf] # vram: 0x0033B3F8
+      - [0x23BB08, data,    Multi_thr/intc/syncv] # vram: 0x0033B408
+      - [0x23BB28, data,    Multi_thr/intc/th_vbe] # vram: 0x0033B428
+      - [0x23BB40, data,    Multi_thr/pad/keydata] # vram: 0x0033B440
+      - [0x23BC88, data,    Multi_thr/pad/th_pad] # vram: 0x0033B588
+      - [0x23BCA0, data,    Multi_thr/sys/init_mt_sys] # vram: 0x0033B5A0
+      - [0x23BDA0, data,    Multi_thr/boot/bootopt] # vram: 0x0033B6A0
+      - [0x23BDA0, data,    Multi_thr/boot/bootoptitem] # vram: 0x0033B6A0
       - [0x23bf80, .data,   Event/title]
-      - [0x23c5c0, data,    data_0x23c5c0]
+      - [0x23C5C0, data,    DBG/dbfntprint] # vram: 0x0033BEC0
+      - [0x23C5F0, data,    Event/chizu] # vram: 0x0033BEF0
       - [0x23e370, .data,   Event/chara_admin]
       - [0x23e3a0, data,    data_0x23e3a0]
       - [0x248700, .data,   Chacter/m3_nse]
