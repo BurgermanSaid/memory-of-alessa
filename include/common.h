@@ -72,16 +72,14 @@ typedef union Q_WORDDATA {
     u_long128 ul128; // offset 0x0, size 0x10
 } Q_WORDDATA;
 
-typedef struct
-{
+typedef struct {
     float x;
     float y;
     float z;
     float w;
 } Vector4 __attribute__((aligned(16)));
 
-typedef struct
-{
+typedef struct {
     int x;
     int y;
     int z;
@@ -91,7 +89,7 @@ typedef struct
 typedef struct {
     // total size: 0x40
     float d[4][4]; // offset 0x0, size 0x40
-}  Matrix4 __attribute__((aligned(16)));
+} Matrix4 __attribute__((aligned(16)));
 
 static inline u_int reinterpret_as_u_int(float v) {
     return *(u_int*) &v;
