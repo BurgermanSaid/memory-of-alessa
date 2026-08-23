@@ -2,7 +2,7 @@
 #define PICTURE_H
 
 #include "sh2_common.h"
-#include "GFW\sh2gfw_structs.h"
+#include "GFW/sh2gfw_structs.h"
 
 typedef struct PicDraw_Data {
     // total size: 0x44

@@ -733,18 +733,6 @@ typedef struct shMariaWork {
     sceVu0FVECTOR tgt_pos[5]; // offset 0x60, size 0x50
     int tgt_pointer; // offset 0xB0, size 0x4
     int pushed_dir; // offset 0xB4, size 0x4
-// @todo: `-fshort-enums` not working in `c_cpp_properties.json`?
-#if defined(__clang__) || defined(__M2C__)
-    s_char main_status_now; // offset 0xB8, size 0x1
-    s_char main_status_prev; // offset 0xB9, size 0x1
-    s_char sub_status_now; // offset 0xBA, size 0x1
-    s_char sub_status_prev; // offset 0xBB, size 0x1
-#else
-    MARIA_MAIN_STATUS main_status_now; // offset 0xB8, size 0x1
-    MARIA_MAIN_STATUS main_status_prev; // offset 0xB9, size 0x1
-    MARIA_SUB_STATUS sub_status_now; // offset 0xBA, size 0x1
-    MARIA_SUB_STATUS sub_status_prev; // offset 0xBB, size 0x1
-#endif
     u_int sub_st_flg; // offset 0xBC, size 0x4
     u_int anime_st_flg; // offset 0xC0, size 0x4
     u_int anime_pause; // offset 0xC4, size 0x4
@@ -789,4 +777,4 @@ STATIC_ASSERT_SIZEOF(shMariaWork, 0x310);
 extern struct shPlayerWork sh2jms; // size: 0x540, address: 0x3C7EE0
 extern struct shMariaWork sh2mar;
 
-#endif CHARACTER_H
+#endif // CHARACTER_H
