@@ -121,7 +121,7 @@ int GameMain(void) {
 
 
     
-    if ((Sh2sys.step[1] == SH2_GAME_MAIN_PLAYABLE_MAIN) && (Sh2sys.step[2] == SH2_PLAYABLE_MAIN_PLAYABLE)) {
+    if ((Sh2sys.step[SH2SYS_GAME_MAIN] == SH2_GAME_MAIN_PLAYABLE_MAIN) && (Sh2sys.step[SH2SYS_PLAYABLE_MAIN] == SH2_PLAYABLE_MAIN_PLAYABLE)) {
         if (Sh2sys.pre_playable) shSetDF(clamp(3, Get_FrameRate()));
         else shSetDF(2);
         Sh2sys.pre_playable = 1;
@@ -132,7 +132,7 @@ int GameMain(void) {
     shSetDFreal(Get_FrameRate());
 
     
-    switch (Sh2sys.step[1]) {
+    switch (Sh2sys.step[SH2SYS_GAME_MAIN]) {
     
         case SH2_GAME_MAIN_MENU:
             dbFlowSetCheckPointOnLine("s:menu", 178);
@@ -220,7 +220,7 @@ int GameMain(void) {
                     break;
                 case 2:
                     ExtGameData();
-                    Sh2sys.main_status |= 32;
+                    SET_BIT(Sh2sys.main_status, 5);
                     sh2sys_set_1(SH2_GAME_MAIN_PLAYABLE_MAIN);
                     sh2sys_set_2(1);
                     mcStepInit();
@@ -231,7 +231,7 @@ int GameMain(void) {
                     mcStepInit();
                     break;
                 case 4:
-                    switch (Sh2sys.step[1]) {
+                    switch (Sh2sys.step[SH2SYS_GAME_MAIN]) {
                         default: case SH2_GAME_MAIN_TITLE_7:
                             sh2sys_set_1(SH2_GAME_MAIN_CONFIG_14); break;
                         case SH2_GAME_MAIN_TITLE_9: sh2sys_set_1(SH2_GAME_MAIN_CONFIG_15); break;
@@ -279,7 +279,7 @@ int GameMain(void) {
             
             
             
-            cnt = Sh2sys.step[2];
+            cnt = Sh2sys.step[SH2SYS_PLAYABLE_MAIN];
             if (shPadTrigger(0, 4)) {
                 cnt = 600;
             }
@@ -302,8 +302,8 @@ int GameMain(void) {
             synctype = PlayableMain();
             fonton = 1;
             
-            if (Sh2sys.step[3] == 1) {
-                switch (Sh2sys.step[1]) {
+            if (Sh2sys.step[SH2SYS_CONNECT] == 1) {
+                switch (Sh2sys.step[SH2SYS_GAME_MAIN]) {
                     default: case SH2_GAME_MAIN_CONFIG_14:
                         sh2sys_set_1(SH2_GAME_MAIN_TITLE_7); break;
                     case SH2_GAME_MAIN_CONFIG_15: sh2sys_set_1(SH2_GAME_MAIN_TITLE_9); break;
@@ -494,7 +494,7 @@ int PlayableMain(void) {
     WaitSemaPss();
     RadioNoise();
     
-    switch (Sh2sys.step[2]) {
+    switch (Sh2sys.step[SH2SYS_PLAYABLE_MAIN]) {
         case SH2_PLAYABLE_MAIN_START: {
             NowLoadingEnable();
             dbFlowSetCheckPointOnLine("g0:start", 567);
@@ -518,7 +518,7 @@ int PlayableMain(void) {
             NowLoadingEnable();
             dbFlowSetCheckPointOnLine("g0:connect wait", 595);
             halt = LoadBgSync(1, 1);
-            if (Sh2sys.step[3] != 3) {
+            if (Sh2sys.step[SH2SYS_CONNECT] != 3) {
                 sh2sys_step_3();
             } else if (!halt) {
                 JumpMenuPosNormal();
@@ -533,7 +533,7 @@ int PlayableMain(void) {
         case SH2_PLAYABLE_MAIN_SOUND_LOAD: {
             NowLoadingEnable();
             dbFlowSetCheckPointOnLine("g0:sound load", 617);
-            if (!Sh2sys.step[3]) {
+            if (!Sh2sys.step[SH2SYS_CONNECT]) {
                 SeSoundLoad();
                 sh2sys_step_3();
             }
@@ -555,24 +555,24 @@ int PlayableMain(void) {
                 switch (cd_stat) {
                     case 1:
                         PauseSetType(5);
-                        Sh2sys.step[2] = 15;
+                        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 15;
                         break;
                     case 2:
                         PauseSetType(7);
                         break;
                     case 3:
                         PauseSetType(6);
-                        Sh2sys.step[2] = 15;
+                        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 15;
                         break;
                     case 4:
                         PauseSetType(8);
-                        Sh2sys.step[2] = 15;
+                        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 15;
                         break;
                 }
                 synctype = 0;
             } else {
                     if (!ev_p_step && shPadTrigger(0, key_config.pause)) {
-                        Sh2sys.step[2] = 15;
+                        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 15;
                         PauseSetType(2);
                         
                     } else if (LoadBgSync(0, 1)) {
@@ -700,7 +700,7 @@ int PlayableMain(void) {
             }
             PauseSetType(ptype);
             if (ptype == 2 && shPadTrigger(0, key_config.pause | 0xC)) {
-                Sh2sys.step[2] = 4;
+                Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 4;
             }
             synctype = 0;
             break;

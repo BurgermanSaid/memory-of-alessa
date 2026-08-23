@@ -127,7 +127,7 @@ int MovieCheckSleep(void) {
 int MoviePlayOPMovie(void) {
     int ret = 1;
 
-    switch (Sh2sys.step[2]) { /* irregular */
+    switch (Sh2sys.step[SH2SYS_PLAYABLE_MAIN]) { /* irregular */
         case 0:
             MemShareWaitRealloc(0);
             MovieTitlePreSet(data_movie_open_voc_pss);

@@ -14,33 +14,38 @@ typedef struct _SH2_SYS {
 
 extern SH2_SYS Sh2sys;
 
+#define SH2SYS_MAIN          0
+#define SH2SYS_GAME_MAIN     1
+#define SH2SYS_PLAYABLE_MAIN 2
+#define SH2SYS_CONNECT       3
+
 static inline void sh2sys_step_1(void) {
-    Sh2sys.step[1]++;
-    Sh2sys.step[2] = 0;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_GAME_MAIN]++;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 0;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_step_2() {
-    Sh2sys.step[2]++;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN]++;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_backstep_2() {
-    Sh2sys.step[2]--;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN]--;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_step_3() {
-    Sh2sys.step[3]++;
+    Sh2sys.step[SH2SYS_CONNECT]++;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
@@ -53,34 +58,34 @@ static inline void sh2sys_step_4() {
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_set_2(int value) {
-    Sh2sys.step[2] = value;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = value;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_set_3(int value) {
-    Sh2sys.step[3] = value;
+    Sh2sys.step[SH2SYS_CONNECT] = value;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_set_0(int value) {
-    Sh2sys.step[0] = value;
-    Sh2sys.step[1] = 0;
-    Sh2sys.step[2] = 0;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_MAIN] = value;
+    Sh2sys.step[SH2SYS_GAME_MAIN] = 0;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 0;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;
     Sh2sys.step[7] = 0;
 }
 static inline void sh2sys_set_1(int value) {
-    Sh2sys.step[1] = value;
-    Sh2sys.step[2] = 0;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_GAME_MAIN] = value;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 0;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;

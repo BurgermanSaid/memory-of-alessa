@@ -100,7 +100,7 @@ typedef int (func_t)(func2_t*);
 }
 
 int connectMain(void) {
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             StgOverlay();
             sh2sys_step_3();

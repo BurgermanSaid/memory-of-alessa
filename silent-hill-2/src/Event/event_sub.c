@@ -370,8 +370,8 @@ int EvSubMovieStart(int demo /* r16 */) {
     
     if ((movie != 0) && (demo != 0) && ((shGs_AllEnv.loop3 % 3U) == 1)) {
         sh2gfw_Set_PauseRetain();
-        Sh2sys.step[2] = 0xE;
-        Sh2sys.step[3] = 0;
+        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 0xE;
+        Sh2sys.step[SH2SYS_CONNECT] = 0;
         Sh2sys.step[4] = 0;
         Sh2sys.step[5] = 0;
         Sh2sys.step[6] = 0;

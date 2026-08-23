@@ -149,7 +149,7 @@ int systemHotInit(void) { // not line matched
     int wait; // r17
     int step; // r18
 
-    step = Sh2sys.step[1];
+    step = Sh2sys.step[SH2SYS_GAME_MAIN];
     ret = 0;
     wait = 2;
     if (dbFlag(4)) {
@@ -226,10 +226,10 @@ int systemHotInit(void) { // not line matched
             break;
         }
         count_892 = wait;
-        next = Sh2sys.step[1] + 1;
-        Sh2sys.step[1] = next;
-        Sh2sys.step[2] = 0;
-        Sh2sys.step[3] = 0;
+        next = Sh2sys.step[SH2SYS_GAME_MAIN] + 1;
+        Sh2sys.step[SH2SYS_GAME_MAIN] = next;
+        Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 0;
+        Sh2sys.step[SH2SYS_CONNECT] = 0;
         Sh2sys.step[4] = 0;
         Sh2sys.step[5] = 0;
         Sh2sys.step[6] = 0;

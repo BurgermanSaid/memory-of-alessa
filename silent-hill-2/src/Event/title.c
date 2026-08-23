@@ -414,7 +414,7 @@ int TitleMain(void) {
     }; // @ 0x0033BEA0
     spkResetOT();
     fontClear();
-    g0_step_func[Sh2sys.step[2]]();
+    g0_step_func[Sh2sys.step[SH2SYS_PLAYABLE_MAIN]]();
     d1cSend(spkDmaKick());
     if (TitleData.mode == SH2_TITLE_DATA_MODE_5) {
         all_Frame_Buffer_Clear();
@@ -558,7 +558,7 @@ static void titleInit(void) {
     static int wait_loop;
     int i; // r5
 
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             TitleData.memcard = -1;
             TitleData.mode    = SH2_TITLE_DATA_MODE_0;
@@ -650,7 +650,7 @@ static void titleInit(void) {
 static void titleFadeIn(void) {
     TitleSprChgColor->timer    = TitleSprChgColor->cycle;
     TitleSprChgColor[11].timer = 0;
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             titleChangeMainMenu();
             ScreenEffectFadeStart(4, 2.0f);
@@ -1120,7 +1120,7 @@ static u_char titleGetRiddleLevelFromCursor(int cur) {
 }
 
 static void titleFadeOutNewGame(void) {
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
             TitleData.alpha = 255;
@@ -1163,7 +1163,7 @@ static void titleFadeOutNewGame(void) {
 }
 
 static void titleFadeOut(void) {
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
             TitleData.alphar = 0.0f;
@@ -1197,7 +1197,7 @@ static void titleFadeOut(void) {
 }
 
 static void titleExit(void) {
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         case 0:
             ScreenEffectFadeStart(2, 2.0f);
             TitleData.alphar = 0.0f;

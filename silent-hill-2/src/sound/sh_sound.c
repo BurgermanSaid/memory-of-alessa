@@ -520,7 +520,7 @@ void Se2dManager(void) {
             if ((room != 0) && (room != se_2d_manage_data[i].room)) {
                 SeStop(se_2d_manage_data[i].sd);
             } else {
-                switch (Sh2sys.step[2]) {
+                switch (Sh2sys.step[SH2SYS_PLAYABLE_MAIN]) {
                     case 5:
                     case 6:
                     case 7:
@@ -665,7 +665,7 @@ void SeBgmChange(void) {
     int room;
 
     if (dbFlag(1) == 0) {
-        if (Sh2sys.step[0] == 2) {
+        if (Sh2sys.step[SH2SYS_MAIN] == 2) {
             shQzero(&snd_data_buffer, 0x5000);
             FcRead(sdb_list[0], &snd_data_buffer);
             fsSync(0, -1);
@@ -886,7 +886,7 @@ int BgmPageSet(void) {
     float temp_f0;
     float temp_f2;
 
-    if ((Sh2sys.step[2] >= 4) && (stage != NULL) && (stage->bgm_control != NULL)) {
+    if ((Sh2sys.step[SH2SYS_PLAYABLE_MAIN] >= 4) && (stage != NULL) && (stage->bgm_control != NULL)) {
         ret = stage->bgm_control();
     } else {
         ret = 0;

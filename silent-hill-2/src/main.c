@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
     dbFlowStartCheck(1);
 
     while (1) {
-        step = Sh2sys.step[0];
+        step = Sh2sys.step[SH2SYS_MAIN];
         dbFlowSetCheckPointOnLine("main loop.", 149);
         switch (step) {
         case 0:

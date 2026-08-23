@@ -32,7 +32,7 @@ static void MemoPictureLayerDrawTablet(void);
 static void MemoMessageWallet(void);
 
 void MemoMain(void) {
-    switch (Sh2sys.step[3]) {
+    switch (Sh2sys.step[SH2SYS_CONNECT]) {
         default:
         case 0: MemoInit(); break;            
         case 1: MemoSelect(); break;           
@@ -86,7 +86,7 @@ static void MemoInit(void) { // not line matched (need to add macros/inlines)
                     Sh2sys.step[7] = 0;
                 case 3:
                     ScreenEffectFadeStart(4, 0.0f);
-                    Sh2sys.step[3] = 1;
+                    Sh2sys.step[SH2SYS_CONNECT] = 1;
                     Sh2sys.step[4] = 0;
                     Sh2sys.step[5] = 0;
                     Sh2sys.step[6] = 0;
@@ -114,13 +114,13 @@ static void MemoSelect(void) { // not line matched
         }
     }
     if (shPadTrigger(0, key_config.enter)) {
-        Sh2sys.step[3] = 2;
+        Sh2sys.step[SH2SYS_CONNECT] = 2;
         Sh2sys.step[4] = 0;
         Sh2sys.step[5] = 0;
         Sh2sys.step[6] = 0;
         Sh2sys.step[7] = 0;
     } else if (shPadTrigger(0, key_config.cancel)) {
-        Sh2sys.step[3] = 3;
+        Sh2sys.step[SH2SYS_CONNECT] = 3;
         Sh2sys.step[4] = 0;
         Sh2sys.step[5] = 0;
         Sh2sys.step[6] = 0;
@@ -200,8 +200,8 @@ INCLUDE_ASM("asm/nonmatchings/Event/memo", MemoDisplay);
 static void MemoEnd(void) { // not line matched  (need to add macros/inlines)
     playing.memo_select = select;
     ScreenEffectFadeStart(1, 0.0f);
-    Sh2sys.step[2] = 6;
-    Sh2sys.step[3] = 0;
+    Sh2sys.step[SH2SYS_PLAYABLE_MAIN] = 6;
+    Sh2sys.step[SH2SYS_CONNECT] = 0;
     Sh2sys.step[4] = 0;
     Sh2sys.step[5] = 0;
     Sh2sys.step[6] = 0;

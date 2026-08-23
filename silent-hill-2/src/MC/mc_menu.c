@@ -38,7 +38,7 @@ int mcSaveMenu(void) {
     s_char port = mcw->menu_port;
     s_char n;
 
-    if ((mc.status & (1 << MC_STATUS_FLAG_2)) == 0 || !Sh2sys.step[3]) {
+    if ((mc.status & (1 << MC_STATUS_FLAG_2)) == 0 || !Sh2sys.step[SH2SYS_CONNECT]) {
         mcInit();
         mc.status |= (1 << MC_STATUS_FLAG_2);
     }
