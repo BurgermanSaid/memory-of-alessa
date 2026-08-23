@@ -89,7 +89,7 @@ def merge_linker_dependencies(args: MergeArgs):
     remove_file(all_d_path)
 
     if args.verbose:
-        print(f"🟣 alessatool/merge: wrote f{d_file.name}")
+        print(f"🟣 alessatool/merge: wrote {d_file.name}")
 
 def merge_fragments(args: MergeArgs):
     match args.mode:

@@ -260,6 +260,9 @@ def debug_nonmatching(args: DebugArgs):
     exe_info_by_name = discover_yamls(debug_info)
 
     mapfile_path = Path(BUILD) / serial / f"{serial}.xMAP"
-    parse_mw_mapfile(mapfile_path, exe_info_by_name)
+    if mapfile_path.exists():
+        parse_mw_mapfile(mapfile_path, exe_info_by_name)
+    else:
+        print(f"{mapfile_path.as_posix()} not found, please run the build to debug")
 
     run_bin_diff(args, debug_info, exe_info_by_name)
