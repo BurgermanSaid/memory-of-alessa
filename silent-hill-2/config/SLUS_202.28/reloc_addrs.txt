@@ -19034,8 +19034,8 @@ rom:0x07CAFC reloc:MIPS_LO16                           symbol:AllTexSync_Man
 rom:0x07CB00 reloc:MIPS_26                             symbol:sh2gfw_del_TexMAN
 rom:0x07CB10 reloc:MIPS_HI16                           symbol:"@1219"
 rom:0x07CB14 reloc:MIPS_LO16                           symbol:"@1219"
-rom:0x07CB18 reloc:MIPS_HI16                           symbol:"@1220_0x0038F340"
-rom:0x07CB1C reloc:MIPS_LO16                           symbol:"@1220_0x0038F340"
+rom:0x07CB18 reloc:MIPS_HI16                           symbol:"rodata_zero_0x0038F340"
+rom:0x07CB1C reloc:MIPS_LO16                           symbol:"rodata_zero_0x0038F340"
 rom:0x07CB20 reloc:MIPS_26                             symbol:printf
 rom:0x07CB78 reloc:MIPS_26                             symbol:sh2gfw_Get_pMD
 rom:0x07CBA4 reloc:MIPS_26                             symbol:Delete_Model
@@ -19090,8 +19090,8 @@ rom:0x07D120 reloc:MIPS_26                             symbol:printf
 rom:0x07D17C reloc:MIPS_26                             symbol:sh2gfw_set_TexToTrasMan
 rom:0x07D58C reloc:MIPS_HI16                           symbol:"@1612"
 rom:0x07D590 reloc:MIPS_LO16                           symbol:"@1612"
-rom:0x07D594 reloc:MIPS_HI16                           symbol:"@1220_0x0038F340"
-rom:0x07D598 reloc:MIPS_LO16                           symbol:"@1220_0x0038F340"
+rom:0x07D594 reloc:MIPS_HI16                           symbol:"rodata_zero_0x0038F340"
+rom:0x07D598 reloc:MIPS_LO16                           symbol:"rodata_zero_0x0038F340"
 rom:0x07D59C reloc:MIPS_26                             symbol:printf
 rom:0x07D5CC reloc:MIPS_26                             symbol:sh2gfw_Get_pMD
 rom:0x07D5F8 reloc:MIPS_HI16                           symbol:"@1613_0x0038F490"
@@ -19099,8 +19099,8 @@ rom:0x07D5FC reloc:MIPS_LO16                           symbol:"@1613_0x0038F490"
 rom:0x07D600 reloc:MIPS_26                             symbol:printf
 rom:0x07D608 reloc:MIPS_HI16                           symbol:"@1614_0x0038F4C0"
 rom:0x07D60C reloc:MIPS_LO16                           symbol:"@1614_0x0038F4C0"
-rom:0x07D610 reloc:MIPS_HI16                           symbol:"@1220_0x0038F340"
-rom:0x07D614 reloc:MIPS_LO16                           symbol:"@1220_0x0038F340"
+rom:0x07D610 reloc:MIPS_HI16                           symbol:"rodata_zero_0x0038F340"
+rom:0x07D614 reloc:MIPS_LO16                           symbol:"rodata_zero_0x0038F340"
 rom:0x07D618 reloc:MIPS_26                             symbol:printf
 rom:0x07D670 reloc:MIPS_26                             symbol:sh2gfw_set_TexToTrasMan
 rom:0x07D724 reloc:MIPS_HI16                           symbol:"@1615_0x0038F4F0"

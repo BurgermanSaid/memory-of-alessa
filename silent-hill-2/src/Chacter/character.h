@@ -777,6 +777,12 @@ typedef struct shMariaWork {
     u_char active_type; // offset 0x30E, size 0x1
 } shMariaWork;
 
+typedef struct TextPos {
+    // total size: 0x8
+    u_int block_index; // offset 0x0, size 0x4
+    u_int texture_no; // offset 0x4, size 0x4
+} TextPos;
+
 extern struct shPlayerWork sh2jms; // size: 0x540, address: 0x3C7EE0
 extern struct shMariaWork sh2mar;
 

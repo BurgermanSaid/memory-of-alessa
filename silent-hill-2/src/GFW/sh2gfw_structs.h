@@ -178,4 +178,27 @@ typedef struct sh2gfw_Model_Header {
     void* pTexMAN[8]; // offset 0x20, size 0x20
 } sh2gfw_Model_Header;
 
+
+typedef struct sh2gfw_AllModelData_Man {
+    // total size: 0x308
+    int n_active_character; // offset 0x0, size 0x4
+    int n_load_character; // offset 0x4, size 0x4
+    struct sh2gfw_ModelDraw_MAN* pMDM[32]; // offset 0x8, size 0x80
+    void* file_struct[32]; // offset 0x88, size 0x80
+    int fid_model[32]; // offset 0x108, size 0x80
+    int fid_anim[32]; // offset 0x188, size 0x80
+    int fid_clus[32]; // offset 0x208, size 0x80
+    int fid_kg1[32]; // offset 0x288, size 0x80
+} sh2gfw_AllModelData_Man;
+
+typedef struct sh2gfw_LoadModel_MEMMAN {
+    // total size: 0x18
+    u_int index_model; // offset 0x0, size 0x4
+    u_int index_anime; // offset 0x4, size 0x4
+    u_int index_clus; // offset 0x8, size 0x4
+    u_long128* pLM_head; // offset 0xC, size 0x4
+    u_long128* pLA_head; // offset 0x10, size 0x4
+    u_long128* pCL_head; // offset 0x14, size 0x4
+} sh2gfw_LoadModel_MEMMAN;
+
 #endif // SH2GFW_STRUCTS_H

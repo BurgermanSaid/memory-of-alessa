@@ -245,7 +245,7 @@ void shCharacterClusterAnimeSet(SubCharacter* scp, int anime) {
     ClusterAnimeSet(scp_d->cluster_anime, (void *)anime);
 }
 
-void SCSetModel(SubCharacter* scp, int model) { // not line matched
+void SCSetModel(SubCharacter* scp, int model, int anime) { // not line matched
     void* model_adr; // r17
     SubCharacterDisp* scp_d = scp; // r2
 

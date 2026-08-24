@@ -106,10 +106,12 @@
  * The evil dog that rules the world.
  */
 #define INU_CHARA_KIND                                                                0x10d
+#define HUMAN_CHARA_KIND_END                                                          0x10d
 
 /* =========================== mirror models (0x120 - 0x12D) =========================== */
 
 #define MIRROR_MODE_CHARA_KIND_FLAG                                                (1 << 5)
+#define MIRROR_KIND(_kind)                          ((_kind) + MIRROR_MODE_CHARA_KIND_FLAG)
 
 /**
  * Mirror version of `LLL_JMS_CHARA_KIND`.
@@ -611,6 +613,7 @@
 #define WEAPON_CSAW_CHARA_KIND                                                        0x807
 #define WEAPON_NATA_CHARA_KIND                                                        0x808
 #define WEAPON_COLT_CHARA_KIND                                                        0x809
+#define WEAPON_ID_END                                                                 0x809
 #define WEAPON_CHINANIFE_CHARA_KIND                                                   0x80a
 #define RWEAPON_HANDGUN_CHARA_KIND                                                    0x821
 #define RWEAPON_SHOTGUN_CHARA_KIND                                                    0x822
