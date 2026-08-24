@@ -365,8 +365,8 @@ endef
 ###############################################################
 PHONY_TARGETS := \
 	alessatool binutils clean clean-build clean-project \
-	compiler-info death debug deep-clean diff expected \
-	extract heaven hell linker-info progress \
+	clean-project-build compiler-info death debug deep-clean \
+	diff expected extract heaven hell linker-info progress \
 	overlays-lowercase rebuild report setup sh2 sh3 \
 	sh2-clean sh3-clean sh2-report sh3-report split
 .PHONY: $(PHONY_TARGETS)
