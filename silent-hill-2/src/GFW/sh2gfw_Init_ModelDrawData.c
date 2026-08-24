@@ -5,13 +5,17 @@
 #include "Chacter/m3_sc.h"
 #include "Chacter_Draw/model3_n.h"
 
+#include "Event/chara_data_load.h"
+
 #include "GFW/sh2gfw_structs.h"
 #include "GFW/sh2gfw_alltexman.h"
+#include "GFW/sh2gfw_Texpacket.h"
 #include "GFW/sh2gfw_Init_ModelDrawData.h"
 
 #include "data/fs_structs.h"
+#include "data/daily.thu/data_chr_jms.h"
 
-#define SH2_MODEL_DRAWWORK_COUNT ((int) (sizeof(ModelDW_Man) / sizeof(sh2gfw_ModelDraw_MAN)))
+#define SH2_MODEL_DRAWWORK_COUNT 48
 #define MODEL_ID 0xFFFF0003
 #define MWORK_ID 0xFFFE0003
 
@@ -21,23 +25,22 @@ static void init_CharaTex(sh2gfw_ALLTEXSYNC_MAN* pATSM, sh2gfw_ModelDraw_MAN* pM
 static void init_ReverseCharaTex(sh2gfw_ALLTEXSYNC_MAN* pATSM, sh2gfw_ModelDraw_MAN* pMD);
 static int Init_WithoutCharaTex(sh2gfw_ALLTEXSYNC_MAN* pATSM, sh2gfw_ModelDraw_MAN* pMD);
 
-extern sh2gfw_TexMAN* sh2gfw_set_TexToTrasMan(struct sh2gfw_ALLTEXSYNC_MAN* pATSM, struct sh2gfw_TEX_HEAD* pTexHead, struct sh2gfw_CLUTS_HEAD* pClutHead, void* pMAN, u_short mode);
-extern sh2gfw_TexMAN * sh2gfw_del_TexMAN(struct sh2gfw_ALLTEXSYNC_MAN * pATSM /* r2 */, struct sh2gfw_TexMAN * pDel /* r2 */);
 extern chr_mge_files Character_Mge_files[21]; // size: 0x1A4, address: 0x0
 extern chr_mge_files hhh_jms_TGS_turi; // size: 0x14, address: 0x0
 extern sh2gfw_AllModelData_Man All_MDW; // size: 0x308, address: 0x616AD0
-extern sh2gfw_ModelDraw_MAN ModelDW_Man[48]; // size: 0x1BC0, address: 0x616EA0
+
+extern sh2gfw_ModelDraw_MAN ModelDW_Man[SH2_MODEL_DRAWWORK_COUNT]; // size: 0x1BC0, address: 0x616EA0
+
 extern /* static */ int MDL_iniflg; // size: 0x4, address: 0x616AC0
-extern sh2gfw_ALLTEXSYNC_MAN AllTexSync_Man; // size: 0x1F050, address: 0xE1D1A0
+
 extern sh2gfw_LoadModel_MEMMAN LoadModel_MemMan; // size: 0x18, address: 0x616DE0
-extern Q_WORDDATA ANIME_DATA[1024]; // size: 0x4000, address: 0x618A80
-extern u_long128 CHRDATA[524288]; // size: 0x800000, address: 0x61CA80
-extern fsFileIndex data_chr_jms_jms_wphand_anm[1]; // size: 0x8, address: 0x3A0F40
-extern fsFileIndex data_chr_jms_jms_basic3_anm[1]; // size: 0x8, address: 0x0
+
 extern fsFileIndex data_chr_scu_scu_anm[1]; // size: 0x8, address: 0x3A1060
 extern fsFileIndex data_chr_scu_scu_mdl[1]; // size: 0x8, address: 0x3A1070
 extern fsFileIndex data_chr_mkn_mkn_anm[1]; // size: 0x8, address: 0x3A0FD8
 extern fsFileIndex data_chr_mkn_mkn_mdl[1]; // size: 0x8, address: 0x3A0FE8
+
+extern Q_WORDDATA ANIME_DATA[1024]; // size: 0x4000, address: 0x618A80
 extern sh2gfw_ModelDraw_MAN UniModelDW_Man; // size: 0x94, address: 0x616E00
 
 #define SH2_MODEL_DRAWWORK_COUNT ((int) (sizeof(ModelDW_Man) / sizeof(sh2gfw_ModelDraw_MAN)))
