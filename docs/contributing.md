@@ -66,7 +66,7 @@ Submitting changes to the repository looks like so:
    docs](https://github.com/ethteck/splat/wiki/General-Workflow) for more
    information).
 2. Find the `INCLUDE_ASM` line where the function is referenced and replace it with the decompiled code.
-3. Update or create any other files that need changing, including header files.
+3. Update or create any other files as needed, including header files.
 4. Recommended: Run `make clean`, then `make sh3-report -j`. Open objdiff from the root directory of this repository and check the status of the functions.
 5. Run `make clean`, then `make -j` to make sure the build is passing.
 
