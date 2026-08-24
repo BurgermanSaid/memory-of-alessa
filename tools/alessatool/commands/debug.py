@@ -70,7 +70,7 @@ def parse_mw_mapfile(mapfile_path: Path, exe_info_by_name: dict[str, ExecutableI
                 continue
 
             if line.startswith("# ."):
-                if len(reason) >= 0:
+                if len(reason) > 0:
                     break
                 current_filename = line[3:]
 
