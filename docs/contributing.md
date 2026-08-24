@@ -52,6 +52,28 @@ context until the assembly matches. On decomp.me, the `m2c` decompiler will give
 a decent starting point, and the goal is to fix all of the errors and mismatches
 until it is a 100% match.
 
+## what's next?
+
+If you've completed the quickstart above, thank you so much!
+
+Submitting changes to the repository looks like so:
+
+1. Locate the C file where the code belongs. For example, the above function
+   lives in
+   [`silent-hill-3/src/Event/stage/heaven_00.c`](https://github.com/dreamingmoths/memory-of-alessa/blob/main/silent-hill-3/src/Event/stage/heaven_00.c).
+   If a C file doesn't exist, you may have to update the Splat YAML file to
+   change `asm` -> `C` and `rodata` -> `.rodata` (see the [Splat
+   docs](https://github.com/ethteck/splat/wiki/General-Workflow) for more
+   information).
+2. Find the `INCLUDE_ASM` line where the function is referenced and replace it with the decompiled code.
+3. Update or create any other files that need changing, including header files.
+4. Recommended: Run `make clean`, then `make report -j`. Open objdiff from the root directory of this repository and check the status of the functions.
+5. Run `make clean`, then `make -j` to make sure the build is passing.
+
+Once that's done, feel free to [submit a pull request](https://github.com/dreamingmoths/memory-of-alessa/pulls)! Please try
+your best to submit changes that keep the build matching, but if you run into
+issues you may make a PR anyway so we can help troubleshoot.
+
 ## how it works
 
 The following is an overview of how this project was set up, which may be
