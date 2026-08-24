@@ -176,7 +176,7 @@ segments:
       - [0x0bef20, asm, Multi_thr/pad/keydata]
       - [0x0bfc40, asm, Multi_thr/pad/th_pad]
       - [0x0bff00, c,   Multi_thr/sys/init_mt_sys]
-      - [0x0c0820, asm, Multi_thr/boot/bootopt]
+      - [0x0c0820, c,   Multi_thr/boot/bootopt]
       - [0x0c0a70, asm, Multi_thr/boot/bootoptitem]
       - [0x0c1200, c,   Event/title]
       - [0x0c5a20, c,   SH2_common/pad]
@@ -927,6 +927,8 @@ segments:
       - { vram: 0x1133c30, type: bss,  name: bss_0x1133c30 }
       - { vram: 0x1159230, type: .bss, name: Multi_thr/filesys/fileserv }
       - { vram: 0x1159238, type: bss,  name: bss_0x1159238 }
+      - { vram: 0x116d280, type: .bss, name: Multi_thr/boot/bootopt }
+      - { vram: 0x116d380, type: bss,  name: Multi_thr/boot/bootoptitem }
       - { vram: 0x116d788, type: .bss, name: Event/title }
       - { vram: 0x116d9e8, type: bss,  name: bss_0x116d9e8 }
       - { vram: 0x116e3d0, type: .bss, name: Item/otn_itemmain }

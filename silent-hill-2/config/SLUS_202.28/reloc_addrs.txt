@@ -30230,8 +30230,8 @@ rom:0x0C07D0 reloc:MIPS_26                             symbol:ThreadPadStart
 rom:0x0C07E0 reloc:MIPS_26                             symbol:SignalSemaMax
 rom:0x0C07EC reloc:MIPS_26                             symbol:WaitSema
 rom:0x0C07F8 reloc:MIPS_26                             symbol:SignalSema
-rom:0x0C08A4 reloc:MIPS_HI16                           symbol:"@16_0x0116D280"
-rom:0x0C08A8 reloc:MIPS_LO16                           symbol:"@16_0x0116D280"
+rom:0x0C08A4 reloc:MIPS_HI16                           symbol:"keyitem_0116D280"
+rom:0x0C08A8 reloc:MIPS_LO16                           symbol:"keyitem_0116D280"
 rom:0x0C08DC reloc:MIPS_HI16                           symbol:BootOptItemList
 rom:0x0C08E0 reloc:MIPS_LO16                           symbol:BootOptItemList
 rom:0x0C08F4 reloc:MIPS_26                             symbol:key_index
