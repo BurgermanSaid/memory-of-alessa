@@ -90,6 +90,16 @@ the expected files with the following command.
 make report
 ```
 
+You may also use the project-specific commands `make sh2-report` and `make sh3-report`.
+
+To quickly clean the build folder and rebuild all object files, run
+
+```sh
+make rebuild -j
+```
+
+though most of the time you may only need `make -j`.
+
 There are a couple of ways to clean the SH2 directory.
 
 ```sh
@@ -103,7 +113,7 @@ make sh2-clean
 To clean generated files in both projects, run
 
 ```sh
-make deep-clean
+make clean
 ```
 
 or to really delete all setup and reset, run `make death`. This shouldn't be
