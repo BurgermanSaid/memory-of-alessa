@@ -62,7 +62,7 @@ Submitting changes to the repository looks like so:
    lives in
    [`silent-hill-3/src/Event/stage/heaven_00.c`](https://github.com/dreamingmoths/memory-of-alessa/blob/main/silent-hill-3/src/Event/stage/heaven_00.c).
    If a C file doesn't exist, you may have to update the Splat YAML file to
-   change `asm` -> `C` and `rodata` -> `.rodata` (see the [Splat
+   change `asm` -> `c` and `rodata` -> `.rodata` (see the [Splat
    docs](https://github.com/ethteck/splat/wiki/General-Workflow) for more
    information).
 2. Find the `INCLUDE_ASM` line where the function is referenced and replace it with the decompiled code.
