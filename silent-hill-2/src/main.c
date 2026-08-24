@@ -4,7 +4,9 @@
 #include "GFW/sh2_DrawEnvData.h"
 #include "DBG/dbflow.h"
 #include "main.h"
+#include "sh2_init.h"
 #include "gamemain.h"
+#include "Multi_thr/boot/bootopt.h"
 
 int main(int argc, char** argv) {
     int db_test_dvd;
@@ -62,35 +64,35 @@ int main(int argc, char** argv) {
         step = Sh2sys.step[SH2SYS_MAIN];
         dbFlowSetCheckPointOnLine("main loop.", 149);
         switch (step) {
-        case 0:
-        case 1:
-        case 2:
-            dbFlowSetCheckPointOnLine("before hot init", 154);
-            if (systemHotInit() != 0) {
-                dbSwitchDispEnable(db_test_dvd);
-                sh2sys_set_0(3);
-                switch (step) {                      
-                    case 0:   
-                        sh2sys_set_1(1);
-                        break;
-                    case 1:   
-                    case 2:
-                        sh2sys_set_1(6);
-                        break;
+            case 0:
+            case 1:
+            case 2:
+                dbFlowSetCheckPointOnLine("before hot init", 154);
+                if (systemHotInit() != 0) {
+                    dbSwitchDispEnable(db_test_dvd);
+                    sh2sys_set_0(3);
+                    switch (step) {                      
+                        case 0:   
+                            sh2sys_set_1(1);
+                            break;
+                        case 1:
+                        case 2:
+                            sh2sys_set_1(6);
+                            break;
+                    }
                 }
-            }
-            dbFlowSetCheckPointOnLine("after hot init", 173);
-            break;
-        case 3:
-            DrawLopp_Pre();
-            dbFreeze();
-            dbFlowSetCheckPointOnLine("before game main", 180);
-            GameMain();
-            dbFlowSetCheckPointOnLine("after game main", 182);
-            dbSwitchAllPrint();
-            DrawLopp_Post();
-            GameKeyCheck();
-            break;
+                dbFlowSetCheckPointOnLine("after hot init", 173);
+                break;
+            case 3:
+                DrawLopp_Pre();
+                dbFreeze();
+                dbFlowSetCheckPointOnLine("before game main", 180);
+                GameMain();
+                dbFlowSetCheckPointOnLine("after game main", 182);
+                dbSwitchAllPrint();
+                DrawLopp_Post();
+                GameKeyCheck();
+                break;
         }
         dbFlowSetCheckPointOnLine("before SE vsync", 189);
         Sh2sys.frame_cnt = Sh2sys.frame_cnt + 1;
