@@ -774,12 +774,20 @@ segments:
       - [0x285D40, data,    vudata/shamap1_mpg1_load]
       - [0x286780, data,    vudata/shavol1_mpg1_load]
       - [0x289700, .rodata, Chacter/anime]
-      - [0x2897C0, rodata,  rodata_0x2897C0]
+      - [0x2897C0, rodata,  Chacter/m3_angela_rodata] # vram: 0x003890C0
+      - [0x289990, rodata,  Chacter/m3_bgobj] # vram: 0x00389290
+      - [0x28A580, rodata,  Chacter/m3_djames] # vram: 0x00389E80
+      - [0x28AE80, rodata,  Chacter/m3_dmaria_rodata] # vram: 0x0038A780
+      - [0x28B040, rodata,  Chacter/m3_eddie_rodata] # vram: 0x0038A940
+      - [0x28B1C0, rodata,  Chacter/m3_ike] # vram: 0x0038AAC0
+      - [0x28B350, rodata,  Chacter/m3_laura_rodata] # vram: 0x0038AC50
+      - [0x28B570, rodata,  Chacter/m3_mkn] # vram: 0x0038AE70
+      - [0x28B780, rodata,  Chacter/m3_pap] # vram: 0x0038B080
       - [0x28c3d0, .rodata, Chacter/m3_play]
       - [0x28cab0, .rodata, Chacter/m3_play_3d]
-      - [0x28ccf0, rodata,  rodata_0x28ccf0]
+      - [0x28CCF0, rodata, Chacter/m3_red_rodata] # vram: 0x0038C5F0
       - [0x28cee0, .rodata, Chacter/m3_sc]
-      - [0x28cfd0, rodata,  rodata_0x28cfd0]
+      - [0x28CFD0, rodata, Chacter/m3_scu] # vram: 0x0038C8D0
       - [0x28d200, .rodata, Chacter/m3_wep]
       - [0x28dbe0, .rodata, Chacter/sh_character_battle]
       - [0x28ddd0, .rodata, Chacter/skelton]
@@ -787,9 +795,10 @@ segments:
       - [0x28dee0, .rodata, Chacter_Draw/light_n]
       - [0x28dfd0, rodata,  Chacter_Draw/model3_vu0_n_0x28dfd0]
       - [0x28e0b0, .rodata, Chacter_Draw/model3_vu1_n]
-      - [0x28e2c0, rodata,  rodata_0x28e2c0]
+      - [0x28E2C0, rodata, Chacter_Draw/sh2gfw_CharacterOT] # vram: 0x0038DBC0
+      - [0x28E2E0, rodata, Chacter_Draw/sh2gfw_model_light] # vram: 0x0038DBE0
       - [0x28e380, .rodata, Collision/cl_main]
-      - [0x28e510, rodata,  rodata_0x28e510]
+      - [0x28E510, rodata, Effect/ef_broken_glass] # vram: 0x0038DE10
       - [0x28e570, .rodata, Effect/ef_common]
       - [0x28e710, .rodata, Effect/ef_malloc]
       - [0x28e768, rodata,  Effect/ef_stage]
@@ -798,31 +807,47 @@ segments:
       - [0x28e8d0, rodata,  rodata_0x28e8d0] # this is wrong @todo: fix
 #      - [0x28e9d0, rodata,  rodata_0x28e9d0] # this is the correct one
       - [0x28ee10, .rodata, Enemy/en_red]
-      - [0x28eeb0, rodata,  rodata_0x28eeb0]
+      - [0x28EEB0, rodata,  Enemy/en_scu] # vram: 0x0038E7B0
+      - [0x28EFA0, rodata,  Enemy/en_tyu] # vram: 0x0038E8A0
+      - [0x28EFF0, rodata,  unaff_0038E8F0] # vram: 0x0038E8F0 Multi_thr/filesys/filepath.c ????? doesn't make much sense
+      - [0x28EFF8, rodata,  unaff_0038E8F8] # vram: 0x0038E8F8 ALSO Multi_thr/filesys/filepath.c ??? makes even less sense...
       - [0x28f010, .rodata, Fog/fog]
-      - [0x28f0d0, rodata,  rodata_0x28f0d0]
+      - [0x28F0D0, rodata, Fog/spack_rodata] # vram: 0x0038E9D0
+      - [0x28F328, rodata, GFW/gfw_test/kari_probe_draw] # vram: 0x0038EC28
+      - [0x28F720, rodata, GFW/sh2_get_drawenv] # vram: 0x0038F020
+      - [0x28F760, rodata, GFW/sh2_set_drawenv] # vram: 0x0038F060
+      - [0x28F7C0, rodata, GFW/sh2gfw_2d_filters] # vram: 0x0038F0C0
       - [0x28f820, .rodata, GFW/sh2gfw_Init_ModelDrawData]
-      - [0x28fc70, rodata,  rodata_0x28fc70]
-      #- [0x28f0d0, .rodata, Fog/spack]
-      #- [0x28f328, rodata,  rodata_0x28f328]
+      - [0x28FC70, rodata, GFW/sh2gfw_Texpacket_rodata] # vram: 0x0038F570
+      - [0x28FCC0, rodata, GFW/sh2gfw_packetVU] # vram: 0x0038F5C0
+      - [0x28FCF0, rodata, GFW/sh2gfw_parse_and_packet] # vram: 0x0038F5F0
+      - [0x28FF00, rodata, GFW/sh2gfw_read_process] # vram: 0x0038F800
       - [0x28ffd0, .rodata, Heap/sh2_ch_malloc]
       - [0x290080, .rodata, Heap/utilheap]
       - [0x290100, .rodata, Lens/kari_lf_draw]
-      - [0x290160, rodata,  rodata_0x290160]
+      - [0x290160, rodata, Multi_thr/dma/sh_dma1] # vram: 0x0038FA60
+      - [0x290270, rodata, Multi_thr/dma/sh_dma2] # vram: 0x0038FB70
+      - [0x290370, rodata, Multi_thr/dma/texslot] # vram: 0x0038FC70
+      - [0x2903A0, rodata, Multi_thr/util/cmd_serv_rodata] # vram: 0x0038FCA0
+      - [0x290488, rodata, Multi_thr/util/utilstr] # vram: 0x0038FD88
+      - [0x290490, rodata, shPad/lib_sh_pad] # vram: 0x0038FD90
+      - [0x2904A0, rodata, sh2shd/sh2shd_char_jms] # vram: 0x0038FDA0
       - [0x290760, .rodata, shGs/sh2gfw_GsInit]
-      - [0x2907d0, rodata,  rodata_0x2907d0]
+      - [0x2907D0, rodata,  sound/sd0712/ee/sd_call] # vram: 0x003900D0
       - [0x290830, .rodata, sound/sh_sound]
       - [0x290c10, .rodata, view/vc_main]
       - [0x2910a0, .rodata, main]
-      - [0x291180, rodata,  rodata_0x291180]
+      - [0x291180, rodata,  sh2shd/sh2shd_outdoor] # vram: 0x00390A80
       - [0x291290, .rodata, sh2shd/sh2shd_shadow_model]
       - [0x2915c0, .rodata, Event/event]
-      - [0x2917c8, rodata,  rodata_0x2917c8]
+      - [0x2917D0, rodata,  Event/event_sub_rodata] # vram: 0x003910D0
       - [0x291810, .rodata, Event/item]
-      - [0x2918e0, rodata,  rodata_0x2918e0]
+      - [0x2918E0, rodata,  Event/stg_name] # vram: 0x003911E0
       - [0x291980, .rodata, Event/demoview]
       - [0x291ac0, .rodata, Font/font]
-      - [0x291c20, rodata,  rodata_0x291c20]
+      - [0x291C20, rodata, Multi_thr/filesys/filecmd] # vram: 0x00391520
+      # - [0x291D98, rodata, unaff_00391698] # vram: 0x00391698 Multi_thr/filesys/filepath??
+      - [0x291DA8, rodata, Multi_thr/filesys/filepath] # vram: 0x003916A8
       - [0x291db0, .rodata, Multi_thr/filesys/fileserv]
       - [0x291de0, .rodata,  Multi_thr/filesys/iopload]
       - [0x291df0, .rodata, Multi_thr/filesys/sh_cdvd]
@@ -832,30 +857,106 @@ segments:
       - [0x292500, rodata,  Multi_thr/boot/bootoptitem]
       - [0x292a10, .rodata, Event/title]
       - [0x292d60, .rodata, SH2_common/pad]
-      - [0x292d80, rodata,  rodata_0x292d80]
+      - [0x292D80, rodata, DBG/dbfntprint_rodata] # vram: 0x00392680
+      - [0x292DF0, rodata, Chacter/sh2_character_manage_rodata] # vram: 0x003926F0
+      - [0x292E40, rodata, DBG/verbose] # vram: 0x00392740
       - [0x292ea0, .rodata, Event/chizu]
       - [0x293250, .rodata, Event/chara_admin]
-      - [0x2933f0, rodata,  rodata_0x2933f0]
+      - [0x2933F0, rodata, Fog/spkTexMan] # vram: 0x00392CF0
       - [0x293430, .rodata, Font/fj_man]
-      - [0x293460, rodata,  rodata_0x293460]
+      - [0x293460, rodata, DBG/dbkernel] # vram: 0x00392D6
+      - [0x293470, rodata, DBG/dbflag] # vram: 0x00392D70
       - [0x293570, .rodata, Item/otn_itemmain]
-      - [0x2937c0, rodata,  rodata_0x2937c0]
+      - [0x2937C0, rodata, unaff_001DB6C0] # vram: 0x003930C0
+      - [0x293878, rodata, sdk/lib_001DBFE0] # vram: 0x00393178
+      - [0x2938A8, rodata, sdk/lib_003931A8] # vram: 0x003931A8
+      - [0x2939B0, rodata, sdk/lib_001DC188] # vram: 0x003932B0
+      - [0x293A08, rodata, sdk/lib_001DE3D0] # vram: 0x00393308
+      - [0x293A58, rodata, sdk/lib_00393358] # vram: 0x00393358
+      - [0x293A60, rodata, sdk/lib_001DE640] # vram: 0x00393360
+      - [0x293AA8, rodata, sdk/lib_001DF728] # vram: 0x003933A8
+      - [0x293BD0, rodata, sdk/lib_003934D0] # vram: 0x003934D0
+      - [0x293BD8, rodata, sdk/lib_001E19E0] # vram: 0x003934D8
+      - [0x293C10, rodata, sdk/lib_001E2E50] # vram: 0x00393510
+      - [0x293CE0, rodata, sdk/lib_001E44E8] # vram: 0x003935E0
+      - [0x293ED0, rodata, sdk/lib_001E5230] # vram: 0x003937D0
+      - [0x2940E0, rodata, sdk/lib_001E6B50] # vram: 0x003939E0
+      - [0x294550, rodata, sdk/lib_001E7928] # vram: 0x00393E50
+      - [0x294720, rodata, sdk/lib_001E8D60] # vram: 0x00394020
+      - [0x294748, rodata, sdk/lib_001E9140] # vram: 0x00394048
+      - [0x294758, rodata, sdk/lib_001E91F8] # vram: 0x00394058
+      - [0x294798, rodata, sdk/lib_001E93E0] # vram: 0x00394098
+      - [0x2947B0, rodata, sdk/lib_001E9E90] # vram: 0x003940B0
+      - [0x2948B0, rodata, sdk/lib_001EA940] # vram: 0x003941B0
+      - [0x2949B0, rodata, sdk/lib_001EB008] # vram: 0x003942B0
+      - [0x294AB0, rodata, sdk/lib_001EB5D8] # vram: 0x003943B0
+      - [0x294BB0, rodata, sdk/lib_001ED578] # vram: 0x003944B0
+      - [0x294BE8, rodata, sdk/lib_001EDC60] # vram: 0x003944E8
+      - [0x294C18, rodata, sdk/lib_001EE0D8] # vram: 0x00394518
+      - [0x294DA8, rodata, sdk/lib_001EFCA8] # vram: 0x003946A8
+      - [0x294DD0, rodata, sdk/lib_001F01E8] # vram: 0x003946D0
+      - [0x294E40, rodata, sdk/lib_001F0708] # vram: 0x00394740
+      - [0x294FA0, rodata, sdk/lib_001F2728] # vram: 0x003948A0
+      - [0x295010, rodata, sdk/lib_001F5EF8] # vram: 0x00394910
+      - [0x295020, rodata, sdk/lib_001F6890] # vram: 0x00394920
+      - [0x295050, rodata, sdk/lib_001F6C18] # vram: 0x00394950
+      - [0x2952A0, rodata, sdk/lib_001F7C10] # vram: 0x00394BA0
+      - [0x2952C0, rodata, sdk/lib_001F7EF8] # vram: 0x00394BC0
+      - [0x2952D0, rodata, sdk/lib_001F8148] # vram: 0x00394BD0
+      - [0x295358, rodata, sdk/lib_001F89D8] # vram: 0x00394C58
+      - [0x295718, rodata, sdk/lib_001F8EF0] # vram: 0x00395018
+      - [0x295780, rodata, sdk/lib_001F9140] # vram: 0x00395080
+      - [0x2957F0, rodata, sdk/lib_001F9CA8] # vram: 0x003950F0
+      - [0x295860, rodata, sdk/lib_001F9FD8] # vram: 0x00395160
+      - [0x2958B0, rodata, sdk/lib_001FAA30] # vram: 0x003951B0
+      - [0x2958C0, rodata, sdk/lib_001FAD30] # vram: 0x003951C0
+      - [0x2958D0, rodata, sdk/lib_003951D0] # vram: 0x003951D0
+      - [0x2958D8, rodata, sdk/lib_001FAF30] # vram: 0x003951D8
+      - [0x2958E8, rodata, sdk/lib_001FB228] # vram: 0x003951E8
+      - [0x295940, rodata, sdk/lib_001FB7B0] # vram: 0x00395240
+      - [0x295950, rodata, sdk/lib_001FB8C0] # vram: 0x00395250
+      - [0x295958, rodata, sdk/lib_001FB9C0] # vram: 0x00395258
+      - [0x295960, rodata, sdk/lib_001FBAC0] # vram: 0x00395260
+      - [0x295968, rodata, sdk/lib_001FBBE8] # vram: 0x00395268
+      - [0x295978, rodata, sdk/lib_001FBD28] # vram: 0x00395278
+      - [0x295998, rodata, sdk/lib_001FC230] # vram: 0x00395298
+      - [0x2959A8, rodata, sdk/lib_001FC348] # vram: 0x003952A8
+      - [0x295A10, rodata, sdk/lib_001FDB00] # vram: 0x00395310
+      - [0x295CA8, rodata, sdk/lib_00202868] # vram: 0x003955A8
+      - [0x295CC0, rodata, sdk/lib_00203198] # vram: 0x003955C0
+      - [0x295CF0, rodata, sdk/lib_00203F70] # vram: 0x003955F0
+      - [0x295D98, rodata, sdk/lib_00204B40] # vram: 0x00395698
+      - [0x295EE0, rodata, sdk/lib_00205730] # vram: 0x003957E0
+      - [0x296038, rodata, sdk/lib_002074E0] # vram: 0x00395938
+      - [0x296130, rodata, sdk/lib_00207E90] # vram: 0x00395A30
+      - [0x296140, rodata, sdk/lib_002081D8] # vram: 0x00395A40
+      - [0x2961B0, rodata, DBG/shDBG_fontHandle] # vram: 0x00395AB0
+      - [0x296230, rodata, Chacter/m3_edb] # vram: 0x00395B30
       - [0x296360, .rodata, sh2_init]
       - [0x2963c0, .rodata, gamemain]
       - [0x2969d0, .rodata, connect]
-      - [0x2969f0, rodata,  rodata_0x2969f0]
+      - [0x2969F0, rodata, logo] # vram: 0x003962F0
+      - [0x296CB0, rodata, Chacter/m3_nse_rodata] # vram: 0x003965B0
       - [0x296e00, .rodata, Effect/screen_effect]
-      - [0x296e80, rodata,  rodata_0x296e80]
+      - [0x296E80, rodata,  GFW/sh2gfw_SemiTrans_FrameWork] # vram: 0x00396780
+      - [0x296EF0, rodata,  DBG/dbflow] # vram: 0x003967F0
+      - [0x296F50, rodata,  Item/otn_option_rodata] # vram: 0x00396850
       - [0x296f70, .rodata, Item/otn_option]
       - [0x297020, .rodata, Chacter/m3_play_common]
-      - [0x2971b0, rodata,  rodata_0x2971b0]
-      #- [0x2973f0, .rodata, Chacter/m3_tyu]
-      #- [0x297420, rodata,  rodata_0x297420]
+      - [0x2971B0, rodata, Chacter/m3_maria_rodata] # vram: 0x00396AB0
+      - [0x2973F0, rodata, Chacter/m3_tyu_rodata] # vram: 0x00396CF0
+      - [0x297420, rodata, Chacter/m3_bos] # vram: 0x00396D20
+      - [0x2975A0, rodata, Chacter/m3_oni_rodata] # vram: 0x00396EA0
+      - [0x2976E0, rodata, sound/snd_select] # vram: 0x00396FE0
+      - [0x297720, rodata, Chacter/m3_nik] # vram: 0x00397020
+      - [0x297760, rodata, DBG/dbswitch] # vram: 0x00397060
+      - [0x297790, rodata, Chacter/m3_maria_sub_rodata] # vram: 0x00397090
       - [0x298500, .rodata, Chacter/m3_maria_sub]
       - [0x2988d0, .rodata, Event/stg_overlay]
-      - [0x298ac8, rodata,  rodata_0x298ac8]
+      - [0x298AC8, rodata, Enemy/en_oni_rodata] # vram: 0x003983C8
+      - [0x298B40, rodata, DBG/dbfreeze] # vram: 0x00398440
       - [0x298ba0, .rodata, SH2_common/data_load]
-      - [0x298bc0, rodata,  rodata_0x298bc0]
+      - [0x298BC0, rodata, Effect/ef_smoke] # vram: 0x003984C0
       - [0x298c50, .rodata, Effect/ef_flame]
       - [0x298da0, .rodata, Event/memo]
       - [0x298e00, .rodata, Effect/ef_sparks]
@@ -864,12 +965,20 @@ segments:
       - [0x299210, rodata,  DBG/dbsw_sys]
       - [0x299560, .rodata, Event/chara_data_load]
       - [0x299780, .rodata, Chacter/m3_arm]
-      - [0x299830, rodata,  rodata_0x299830]
+      - [0x299830, rodata, Chacter/m3_mary_rodata] # vram: 0x00399130
+      - [0x299960, rodata, Chacter/m3_mxx_rodata] # vram: 0x00399260
+      - [0x2999F0, rodata, Enemy/en_arm] # vram: 0x003992F0
       - [0x299a90, rodata,  MC/mc]
       - [0x29a050, .rodata, MC/mc_menu]
       - [0x29a160, rodata,  MC/savedata]
       - [0x29a230, .rodata, Event/stage/stg_tgs_trial]
-      - [0x29a280, rodata,  rodata_0x29a280]
+      - [0x29A280, rodata, GFW/sh2_DrawEnvData] # vram: 0x00399B80
+      - [0x29A310, rodata, LoadBg/loadbg_camdata] # vram: 0x00399C10
+      - [0x29A360, rodata, LoadBg/loadbg_common] # vram: 0x00399C60
+      - [0x29A3A0, rodata, DBG/dbsw_map] # vram: 0x00399CA0
+      - [0x29A640, rodata, view/vc_newest_rodata] # vram: 0x00399F40
+      - [0x29A650, rodata, Multi_thr/scf/sh2_scf] # vram: 0x00399F50
+      - [0x29A6C0, rodata, DBG/dbalocate] # vram: 0x00399FC0
       - [0x29a700, .rodata, Chacter/bg_chara]
       - [0x29a850, rodata,  Effect2/hh_class_glass_break_phenomenon_00]
       - [0x29a870, .rodata, Effect2/hh_class_manager]
@@ -878,61 +987,150 @@ segments:
       - [0x29a8e0, .rodata, Effect2/hh_class_water_12]
       - [0x29a900, .rodata, Effect2/hh_class_water_15]
       - [0x29a920, .rodata, Effect2/hh_dbg_wrapper]
-      - [0x29a960, rodata,  rodata_0x29a960]
+      - [0x29A960, rodata, Effect2/hh_effect_object_def] # vram: 0x0039A260
+      - [0x29A990, rodata, Effect2/hh_effect_object_texture] # vram: 0x0039A290
+      - [0x29AC00, rodata, Effect2/hh_packet] # vram: 0x0039A500
       - [0x29ace0, .rodata, Multi_thr/filesys/fcread]
-      - [0x29ad10, rodata,  rodata_0x29ad10]
+      - [0x29AD10, rodata, Chacter/m3_boat] # vram: 0x0039A610
       - [0x29ad80, .rodata, Chacter/lake_wave]
-      - [0x29aea0, rodata,  rodata_0x29aea0]
+      - [0x29AEA0, rodata, Chacter/m3_inu_rodata] # vram: 0x0039A7A0
+      - [0x29AEE0, rodata, LoadBg/loadbg_2x2] # vram: 0x0039A7E0
+      - [0x29B0C0, rodata, LoadBg/loadbg_cam] # vram: 0x0039A9C0
+      - [0x29B200, rodata, LoadBg/loadbg_cld] # vram: 0x0039AB00
+      - [0x29B2D0, rodata, LoadBg/loadbg_kg2] # vram: 0x0039ABD0
+      - [0x29B3A0, rodata, LoadBg/loadbg_map] # vram: 0x0039ACA0
+      - [0x29B720, rodata, LoadBg/loadbg_mem] # vram: 0x0039B020
       - [0x29bf50, .rodata, sh2shd/sh2shd_shadow_env]
       - [0x29bfd0, rodata,  rodata_0x29bfd0]
       - [0x29c140, .rodata, Chacter/m3_play_event]
       - [0x29c170, .rodata,  Chacter/m3_play_efect]
-      #- [0x29c170, rodata,  rodata_0x29c170]
       - [0x29c350, .rodata, movie/movie_main]
       - [0x29c3c0, .rodata, movie/pss_audiodec]
       - [0x29c420, .rodata, movie/pss_common]
       - [0x29c450, .rodata, movie/pss_main]
       - [0x29c5b0, .rodata, movie/pss_read]
-      - [0x29c5c8, rodata,  rodata_0x29c5c8]
+      - [0x29C5D0, rodata, movie/pss_readbuf_rodata] # vram: 0x0039BED0
+      - [0x29C610, rodata, movie/pss_strfile_rodata] # vram: 0x0039BF10
       - [0x29c640, .rodata, movie/pss_vibuf]
       - [0x29c660, .rodata, movie/pss_videodec]
-      - [0x29c760, rodata,  rodata_0x29c760]
+      - [0x29C760, rodata, LoadBg/loadbg_event] # vram: 0x0039C060
+      - [0x29C8D8, rodata, LoadBg/loadbg_chara] # vram: 0x0039C1D8
       - [0x29ca80, .rodata, Chacter/player_result]
       - [0x29cb00, .rodata, Effect2/hh_memory_manage]
-      - [0x29cb80, rodata,  rodata_0x29cb80]
+      - [0x29CB80, rodata, SH2_common/mem_share] # vram: 0x0039C480
+      - [0x29CC20, rodata, SH2_common/result] # vram: 0x0039C520
+      - [0x29CCB0, rodata, pause] # vram: 0x0039C5B0
       - [0x29cce0, .rodata, now_loading]
       - [0x29cd00, rodata,  rodata_0x29cd00]
+      # - [0x29CD00, rodata, Multi_thr/filesys/filecmd_rodata] # vram: 0x0039C600 ??? linker trolling atp
+      # - [0x29CD08, rodata, Event/stg_overlay_rodata] # vram: 0x0039C608 ??? linker trolling atp
+      - [0x29CEA0, rodata,  data/daily.thu/rodata] # vram: 0x0039C7A0
       - [0x2c8380, lit4,    lit4]
       - [0x2c8400, sdata,   sdata]
       - { vram: 0x03c7d80, type: bss,  name: bss_0x03c7d80 }
       - { vram: 0x03c7e00, type: .bss, name: Chacter/anime }
-      - { vram: 0x03c7ea0, type: bss,  name: bss_0x03c7ea0 }
+    # - { vram: 0x003C7E60, type: bss, name: Chacter/kt}
+      - { vram: 0x003C7EA0, type: bss, name: Chacter/m3_angela}
+      - { vram: 0x003C7EB0, type: bss, name: Chacter/m3_bgobj}
+      - { vram: 0x003C7EC0, type: bss, name: Chacter/m3_djames}
+      - { vram: 0x003C7ED0, type: bss, name: Chacter/m3_play}
+      - { vram: 0x003C8428, type: bss, name: Chacter/m3_play_2d}
+      - { vram: 0x003C8460, type: bss, name: Chacter/m3_play_3d}
       - { vram: 0x03c84a0, type: .bss, name: Chacter/m3_sc }
       - { vram: 0x03c84d0, type: bss,  name: bss_0x03c84d0 }
       - { vram: 0x03cece0, type: .bss, name: Chacter/sh_character_battle }
       - { vram: 0x03cedc8, type: bss,  name: bss_0x03cedc8 }
       - { vram: 0x03cefc0, type: .bss, name: Chacter/skelton }
-      - { vram: 0x03e66d0, type: bss,  name: bss_0x03e66d0 }
+      - { vram: 0x003E66D0, type: bss, name: Chacter_Draw/vifot/sh_kt_vif0}
+      - { vram: 0x003E66E0, type: bss, name: Chacter_Draw/vifot/sh_kt_vif0pkbuf}
+      - { vram: 0x003E8700, type: bss, name: Chacter_Draw/vifot/sh_kt_vif1}
+      - { vram: 0x003E8710, type: bss, name: Chacter_Draw/vifot/sh_kt_vif1pkbuf}
       - { vram: 0x0418780, type: .bss, name: Chacter_Draw/clani }
-      - { vram: 0x0419380, type: bss,  name: bss_0x0419380 }
+      - { vram: 0x00419380, type: bss, name: Chacter_Draw/light_n}
+      - { vram: 0x00419380, type: bss, name: Event/stage/stg_apart_w2f}
       - { vram: 0x0419d60, type: .bss, name: Chacter_Draw/model3_cluster_n }
-      - { vram: 0x0419dc0, type: bss,  name: bss_0x00419dc0 }
+      - { vram: 0x00419DC0, type: bss, name: Chacter_Draw/model3_sub_n } # until 0x00419F80 could be model3_n
+      - { vram: 0x00419F88, type: bss, name: Chacter_Draw/model3_vu0_n_bss }
       - { vram: 0x0419fa0, type: .bss, name: Chacter_Draw/model3_vu0_n }
       - { vram: 0x0419fa8, type: bss,  name: bss_0x0419fa8 }
+      - { vram: 0x0041AC68, type: bss, name: Chacter_Draw/model3_vu1_n }
       - { vram: 0x041bf10, type: .bss, name: Chacter_Draw/model_common }
-      - { vram: 0x0438588, type: bss,  name: bss_0x0438588 }
+      - { vram: 0x00438588, type: bss, name: Chacter_Draw/sh2gfw_CharacterOT}
+      - { vram: 0x004896C0, type: bss, name: Chacter_Draw/sh2gfw_Draw_Character}
+      - { vram: 0x00489740, type: bss, name: Chacter_Draw/sh2gfw_model_light}
+      - { vram: 0x00489BA0, type: bss, name: Collision/cl_main}
       - { vram: 0x04917c8, type: .bss, name: Collision/kari_atari_allinit }
       - { vram: 0x0491820, type: bss,  name: bss_0x0491820 }
-      - { vram: 0x0e3c250, type: .bss, name: GFW/sh2gfw_GSCTL_man }
-      - { vram: 0x0e40280, type: bss,  name: bss_0x0e40280 }
+      - { vram: 0x00491820, type: bss, name: DBG/sh2gfw_SyncDBG}
+      - { vram: 0x004918C0, type: bss, name: Effect/ef_broken_glass}
+      - { vram: 0x0049FA20, type: bss, name: Effect/ef_common}
+      - { vram: 0x00550678, type: bss, name: Effect/ef_malloc}
+      - { vram: 0x00550680, type: bss, name: Effect/ef_packet}
+      - { vram: 0x005506A0, type: bss, name: Enemy/en_common}
+      - { vram: 0x005524B0, type: bss, name: Enemy/en_draw}
+      - { vram: 0x005524C0, type: bss, name: Enemy/en_effect}
+      - { vram: 0x00552650, type: bss, name: Exec_Env/exec_env}
+      - { vram: 0x005526A8, type: bss, name: Exec_Env/local_env}
+      - { vram: 0x005526C0, type: bss, name: Fog/fog}
+      - { vram: 0x00581580, type: bss, name: Fog/fogdata}
+      - { vram: 0x00584580, type: bss, name: SH2_common/sh_vu0}
+      - { vram: 0x005845C0, type: bss, name: Fog/spack}
+      - { vram: 0x00614980, type: bss, name: Font/dic}
+      - { vram: 0x00614D90, type: bss, name: GFW/gfw_test/sh2gfw_util}
+      - { vram: 0x00614E90, type: bss, name: GFW/sh2_get_drawenv}
+      - { vram: 0x00614EC0, type: bss, name: GFW/sh2_set_drawenv}
+      - { vram: 0x00614ED0, type: bss, name: GFW/sh2_shadow_filters} # STENCIL_workpacket could be sh2_shadow_main
+      - { vram: 0x00615F20, type: bss, name: GFW/sh2gfw_2d_filters}
+      - { vram: 0x00616AC0, type: bss, name: bss_0x00616AC0 } # GFW/sh2gfw_Init_ModelDrawData ?
+      - { vram: 0x00E1CA80, type: bss, name: GFW/sh2gfw_LightSet}
+      - { vram: 0x00E1CC30, type: bss, name: GFW/sh2gfw_Texpacket}
+      - { vram: 0x00E1D1A0, type: bss, name: GFW/sh2gfw_Init_ModelDrawData}
+      - { vram: 0x00E1D1A0, type: bss, name: GFW/sh2gfw_globaldef}
+      - { vram: 0x0E3C250,  type: .bss, name: GFW/sh2gfw_GSCTL_man }
+      - { vram: 0x0E40280,  type: bss,  name: bss_0x0e40280 }
+      - { vram: 0x00E4E6A0, type: bss, name: GFW/sh2gfw_parse_and_packet}
+      - { vram: 0x00F8E700, type: bss, name: GFW/sh2gfw_viewclip}
+      - { vram: 0x00F8E708, type: bss, name: Heap/sh2_ch_malloc}
+      - { vram: 0x0100E750, type: bss, name: Lens/kari_lf_draw}
+      - { vram: 0x01013750, type: bss, name: Lens/lens_flare}
+      - { vram: 0x01013890, type: bss, name: Multi_thr/dma/dma1cmd}
+      - { vram: 0x010138A0, type: bss, name: Multi_thr/dma/dma1serv}
+      - { vram: 0x010138A8, type: bss, name: Multi_thr/dma/dma2cmd}
+      - { vram: 0x010138B8, type: bss, name: Multi_thr/dma/dma2serv}
+      - { vram: 0x010138C0, type: bss, name: Multi_thr/dma/sh_dma1}
+      - { vram: 0x010138C8, type: bss, name: Multi_thr/dma/sh_dma2}
+      - { vram: 0x01013900, type: bss, name: shPad/lib_sh_pad}
+      - { vram: 0x01013B80, type: bss, name: sh2shd/sh2shd_char_jms}
+      - { vram: 0x01013B90, type: bss, name: sound/sd0712/ee/sd_call}
+      - { vram: 0x010E0480, type: bss, name: sound/sh_sound}
+      - { vram: 0x010E58D8, type: bss, name: taskman/shtskman}
+      - { vram: 0x010E5910, type: bss, name: view/vb_main}
+      - { vram: 0x010E5A90, type: bss, name: view/vc_main}
+      - { vram: 0x010F06C0, type: bss, name: view/vc_util}
+      - { vram: 0x010F06E0, type: bss, name: view/vw_main}
+      - { vram: 0x010F0870, type: bss, name: main}
+      - { vram: 0x010F08B0, type: bss, name: sh2gfw_drawloop_main}
+      - { vram: 0x010F0AE0, type: bss, name: sh2shd/sh2shd_shadow_model}
+      - { vram: 0x01126340, type: bss, name: Event/event}
+      - { vram: 0x011268D0, type: bss, name: Event/event_sub}
       - { vram: 0x1133148, type: .bss, name: Event/demoview }
-      - { vram: 0x1133c30, type: bss,  name: bss_0x1133c30 }
+      - { vram: 0x01133C30, type: bss, name: Font/font}
+      - { vram: 0x011591E0, type: bss, name: Multi_thr/filesys/filecmd}
+      - { vram: 0x01159208, type: bss, name: Multi_thr/filesys/filepath}
       - { vram: 0x1159230, type: .bss, name: Multi_thr/filesys/fileserv }
-      - { vram: 0x1159238, type: bss,  name: bss_0x1159238 }
+      - { vram: 0x01159238, type: bss, name: Multi_thr/filesys/sh_cdvd}
+      - { vram: 0x01159280, type: bss, name: Multi_thr/filesys/sh_chk_syscnf}
+      - { vram: 0x01159A80, type: bss, name: Multi_thr/sys/init_mt_sys}
       - { vram: 0x116d280, type: .bss, name: Multi_thr/boot/bootopt }
       - { vram: 0x116d380, type: bss,  name: Multi_thr/boot/bootoptitem }
       - { vram: 0x116d788, type: .bss, name: Event/title }
-      - { vram: 0x116d9e8, type: bss,  name: bss_0x116d9e8 }
+      - { vram: 0x0116D9E8, type: bss, name: SH2_common/pad}
+      - { vram: 0x0116DB70, type: bss, name: Chacter/sh2_character_manage}
+      - { vram: 0x0116DB78, type: bss, name: Event/chizu}
+      - { vram: 0x0116DBC8, type: bss, name: Event/chara_admin}
+      - { vram: 0x0116DC70, type: bss, name: Fog/spkTexMan}
+      - { vram: 0x0116DCC0, type: bss, name: Font/fj_man}
+      - { vram: 0x0116DD40, type: bss, name: DBG/dbflag}
       - { vram: 0x116e3d0, type: .bss, name: Item/otn_itemmain }
       - { vram: 0x116e670, type: bss,  name: bss_0x116e670 }
       - { vram: 0x11b6a70, type: .bss, name: Item/otn_option }
@@ -955,16 +1153,40 @@ segments:
       - { vram: 0x11eb7d0, type: .bss, name: Effect2/hh_class_water_30 }
       - { vram: 0x11eb830, type: bss,  name: Effect2/hh_class_wrapper}
       - { vram: 0x11eb8f0, type: .bss, name: Effect2/hh_dbg_wrapper }
-      - { vram: 0x11eb930, type: bss,  name: bss_0x11eb930 }
+      - { vram: 0x011EB930, type: bss, name: Effect2/hh_effect_object_def}
+      - { vram: 0x01201B80, type: bss, name: Effect2/hh_effect_object_texture}
+      - { vram: 0x01202258, type: bss, name: Effect2/hh_packet}
+      - { vram: 0x012022B0, type: bss, name: Chacter/m3_boat_jms}
+      - { vram: 0x012022F0, type: bss, name: Chacter/m3_boat}
       - { vram: 0x1202580, type: .bss, name: Chacter/lake_wave }
-      - { vram: 0x1202730, type: bss,  name: bss_0x1202730 }
+      - { vram: 0x01202730, type: bss, name: view/vc_play}
+      - { vram: 0x01202800, type: bss, name: LoadBg/loadbg_2x2}
+      - { vram: 0x01202DB0, type: bss, name: LoadBg/loadbg_all}
+      - { vram: 0x01202E70, type: bss, name: Fog/fog_blow }
       - { vram: 0x1202ed0, type: .bss, name: Effect2/hh_class_water_03 }
       - { vram: 0x1202ef0, type: .bss, name: Effect2/hh_class_water_04 }
       - { vram: 0x1202f10, type: .bss, name: Effect2/hh_class_water_06 }
       - { vram: 0x1202f30, type: .bss, name: Effect2/hh_class_water_07 }
       - { vram: 0x1202f50, type: .bss, name: Effect2/hh_class_water_08 }
       - { vram: 0x1202f70, type: .bss, name: Effect2/hh_class_water_09 }
-      - { vram: 0x1202f90, type: bss,  name: bss_0x1202f00 }
+      - { vram: 0x01202F90, type: bss, name: Enemy/en_insect}
+      - { vram: 0x01202FA0, type: bss, name: Effect2/hh_class_water_pool_00}
+      - { vram: 0x01202FA8, type: bss, name: Chacter/m3_play_event}
+      - { vram: 0x01202FA8, type: bss, name: Chacter/m3_play_event}
+      - { vram: 0x01202FB0, type: bss, name: movie/movie_main}
+      - { vram: 0x01216B00, type: bss, name: movie/pss_audiodec}
+      - { vram: 0x01217B00, type: bss, name: movie/pss_common}
+      - { vram: 0x01217B88, type: bss, name: movie/pss_disp}
+      - { vram: 0x01217FC0, type: bss, name: movie/pss_main} # sys_mpeg in pss_videodec?
+      - { vram: 0x01219310, type: bss, name: LoadBg/loadbg_event}
+      - { vram: 0x0122A330, type: bss, name: LoadBg/mem/loadbg_buf}
+      - { vram: 0x0122B2F0, type: bss, name: LoadBg/loadbg_chara}
+      - { vram: 0x0122B308, type: bss, name: sound/sh_sd_call}
       - { vram: 0x122b3c0, type: .bss, name: Effect2/hh_memory_manage }
-      - { vram: 0x126fbc0, type: bss,  name: bss_0x126fbc0 }
+      - { vram: 0x126FBC0, type: bss,  name: SH2_common/mem_share }
+      - { vram: 0x1F01BC0, type: bss, name: Effect2/hh_class_water_80}
+      - { vram: 0x1F01BF0, type: bss, name: Effect2/hh_class_water_90}
+      - { vram: 0x1F01C28, type: bss, name: pause}
+      - { vram: 0x1F01DD0, type: bss, name: now_loading}
+
   - [0x2c8480]
