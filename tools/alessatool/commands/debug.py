@@ -48,7 +48,7 @@ class MismatchingFileEntry:
     target_path: Path
     exe_info: ExecutableInfo
 
-def parse_mw_mapfile(mapfile_path: Path, exe_info_by_name: dict[str, ExecutableInfo]):
+def parse_mw_mapfile(mapfile_path: Path, exe_info_by_name: dict[str, ExecutableInfo], debug_args: DebugArgs):
     with open(mapfile_path) as mapfile_file:
         mapfile_lines = mapfile_file.readlines()
 
@@ -133,7 +133,7 @@ def parse_mw_mapfile(mapfile_path: Path, exe_info_by_name: dict[str, ExecutableI
                 reason += [f"{target_symbol.name} was placed at vram address 0x{address:X}, but symbol_addrs has 0x{target_symbol.addr:X} ({object_file})"]
                 trace_index = index
 
-        if trace_index >= 0:
+        if trace_index >= 0 and not debug_args.all:
             break
 
     if len(reason) == 0:
@@ -266,7 +266,7 @@ def debug_nonmatching(args: DebugArgs):
 
     mapfile_path = Path(BUILD) / serial / f"{serial}.xMAP"
     if mapfile_path.exists():
-        parse_mw_mapfile(mapfile_path, exe_info_by_name)
+        parse_mw_mapfile(mapfile_path, exe_info_by_name, args)
     else:
         print(f"{mapfile_path.as_posix()} not found, please run the build to debug")
 
