@@ -37,6 +37,8 @@ void examine_file_load(void);
 
 void examine2_main(void);
 
+void font_print(void);
+
 void kage_font(u_short* str, u_short num, int x, int y);
 
 void lookline(float (*box)[4]);

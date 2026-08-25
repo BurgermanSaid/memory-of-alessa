@@ -1,12 +1,16 @@
 #include "sh2_common.h"
 #include "SH2_common/pad.h"
+#include "SH2_common/sh2sys.h"
 #include "SH2_common/playing_info.h"
 
 #include "sce/libgraph.h"
 #include "gs.h"
 
 #include "Event/item.h"
+#include "Event/event.h"
+
 #include "Item/otn_option.h"
+#include "Item/item_tgs_tmp.h"
 #include "Item/otn_itemmain.h"
 
 #include "sound/sh_sound.h"
@@ -94,7 +98,216 @@ extern fsFileIndex data_pic_out_p_lostmemory_tex[1];
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", itemmain);
 
+#ifdef NON_MATCHING
+#line 321
+void itemmainmain(void) {
+    // Range: 0x1CDDD0 -> 0x1CEC28
+    int i; // r16
+    int fog; // r17
+
+    item_fade_in();
+    item_fade_out();
+    if (t.fade_flag == 2) {
+        item_examine_fade_out();
+    }
+    
+    if (shPadPress(0, PAD_KEY_6) > 192) {
+        if (t.analog[2] < 2) t.analog[2]++;
+    } else
+        t.analog[2] = 0;
+    if (shPadPress(0, PAD_KEY_6) < 64) {
+        if (t.analog[1] < 2) t.analog[1]++;
+    } else
+        t.analog[1] = 0;
+    if (shPadPress(0, PAD_KEY_7) > 192) {
+        if (t.analog[0] < 2) t.analog[0]++;
+    } else
+        t.analog[0] = 0;
+    if (shPadPress(0, PAD_KEY_7) < 64) {
+        if (t.analog[3] < 2) t.analog[3]++;
+    } else
+        t.analog[3] = 0;
+
+    
+    t.shelf = GET_GAME_FLAG(416);
+    
+    
+    item_turn();
+    
+    
+    for (i = 0; i < t.item_count; i++)
+        if (item_select[i].count)
+            item_position(&item_select[i].pos[0], &item_select[i].pos[1], item_select[i].count, &item_select[i].rot);
+
+    if (t.prs_btn2 != 0) t.turnf = 0.0f;
+    else t.turnf += 0.02f;
+
+
+    
+    for (i = 0; i < t.item_count; i++) {
+    
+        if (item_select[i].count != 0) {
+        
+            
+            fog = (int) (( -item_select[i].pos[1] - 300.0f) / 5.5);
+            if (fog < 0) fog = 0;
+            TgsItemPitureDraw(item_select[i].kind, item_select[i].pos[0] * 2.5, 0, fog, 5, (0.3f + (-item_select[i].pos[1] / 1666.0f)) * item_select[i].item_scale);
+
+
+
+
+
+
+
+            
+            if (item_select[i].del == 0) {
+            
+                if ((item_select[i].count == 5) && ((item_select[i].item_scale < 1.0f)))
+                    item_select[i].item_scale += 0.1f;
+                else if (item_select[i].count != 5 && item_select[i].item_scale > 0.8f)
+                    item_select[i].item_scale = item_select[i].item_scale - 0.1f;
+                if ((item_select[i].count == 5) && !(item_select[i].item_scale <= 1.0f))
+                    item_select[i].item_scale = 1.0f;
+                if (item_select[i].item_scale < 0.8f)
+                    item_select[i].item_scale = 0.8f;
+            } else
+                item_select[i].item_scale -= 0.15f;
+            if (item_select[i].item_scale < 0.0f) item_select[i].item_scale = 0.0f;
+
+            if (item_select[i].count == 5) {
+                
+                t.item_kind = item_select[i].kind;
+            }
+            if (item_select[i].del != 0) {
+                
+                item_select[i].item_scale -= 0.15f;
+                if (item_select[i].item_scale < 0.0f) {
+                
+                    item_select[i].item_scale = 0.0f;
+                    item_select[i].kind = 0;
+                    item_select[i].del = 0;
+                }
+            }
+        }
+    }
+
+
+    
+    if (item.equip == 4) t.weapon_scale[0] += 0.4f;
+    else if (item.equip == 11) t.weapon_scale[1] += 0.4f;
+    else if (item.equip == 6) t.weapon_scale[2] += 0.4f;
+    else if (item.equip == 8) t.weapon_scale[3] += 0.4f;
+    else if (item.equip == 10) t.weapon_scale[4] += 0.4f;
+    else if (item.equip == 12) t.weapon_scale[5] += 0.4f;
+    else if (item.equip == 13) t.weapon_scale[6] += 0.4f;
+    else if (item.equip == 14) t.weapon_scale[7] += 0.4f;
+    
+    for (i = 0; i < 8; i++) {
+        
+        t.weapon_scale[i] -= 0.2f;
+        if (t.weapon_scale[i] > 0.9f) t.weapon_scale[i] = 0.9f;
+        if (t.weapon_scale[i] < 0.0f) t.weapon_scale[i] = 0.0f;
+    }
+    
+    TgsItemPitureDraw(4, 0, -2144, 0x80, 1, t.weapon_scale[0]);
+    TgsItemPitureDraw(11, 0, -2144, 0x80, 1, t.weapon_scale[1]);
+    TgsItemPitureDraw(6, 0, -2144, 0x80, 1, t.weapon_scale[2]);
+    TgsItemPitureDraw(8, 0, -2144, 0x80, 1, t.weapon_scale[3]);
+    TgsItemPitureDraw(10, 0, -2144, 0x80, 1, t.weapon_scale[4]);
+    TgsItemPitureDraw(12, 0, -2144, 0x80, 1, t.weapon_scale[5]);
+    TgsItemPitureDraw(13, 0, -2144, 0x80, 1, t.weapon_scale[6]);
+    TgsItemPitureDraw(14, 0, -2144, 0x80, 1, t.weapon_scale[7]);
+    
+    
+    look_hp();
+    
+    
+    if (t.fade_flag == 0) set_position(t.step);
+
+    
+    if ((t.box[0][0] == t.boxblur[1][0][0]) && (t.box[0][1] == t.boxblur[1][0][1])) t.prs_btn = 0;
+    else t.prs_btn = 1;
+
+    
+    if (t.sprite_time >= 2.0f) t.sprite_time = 0.0f;
+    if (t.prs_btn != 0) t.sprite_time = 0.0f;
+    t.sprite_time += 0.04f;
+    
+    
+    sprite();
+    
+    
+    if (Sh2sys.step[2] == 6) font_print();
+
+    
+    if (t.fade_flag == 0) cur_step();
+
+    
+    look_combine();
+    
+    
+    del_check();
+    
+    
+    if (((t.command_abe == 0) && (t.step == 1)) || ((t.command_abe == 0) && (t.step == 12))) {
+        
+        t.command_cur = t.command_light = t.command_volume = 0;
+    }
+    
+    look_command(t.gosa);
+    
+    
+    if ((t.step == 6) || (t.step == 7))
+        t.command_abe += 6;
+    else t.command_abe -= 6;
+    if (t.command_abe > 0x28) t.command_abe = 0x28;
+    if (t.command_abe < 0) t.command_abe = 0;
+    if (t.command_volume == 1) t.command_abe = 0;
+
+
+    if ((int)(t.allay_abe) != 0) item_allay();
+
+    
+    if (t.step == 1)
+        t.allay_abe += 4.0f;
+    else t.allay_abe -= 4.0f;
+    if (t.allay_abe > 32.0f) t.allay_abe = 32.0f;
+    if (t.allay_abe < 0.0f) t.allay_abe = 0.0f;
+    
+    
+    for (i = 6; i > 0; i--) t.boxblur[i] = *((sceVu0FMATRIX*)t.box + i);
+    t.boxblur[0] = t.box;
+    
+    
+    for (i = 0; i < 6; i++) {
+        int value;
+        t.boxblur[i][0][3] = (value = 20.0f * (1.0f - ((i / 7.0f))));
+        t.boxblur[i][1][3] = t.boxblur[i][2][3] = t.boxblur[i][3][3] = value;
+            
+        look_zanzo(t.boxblur[i][0], t.boxblur[i][1], t.boxblur[i+1][0], t.boxblur[i+1][1]);
+        look_zanzo(t.boxblur[i][1], t.boxblur[i][2], t.boxblur[i+1][1], t.boxblur[i+1][2]);
+        look_zanzo(t.boxblur[i][2], t.boxblur[i][3], t.boxblur[i+1][2], t.boxblur[i+1][3]);
+        look_zanzo(t.boxblur[i][3], t.boxblur[i][0], t.boxblur[i+1][3], t.boxblur[i+1][0]);
+    
+    
+    
+    
+    
+    }
+    
+    
+    if ((t.step != 12) && (t.step != 13)) {
+        lookline(t.box);
+    }
+
+    
+    look_blackscr(1);
+
+
+}
+#else
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", itemmainmain);
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", cur_step);
 
@@ -487,7 +700,6 @@ void command_main(int command_step) {
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", weapon_command_main);
 
-#ifdef NON_MATCHING
 void item_main_setup(void) {
     int i; // r2
     int j; // r3
@@ -532,9 +744,9 @@ void item_main_setup(void) {
     set_position(t.step);
     for (j = 0; j < 6; j++) {
         
-        for (i = 6; i > 0; i--) dword_struct_copy((u_int*) t.boxblur + i * 16, (u_int*) t.box + i * 16, sizeof(t.box));
+        for (i = 6; i > 0; i--) t.boxblur[i] = *((sceVu0FMATRIX*)t.box + i);
         
-        dword_struct_copy(t.boxblur, t.box, sizeof(t.box));
+        t.boxblur[0] = t.box;
     }
     j = 0;
     t.item_count = 0;
@@ -566,9 +778,6 @@ void item_main_setup(void) {
     enWaitAllInsect();
 
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", item_main_setup);
-#endif
 
 #ifdef NON_MATCHING
 void set_position(int step) {
