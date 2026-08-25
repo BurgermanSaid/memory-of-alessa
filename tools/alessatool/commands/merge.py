@@ -55,9 +55,7 @@ def merge_objdiff_units(args: MergeArgs):
         "custom_args": [f"PROJECT={args.project}", "NON_MATCHING=1"],
         "watch_patterns": [
             "*.c",
-            "*.h",
-            "*.txt",
-            "*.json"
+            "*.h"
         ],
         "progress_categories": progress_categories,
         "units": units,
