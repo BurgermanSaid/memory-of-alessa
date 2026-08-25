@@ -596,6 +596,7 @@ segments:
       - { start: 0x002c8910,    type: rodata,     name: rodata_0x2c8910                                                  }
       # --------------------------------------------------    lit4   --------------------------------------------------- #
       - { start: 0x002c8f80,    type: lit4,       name: lit4                                                             }
+      # --------------------------------------------------    bss    --------------------------------------------------- #
       - { vram:  0x003c8b00,    type: bss,        name: bss_0x03c8b00                                                    }
       - { vram:  0x0046d270,    type: .bss,       name: Chacter_Draw/clani                                               }
       - { vram:  0x0046e870,    type: .bss,       name: Chacter/skelton                                                  }
