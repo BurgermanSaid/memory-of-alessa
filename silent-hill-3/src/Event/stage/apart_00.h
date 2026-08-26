@@ -52,6 +52,7 @@ extern char D_01F6FB80_apart_00[];
 extern float D_01F6FCC0_apart_00;
 extern float D_01F6FD20_apart_00;
 extern int D_01F6FE40_apart_00;
+extern int D_01F70020_apart_00;
 extern int D_01F70058_apart_00;
 extern int D_01F70060_apart_00;
 extern u_int D_01D31640;
