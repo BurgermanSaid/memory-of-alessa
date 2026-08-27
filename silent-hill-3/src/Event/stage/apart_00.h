@@ -26,6 +26,11 @@ typedef struct Apart00Struct {
     Apart00Entry entries[];
 } Apart00Struct;
 
+typedef struct Apart00Condition {
+    int value;
+    u_char rest4[24];
+} Apart00Condition;
+
 void func_001C2290(int, float);
 void func_0016F550(int, int);
 void shQzero(void*, int);
@@ -52,7 +57,7 @@ extern char D_01F6FB80_apart_00[];
 extern float D_01F6FCC0_apart_00;
 extern float D_01F6FD20_apart_00;
 extern int D_01F6FE40_apart_00;
-extern int D_01F70020_apart_00;
+extern Apart00Condition D_01F70020_apart_00[];
 extern int D_01F70058_apart_00;
 extern int D_01F70060_apart_00;
 extern u_int D_01D31640;
