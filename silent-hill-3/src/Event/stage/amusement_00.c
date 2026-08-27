@@ -210,7 +210,55 @@ int func_01F6DA30_amusement_00(void) {
     return var_s0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6DEA0_amusement_00);
+void func_01F6DEA0_amusement_00(float fparg0) {
+    int temp_s2;
+    int temp_s2_2;
+    void* temp_s0;
+    void* temp_s0_2;
+    void* temp_s1;
+    void* temp_s1_2;
+
+    temp_s1 = func_00170430(0);
+    temp_s0 = func_00170450(0);
+    temp_s2 = D_01F72DB8_amusement_00 + 0x40;
+    temp_s1->unk0 = temp_s2;
+    temp_s1->unk4 = -1;
+    temp_s1->unk8 = -1;
+    temp_s1->unkC = 0;
+    sh3_PictureLoadImageWrapped(temp_s1);
+    shQzero(temp_s0, 0x44);
+    temp_s0->unk0 = temp_s2;
+    temp_s0->unk4 = -1;
+    temp_s0->unk8 = -1;
+    temp_s0->unk42 = (s16) (temp_s0->unk42 | 1);
+    temp_s0->unk40 = 1;
+    sh3_PictureDrawWrapped(temp_s0);
+    temp_s1_2 = func_00170430(1);
+    temp_s0_2 = func_00170450(1);
+    temp_s2_2 = D_01F72DC0_amusement_00 + 0x40;
+    temp_s1_2->unk0 = temp_s2_2;
+    temp_s1_2->unk4 = -1;
+    temp_s1_2->unk8 = -1;
+    temp_s1_2->unkC = 2;
+    sh3_PictureLoadImageWrapped(temp_s1_2, D_01F72DC0_amusement_00);
+    shQzero(temp_s0_2, 0x44);
+    temp_s0_2->unk0 = temp_s2_2;
+    temp_s0_2->unk4 = -1;
+    temp_s0_2->unk8 = -1;
+    temp_s0_2->unk42 = (s16) (temp_s0_2->unk42 | 1);
+    if (fparg0 < 1.0f) {
+        temp_s0_2->unk2F = (bitwise s8) (128.0f * fparg0);
+        temp_s0_2->unk30 = 0;
+        temp_s0_2->unk31 = 1;
+        temp_s0_2->unk32 = 0;
+        temp_s0_2->unk33 = 1;
+        temp_s0_2->unk34 = 0;
+        temp_s0_2->unk42 = (s16) (temp_s0_2->unk42 | 0x20);
+    }
+    temp_s0_2->unk40 = 3;
+    sh3_PictureDrawWrapped(temp_s0_2);
+}
+
 
 int func_01F6E020_amusement_00(void) {
     int sp10[4];

@@ -34,6 +34,8 @@ int func_0016D240(float, float, int, int (*)[4], int, int);
 void func_0016E400(int, int);
 void func_0016ECE0(int);
 void func_0016F630(void);
+void* func_00170430(int);
+void* func_00170450(int);
 long func_00170810(void);
 void func_00190C40(void);
 float func_00190A20(int);
@@ -46,6 +48,9 @@ void func_001EC590(int);
 void func_00258910(void);
 void func_00316C50(int);
 int SeCall(float arg0, float arg1, int arg2);
+void sh3_PictureDrawWrapped(void*);
+void sh3_PictureLoadImageWrapped(void*, int);
+void shQzero(void*, int);
 
 extern int D_01F72830_amusement_00;
 extern int D_01F72890_amusement_00;
