@@ -28,12 +28,11 @@ int func_01F6D740_amusement_00(void) {
 
     func_001643C0();
     ret = func_0016C540(&D_01F728E0_amusement_00, &D_01F72940_amusement_00);
-    switch (D_01F72D80_amusement_00) {              /* irregular */
+    switch (D_01F72D80_amusement_00) {
     case 0:
         func_001C2290(0.5f, 3);
         D_01F72DD8_amusement_00 = &D_01F728B0_amusement_00;
         D_01F72D80_amusement_00 += 1;
-        /* fallthrough */
     case 1:
         if ((func_001646D0() != 0) && (func_001C2580(2) != 0)) {
             D_01F72D80_amusement_00 += 1;
@@ -61,7 +60,7 @@ int func_01F6D880_amusement_00(void) {
     int var_s0;
 
     var_s0 = 0;
-    switch (D_01F72D80_amusement_00) {              /* irregular */
+    switch (D_01F72D80_amusement_00) {
         case 0:
             func_00316C50(0);
             func_0016ECE0(5);
@@ -69,7 +68,6 @@ int func_01F6D880_amusement_00(void) {
             func_0016E400(34, 0);
             D_01F72DD0_amusement_00 = &D_01F72960_amusement_00;
             D_01F72D80_amusement_00 += 1;
-            /* fallthrough */
             case 1:
                 var_s0 = func_0016C540(&D_01F72AF0_amusement_00, &D_01F72B50_amusement_00);
                 temp_f20 = func_001643C0();
@@ -104,7 +102,6 @@ int func_01F6DA30_amusement_00(void) {
 
     switch (D_01F72D80_amusement_00) {
         case 0:
-
             func_00190A20(2);
             D_1D316AC |= 0x20000000;
 
@@ -117,21 +114,20 @@ int func_01F6DA30_amusement_00(void) {
             D_01F72DB8_amusement_00 = func_00163920(1, 4);
             func_001C2290(0.5f, 3);
             D_01F72D80_amusement_00 = 1;
-            /* fallthrough */
         case 1:
             if (func_00151150(0, 1) == 0 || func_001C2580(2) == 0) {
                 break;
             }
             D_01F72D80_amusement_00 = 2;
             func_001603E0(func_0015E850() != 0 ? 0 : 1, 1);
-            case 2:
-                func_0016C540(&D_01F72B90_amusement_00, &D_01F72BF0_amusement_00);
-                if (func_001646F0() == 2) {
-                    func_001C2290(0.0f, 2);
-                    func_001C2290(0.5f, 5);
-                    func_0019A940();
-                    D_01F72D80_amusement_00 = 4;
-                }
+        case 2:
+            func_0016C540(&D_01F72B90_amusement_00, &D_01F72BF0_amusement_00);
+            if (func_001646F0() == 2) {
+                func_001C2290(0.0f, 2);
+                func_001C2290(0.5f, 5);
+                func_0019A940();
+                D_01F72D80_amusement_00 = 4;
+            }
             break;
         case 4:
             func_0019B4B0(5);
@@ -210,50 +206,53 @@ int func_01F6DA30_amusement_00(void) {
     return var_s0;
 }
 
+
+
 void func_01F6DEA0_amusement_00(float fparg0) {
     int temp_s2;
     int temp_s2_2;
-    void* temp_s0;
-    void* temp_s0_2;
-    void* temp_s1;
-    void* temp_s1_2;
+    S0* temp_s0;
+    S0* temp_s0_2;
+    S1* temp_s1;
+    S1* temp_s1_2;
 
     temp_s1 = func_00170430(0);
     temp_s0 = func_00170450(0);
-    temp_s2 = D_01F72DB8_amusement_00 + 0x40;
+    temp_s2 = D_01F72DB8_amusement_00 + 64;
     temp_s1->unk0 = temp_s2;
     temp_s1->unk4 = -1;
     temp_s1->unk8 = -1;
     temp_s1->unkC = 0;
     sh3_PictureLoadImageWrapped(temp_s1);
-    shQzero(temp_s0, 0x44);
+    shQzero(temp_s0, 68);
     temp_s0->unk0 = temp_s2;
     temp_s0->unk4 = -1;
     temp_s0->unk8 = -1;
-    temp_s0->unk42 = (s16) (temp_s0->unk42 | 1);
+    temp_s0->unk42 = (short) (temp_s0->unk42 | 1);
     temp_s0->unk40 = 1;
     sh3_PictureDrawWrapped(temp_s0);
     temp_s1_2 = func_00170430(1);
     temp_s0_2 = func_00170450(1);
-    temp_s2_2 = D_01F72DC0_amusement_00 + 0x40;
+    temp_s2_2 = D_01F72DC0_amusement_00 + 64;
     temp_s1_2->unk0 = temp_s2_2;
     temp_s1_2->unk4 = -1;
     temp_s1_2->unk8 = -1;
     temp_s1_2->unkC = 2;
-    sh3_PictureLoadImageWrapped(temp_s1_2, D_01F72DC0_amusement_00);
-    shQzero(temp_s0_2, 0x44);
+    // D_01F72DC0_amusement_00 something is done with this weirdly
+    sh3_PictureLoadImageWrapped(temp_s1_2);
+    shQzero(temp_s0_2, 68);
     temp_s0_2->unk0 = temp_s2_2;
     temp_s0_2->unk4 = -1;
     temp_s0_2->unk8 = -1;
-    temp_s0_2->unk42 = (s16) (temp_s0_2->unk42 | 1);
+    temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 1);
     if (fparg0 < 1.0f) {
-        temp_s0_2->unk2F = (bitwise s8) (128.0f * fparg0);
+        temp_s0_2->unk2F = (char) (128.0f * fparg0);
         temp_s0_2->unk30 = 0;
         temp_s0_2->unk31 = 1;
         temp_s0_2->unk32 = 0;
         temp_s0_2->unk33 = 1;
         temp_s0_2->unk34 = 0;
-        temp_s0_2->unk42 = (s16) (temp_s0_2->unk42 | 0x20);
+        temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 32);
     }
     temp_s0_2->unk40 = 3;
     sh3_PictureDrawWrapped(temp_s0_2);
@@ -267,8 +266,8 @@ int func_01F6E020_amusement_00(void) {
     
     switch (D_01F72D80_amusement_00) {
         case 0:
-        func_00190A20(2);
-        D_01F72D80_amusement_00++;      
+            func_00190A20(2);
+            D_01F72D80_amusement_00++;
     }
         
     if (func_0016C1C0(26) == 0) {
@@ -291,12 +290,11 @@ INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E420_amusement
 
 #ifdef BROKEN
 int func_01F6E590_amusement_00(void) {
-    switch (D_01F72D80_amusement_00) {              /* irregular */
+    switch (D_01F72D80_amusement_00) {
     case 0:
         func_00190A20(2);
         SeCall(1.0f, 0.0f, 0x4A51);
         D_01F72D80_amusement_00 += 1;
-        /* fallthrough */
     case 1:
         if (func_0016C1C0(0x3F) == 0) {
             return 0;
