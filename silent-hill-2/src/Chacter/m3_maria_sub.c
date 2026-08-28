@@ -759,7 +759,7 @@ INCLUDE_ASM("asm/nonmatchings/Chacter/m3_maria_sub", mar_sub_walk);
 #endif
 
 static void mar_sub_run(SubCharacter* p) {
-    f32 var_f1;
+    float var_f1;
 
     mar_timer_set(1);
     sh2mar.tired += dt;
@@ -826,7 +826,7 @@ static void mar_sub_damage(SubCharacter* p) {
             case 41:
             case 46:
                 if (2 < cur_frame && (cur_frame < 15)) {
-                    p->spd = 0.05f * (f32) cur_frame;
+                    p->spd = 0.05f * (float) cur_frame;
                 }
                 break;
 
@@ -837,7 +837,7 @@ static void mar_sub_damage(SubCharacter* p) {
             case 42:
             case 45:
                 if (2 < cur_frame && (cur_frame < 15)) {
-                    p->spd = 0.05f * (f32) cur_frame;
+                    p->spd = 0.05f * (float) cur_frame;
                 }
                 break;
         }
@@ -1568,10 +1568,10 @@ void MariaUpdatePosition(SubCharacter* this /* r16 */) {
     void (*mar_sub_func)(SubCharacter*); // r2
     float cos_x;                         // r29+0x20
     float cos_z;                         // r29+0x20
-    f32 var_f12;
-    f32 var_f12_2;
-    f32 var_f12_3;
-    f32 var_f12_4;
+    float var_f12;
+    float var_f12_2;
+    float var_f12_3;
+    float var_f12_4;
     float f1;
 
     mar_sub_func = func_list_sub[(u8) sh2mar.sub_status_now];

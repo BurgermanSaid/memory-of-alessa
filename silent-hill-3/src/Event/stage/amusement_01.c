@@ -256,7 +256,7 @@ int func_01F6DDE0_amusement_01(void) {
 
 int func_01F6DF10_amusement_01(void) {
     int ret;
-    f32 angle;
+    float angle;
     SubCharacter* danny;
     ret = 0;
 

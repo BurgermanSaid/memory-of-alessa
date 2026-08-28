@@ -1670,8 +1670,8 @@ static CL_SELECT_MAP* clGetHitSectListVECHITOutDoor(float* st /* r22 */, float* 
                 
                     for (k = 0; k < 4; k++) {
                     
-                        box[0][0] = sx + (5000.0f * (f32) k);
-                        box[0][2] = sz + (5000.0f * (f32) j);
+                        box[0][0] = sx + (5000.0f * (float) k);
+                        box[0][2] = sz + (5000.0f * (float) j);
                         box[1][0] = box[0][0];
                         box[1][2] = 5000.0f + box[0][2];
                         box[2][0] = 5000.0f + box[0][0];
@@ -1839,7 +1839,7 @@ int clCheckCrossLine2LineXZ(float* va0, float* va1, float* vb0, float* vb1) {
     return 1;
 }
 
-CL_SELECT_MAP* clGetHitSectListMOVE(f32* bpos) {
+CL_SELECT_MAP* clGetHitSectListMOVE(float* bpos) {
     if (BgIsOut(0)) {
         return clGetHitSectListMOVEOutDoor(bpos);
     }
