@@ -182,7 +182,10 @@ INCLUDE_ASM("asm/nonmatchings/Event/stage/apart_00", func_01F6E050_apart_00);
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/apart_00", func_01F6E060_apart_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/stage/apart_00", func_01F6E770_apart_00);
+int func_01F6E770_apart_00(int arg0) {
+    int condition = D_01F70020_apart_00[arg0].value == 3;
+    return !condition;
+}
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/apart_00", func_01F6E7A0_apart_00);
 
