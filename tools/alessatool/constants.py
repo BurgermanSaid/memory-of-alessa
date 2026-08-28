@@ -24,5 +24,3 @@ SECTION_DIRECTIVE = ".section "
 TEXT_SECTION_DIRECTIVE = ".section .text"
 UNIQUE_TEXT_SECTION_DIRECTIVE = '.section .text,"ax",@progbits,unique,'
 INCLUDE_MACRO_INC_DIRECTIVE = '.include "macro.inc"'
-
-INTERMEDIATE_D_NAME = "all.d"

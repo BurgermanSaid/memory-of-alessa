@@ -70,7 +70,8 @@ OVERLAY_BINS := $(OVERLAYS:%=%.bin)
 OVERLAY_SOURCE_DIR = $(ROM)/overlay
 OVERLAY_SOURCES = $(OVERLAY_BINS:%=$(OVERLAY_SOURCE_DIR)/%)
 OVERLAY_TARGETS = $(OVERLAY_BINS:%=$(BUILD)/%)
-TARGETS = $(BUILD)/$(SERIAL) $(OVERLAY_TARGETS)
+TARGET_EXECUTABLE = $(BUILD)/$(SERIAL)
+TARGETS = $(TARGET_EXECUTABLE) $(OVERLAY_TARGETS)
 
 MACRO_INC := $(INCLUDE)/macro.inc
 LINKER_SCRIPT := $(LINKERS)/$(SERIAL).lcf
@@ -96,7 +97,7 @@ AS_FLAGS := \
 LD :=
 ifneq ($(NON_MATCHING),1)
 ifneq ($(LINK),0)
-	LD = $(WIBO) $(MWLD) -o "$@" $(MWLD_FLAGS) \
+	LD = $(WIBO) $(MWLD) -o "$@" -nostdlib $(MWLD_FLAGS) \
 			"$(LINKER_SCRIPT)" $(filter %.o, $^)
 endif
 endif
@@ -145,12 +146,12 @@ GENERATE := $(ALESSATOOL) generate \
 	--lcf-output-path $(LINKERS)/$(SERIAL).lcf \
 	--build-path $(BUILD) \
 	--config-path $(CONFIG) \
+	--main-executable-path $(TARGET_EXECUTABLE) \
 	--bss-alignment $(BSS_ALIGNMENT)
 EXTRACT := extract \
 	--archive-path $(SOURCE_OVERLAY_ARCHIVE) \
 	--output-dir $(ROM) \
 	--overlay
-MERGE_DEPENDENCIES = merge dependencies --d-path $(LINKERS)/$(SERIAL).d
 
 GENERATE_FLAGS = --make-full-disasm-for-code
 GENERATE_OVERLAY_FLAGS = --no-lcf --make-full-disasm-for-code
@@ -276,11 +277,10 @@ sh2-clean:
 $(LINKERS)/%.d: $(CONFIG)/overlay/%.yaml $(OVERLAY_SPLAT_FILES) $(SETUP)
 	$(GENERATE) $(GENERATE_OVERLAY_FLAGS) $(SPLAT_CONFIG) $<
 
-$(LINKERS)/%.d: $(CONFIG)/%.yaml $(OVERLAYS:%=$(LINKERS)/%.d) $(SPLAT_FILES) $(SETUP)
+$(LINKERS)/%.d: $(CONFIG)/%.yaml $(SPLAT_FILES) $(SETUP)
 	$(GENERATE) $(GENERATE_FLAGS) $(SPLAT_CONFIG) $<
-	$(ALESSATOOL) $(MERGE_DEPENDENCIES)
 
-$(BUILD)/$(SERIAL): $(SETUP) $(OVERLAY_TARGETS) $(LINKER_SCRIPT)
+$(TARGET_EXECUTABLE): $(SETUP) $(OVERLAY_TARGETS) $(LINKER_SCRIPT)
 	$(LD)
 	$(CHECK_MATCH_PERCENT)
 
@@ -297,7 +297,6 @@ $(LINKER_SCRIPT): $(SPLAT_CONFIG) $(CONFIG)/$(SERIAL).yaml $(LINKER_TEMPLATE)
 
 $(OBJDIFF_CONFIG): $(OBJDIFF_FRAGMENTS)
 	$(CREATE_OBJDIFF_CONFIG) $^
-	$(ALESSATOOL) $(MERGE_DEPENDENCIES)
 
 $(BUILD)/objdiff/%.json: $(CONFIG)/%.yaml
 	$(GENERATE_EXPECTED) --objdiff-output-path=$(BUILD)/objdiff/$*.json --make-full-disasm-for-code $(SPLAT_CONFIG) $<
@@ -328,7 +327,6 @@ $(OBJDIFF):
 	@chmod +x $@
 
 $(MWCCGAP_ENTRYPOINT):
-	@touch $(MWCCGAP_PATCH_VERSION_FILE)
 	$(GIT) submodule update --init --recursive
 
 $(BINUTILS_VERSION_FILE): $(AS)
