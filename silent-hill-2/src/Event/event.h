@@ -92,7 +92,7 @@
 do {                                \
     ev_p_step = p_step;             \
     ev_s_step = s_step;             \
-} while (0);
+} while (0)
 
 #define GET_GAME_FLAG(index) ((game_flag.flag[(index) >> 5] >> ((index) & 0x1F)) & 1)
 #define SET_GAME_FLAG(index) ((game_flag.flag[(index) >> 5] |= (1 << ((index) & 0x1F))))
