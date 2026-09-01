@@ -210,6 +210,9 @@ build:
 	@$(MAKE) clean-quick
 	@$(MAKE)
 
+debug:
+	@$(ALESSATOOL) debug --project=$(PROJECT)
+
 sh3:
 	@$(MAKE) PROJECT="silent-hill-3"
 
@@ -233,6 +236,12 @@ sh3-clean:
 
 sh2-clean:
 	$(MAKE) PROJECT="silent-hill-2" clean-project
+
+sh3-debug:
+	@$(MAKE) PROJECT="silent-hill-3" debug
+
+sh2-debug:
+	@$(MAKE) PROJECT="silent-hill-2" debug
 
 clean:
 	@$(MAKE) PROJECT=silent-hill-3 clean-project
@@ -263,9 +272,6 @@ death:
 	$(foreach tool,$(TOOLCHAIN),rm -f "$(tool)";)
 	unlink $(ROM_SYMLINK)
 	$(GIT) submodule foreach --recursive $(GIT) reset --hard
-
-debug:
-	$(ALESSATOOL) debug
 
 diff:
 	$(CHECK_MATCH_PERCENT)
