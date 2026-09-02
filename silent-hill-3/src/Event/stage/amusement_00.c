@@ -208,41 +208,43 @@ int func_01F6DA30_amusement_00(void) {
 
 
 void func_01F6DEA0_amusement_00(float fparg0) {
+    Picture* temp_s0;
+    Picture* temp_s0_2;
+    PictureLoad* temp_s1;
+    PictureLoad* temp_s1_2;
     int temp_s2;
     int temp_s2_2;
-    S0* temp_s0;
-    S0* temp_s0_2;
-    S1* temp_s1;
-    S1* temp_s1_2;
 
     temp_s1 = func_00170430(0);
     temp_s0 = func_00170450(0);
     temp_s2 = D_01F72DB8_amusement_00 + 64;
-    temp_s1->unk0 = temp_s2;
-    temp_s1->unk4 = -1;
-    temp_s1->unk8 = -1;
-    temp_s1->unkC = 0;
+    temp_s1->unk00 = temp_s2;
+    temp_s1->unk04 = -1;
+    temp_s1->unk08 = -1;
+    temp_s1->unk0C = 0;
     sh3_PictureLoadImageWrapped(temp_s1);
+
     shQzero(temp_s0, 68);
-    temp_s0->unk0 = temp_s2;
-    temp_s0->unk4 = -1;
-    temp_s0->unk8 = -1;
+    temp_s0->unk00 = temp_s2;
+    temp_s0->unk04 = -1;
+    temp_s0->unk08 = -1;
     temp_s0->unk42 = (short) (temp_s0->unk42 | 1);
     temp_s0->unk40 = 1;
     sh3_PictureDrawWrapped(temp_s0);
+
     temp_s1_2 = func_00170430(1);
     temp_s0_2 = func_00170450(1);
     temp_s2_2 = D_01F72DC0_amusement_00 + 64;
-    temp_s1_2->unk0 = temp_s2_2;
-    temp_s1_2->unk4 = -1;
-    temp_s1_2->unk8 = -1;
-    temp_s1_2->unkC = 2;
-    // D_01F72DC0_amusement_00 something is done with this weirdly
+    temp_s1_2->unk00 = temp_s2_2;
+    temp_s1_2->unk04 = -1;
+    temp_s1_2->unk08 = -1;
+    temp_s1_2->unk0C = 2;
     sh3_PictureLoadImageWrapped(temp_s1_2);
     shQzero(temp_s0_2, 68);
-    temp_s0_2->unk0 = temp_s2_2;
-    temp_s0_2->unk4 = -1;
-    temp_s0_2->unk8 = -1;
+
+    temp_s0_2->unk00 = temp_s2_2;
+    temp_s0_2->unk04 = -1;
+    temp_s0_2->unk08 = -1;
     temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 1);
     if (fparg0 < 1.0f) {
         temp_s0_2->unk2F = (char) (128.0f * fparg0);
@@ -253,6 +255,7 @@ void func_01F6DEA0_amusement_00(float fparg0) {
         temp_s0_2->unk34 = 0;
         temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 32);
     }
+
     temp_s0_2->unk40 = 3;
     sh3_PictureDrawWrapped(temp_s0_2);
 }
