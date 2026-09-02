@@ -1198,7 +1198,7 @@ void shCharacterStayObjectNthPartsGet1st(SubCharacter* scp, int n, float* pos, f
 }
 
 
-void shCharacterStayObjectNthPartsSet(SubCharacter* scp, s32 n, f32* pos, f32* rot) {
+void shCharacterStayObjectNthPartsSet(SubCharacter* scp, s32 n, float* pos, float* rot) {
     int i; // r3
     SubCharacterDisp* scp_d = scp; // r2
     shSkelton* sp; // r16

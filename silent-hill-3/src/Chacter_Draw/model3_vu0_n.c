@@ -691,7 +691,7 @@ void MakeCalcPartPacket(Part *part)
         sceVif0PkAddCode(pk, 0x01000101U);
         sceVif0PkAddCode(pk, (xitop + 4) | 0x6C010000);
         data = (Data*) sceVif0PkReserve(pk, 4U);
-        data->rgba.fv[3] = (f32) part->blinn_param;
+        data->rgba.fv[3] = (float) part->blinn_param;
         sceVif0PkAddCode(pk, xitop | 0x04000000);
         sceVif0PkAddCode(pk, xmtop | 0x14000000);
         xitop ^= 8;

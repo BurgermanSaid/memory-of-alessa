@@ -256,7 +256,7 @@ int func_01F6DDE0_amusement_01(void) {
 
 int func_01F6DF10_amusement_01(void) {
     int ret;
-    f32 angle;
+    float angle;
     SubCharacter* danny;
     ret = 0;
 
@@ -1002,7 +1002,9 @@ int func_01F6FDC0_amusement_01(void) {
     }
 }
 
+#pragma supress_warnings on
 UNCURSE_AMUSEMENT_MOON();
+#pragma supress_warnings off
 
 int func_01F6FED0_amusement_01(void) {
     switch (D_01F74C88_amusement_01) {

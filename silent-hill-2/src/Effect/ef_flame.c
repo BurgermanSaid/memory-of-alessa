@@ -489,7 +489,7 @@ static void SetFlameSTValue(EFCTObject* pObj /* r2 */, EFCTFlameObject* flame /*
     for (i = 0; i < flame->plane_num; i++) {
 
         s_index = flame->plane[i].s_index;
-        t_index = (f32) flame->plane[i].current_frame;
+        t_index = (float) flame->plane[i].current_frame;
 
         pObj->pVertex[4 * i + 0].stq[0] = 0.125f * s_index;
         pObj->pVertex[4 * i + 0].stq[1] = 0.125f * t_index;

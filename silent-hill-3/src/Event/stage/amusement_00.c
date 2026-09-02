@@ -205,8 +205,6 @@ int func_01F6DA30_amusement_00(void) {
     return ret;
 }
 
-
-
 void func_01F6DEA0_amusement_00(float fparg0) {
     Picture* temp_s0;
     Picture* temp_s0_2;
@@ -259,7 +257,6 @@ void func_01F6DEA0_amusement_00(float fparg0) {
     temp_s0_2->unk40 = 3;
     sh3_PictureDrawWrapped(temp_s0_2);
 }
-
 
 int func_01F6E020_amusement_00(void) {
     int sp10[4];

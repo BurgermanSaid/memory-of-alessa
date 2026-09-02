@@ -17,10 +17,11 @@
 #define SQUARE(_x) ((_x) * (_x))
 #define MIN(a, b) ((a) > (b) ? (b) : (a))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
-#define CLAMP_MAX(_val, _max) do { (_val) = (_val) > (_max) ? (_val) : (_max); } while (0);
-#define CLAMP_MIN(_val, _min) do { (_val) = (_val) > (_min) ? (_min) : (_val); } while (0);
+#define CLAMP_MAX(_val, _max) do { (_val) = (_val) > (_max) ? (_val) : (_max); } while (0)
+#define CLAMP_MIN(_val, _min) do { (_val) = (_val) > (_min) ? (_min) : (_val); } while (0)
 #define COLOR_RGBA(r, g, b, a) (((a) << 24) | ((((b) << 16) | ((r) | ((g) << 8)))))
 #define COLOR_RGB(r, g, b) ((((b) << 16) | ((r) | ((g) << 8))))
+#define Q4(x) (int)((x) * 16)
 
 // Convert a reflex angle (> 180deg, or < -180deg) to the range [-PI, PI].
 #define REFLEX_ANGLE(out, value) do { \
@@ -29,7 +30,7 @@
     else if (value < -PI) ret = value+TAU; \
     else ret = value; \
     out = ret; \
-} while (0);
+} while (0)
 
 static inline float reflex_angle(float x) {
     float result;

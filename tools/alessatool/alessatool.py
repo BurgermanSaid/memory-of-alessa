@@ -108,6 +108,12 @@ def main():
         help="path to build directory"
     )
     generate_parser.add_argument(
+        "--main-executable-path",
+        type=Path,
+        default=Path(BUILD) / SERIAL / SERIAL,
+        help="path to main executable file in build folder"
+    )
+    generate_parser.add_argument(
         "--no-lcf",
         action="store_true",
         help="don't generate a linker command file."
@@ -266,13 +272,6 @@ def main():
         type=Path,
         nargs="+",
         help="list of json files to merge"
-    )
-    dependencies_merge_parser = merge_subparsers.add_parser(name="dependencies")
-    dependencies_merge_parser.add_argument(
-        "--d-path",
-        type=Path,
-        required=True,
-        help=f"output .d filepath (should be sibling with {INTERMEDIATE_D_NAME})"
     )
     merge_parser.set_defaults(func=merge)
 

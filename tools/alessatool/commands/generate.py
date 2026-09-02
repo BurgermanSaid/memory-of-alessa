@@ -17,8 +17,7 @@ import json
 from pathlib import Path
 from dataclasses import dataclass, asdict
 
-from utils import append_to_file, ensure_path_and_write, normalize_object_path, to_expected_path
-from constants import INTERMEDIATE_D_NAME
+from utils import ensure_path_and_write, normalize_object_path, to_expected_path
 
 import splat.scripts.split as split
 import splat.util.options as splat_options
@@ -43,6 +42,7 @@ class GenerationArgs:
     template_path: Path
     lcf_output_path: Path
     objdiff_output_path: Path
+    main_executable_path: Path
     build_path: Path
     verbose: bool
     no_lcf: bool
@@ -109,8 +109,10 @@ def generate_linker_dependencies(args: GenerationArgs):
 
     elf_path = splat_options.opts.elf_path
     ld_script_path = splat_options.opts.ld_script_path
-    output = f"{(build_path / clean_up_path(elf_path)).as_posix()}:"
-    main_exe_output = ""
+
+    target_executable = (build_path / clean_up_path(elf_path)).as_posix()
+    main_executable = args.main_executable_path.as_posix()
+    output_lines = [f"{target_executable} {main_executable}:"]
 
     for entry in linker_writer.dependencies_entries:
         if entry.object_path is None:
@@ -118,17 +120,15 @@ def generate_linker_dependencies(args: GenerationArgs):
         path_str = normalize_object_path(entry.object_path, build_path)
         path_strs.append(path_str)
 
-        output += f" \\\n    {path_str}"
-        main_exe_output += f"    {path_str} \\\n"
+        output_lines += [f" \\\n    {path_str}"]
 
-    output += "\n"
+    output_lines += ["\n"]
 
     for path_str in path_strs:
-        output += f"{path_str}:\n"
+        output_lines += [f"{path_str}:\n"]
 
     output_path = ld_script_path.with_suffix(".d")
-    ensure_path_and_write(output_path, output)
-    append_to_file(ld_script_path.parent / INTERMEDIATE_D_NAME, main_exe_output)
+    ensure_path_and_write(output_path, "".join(output_lines))
 
 def generate_lcf(args: GenerationArgs):
     '''

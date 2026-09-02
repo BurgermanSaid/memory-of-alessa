@@ -945,7 +945,7 @@ static int DdsPlay(DramaDemo_PlayInfo * info /* r16 */) {
     int j; // r18
     int k; // r4
     DramaDemo_MessageTime* temp_v1_3;
-    f32 var_f2;
+    float var_f2;
     s32 temp_a0;
     s32 temp_a0_2;
     s32 temp_v1_2;
