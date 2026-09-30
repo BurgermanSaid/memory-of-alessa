@@ -511,7 +511,7 @@ segments:
       - { start: 0x0016fbf0,    type: c,          name: Chacter/m3_inu                                   }
       - { start: 0x0016fe80,    type: c,          name: view/vc_play                                     }
       - { start: 0x00170010,    type: c,          name: LoadBg/loadbg_2x2                                }
-      - { start: 0x001711d0,    type: asm,        name: LoadBg/loadbg_all                                }
+      - { start: 0x001711d0,    type: c,          name: LoadBg/loadbg_all                                }
       - { start: 0x00172180,    type: c,          name: LoadBg/loadbg_cam                                }
       - { start: 0x001726c0,    type: c,          name: LoadBg/loadbg_cld                                }
       - { start: 0x00172ab0,    type: c,          name: LoadBg/loadbg_kg2                                }
@@ -1267,7 +1267,7 @@ segments:
       - { vram:  0x01202580,    type: .bss,       name: Chacter/lake_wave                                }
       - { vram:  0x01202730,    type: bss,        name: view/vc_play                                     }
       - { vram:  0x01202800,    type: .bss,       name: LoadBg/loadbg_2x2                                }
-      - { vram:  0x01202db0,    type: bss,        name: LoadBg/loadbg_all                                }
+      - { vram:  0x01202db0,    type: .bss,       name: LoadBg/loadbg_all                                }
       - { vram:  0x01202e70,    type: bss,        name: Fog/fog_blow                                     }
       - { vram:  0x01202ed0,    type: .bss,       name: Effect2/hh_class_water_03                        }
       - { vram:  0x01202ef0,    type: .bss,       name: Effect2/hh_class_water_04                        }
