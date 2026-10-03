@@ -318,8 +318,8 @@ INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTMakePacket);
 #define FOGMIN       FOGPARAM(3)
 
 static inline float calc_fog_coeff(float* q) {
-    float a = (FOGFAR * FOGNEAR * (FOGMIN - FOGMAX) / (FOGFAR - FOGNEAR));
-    float b = ((FOGFAR * FOGMAX - FOGNEAR * FOGMIN) / (FOGFAR - FOGNEAR));
+    float a = FOGFAR * FOGNEAR * (FOGMIN - FOGMAX) / (FOGFAR - FOGNEAR);
+    float b = (FOGFAR * FOGMAX - FOGNEAR * FOGMIN) / (FOGFAR - FOGNEAR);
     return *q * a + b;
 }
 
