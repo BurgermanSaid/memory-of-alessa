@@ -46,7 +46,12 @@ static inline float reflex_angle(float x) {
     return result;
 }
 
-static inline int clamp(int b, int i) {
+static inline int clamp(int value, int low, int high) {
+    asm("slt $t6, %0, %1; slt $t7, %2, %0; movn %0, %1, $t6; movn %0, %2, $t7" : "=r"(value) : "r"(low), "r"(high) :);
+    return value;
+}
+
+static inline int clamp_min(int b, int i) {
     asm("slt $t7, %1, %0; movn %0, %1, $t7" : "=r"(b) : "r"(i) :);
     return b;
 }
