@@ -29,7 +29,7 @@ segments:
       # ------------------------------------------    text   ------------------------------------------- #
       - { start: 0x00000700,    type: asm,        name: crt0                                             }
       - { start: 0x000007c0,    type: c,          name: Chacter/anime                                    }
-      - { start: 0x00003580,    type: asm,        name: Chacter/bg_obj_stay                              }
+      - { start: 0x00003580,    type: c,          name: Chacter/bg_obj_stay                              }
       - { start: 0x00003670,    type: asm,        name: Chacter/item_screen_obj                          }
       - { start: 0x00003d10,    type: c,          name: Chacter/m3_angela                                }
       - { start: 0x00004290,    type: asm,        name: Chacter/m3_anime_subfunc                         }
