@@ -69,6 +69,7 @@ class SplatSymbol:
     duplicate_by_name: bool
     duplicate_by_addr: bool
     attributes: dict | None
+    metadata: dict | None
 
 @dataclass
 class SplatSymbolAddrsAtlas:
@@ -76,7 +77,7 @@ class SplatSymbolAddrsAtlas:
     syms_by_name: dict[str, SplatSymbol] = field(default_factory=dict)
     syms_by_addr: dict[int, SplatSymbol] = field(default_factory=dict)
 
-def insert_into_atlas(atlas: SplatSymbolAddrsAtlas, name: str, addr: int, attributes=None):
+def insert_into_atlas(atlas: SplatSymbolAddrsAtlas, name: str, addr: int, attributes=None, metadata=None):
     syms = atlas.syms
     syms_by_addr = atlas.syms_by_addr
     syms_by_name = atlas.syms_by_name
@@ -94,7 +95,8 @@ def insert_into_atlas(atlas: SplatSymbolAddrsAtlas, name: str, addr: int, attrib
         addr=addr,
         duplicate_by_name=duplicate_by_name,
         duplicate_by_addr=duplicate_by_addr,
-        attributes=attributes
+        attributes=attributes,
+        metadata=metadata
     )
 
     syms_by_name[name] = splat_symbol
@@ -223,7 +225,9 @@ def parse_symtab_as_atlas(symtab_str: str) -> SplatSymbolAddrsAtlas:
             type=typeof == "FUNC" and "func" or None
         )
 
-        insert_into_atlas(symtab, name, int(address, 16), attributes)
+        metadata = dict(sh_index=sh_index, visibility=visibility, bind=bind)
+
+        insert_into_atlas(symtab, name, int(address, 16), attributes, metadata)
 
     return symtab
 
