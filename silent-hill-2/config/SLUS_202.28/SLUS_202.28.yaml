@@ -796,7 +796,7 @@ segments:
       - { start: 0x00278550,    type: data,       name: Effect2/hh_class_flame_01                        }
       - { start: 0x00279990,    type: data,       name: Effect2/hh_class_smoke_00                        }
       - { start: 0x0027a060,    type: data,       name: Effect2/hh_class_water_pool_00                   }
-      - { start: 0x0027a5a0,    type: data,       name: Chacter/m3_play_event                            }
+      - { start: 0x0027a5a0,    type: .data,      name: Chacter/m3_play_event                            }
       - { start: 0x0027a630,    type: .data,      name: Chacter/m3_play_efect                            }
       - { start: 0x0027a6f0,    type: data,       name: Effect2/hh_class_flame_02                        }
       - { start: 0x0027bb30,    type: data,       name: Effect2/hh_class_plural_phenomenon_01            }
@@ -1277,8 +1277,7 @@ segments:
       - { vram:  0x01202f70,    type: .bss,       name: Effect2/hh_class_water_09                        }
       - { vram:  0x01202f90,    type: bss,        name: Enemy/en_insect                                  }
       - { vram:  0x01202fa0,    type: bss,        name: Effect2/hh_class_water_pool_00                   }
-      - { vram:  0x01202fa8,    type: bss,        name: Chacter/m3_play_event                            }
-      - { vram:  0x01202fa8,    type: bss,        name: Chacter/m3_play_event                            }
+      - { vram:  0x01202fa8,    type: .bss,       name: Chacter/m3_play_event                            }
       - { vram:  0x01202fb0,    type: bss,        name: movie/movie_main                                 }
       - { vram:  0x01216b00,    type: bss,        name: movie/pss_audiodec                               }
       - { vram:  0x01217b00,    type: bss,        name: movie/pss_common                                 }
