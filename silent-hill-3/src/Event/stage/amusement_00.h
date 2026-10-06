@@ -2,60 +2,12 @@
 #define AMUSEMENT_00_H
 
 #include "common.h"
+#include "Event/picture.h"
 
 typedef struct {
     float unk0;
     int unk4;
 } Amusement00Pair;
-
-typedef struct
-{
-    int unk00;
-    int unk04;
-    int unk08;
-    short unk0C;
-} PictureLoad;
-
-typedef struct
-{
-    int unk00;
-    int unk04;
-    int unk08;
-    short unk0C;
-    short unk0E;
-    short unk10;
-    short unk12;
-    short unk14;
-    short unk16;
-    short unk18;
-    short unk1A;
-    u_int unk1C;
-    u_int unk20;
-    u_int unk24;
-    u_int unk28;
-    u_char unk2C;
-    u_char unk2D;
-    u_char unk2E;
-    u_char unk2F;
-    u_char unk30;
-    u_char unk31;
-    u_char unk32;
-    u_char unk33;
-    u_char unk34;
-    u_char unk35;
-    u_char unk36;
-    u_char unk37;
-    u_char unk38;
-    u_char unk39;
-    u_char unk3A;
-    u_char unk3B;
-    u_char unk3C;
-    u_char unk3D;
-    u_char unk3E;
-    u_char unk3F;
-    short unk40;
-    short unk42;
-} Picture;
 
 void func_01F6DEA0_amusement_00(float);
 
@@ -79,12 +31,14 @@ int func_0016C1C0(int);
 int func_0016C540(int*, int*);
 int func_0016CB70(void);
 void func_0016D0E0(int, int);
-int func_0016D240(float, float, int, int (*)[4], int, int);
+int func_0016D240(float, int (*)[4], int, int, float, float);
+void func_0016DB80(int);
+void func_0016DCE0(int);
 void func_0016E400(int, int);
 void func_0016ECE0(int);
 void func_0016F630(void);
-PictureLoad* func_00170430(int);
-Picture* func_00170450(int);
+PicLoadImage_Data* func_00170430(int);
+PicDraw_Data* func_00170450(int);
 long func_00170810(void);
 void func_00190C40(void);
 float func_00190A20(int);
@@ -96,11 +50,10 @@ int func_001C2580(int);
 void func_001EC590(int);
 void func_00258910(void);
 void func_00316C50(int);
+void ItemGet(u_int);
+int RoomName();
 int SeCall(float arg0, float arg1, int arg2);
-void sh3_PictureDrawWrapped(Picture*);
-void sh3_PictureLoadImageWrapped(PictureLoad*);
 void shQzero(void*, int);
-
 extern int D_01F72830_amusement_00;
 extern int D_01F72890_amusement_00;
 extern int D_01F728B0_amusement_00;
@@ -120,6 +73,7 @@ extern float D_01F72DB0_amusement_00;
 extern int D_01F72DB8_amusement_00;
 extern int D_01F72DC0_amusement_00;
 extern int D_01F72DC8_amusement_00;
+extern u_int D_1D31644;
 extern u_int D_1D3169C;
 extern u_int D_1D316AC;
 extern Amusement00Pair D_01F72960_amusement_00;

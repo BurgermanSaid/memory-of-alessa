@@ -62,5 +62,7 @@ typedef struct PicDraw_Data {
 
 void PictureDraw(PicDraw_Data* pic /* r16 */);
 void PictureLoadImage(PicLoadImage_Data* pic_load /* r22 */);
+void sh3_PictureDrawWrapped(PicDraw_Data* pic /* r16 */);
+void sh3_PictureLoadImageWrapped(PicLoadImage_Data* pic_load /* r22 */);
 
 #endif

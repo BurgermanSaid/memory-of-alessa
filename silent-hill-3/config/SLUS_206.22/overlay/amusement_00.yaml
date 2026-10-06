@@ -27,5 +27,8 @@ segments:
       - [0x80, c, Event/stage/amusement_00]
       - [0x1980, data, amusement_00_data]
       - [0x5680, .rodata, Event/stage/amusement_00]
+      #- [0x56B0, .rodata, Event/stage/amusement_00]
+      #- [0x56E0, .rodata, Event/stage/amusement_00]
+      #- [0x5700, .rodata, Event/stage/amusement_00]
       - { vram: 0x1F72D80, type: bss, name: amusement_00_bss }
   - [0x5780]

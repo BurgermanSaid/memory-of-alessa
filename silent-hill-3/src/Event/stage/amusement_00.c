@@ -206,56 +206,56 @@ int func_01F6DA30_amusement_00(void) {
 }
 
 void func_01F6DEA0_amusement_00(float fparg0) {
-    Picture* temp_s0;
-    Picture* temp_s0_2;
-    PictureLoad* temp_s1;
-    PictureLoad* temp_s1_2;
-    int temp_s2;
-    int temp_s2_2;
+    PicDraw_Data* picDrawS0;
+    PicDraw_Data* picDrawS0_2;
+    PicLoadImage_Data* picLoadS1;
+    PicLoadImage_Data* picLoadS1_2;
+    sh3gfw_AREA_HEAD* areaHeadS2;
+    sh3gfw_AREA_HEAD* areaHeadS2_2;
 
-    temp_s1 = func_00170430(0);
-    temp_s0 = func_00170450(0);
-    temp_s2 = D_01F72DB8_amusement_00 + 64;
-    temp_s1->unk00 = temp_s2;
-    temp_s1->unk04 = -1;
-    temp_s1->unk08 = -1;
-    temp_s1->unk0C = 0;
-    sh3_PictureLoadImageWrapped(temp_s1);
+    picLoadS1 = func_00170430(0);
+    picDrawS0 = func_00170450(0);
+    areaHeadS2 = (sh3gfw_AREA_HEAD*) (D_01F72DB8_amusement_00 + 64);
+    picLoadS1->ap = areaHeadS2;
+    picLoadS1->tex_adr = -1;
+    picLoadS1->clut_adr = -1;
+    picLoadS1->otp = 0;
+    sh3_PictureLoadImageWrapped(picLoadS1);
 
-    shQzero(temp_s0, 68);
-    temp_s0->unk00 = temp_s2;
-    temp_s0->unk04 = -1;
-    temp_s0->unk08 = -1;
-    temp_s0->unk42 = (short) (temp_s0->unk42 | 1);
-    temp_s0->unk40 = 1;
-    sh3_PictureDrawWrapped(temp_s0);
+    shQzero(picDrawS0, 68);
+    picDrawS0->ap = areaHeadS2;
+    picDrawS0->tex = -1;
+    picDrawS0->clut = -1;
+    picDrawS0->status = (short) (picDrawS0->status | 1);
+    picDrawS0->otp = 1;
+    sh3_PictureDrawWrapped(picDrawS0);
 
-    temp_s1_2 = func_00170430(1);
-    temp_s0_2 = func_00170450(1);
-    temp_s2_2 = D_01F72DC0_amusement_00 + 64;
-    temp_s1_2->unk00 = temp_s2_2;
-    temp_s1_2->unk04 = -1;
-    temp_s1_2->unk08 = -1;
-    temp_s1_2->unk0C = 2;
-    sh3_PictureLoadImageWrapped(temp_s1_2);
-    shQzero(temp_s0_2, 68);
+    picLoadS1_2 = func_00170430(1);
+    picDrawS0_2 = func_00170450(1);
+    areaHeadS2_2 = (sh3gfw_AREA_HEAD*) (D_01F72DC0_amusement_00 + 64);
+    picLoadS1_2->ap = areaHeadS2_2;
+    picLoadS1_2->tex_adr = -1;
+    picLoadS1_2->clut_adr = -1;
+    picLoadS1_2->otp = 2;
+    sh3_PictureLoadImageWrapped(picLoadS1_2);
+    shQzero(picDrawS0_2, 68);
 
-    temp_s0_2->unk00 = temp_s2_2;
-    temp_s0_2->unk04 = -1;
-    temp_s0_2->unk08 = -1;
-    temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 1);
+    picDrawS0_2->ap = areaHeadS2_2;
+    picDrawS0_2->tex = -1;
+    picDrawS0_2->clut = -1;
+    picDrawS0_2->status = (short) (picDrawS0_2->status | 1);
     if (fparg0 < 1.0f) {
-        temp_s0_2->unk2F = (char) (128.0f * fparg0);
-        temp_s0_2->unk30 = 0;
-        temp_s0_2->unk31 = 1;
-        temp_s0_2->unk32 = 0;
-        temp_s0_2->unk33 = 1;
-        temp_s0_2->unk34 = 0;
-        temp_s0_2->unk42 = (short) (temp_s0_2->unk42 | 32);
+        picDrawS0_2->a = (char) (128.0f * fparg0);
+        picDrawS0_2->alpha_a = 0;
+        picDrawS0_2->alpha_b = 1;
+        picDrawS0_2->alpha_c = 0;
+        picDrawS0_2->alpha_d = 1;
+        picDrawS0_2->alpha_fix = 0;
+        picDrawS0_2->status = (short) (picDrawS0_2->status | 32);
     }
 
-    temp_s0_2->unk40 = 3;
-    sh3_PictureDrawWrapped(temp_s0_2);
+    picDrawS0_2->otp = 3;
+    sh3_PictureDrawWrapped(picDrawS0_2);
 }
 
 int func_01F6E020_amusement_00(void) {
@@ -283,11 +283,143 @@ int func_01F6E020_amusement_00(void) {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E120_amusement_00);
+void func_0016BC00(int);
+void func_0016C1A0(void);
+void func_0016C1B0(void);
+void func_0016F550(int, int);
+void func_01F6E420_amusement_00(float);
+int func_00190C00(void);
+extern f32 D_01F72D98_amusement_00;
 
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E420_amusement_00);
+int func_01F6E120_amusement_00(void) {
+    float temp_f0;
+    float sound_fa0;
+    float sound_fa1;
 
-#ifdef BROKEN
+    switch (D_01F72D80_amusement_00) {
+    case 0:
+        func_00190A20(0);
+        func_00190A20(5);
+        D_01F72D98_amusement_00 = 1.0f;
+        D_01F72D80_amusement_00 = 1;
+    case 1:
+        if (func_00190C00() == 0) {
+            return 0;
+        }
+        func_001C2290(0.8f, 3);
+        D_01F72D80_amusement_00 = 2;
+    case 2:
+        func_0016F550(73, 0);
+        func_0016F550(72, 4);
+        D_01F72D80_amusement_00 = 3;
+    case 3:
+        if (func_00151150(0, 1) == 0 || func_001C2580(2) == 0) {
+            return 0;
+        }
+        D_01F72D80_amusement_00 = 4;
+    case 4:
+        if (func_001C2580(4) != 0) {
+            func_0016BC00(1);
+            D_01F72D80_amusement_00 = 5;
+        } else if (func_001C2580(3) == 0) {
+            func_0016BC00(0);
+            func_001C2290(0.8f, 5);
+            func_0016C1A0();
+            return 0;
+        }
+        func_01F6E420_amusement_00(1.0f);
+        return 0;
+    case 5:
+        D_01F72D80_amusement_00 = 6;
+        D_1D3169C |= 0x800;
+        ItemGet(0x45);
+        sound_fa0 = 1.0f;
+        sound_fa1 = 0.0f;
+        SeCall(sound_fa0, sound_fa1, 0x2B21);
+    case 6:
+        func_0016BC00(1);
+        func_01F6E420_amusement_00(1.0f);
+        if (func_0016C1C0(0x3E) == 0) {
+            return 0;
+        }
+        D_01F72D80_amusement_00 = 7;
+        return 0;
+    case 7:
+        func_0016BC00(0);
+        temp_f0 = D_01F72D98_amusement_00 - (0.8f * shGetDT());
+        D_01F72D98_amusement_00 = temp_f0;
+        if (temp_f0 < 0.0f) {
+            D_01F72D98_amusement_00 = 0.0f;
+            D_01F72D80_amusement_00 = 8;
+            func_001C2290(0.8f, 3);
+        }
+        func_01F6E420_amusement_00(D_01F72D98_amusement_00);
+        return 0;
+    case 8:
+        func_0016BC00(0);
+        func_01F6E420_amusement_00(0.0f);
+        if (func_001C2580(2) != 0) {
+            D_01F72D80_amusement_00 = 9;
+        }
+        return 0;
+    case 9:
+        func_0016C1B0();
+        func_001C2290(0.8f, 5);
+        func_00190A20(6);
+        D_01F72D80_amusement_00 = 0xA;
+    case 10:
+        if (func_00190C00() == 0) {
+            return 0;
+        }
+        func_00190A20(0);
+        D_01F72D80_amusement_00 = 0;
+    default:
+        return 1;
+    }
+}
+
+void func_0016BD90(int, int, float);
+sh3gfw_AREA_HEAD* func_00170410(int);                 
+void func_01F6E420_amusement_00(f32 fparg0) {
+    PicDraw_Data* temp_s0;
+    PicLoadImage_Data* temp_s1;
+
+    temp_s1 = func_00170430(4);
+    temp_s0 = func_00170450(4);
+    temp_s1->ap = func_00170410(4);
+    temp_s1->tex_adr = -1;
+    temp_s1->clut_adr = -1;
+    temp_s1->otp = 2;
+    sh3_PictureLoadImageWrapped(temp_s1);
+    shQzero(temp_s0, 68);
+    temp_s0->ap = func_00170410(4);
+    temp_s0->tex = -1;
+    temp_s0->clut = -1;
+    temp_s0->status |= 1;
+    temp_s0->a = (char) (128.0f * fparg0);
+    temp_s0->alpha_a = 0;
+    temp_s0->alpha_b = 1;
+    temp_s0->alpha_c = 0;
+    temp_s0->alpha_d = 1;
+    temp_s0->alpha_fix = 0;
+    temp_s0->status |= 32;
+    temp_s0->x0 = -1872;
+    temp_s0->y0 = -1536;
+    temp_s0->x1 = -608;
+    temp_s0->y1 = 1264;
+    temp_s0->status |= 2;
+    temp_s0->us0 = 16;
+    temp_s0->vt0 = 16;
+    temp_s0->us1 = 1280;
+    temp_s0->vt1 = 2816;
+    temp_s0->status &= ~8;
+    temp_s0->status |= 4;
+    temp_s0->otp = 3;
+    sh3_PictureDrawWrapped(temp_s0);
+    func_0016BD90(0, 0, 1.0f);
+}
+
+//#ifdef BROKEN
 int func_01F6E590_amusement_00(void) {
     switch (D_01F72D80_amusement_00) {
     case 0:
@@ -313,9 +445,9 @@ int func_01F6E590_amusement_00(void) {
         return 1;
     }
 }
-#else
+/*#else
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E590_amusement_00);
-#endif
+#endif*/
 
 u_int func_01F6E6A0_amusement_00(int arg0) {
     int x;
@@ -328,33 +460,79 @@ u_int func_01F6E6A0_amusement_00(int arg0) {
 }
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
+/*
+void func_01F6E6D0_amusement_00(void) {
+    int temp_v1;
 
-#ifdef BROKEN
+    D_01F72D90_amusement_00 = 0;
+    D_01F72D80_amusement_00 = 0;
+    temp_v1 = (int) (RoomName() << 0x30) >> 0x30;
+    switch (temp_v1) {
+        case 0xD2:
+            if (!(((u_int) D_1D31644 >> 0x1E) & 1)) {
+                ItemGet(15);
+                ItemGet(15);
+                ItemGet(15);
+                ItemGet(15);
+                ItemGet(0x11);
+                ItemGet(0x12);
+                ItemGet(0x13);
+                ItemGet(0xC);
+                ItemGet(0xA);
+                ItemGet(1);
+                ItemGet(2);
+                ItemGet(0x22);
+                func_0016E400(0x22, 1);
+                func_0016E400(0x1F, 1);
+                func_0016DCE0(1);
+                func_001C2290(0.0f, 2);
+                func_0016DB80(15);
+                func_0016DB80(0x11);
+                return;
+            }
+        case 0xD1:
+        case 0xD3:
+        case 0xD5:
+        case 0xD6:
+            break;
+        case 0xD4:
+            D_1D3169C &= ~0x400;
+            break;
+        case 0xD7:
+            D_01F72DC8_amusement_00 = 0;
+    }
+}
+*/
+
+//#ifdef BROKEN
 void func_01F6E810_amusement_00(void) {
     int sp10[4];
     int sp20[4];
     D_01F72D90_amusement_00 = 1;
-    switch ((short)func_00170810()) {
+    switch ((short)RoomName()) {
     case 0xD6:
         if (!GET_BIT(D_1D3169C, 6)) {
             sp10 = D_01F72C20_amusement_00;
             D_01F72DA0_amusement_00 = func_0016D240(0x3B60, &sp10, 0, 0, 1.0f, 5000.0f);
-            return;
+            break;
+        } else {
+            D_01F72DA0_amusement_00 = -1;
+            break;
         }
-        D_01F72DA0_amusement_00 = -1;
-        return;
     case 0xD7:
         if (!GET_BIT(D_1D3169C, 6)) {
             sp20 = D_01F72C30_amusement_00;
-            D_01F72DA0_amusement_00 = func_0016D240(0x3B60, &sp20, 0, 0, 1.0f, 5000.0f);
+            D_01F72DA0_amusement_00 = func_0016D240(0x3B60, &sp20, 0, 0, 1.5f, 5000.0f);
+            break;
         } else {
             D_01F72DA0_amusement_00 = -1;
+            break;
         }
     }
 }
-#else
+/*#else
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E810_amusement_00);
-#endif
+#endif*/
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
 
