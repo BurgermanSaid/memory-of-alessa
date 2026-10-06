@@ -36,6 +36,7 @@ GENERATE_REPORT ?= 0
 
 VERBOSE ?= 0
 TQDM_DISABLE ?= 1
+CI ?= 0
 
 NPROC ?= $(call get_nproc)
 MAKE_OPTIONS ?= -j$(NPROC)
@@ -56,7 +57,9 @@ CONFIG = $(PROJECT)/config/$(SERIAL)
 ASM = $(CONFIG)/asm
 ASSETS = $(CONFIG)/assets
 LINKERS = $(CONFIG)/linkers
+ISO := $(PROJECT)/iso
 ROM = rom/$(SERIAL)
+VSM := vsm
 
 INCLUDE = $(PROJECT)/include
 SRC = $(PROJECT)/src
@@ -67,7 +70,7 @@ ifeq ($(VERBOSE),1)
 	Q :=
 endif
 
-MAKE += MAKE_OPTIONS=""
+MAKE += MAKE_OPTIONS="--no-print-directory"
 MAKEFLAGS += $(MAKE_OPTIONS)
 
 include $(PROJECT)/Makefile
@@ -106,6 +109,8 @@ AS_FLAGS := \
 	-EL -march=r5900 -mabi=eabi -G=0 $(MWCCGAP_AS_FLAGS) \
 	-I$(INCLUDE) -I$(CONFIG) -I$(COMMON_INCLUDE)
 
+EE_DVP_AS = $(WIBO) $(TOOLS)/ee-dvp-as.exe
+
 LD :=
 ifneq ($(NON_MATCHING),1)
 ifneq ($(LINK),0)
@@ -116,6 +121,10 @@ endif
 
 WIBO_BINARY := wibo-$(if $(filter $(ARCH),arm64),macos,$(ARCH))
 WIBO := $(TOOLS)/$(WIBO_BINARY)
+
+PS2ISO_BINARY := ps2iso_$(if $(filter $(PLATFORM),macos),osx,linux)
+PS2ISO := $(TOOLS)/$(PS2ISO_BINARY)
+ISO_BUILD_FILES := $(ISO)/files
 
 MWCCGAP_ENTRYPOINT := $(TOOLS)/mwccgap/mwccgap.py
 MWCCGAP := $(PYTHON) $(MWCCGAP_ENTRYPOINT)
@@ -183,8 +192,11 @@ GENERATE_EXPECTED := $(GENERATE) --no-lcf --make-full-disasm-for-code
 CHECK_MATCH_PERCENT :=
 ifneq ($(NON_MATCHING),1)
 ifneq ($(LINK),0)
-	CHECK_MATCH_PERCENT = @$(TOOLS)/scripts/diff.sh $(SERIAL) $(CONFIG) $(BUILD) $(OBJCOPY) \
+	CHECK_MATCH_PERCENT := @$(TOOLS)/scripts/diff.sh $(SERIAL) $(CONFIG) $(BUILD) $(OBJCOPY) \
 		|| $(ALESSATOOL) debug --project=$(PROJECT)
+ifneq ($(CI),1)
+	CHECK_MATCH_PERCENT := $(CHECK_MATCH_PERCENT) || true
+endif
 endif
 endif
 
@@ -196,6 +208,7 @@ WIBO_HOST := https://github.com/decompals/wibo/releases/download/1.0.1
 COMPILERS_HOST := https://github.com/decompme/compilers/releases/download/compilers
 BINUTILS_HOST := https://github.com/decompals/binutils-mips-ps2-decompals/releases/download/v0.10
 OBJDIFF_HOST := https://github.com/encounter/objdiff/releases/download/v3.6.0
+PS2ISO_HOST := https://github.com/anasrar/ps2iso/releases/download/v0.0.3
 ###############################################################
 all: $(TARGETS)
 
@@ -225,6 +238,12 @@ sh3-build:
 sh2-build:
 	@$(MAKE) PROJECT="silent-hill-2" build
 
+sh3-ci:
+	@$(MAKE) PROJECT="silent-hill-3" CI=1
+
+sh2-ci:
+	@$(MAKE) PROJECT="silent-hill-2" CI=1
+
 sh3-report:
 	@$(MAKE) PROJECT="silent-hill-3" report
 
@@ -242,6 +261,12 @@ sh3-debug:
 
 sh2-debug:
 	@$(MAKE) PROJECT="silent-hill-2" debug
+
+sh3-iso:
+	@$(MAKE) PROJECT="silent-hill-3" iso
+
+sh2-iso:
+	@$(MAKE) PROJECT="silent-hill-2" iso
 
 clean:
 	@$(MAKE) PROJECT=silent-hill-3 clean-project
@@ -282,6 +307,10 @@ expected: $(YAMLS)
 	@$(MAKE) NON_MATCHING=1 $(call get_c_objects)
 	@$(MAKE) $(call get_asm_objects)
 
+relink:
+	@rm -f $(TARGET_EXECUTABLE)
+	@$(MAKE) PROJECT=$(PROJECT)
+
 compiler-info:
 	$(WIBO) $(MWCC) -help
 
@@ -292,6 +321,24 @@ binutils: $(AS)
 
 extract: $(SOURCE_OVERLAY_ARCHIVE)
 	$(ALESSATOOL) $(EXTRACT)
+
+iso: $(PS2ISO)
+	@if ! [ -d $(ISO_BUILD_FILES)/IOP ]; then \
+		echo "please copy the iso contents to $(ISO_BUILD_FILES) first."; \
+		exit 1; \
+	fi
+	@$(MAKE) PROJECT=$(PROJECT) relink
+	@if [[ "$(PROJECT)" == "silent-hill-2" ]]; then \
+		echo "copying overlays..."; \
+		cp -f $(BUILD)/*.bin $(ISO_BUILD_FILES)/GX; \
+	fi
+	@echo "copying main executable..."
+	@cp -f $(TARGET_EXECUTABLE) $(ISO_BUILD_FILES)
+	$(PS2ISO) pack $(ISO)/metadata.json
+	@if [[ "$(PROJECT)" == "silent-hill-3" ]]; then \
+		echo "note: sh3 overlay repacking is not implemented yet."; \
+		echo "note: overlays were not copied."; \
+	fi
 
 overlays-lowercase:
 	$(ALESSATOOL) util lowercase --folder-path $(ROM)/overlay
@@ -306,6 +353,22 @@ $(TARGET_EXECUTABLE): $(SETUP) $(OVERLAY_TARGETS) $(LINKER_SCRIPT)
 	@echo "* linking..."
 	$(Q)$(LD)
 	$(CHECK_MATCH_PERCENT)
+
+$(BUILD)/$(VSM)/%.o: $(PROJECT)/$(VSM)/%.dsm
+	@mkdir -p "$(@D)"
+	$(EE_DVP_AS) $(EE_DVP_AS_FLAGS) -o "$@" "$^"
+
+$(BUILD)/$(VSM)/%.o: $(PROJECT)/$(VSM)/%.vsm
+	@mkdir -p "$(@D)"
+	$(EE_DVP_AS) $(EE_DVP_AS_FLAGS) -o "$@" "$^"
+
+$(BUILD)/$(VSM)/%.o: $(VSM)/%.dsm
+	@mkdir -p "$(@D)"
+	$(EE_DVP_AS) $(EE_DVP_AS_FLAGS) -o "$@" "$^"
+
+$(BUILD)/$(VSM)/%.o: $(VSM)/%.vsm
+	@mkdir -p "$(@D)"
+	$(EE_DVP_AS) $(EE_DVP_AS_FLAGS) -o "$@" "$^"
 
 $(BUILD)/%.c.o: $(PROJECT)/%.c
 	@mkdir -p "$(@D)"
@@ -349,6 +412,11 @@ $(AS):
 $(OBJDIFF):
 	@mkdir -p "$(@D)"
 	wget -O $@ $(OBJDIFF_HOST)/$(OBJDIFF_BINARY)
+	@chmod +x $@
+	
+$(PS2ISO):
+	@mkdir -p "$(@D)"
+	wget -O $@ $(PS2ISO_HOST)/$(PS2ISO_BINARY)
 	@chmod +x $@
 
 $(MWCCGAP_ENTRYPOINT):
@@ -395,10 +463,10 @@ PHONY_TARGETS := \
 	alessatool binutils build clean clean-build \
 	clean-quick clean-project clean-project-build \
 	compiler-info death debug deep-clean diff expected \
-	extract heaven hell linker-info progress \
+	extract heaven hell iso linker-info progress \
 	overlays-lowercase rebuild report setup sh2 sh3 \
 	sh2-build sh3-build sh2-clean sh3-clean \
-	sh2-report sh3-report split
+	sh2-iso sh3-iso sh2-report sh3-report split
 .PHONY: $(PHONY_TARGETS)
 ifeq ($(filter $(PHONY_TARGETS) $(OBJDIFF_CONFIG),$(MAKECMDGOALS)),)
 -include $(BINARIES:%=$(LINKERS)/%.d)

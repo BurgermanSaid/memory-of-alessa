@@ -1,7 +1,11 @@
 #include "sh2_common.h"
-#include "Chacter/character.h"
+
+#include "vec.h"
+
 #include "GFW/sh2gfw_Init_ModelDrawData.h"
-#include "m3_sc.h"
+
+#include "Chacter/character.h"
+#include "Chacter/m3_sc.h"
 
 extern void shBattleInitEnemyCheckWork();
 extern int id_counter; // size: 0x4, address: 0x116DB70
@@ -11,7 +15,53 @@ void shCharacter_Manage_Init() {
     shBattleInitEnemyCheckWork();
 }
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/sh2_character_manage", shCharacter_Manage_Create);
+#line 100
+int shCharacter_Manage_Create(short kind, short id, float* pos, float* rot, u_int status) {
+    
+    
+    
+    SubCharacter* scp = sh2gfw_CreateSubCharacter(kind);
+
+
+    if (scp != NULL) {
+
+
+        volatile_vec_copy(&scp->pos, pos);
+
+    
+
+
+        
+        volatile_vec_copy(&scp->rot, rot);
+
+
+        scp->en_first_status = status;
+
+    
+        scp->battle.status |= 1 << 10;
+
+    
+        if (id != -1) {
+            scp->id = id;
+            ASSERT(id < 0x1000);
+        } else {
+            scp->id = id_counter;
+    
+            printf("id %d\n", id_counter);
+    
+        
+            id_counter++;
+            if (id_counter == 0x7FFF) {
+                id_counter = 0x1000;
+            }
+        }
+        
+        scp->function(scp);
+    
+        return scp->id;
+    }
+    return -1;
+}
 
 int shCharacter_Manage_Delete(struct SubCharacter * scp /* r2 */, short kind /* r2 */, short id /* r2 */) {
     SubCharacter * del_scp; // r16

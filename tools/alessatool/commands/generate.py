@@ -18,6 +18,7 @@ from pathlib import Path
 from dataclasses import dataclass, asdict
 
 from utils import ensure_path_and_write, normalize_object_path, to_expected_path
+from constants import VSM
 
 import splat.scripts.split as split
 import splat.util.options as splat_options
@@ -35,6 +36,7 @@ SECTION_ALIGNMENT_PAIRS: list[tuple[str, int]] = [
 ]
 
 TRACKED_SEGMENT_TYPES = ["asm", "c", "data", "rodata"]
+VSM_SEGMENT_TYPES = ["o", "vudata", "vutext"]
 
 @dataclass
 class GenerationArgs:
@@ -158,6 +160,7 @@ def generate_lcf(args: GenerationArgs):
         entries_by_section_type[section_type].append(entry)
 
     lcf_blocks: list[str] = []
+    vutext_aligned = False
 
     for section_type, alignment in SECTION_ALIGNMENT_PAIRS:
         objects = entries_by_section_type[section_type]
@@ -177,6 +180,9 @@ def generate_lcf(args: GenerationArgs):
                 "",
             ]
 
+        if section_type == ".rodata":
+            block += ["\t\t.    = ALIGN(0x80);"]
+
         elif section_type == ".sbss":
             block += [
                 "\t\t_fbss = .;",
@@ -189,13 +195,29 @@ def generate_lcf(args: GenerationArgs):
             f"\t\tALIGNALL(0x{alignment:X});",
         ]
 
+        if section_type == ".bss":
+            block += ["\t\t.    = ALIGN(0x80);"]
+
         for entry in objects:
             alignment = entry.segment.ld_align_segment_start 
             if alignment is not None:
                 block.append(f"\t\tALIGNALL(0x{alignment:X});")
 
-            object_name = entry.object_path.name
-            block.append(f"\t\t{object_name} ({section_type})")
+            object_path    = entry.object_path
+            object_name    = object_path.name
+            object_type    = section_type
+            object_segment = entry.segment
+
+            if object_segment.type in VSM_SEGMENT_TYPES and object_segment.name.startswith(f"{VSM}/"):
+                # ignores .vubss
+                object_type = section_type == ".text" and ".vutext" or ".vudata"
+
+                if object_type == ".vutext" and not vutext_aligned:
+                    vutext_aligned = True
+                    block.append("")
+                    block.append("\t\t. = ALIGN(0x80);")
+
+            block.append(f"\t\t{object_name} ({object_type})")
 
         lcf_blocks.append("\n".join(block))
 

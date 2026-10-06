@@ -50,10 +50,15 @@ int func_001C2580(int);
 void func_001EC590(int);
 void func_00258910(void);
 void func_00316C50(int);
+<<<<<<< HEAD
 void ItemGet(u_int);
 int RoomName();
 int SeCall(float arg0, float arg1, int arg2);
 void shQzero(void*, int);
+=======
+extern int SeCall(int, float, float);
+
+>>>>>>> origin/main
 extern int D_01F72830_amusement_00;
 extern int D_01F72890_amusement_00;
 extern int D_01F728B0_amusement_00;
