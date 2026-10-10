@@ -49,7 +49,7 @@ static inline float vec3_dist_xz(sceVu0FVECTOR w, sceVu0FVECTOR v) {
          mula.s %2, %2;\
          madd.s %2, f9, f9\n\
          sqrt.s %2, %2"
-        : "+r"(v), "+r"(w), "+f"(d)::"f8", "f9", "f10");
+        : "+r"(v), "+r"(w), "+f"(d));
     return d;
 }
 
@@ -64,7 +64,7 @@ static inline float vec3_dist_xz_reverse(sceVu0FVECTOR v, sceVu0FVECTOR w) {
          mula.s %2, %2;\
          madd.s %2, f9, f9\n\
          sqrt.s %2, %2"
-        : "+r"(v), "+r"(w), "+f"(d)::"f8", "f9", "f10");
+        : "+r"(v), "+r"(w), "+f"(d));
     return d;
 }
 
