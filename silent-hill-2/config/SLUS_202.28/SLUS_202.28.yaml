@@ -1162,7 +1162,7 @@ segments:
       - { vram:  0x00e40280,    type: bss,        name: bss_0x0e40280                                    }
       - { vram:  0x00e4e6a0,    type: bss,        name: GFW/sh2gfw_parse_and_packet                      }
       - { vram:  0x00f8e700,    type: bss,        name: GFW/sh2gfw_viewclip                              }
-      - { vram:  0x00f8e708,    type: bss,        name: Heap/sh2_ch_malloc                               }
+      - { vram:  0x00f8e708,    type: .bss,       name: Heap/sh2_ch_malloc                               }
       - { vram:  0x0100e750,    type: bss,        name: Lens/kari_lf_draw                                }
       - { vram:  0x01013750,    type: bss,        name: Lens/lens_flare                                  }
       - { vram:  0x01013890,    type: bss,        name: Multi_thr/dma/dma1cmd                            }
