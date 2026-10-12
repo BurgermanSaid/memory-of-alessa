@@ -17,6 +17,7 @@ static void CharaDataLoadExecItem(CharaData_EntryList* entry_list_p /* r18 */);
 
 static void CharaDataLoadExecWeapon(CharaData_EntryList* entry_list_p);
 
+static void CharaDataLoadExecStandardSub0(CharaData_EntryList* entry_list, int* no, int* entry_no, int status);
 static int CharaDeleteNoUseOne(void);
 static void CharaDataInfoFree(CharaData_MemAdmin* admin_p, int del);
 static void CharaDataInfoFreeSub(CharaData_MemAdmin_One* maop);
@@ -251,7 +252,43 @@ INCLUDE_RODATA("asm/nonmatchings/Event/chara_data_load", @1413);
 
 INCLUDE_ASM("asm/nonmatchings/Event/chara_data_load", CharaDataLoadExecStandard);
 
-INCLUDE_ASM("asm/nonmatchings/Event/chara_data_load", CharaDataLoadExecStandardSub0);
+static void CharaDataLoadExecStandardSub0(CharaData_EntryList* entry_list, int* no, int* entry_no, int status) {
+    CharaData_EntryList entry_list_bak[32];
+    int i;
+    int j;
+    memcpy(entry_list_bak, &entry_list[*no], (*entry_no - *no + 1) * sizeof(CharaData_EntryList));
+    
+    shQzero(entry_list, sizeof(entry_list_bak));
+    
+    
+    for (i = 0, j = 0; i < 32; i++) {
+        if (mem_admin[i].category != 0) {       
+            if (mem_admin[i].priority != 0) {                       
+                if (mem_admin[i].priority == 1) {
+                    entry_list[j].category = mem_admin[i].category;
+                    entry_list[j].kind = mem_admin[i].kind;
+                    entry_list[j].model.file = mem_admin[i].model.file;
+                    entry_list[j].animation.file = mem_admin[i].animation.file;
+                    entry_list[j].shadow.file = mem_admin[i].shadow.file;
+                    entry_list[j].cluster.file = mem_admin[i].cluster.file;
+                    j++;
+                } 
+            CharaDataInfoFree(&mem_admin[i], 15);
+            }
+        }
+    }
+    for (i = 0; i < j; i++) {
+        CharaDataLoadExecStandard(entry_list, &i, &j, status | 0x2);
+    
+    }    
+    
+    memcpy(&entry_list[i], entry_list_bak, (*entry_no - *no) * sizeof(CharaData_EntryList));
+    
+    *entry_no += i - *no;
+    *no = i;
+    CharaDataLoadExecStandard(entry_list, no, entry_no, status | 0x2);
+
+}
 
 void CharaDataWeaponTranslation(int kind /* r22 */, union fsFileIndex* file_anm /* r21 */, void* adr_anm /* r20 */, union fsFileIndex* file_mdl /* r19 */, void* adr_mdl /* r23 */) { // not line matched
     struct SubCharacter* scp; // r16
