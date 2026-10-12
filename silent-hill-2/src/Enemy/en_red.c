@@ -17,6 +17,7 @@ extern /* static */ float hp_roof_pos[4];
 /* static */ void enREDCtrlGoPlayable(EnLOCAL_DATA* dp /* r2 */);
 /* static */ void enREDCtrlEvent(EnLOCAL_DATA* dp);
 /* static */ void enREDCtrlWander(EnLOCAL_DATA* dp);
+/* static */ void enREDCtrlChase(EnLOCAL_DATA* dp);
 /* static */ void enREDCtrlHand(void);
 
 /* static */ void enREDCtrlAttack(EnLOCAL_DATA* dp);
@@ -24,11 +25,13 @@ extern /* static */ float hp_roof_pos[4];
 /* static */ void enREDCtrlOnlyWalk(EnLOCAL_DATA* dp /* r16 */);
 /* static */ void enREDCheckPlayerWeapon(EnLOCAL_DATA* dp);
 /* static */ int enREDSetDamage(EnLOCAL_DATA* dp);
+/* static */ int enREDCanSeePlayer(EnLOCAL_DATA* dp);
 
 /* static */ void enREDAnimeSet(EnLOCAL_DATA* dp /* r17 */, int anim /* r16 */);
 /* static */ void enREDAnimeReset(EnLOCAL_DATA* dp, int anim);
 
-/* static */ float enREDGetSpeed(EnLOCAL_DATA* dp /* r2 */);
+/* static */ float enREDGetSpeed(EnLOCAL_DATA* dp);
+/* static */ float enREDGetWalkSpeed(EnLOCAL_DATA* dp);
 
 /* static */ float enREDGetRotSpeed(void);
 /* static */ void enREDSetSlowTime(EnLOCAL_DATA * dp /* r16 */);
@@ -128,7 +131,51 @@ INCLUDE_ASM("asm/nonmatchings/Enemy/en_red", enREDCtrlAutomatic); // matched htt
     enREDSoundLife(dp);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_red", enREDCtrlChase);
+/* static */ void enREDCtrlChase(EnLOCAL_DATA* dp) {
+    int t;
+    if (enCheckDamage(dp)) {
+        if (enREDSetDamage(dp)) {
+            ENEMY_STEP(7);
+            return;
+        }
+        if (enCheckSpray(dp)) {
+            ENEMY_STEP(6);
+            return;
+        }
+    }
+    if (dp->sslv == 0) {
+        enREDAnimeSet(dp, 1);
+        enInitPath(&dp->path, dp->scp->rot.y);
+        ENEMY_NEXT_SUB_STEP();
+    }
+    enSetPath(dp, enGetPlayerPos(dp), &dp->scp->pos);
+    enMoveAngle(&dp->path, enREDGetRotSpeed());
+    dp->scp->rot.y = dp->path.angle;
+    dp->anim_s = ftoi(4096.0f * enREDGetWalkSpeed(dp) * enCalcSpeedRate(dp->scp->rot.y, &dp->scp->pos, enGetPlayerPos(dp)));    
+
+    
+    t = enREDCanSeePlayer(dp);
+    if (t == 5) {
+        ENEMY_STEP(5);
+    } else if (t >= 2) {
+        ENEMY_STEP(4);
+    } else if ((t == 0) && (dp->type != 2)) {
+        ENEMY_STEP(0);
+    } else if ((dp->type == 2) && (enGetPlayerPos(dp)[2] > -99300.0f)) {
+    
+        ENEMY_STEP(3);
+    } else if ((dp->type == 2) &&
+               (dp->scp->pos.z > -99300.0f) &&
+               (enGetPlayerPos(dp)[2] < -99300.0f)) {        
+        ENEMY_STEP(3);
+        if (dp->scp->pos.x > 99200.0f) {
+            dp->sslv = 5;
+        } else {
+            dp->sslv = 6;
+        }
+    }
+    enREDSoundLife(dp);
+}
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_red", enREDCtrlBerserk);
 
