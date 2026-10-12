@@ -29,7 +29,7 @@ extern /* static */ float hp_roof_pos[4];
 
 /* static */ void enREDAnimeSet(EnLOCAL_DATA* dp /* r17 */, int anim /* r16 */);
 /* static */ void enREDAnimeReset(EnLOCAL_DATA* dp, int anim);
-
+/* static */ void enREDAnimeExec(EnLOCAL_DATA* dp);
 /* static */ float enREDGetSpeed(EnLOCAL_DATA* dp);
 /* static */ float enREDGetWalkSpeed(EnLOCAL_DATA* dp);
 
@@ -305,7 +305,46 @@ INCLUDE_ASM("asm/nonmatchings/Enemy/en_red", enREDCanSeeCharacter);
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_red", enREDAnimeExec);
+/* static */ void enREDAnimeExec(EnLOCAL_DATA* dp) {
+    int of = dp->anim_n; // r16    
+    enAnimeExec(dp, EnREDAnime, 0x14B5);
+    if ((dp->anim_n == -1) || (dp->flag & 1)) return;
+    if (dp->anim == 1) {         
+            enSetTransWalk(dp);
+            
+        if (((dp->anim_s > 0) && (of < 0x12C0) && (dp->anim_n >= 0x12C0)) ||
+            ((dp->anim_s < 0) && (of >= 0x12C0) && (dp->anim_n < 0x12C0))) {
+            
+            
+            
+                        
+            if ((dp->type == 2) && (dp->scp->pos.z > -1600.0f)) {
+                enSoundCall(0x3E94, 1.0f, &dp->scp->pos);
+            } else
+            
+                if (enCheckWater(dp))
+                    enSoundCall(0x4978, 1.0f, &dp->scp->pos);
+            
+            
+            
+            if (dp->p_dist > 5000.0f) {
+                enSoundCall3D((ftoi(3.0f * shRandF()) * 2) + 0x3EE4, 1.0f, &dp->scp->pos.x);
+            
+            } else 
+                enSoundCall(ftoi(6.0f * shRandF()) + 0x3EE4, 1.0f, &dp->scp->pos.x);
+        }
+    
+    
+    
+    } else if (dp->anim == 3 || dp->anim == 4) {
+            if ((dp->scp->battle.atk_result == 2) && (dp->anim_step == 0)){
+                dp->anim_step++;
+                
+                enSoundCall(0x3EEB, 1.0f, &dp->scp->pos);                
+            }
+    }
+
+}
 
 /* static */ float enREDGetSpeed(EnLOCAL_DATA* dp /* r2 */) {
     return 0.25f + (0.75f * (dp->endurance / dp->endurance_max));
