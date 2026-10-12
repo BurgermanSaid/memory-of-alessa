@@ -5,13 +5,10 @@
 #include "Effect2/hh_packet.h"
 #include "Event/stg_name.h"
 #include "Chacter/character.h"
-#include "common.h"
 #include "sce/libvu0.h"
 
 static void Prefix_Operation(void);
-
 static void Suffix_Operation(void);
-
 static void Debug_Functions(void);
 
 static void Prefix_Operation(void) { /* empty */ }
@@ -20,7 +17,10 @@ static void Suffix_Operation(void) { /* empty */ }
 
 static void Debug_Functions(void) { /* empty*/ }
 
-INCLUDE_ASM("asm/nonmatchings/Effect2/hh_class_object_execute", HH_Class_Object_Initialize);
+void HH_Class_Object_Initialize(void) {
+    HH_Effect_Object_MemoryBlock_Allocate();
+    HH_Effect_Object_AutoPost();
+}
 
 void HH_Class_Object_Execute(void) {
     if (HH_Vif1PacketBuffer_Memory_Allocate_Check()) {
