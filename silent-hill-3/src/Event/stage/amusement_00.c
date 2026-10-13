@@ -419,35 +419,31 @@ void func_01F6E420_amusement_00(f32 fparg0) {
     func_0016BD90(0, 0, 1.0f);
 }
 
-//#ifdef BROKEN
 int func_01F6E590_amusement_00(void) {
     switch (D_01F72D80_amusement_00) {
-    case 0:
-        func_00190A20(2);
-        SeCall(19025, 0.0f, 1.0f);
-        D_01F72D80_amusement_00++;
-    case 1:
-        if (func_0016C1C0(0x3F) == 0) {
-            return 0;
-        }
-        func_001C2290(0.5f, 3);
-        SeCall(19023, 0.0f, 1.0f);
-        D_01F72D80_amusement_00++;
-    case 2:
-        if (func_001C2580(2) == 0) {
-            return 0;
-        }
-        D_1D3169C |= 0x80;
-        func_001C2290(0.5f, 5);
-        func_00190A20(0);
-        D_01F72D80_amusement_00 = 0;
-    default:
-        return 1;
+        case 0:
+            func_00190A20(2);
+            SeCall(1.0f, 0.0f, 19025);
+            D_01F72D80_amusement_00++;
+        case 1:
+            if (func_0016C1C0(0x3F) == 0) {
+                return 0;
+            }
+            func_001C2290(0.5f, 3);
+            SeCall(1.0f, 0.0f, 19023);
+            D_01F72D80_amusement_00++;
+        case 2:
+            if (func_001C2580(2) == 0) {
+                return 0;
+            }
+            D_1D3169C |= 0x80;
+            func_001C2290(0.5f, 5);
+            func_00190A20(0);
+            D_01F72D80_amusement_00 = 0;
+        default:
+            return 1;
     }
 }
-/*#else
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E590_amusement_00);
-#endif*/
 
 u_int func_01F6E6A0_amusement_00(int arg0) {
     int x;
@@ -504,35 +500,33 @@ void func_01F6E6D0_amusement_00(void) {
 }
 */
 
-//#ifdef BROKEN
 void func_01F6E810_amusement_00(void) {
     int sp10[4];
     int sp20[4];
+    float fa0 = 1.0f;
+    float fa1 = 5000.0f;
     D_01F72D90_amusement_00 = 1;
     switch ((short)RoomName()) {
-    case 0xD6:
-        if (!GET_BIT(D_1D3169C, 6)) {
-            sp10 = D_01F72C20_amusement_00;
-            D_01F72DA0_amusement_00 = func_0016D240(0x3B60, &sp10, 0, 0, 1.0f, 5000.0f);
-            break;
-        } else {
-            D_01F72DA0_amusement_00 = -1;
-            break;
-        }
-    case 0xD7:
-        if (!GET_BIT(D_1D3169C, 6)) {
-            sp20 = D_01F72C30_amusement_00;
-            D_01F72DA0_amusement_00 = func_0016D240(0x3B60, &sp20, 0, 0, 1.5f, 5000.0f);
-            break;
-        } else {
-            D_01F72DA0_amusement_00 = -1;
-            break;
-        }
+        case 0xD6:
+            if (!GET_BIT(D_1D3169C, 6)) {
+                sp10 = D_01F72C20_amusement_00;
+                D_01F72DA0_amusement_00 = func_0016D240(fa0, fa1, 15200, &sp10, 0, 0);
+                break;
+            } else {
+                D_01F72DA0_amusement_00 = -1;
+                break;
+            }
+        case 0xD7:
+            if (!GET_BIT(D_1D3169C, 6)) {
+                sp20 = D_01F72C30_amusement_00;
+                D_01F72DA0_amusement_00 = func_0016D240(fa0, fa1, 15200, &sp20, 0, 0);
+                break;
+            } else {
+                D_01F72DA0_amusement_00 = -1;
+                break;
+            }
     }
 }
-/*#else
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E810_amusement_00);
-#endif*/
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
 
