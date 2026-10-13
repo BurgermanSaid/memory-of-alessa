@@ -163,7 +163,7 @@ segments:
       - { start: 0x000a7580,    type: c,          name: Event/event                                      }
       - { start: 0x000ac650,    type: c,          name: Event/event_sub                                  }
       - { start: 0x000adf60,    type: c,          name: Event/item                                       }
-      - { start: 0x000aea60,    type: asm,        name: Event/picture                                    }
+      - { start: 0x000aea60,    type: c,          name: Event/picture                                    }
       - { start: 0x000af7a0,    type: c,          name: Event/stg_name                                   }
       - { start: 0x000b1450,    type: asm,        name: Event/vu0_func                                   }
       - { start: 0x000b1480,    type: c,          name: Event/demoview                                   }
