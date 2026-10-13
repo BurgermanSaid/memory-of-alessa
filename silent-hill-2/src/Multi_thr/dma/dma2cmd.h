@@ -4,7 +4,7 @@
 #include "Multi_thr/dma/dma2serv.h"
 #include "sce/sif.h"
 
-void d2cSubCmdUpdataLastRegistCid(signed int cid /* r16 */);
+void d2cSubCmdUpdataLastRegistCid(int cid /* r16 */);
 
 int d2cSubSubCmdCheckFlushCache(void);
 
