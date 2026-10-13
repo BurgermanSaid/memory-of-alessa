@@ -455,8 +455,7 @@ u_int func_01F6E6A0_amusement_00(int arg0) {
     return x;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
-/*
+#ifdef HOLY_CANDLE
 void func_01F6E6D0_amusement_00(void) {
     int temp_v1;
 
@@ -498,7 +497,9 @@ void func_01F6E6D0_amusement_00(void) {
             D_01F72DC8_amusement_00 = 0;
     }
 }
-*/
+#else
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
+#endif
 
 void func_01F6E810_amusement_00(void) {
     int sp10[4];
@@ -530,4 +531,46 @@ void func_01F6E810_amusement_00(void) {
 
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
 
+#ifdef HOLY_CANDLE
+int func_01F6ED00_amusement_00(void) {
+    Vector4 vector;
+    Vector4 rotation;
+    double x, z;
+    float f;
+
+    switch (D_01F72D80_amusement_00) {
+        case 0:
+            if (!GET_BIT(D_1D3169C, 8))
+                return false;
+
+        f = 1500.0f + 3000.0f * shRandF();
+        D_01F72D80_amusement_00++;
+        D_01F72D88_amusement_00 = f;
+
+        case 1:
+            func_001908A0(&vector.x, &vector.z);
+
+            x = func_0012BB10(vector.x - 23000.0f, 2.0);
+            z = x + func_0012BB10(vector.z - -18200.0f, 2.0);
+
+            if (z < func_0012BB10(D_01F72D88_amusement_00, 2.0))
+                return false;
+
+        func_001C18E0(&rotation);
+        if (rotation.y >= -QUARTER_TURN || rotation.y <= -PI)
+            return false;
+
+        vector.y = 0.0f;
+        vector.x = 23000.0f;
+        vector.z = -18200.0f;
+
+        func_0015DCD0(1.0f, 10000.0f, 15202, &vector, 0, 0); // candle moment
+        D_01F72D80_amusement_00 = 0;
+
+        default:
+            return true;
+    }
+}
+#else
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);
+#endif
