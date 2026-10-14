@@ -455,55 +455,49 @@ u_int func_01F6E6A0_amusement_00(int arg0) {
     return x;
 }
 
-#ifdef HOLY_CANDLE
 void func_01F6E6D0_amusement_00(void) {
-    int temp_v1;
-
     D_01F72D90_amusement_00 = 0;
     D_01F72D80_amusement_00 = 0;
-    temp_v1 = (int) (RoomName() << 0x30) >> 0x30;
-    switch (temp_v1) {
-        case 0xD2:
-            if (!(((u_int) D_1D31644 >> 0x1E) & 1)) {
+
+    switch ((short) RoomName()) {
+        case 210:
+            if (!GET_BIT(D_1D31644, 30)) {
                 ItemGet(15);
                 ItemGet(15);
                 ItemGet(15);
                 ItemGet(15);
-                ItemGet(0x11);
-                ItemGet(0x12);
-                ItemGet(0x13);
-                ItemGet(0xC);
-                ItemGet(0xA);
+                ItemGet(17);
+                ItemGet(18);
+                ItemGet(19);
+                ItemGet(12);
+                ItemGet(10);
                 ItemGet(1);
                 ItemGet(2);
-                ItemGet(0x22);
-                func_0016E400(0x22, 1);
-                func_0016E400(0x1F, 1);
+                ItemGet(34);
+                func_0016E400(34, 1);
+                func_0016E400(31, 1);
                 func_0016DCE0(1);
                 func_001C2290(0.0f, 2);
                 func_0016DB80(15);
-                func_0016DB80(0x11);
+                func_0016DB80(17);
                 return;
             }
-        case 0xD1:
-        case 0xD3:
-        case 0xD5:
-        case 0xD6:
+        case 209:
+        case 211:
+        case 213:
+        case 214:
             break;
-        case 0xD4:
-            D_1D3169C &= ~0x400;
+        case 212:
+            D_1D3169C &= ~1024;
             break;
-        case 0xD7:
+        case 215:
             D_01F72DC8_amusement_00 = 0;
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
-#endif
 
 void func_01F6E810_amusement_00(void) {
-    int sp10[4];
-    int sp20[4];
+    Vector4 sp10;
+    Vector4 sp20;
     float fa0 = 1.0f;
     float fa1 = 5000.0f;
     D_01F72D90_amusement_00 = 1;
@@ -529,7 +523,109 @@ void func_01F6E810_amusement_00(void) {
     }
 }
 
+#ifdef HOLY_CANDLE
+void func_01F6E920_amusement_00(void) {
+    Vector4 sp10;
+    Vector4 sp20;
+    
+
+    if (D_01F72D90_amusement_00 == 0) {
+        func_01F6E810_amusement_00();
+    }
+
+    switch ((short)RoomName()) {
+    case 209:
+    case 210: 
+        if (!GET_BIT(D_01D31640, 1) || GET_BIT(D_1D31648, 15)) {
+            func_0016CA40(1);
+        }
+        if (func_00190950() == 1) {
+            clAddDynamicWall(&D_01F70290_amusement_00);
+            clAddDynamicWall(&D_01F70420_amusement_00);
+            clAddDynamicWall(&D_01F70510_amusement_00);
+            clAddDynamicWall(&D_01F70740_amusement_00);
+        }
+        clAddDynamicWall(&D_01F706A0_amusement_00);
+        if (GET_BIT(D_1D31644, 30)) {
+            func_0016CA40(3);
+            return;
+        }
+        break;
+    case 211:
+        if (func_00190950() == 1) {
+            clAddDynamicWall(&D_01F71D20_amusement_00);
+            return;
+        }
+        break;
+    case 212:
+        if (GET_BIT(D_1D3169C, 10) && (func_01F6ED00_amusement_00() != 0)) {
+            D_1D3169C |= 512;
+            D_1D3169C &= ~1024;
+        }
+        if (GET_BIT(D_1D3169C, 9)) {
+            func_0016CA40(1);
+            clAddDynamicWall(&D_01F72360_amusement_00);
+            if (!GET_BIT(D_1D3169C, 11)) {
+                func_0016CA40(22);
+                return;
+            }
+        } else {
+            func_0016CA40(2);
+            return;
+        }
+        break;
+    case 213:
+        if (func_00190950() == 1) {
+            clAddDynamicWall(&D_01F708D0_amusement_00);
+            clAddDynamicWall(&D_01F70970_amusement_00);
+            return;
+        }
+        break;
+    case 214:
+        if (GET_BIT(D_1D3169C, 7)) {
+            func_0016CA40(2);
+        } else {
+            func_0016CA40(1);
+            clAddDynamicWall(&D_01F71C80_amusement_00);
+        }
+        if (GET_BIT(D_1D3169C, 6)) {
+            func_0016CA40(3);
+        }
+        if (func_00190950() == 1) {
+            clAddDynamicWall(&D_01F71960_amusement_00);
+            clAddDynamicWall(&D_01F71A00_amusement_00);
+            clAddDynamicWall(&D_01F71B40_amusement_00);
+            clAddDynamicWall(&D_01F71BE0_amusement_00);
+        }
+        if (D_01F72DA0_amusement_00 != -1) {
+            sp10 = D_01F72C40_amusement_00;
+            func_0016D170(15200, &sp10, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
+            return;
+        }
+        break;
+    case 215:
+        if (GET_BIT(D_1D3169C, 7)) {
+            func_0016CA40(2);
+        } else {
+            func_0016CA40(1);
+        }
+        if ((D_01F72DC8_amusement_00 == 0) && (func_00190950() == 1)) {
+            clAddDynamicWall(&D_01F70A10_amusement_00);
+            clAddDynamicWall(&D_01F71140_amusement_00);
+            clAddDynamicWall(&D_01F718C0_amusement_00);
+        }
+        if (D_01F72DA0_amusement_00 != -1) {
+            sp20 = D_01F72C50_amusement_00;
+            func_0016D170(15200, &sp20, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
+        }
+        break;
+    default:
+        break;
+    }
+}
+#else
 INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
+#endif
 
 #ifdef HOLY_CANDLE
 int func_01F6ED00_amusement_00(void) {
@@ -543,10 +639,10 @@ int func_01F6ED00_amusement_00(void) {
             if (!GET_BIT(D_1D3169C, 8))
                 return false;
 
-        f = 1500.0f + 3000.0f * shRandF();
-        D_01F72D80_amusement_00++;
-        D_01F72D88_amusement_00 = f;
-
+            f = 1500.0f + 3000.0f * shRandF();
+            D_01F72D80_amusement_00++;
+            D_01F72D88_amusement_00 = f;
+    
         case 1:
             func_001908A0(&vector.x, &vector.z);
 
@@ -556,16 +652,16 @@ int func_01F6ED00_amusement_00(void) {
             if (z < func_0012BB10(D_01F72D88_amusement_00, 2.0))
                 return false;
 
-        func_001C18E0(&rotation);
-        if (rotation.y >= -QUARTER_TURN || rotation.y <= -PI)
-            return false;
+            func_001C18E0(&rotation);
+            if (rotation.y >= -QUARTER_TURN || rotation.y <= -PI)
+                return false;
 
-        vector.y = 0.0f;
-        vector.x = 23000.0f;
-        vector.z = -18200.0f;
-
-        func_0015DCD0(1.0f, 10000.0f, 15202, &vector, 0, 0); // candle moment
-        D_01F72D80_amusement_00 = 0;
+            vector.y = 0.0f;
+            vector.x = 23000.0f;
+            vector.z = -18200.0f;
+            
+            func_0015DCD0(1.0f, 10000.0f, 15202, &vector, 0, 0); // candle moment
+            D_01F72D80_amusement_00 = 0;
 
         default:
             return true;
