@@ -14,7 +14,7 @@ int func_01F6D680_amusement_00(void) {
     if (ret) {
         func_001C2290(0.8, 5);
         if (func_001646C0() != 0) {
-            func_001602D0(0x272A, 1, 1, 1.0f);
+            func_001602D0(10026, 1, 1, 1.0f);
         }
         D_01F72D80_amusement_00 = 0;
     }
@@ -259,37 +259,31 @@ void func_01F6DEA0_amusement_00(float fparg0) {
 }
 
 int func_01F6E020_amusement_00(void) {
-    int sp10[4];
+    Vector4 sp10;
 
     sp10 = D_01F72C10_amusement_00;
     
     switch (D_01F72D80_amusement_00) {
-        case 0:
-            func_00190A20(2);
-            D_01F72D80_amusement_00++;
+    case 0:
+        func_00190A20(2);
+        D_01F72D80_amusement_00++;
     }
         
     if (func_0016C1C0(26) == 0) {
         return 0;
     }
+
     if (func_0016CB70() == 0) {
         D_1D3169C |= 0x40;
-        func_0015DCD0(1.0f, 10000.0f, 0x3B61, &sp10, 0, 0);
-        func_0016D0E0(0x3B60, D_01F72DA0_amusement_00);
+        func_0015DCD0(1.0f, 10000.0f, 15201, &sp10, 0, 0);
+        func_0016D0E0(15200, D_01F72DA0_amusement_00);
         D_01F72DA0_amusement_00 = -1;
     }
+
     func_00190A20(0);
     D_01F72D80_amusement_00 = 0;
     return 1;
 }
-
-void func_0016BC00(int);
-void func_0016C1A0(void);
-void func_0016C1B0(void);
-void func_0016F550(int, int);
-void func_01F6E420_amusement_00(float);
-int func_00190C00(void);
-extern f32 D_01F72D98_amusement_00;
 
 int func_01F6E120_amusement_00(void) {
     float temp_f0;
@@ -332,14 +326,14 @@ int func_01F6E120_amusement_00(void) {
     case 5:
         D_01F72D80_amusement_00 = 6;
         D_1D3169C |= 0x800;
-        ItemGet(0x45);
+        ItemGet(69);
         sound_fa0 = 1.0f;
         sound_fa1 = 0.0f;
-        SeCall(sound_fa0, sound_fa1, 0x2B21);
+        SeCall(sound_fa0, sound_fa1, 11041);
     case 6:
         func_0016BC00(1);
         func_01F6E420_amusement_00(1.0f);
-        if (func_0016C1C0(0x3E) == 0) {
+        if (func_0016C1C0(62) == 0) {
             return 0;
         }
         D_01F72D80_amusement_00 = 7;
@@ -366,7 +360,7 @@ int func_01F6E120_amusement_00(void) {
         func_0016C1B0();
         func_001C2290(0.8f, 5);
         func_00190A20(6);
-        D_01F72D80_amusement_00 = 0xA;
+        D_01F72D80_amusement_00 = 10;
     case 10:
         if (func_00190C00() == 0) {
             return 0;
@@ -377,10 +371,8 @@ int func_01F6E120_amusement_00(void) {
         return 1;
     }
 }
-
-void func_0016BD90(int, int, float);
-sh3gfw_AREA_HEAD* func_00170410(int);                 
-void func_01F6E420_amusement_00(f32 fparg0) {
+              
+void func_01F6E420_amusement_00(float fparg0) {
     PicDraw_Data* temp_s0;
     PicLoadImage_Data* temp_s1;
 
@@ -426,7 +418,7 @@ int func_01F6E590_amusement_00(void) {
             SeCall(1.0f, 0.0f, 19025);
             D_01F72D80_amusement_00++;
         case 1:
-            if (func_0016C1C0(0x3F) == 0) {
+            if (func_0016C1C0(63) == 0) {
                 return 0;
             }
             func_001C2290(0.5f, 3);
@@ -445,12 +437,11 @@ int func_01F6E590_amusement_00(void) {
     }
 }
 
-u_int func_01F6E6A0_amusement_00(int arg0) {
+unsigned int func_01F6E6A0_amusement_00(int arg0) {
     int x;
     switch (arg0) {
-        case 1:
-            x = GET_BIT(D_1D3169C, 9) ? 0 : 1;
-            break;
+    case 1:
+        x = GET_BIT(D_1D3169C, 9) ? 0 : 1;
     }
     return x;
 }
@@ -498,23 +489,21 @@ void func_01F6E6D0_amusement_00(void) {
 void func_01F6E810_amusement_00(void) {
     Vector4 sp10;
     Vector4 sp20;
-    float fa0 = 1.0f;
-    float fa1 = 5000.0f;
     D_01F72D90_amusement_00 = 1;
     switch ((short)RoomName()) {
-        case 0xD6:
+        case 214:
             if (!GET_BIT(D_1D3169C, 6)) {
                 sp10 = D_01F72C20_amusement_00;
-                D_01F72DA0_amusement_00 = func_0016D240(fa0, fa1, 15200, &sp10, 0, 0);
+                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &sp10, 0, 0);
                 break;
             } else {
                 D_01F72DA0_amusement_00 = -1;
                 break;
             }
-        case 0xD7:
+        case 215:
             if (!GET_BIT(D_1D3169C, 6)) {
                 sp20 = D_01F72C30_amusement_00;
-                D_01F72DA0_amusement_00 = func_0016D240(fa0, fa1, 15200, &sp20, 0, 0);
+                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &sp20, 0, 0);
                 break;
             } else {
                 D_01F72DA0_amusement_00 = -1;
@@ -523,11 +512,10 @@ void func_01F6E810_amusement_00(void) {
     }
 }
 
-#ifdef HOLY_CANDLE
+//#ifdef HOLY_CANDLE
 void func_01F6E920_amusement_00(void) {
     Vector4 sp10;
     Vector4 sp20;
-    
 
     if (D_01F72D90_amusement_00 == 0) {
         func_01F6E810_amusement_00();
@@ -623,11 +611,12 @@ void func_01F6E920_amusement_00(void) {
         break;
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
-#endif
+//#else
+//INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
+//#endif
 
-#ifdef HOLY_CANDLE
+
+//#ifdef HOLY_CANDLE
 int func_01F6ED00_amusement_00(void) {
     Vector4 vector;
     Vector4 rotation;
@@ -667,6 +656,6 @@ int func_01F6ED00_amusement_00(void) {
             return true;
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);
-#endif
+//#else
+//INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);
+//#endif
