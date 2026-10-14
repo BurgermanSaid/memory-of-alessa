@@ -5,9 +5,9 @@ int func_01F6D680_amusement_00(void) {
     int ret;
 
     switch (D_01F72D80_amusement_00) {
-        case 0:
-            func_001C2290(0.8, 2);
-            D_01F72D80_amusement_00++;
+    case 0:
+        func_001C2290(0.8, 2);
+        D_01F72D80_amusement_00++;
     }
 
     ret = func_0016C540(&D_01F72830_amusement_00, &D_01F72890_amusement_00);
@@ -18,16 +18,18 @@ int func_01F6D680_amusement_00(void) {
         }
         D_01F72D80_amusement_00 = 0;
     }
+
     return ret;
 }
 
 int func_01F6D740_amusement_00(void) {
-    float temp_f0;
-    float temp_f2;
+    float float1;
+    float float2;
     int ret;
 
     func_001643C0();
     ret = func_0016C540(&D_01F728E0_amusement_00, &D_01F72940_amusement_00);
+
     switch (D_01F72D80_amusement_00) {
     case 0:
         func_001C2290(0.5f, 3);
@@ -39,51 +41,55 @@ int func_01F6D740_amusement_00(void) {
         }
         break;
     }
-    temp_f0 = func_001643C0();
-    temp_f2 = D_01F72DD8_amusement_00->unk0;
-    if (temp_f2 > 0.0f && temp_f2 <= temp_f0) {
+
+    float1 = func_001643C0();
+    float2 = D_01F72DD8_amusement_00->unk0;
+
+    if (float2 > 0.0f && float2 <= float1) {
         func_0013D250(0, D_01F72DD8_amusement_00->unk4, 1.0f);
         D_01F72DD8_amusement_00++;
     }
+
     if (ret) {
         func_0013D280(0);
         func_00190C40();
         D_01F72D80_amusement_00 = 0;
     }
+
     return ret;
 }
 
 int func_01F6D880_amusement_00(void) {
-    float temp_f0;
-    float temp_f20;
-    float temp_f2;
+    float float1;
+    float float2;
+    float float3;
     int ret = 0;
 
     switch (D_01F72D80_amusement_00) {
-        case 0:
-            func_00316C50(0);
-            func_0016ECE0(5);
-            func_001C2290(0.0f, 2);
-            func_0016E400(34, 0);
-            D_01F72DD0_amusement_00 = &D_01F72960_amusement_00;
+    case 0:
+        func_00316C50(0);
+        func_0016ECE0(5);
+        func_001C2290(0.0f, 2);
+        func_0016E400(34, 0);
+        D_01F72DD0_amusement_00 = &D_01F72960_amusement_00;
+        D_01F72D80_amusement_00++;
+    case 1:
+        ret = func_0016C540(&D_01F72AF0_amusement_00, &D_01F72B50_amusement_00);
+        float2 = func_001643C0();
+        float1 = func_001643C0();
+        float3 = D_01F72DD0_amusement_00->unk0;
+        if (float3 > 0.0f && float3 <= float1) {
+            func_0013D250(0, D_01F72DD0_amusement_00->unk4, 1.0f);
+            D_01F72DD0_amusement_00++;
+        }
+        if (float2 >= 1032.0f) {
+            func_0016E400(34, 1);
             D_01F72D80_amusement_00++;
-            case 1:
-                ret = func_0016C540(&D_01F72AF0_amusement_00, &D_01F72B50_amusement_00);
-                temp_f20 = func_001643C0();
-                temp_f0 = func_001643C0();
-                temp_f2 = D_01F72DD0_amusement_00->unk0;
-                if (temp_f2 > 0.0f && temp_f2 <= temp_f0) {
-                    func_0013D250(0, D_01F72DD0_amusement_00->unk4, 1.0f);
-                    D_01F72DD0_amusement_00++;
-                }
-                if (temp_f20 >= 1032.0f) {
-                    func_0016E400(34, 1);
-                    D_01F72D80_amusement_00++;
-                }
-                break;
-            case 2:
-                ret = func_0016C540(&D_01F72AF0_amusement_00, &D_01F72B50_amusement_00);
-                break;
+        }
+        break;
+    case 2:
+        ret = func_0016C540(&D_01F72AF0_amusement_00, &D_01F72B50_amusement_00);
+        break;
     }
     if (ret != 0) {
         D_01F72D80_amusement_00 = 0;
@@ -95,8 +101,8 @@ int func_01F6D880_amusement_00(void) {
 }
 
 int func_01F6DA30_amusement_00(void) {
-    float temp_f0_2;
-    float temp_f2;
+    float float1;
+    float float2;
     int ret = 0;
 
     switch (D_01F72D80_amusement_00) {
@@ -187,9 +193,9 @@ int func_01F6DA30_amusement_00(void) {
             break;
         case 8:
             ret = func_0016C540(&D_01F72B90_amusement_00, &D_01F72BF0_amusement_00);
-            temp_f0_2 = func_001643C0();
-            temp_f2 = D_01F72DA8_amusement_00->unk0;
-            if (temp_f2 > 0.0f && temp_f2 <= temp_f0_2) {
+            float1 = func_001643C0();
+            float2 = D_01F72DA8_amusement_00->unk0;
+            if (float2 > 0.0f && float2 <= float1) {
                 func_0013D250(0, D_01F72DA8_amusement_00->unk4, 1.0f);
                 D_01F72DA8_amusement_00++;
             }
@@ -206,62 +212,62 @@ int func_01F6DA30_amusement_00(void) {
 }
 
 void func_01F6DEA0_amusement_00(float fparg0) {
-    PicDraw_Data* picDrawS0;
-    PicDraw_Data* picDrawS0_2;
-    PicLoadImage_Data* picLoadS1;
-    PicLoadImage_Data* picLoadS1_2;
-    sh3gfw_AREA_HEAD* areaHeadS2;
-    sh3gfw_AREA_HEAD* areaHeadS2_2;
+    PicDraw_Data* picDraw1;
+    PicDraw_Data* picDraw2;
+    PicLoadImage_Data* picLoad1;
+    PicLoadImage_Data* picLoad2;
+    sh3gfw_AREA_HEAD* areaHead1;
+    sh3gfw_AREA_HEAD* areaHead2;
 
-    picLoadS1 = func_00170430(0);
-    picDrawS0 = func_00170450(0);
-    areaHeadS2 = (sh3gfw_AREA_HEAD*) (D_01F72DB8_amusement_00 + 64);
-    picLoadS1->ap = areaHeadS2;
-    picLoadS1->tex_adr = -1;
-    picLoadS1->clut_adr = -1;
-    picLoadS1->otp = 0;
-    sh3_PictureLoadImageWrapped(picLoadS1);
+    picLoad1 = func_00170430(0);
+    picDraw1 = func_00170450(0);
+    areaHead1 = (sh3gfw_AREA_HEAD*) (D_01F72DB8_amusement_00 + 64);
+    picLoad1->ap = areaHead1;
+    picLoad1->tex_adr = -1;
+    picLoad1->clut_adr = -1;
+    picLoad1->otp = 0;
+    sh3_PictureLoadImageWrapped(picLoad1);
 
-    shQzero(picDrawS0, 68);
-    picDrawS0->ap = areaHeadS2;
-    picDrawS0->tex = -1;
-    picDrawS0->clut = -1;
-    picDrawS0->status = (short) (picDrawS0->status | 1);
-    picDrawS0->otp = 1;
-    sh3_PictureDrawWrapped(picDrawS0);
+    shQzero(picDraw1, 68);
+    picDraw1->ap = areaHead1;
+    picDraw1->tex = -1;
+    picDraw1->clut = -1;
+    picDraw1->status = (short) (picDraw1->status | 1);
+    picDraw1->otp = 1;
+    sh3_PictureDrawWrapped(picDraw1);
 
-    picLoadS1_2 = func_00170430(1);
-    picDrawS0_2 = func_00170450(1);
-    areaHeadS2_2 = (sh3gfw_AREA_HEAD*) (D_01F72DC0_amusement_00 + 64);
-    picLoadS1_2->ap = areaHeadS2_2;
-    picLoadS1_2->tex_adr = -1;
-    picLoadS1_2->clut_adr = -1;
-    picLoadS1_2->otp = 2;
-    sh3_PictureLoadImageWrapped(picLoadS1_2);
-    shQzero(picDrawS0_2, 68);
+    picLoad2 = func_00170430(1);
+    picDraw2 = func_00170450(1);
+    areaHead2 = (sh3gfw_AREA_HEAD*) (D_01F72DC0_amusement_00 + 64);
+    picLoad2->ap = areaHead2;
+    picLoad2->tex_adr = -1;
+    picLoad2->clut_adr = -1;
+    picLoad2->otp = 2;
+    sh3_PictureLoadImageWrapped(picLoad2);
+    shQzero(picDraw2, 68);
 
-    picDrawS0_2->ap = areaHeadS2_2;
-    picDrawS0_2->tex = -1;
-    picDrawS0_2->clut = -1;
-    picDrawS0_2->status = (short) (picDrawS0_2->status | 1);
+    picDraw2->ap = areaHead2;
+    picDraw2->tex = -1;
+    picDraw2->clut = -1;
+    picDraw2->status = (short) (picDraw2->status | 1);
     if (fparg0 < 1.0f) {
-        picDrawS0_2->a = (char) (128.0f * fparg0);
-        picDrawS0_2->alpha_a = 0;
-        picDrawS0_2->alpha_b = 1;
-        picDrawS0_2->alpha_c = 0;
-        picDrawS0_2->alpha_d = 1;
-        picDrawS0_2->alpha_fix = 0;
-        picDrawS0_2->status = (short) (picDrawS0_2->status | 32);
+        picDraw2->a = (char) (128.0f * fparg0);
+        picDraw2->alpha_a = 0;
+        picDraw2->alpha_b = 1;
+        picDraw2->alpha_c = 0;
+        picDraw2->alpha_d = 1;
+        picDraw2->alpha_fix = 0;
+        picDraw2->status = (short) (picDraw2->status | 32);
     }
 
-    picDrawS0_2->otp = 3;
-    sh3_PictureDrawWrapped(picDrawS0_2);
+    picDraw2->otp = 3;
+    sh3_PictureDrawWrapped(picDraw2);
 }
 
 int func_01F6E020_amusement_00(void) {
-    Vector4 sp10;
+    Vector4 vector;
 
-    sp10 = D_01F72C10_amusement_00;
+    vector = D_01F72C10_amusement_00;
     
     switch (D_01F72D80_amusement_00) {
     case 0:
@@ -275,7 +281,7 @@ int func_01F6E020_amusement_00(void) {
 
     if (func_0016CB70() == 0) {
         D_1D3169C |= 0x40;
-        func_0015DCD0(1.0f, 10000.0f, 15201, &sp10, 0, 0);
+        func_0015DCD0(1.0f, 10000.0f, 15201, &vector, 0, 0);
         func_0016D0E0(15200, D_01F72DA0_amusement_00);
         D_01F72DA0_amusement_00 = -1;
     }
@@ -286,7 +292,7 @@ int func_01F6E020_amusement_00(void) {
 }
 
 int func_01F6E120_amusement_00(void) {
-    float temp_f0;
+    float float1;
     float sound_fa0;
     float sound_fa1;
 
@@ -329,7 +335,7 @@ int func_01F6E120_amusement_00(void) {
         ItemGet(69);
         sound_fa0 = 1.0f;
         sound_fa1 = 0.0f;
-        SeCall(sound_fa0, sound_fa1, 11041);
+        SeCall(11041, sound_fa0, sound_fa1);
     case 6:
         func_0016BC00(1);
         func_01F6E420_amusement_00(1.0f);
@@ -340,9 +346,9 @@ int func_01F6E120_amusement_00(void) {
         return 0;
     case 7:
         func_0016BC00(0);
-        temp_f0 = D_01F72D98_amusement_00 - (0.8f * shGetDT());
-        D_01F72D98_amusement_00 = temp_f0;
-        if (temp_f0 < 0.0f) {
+        float1 = D_01F72D98_amusement_00 - (0.8f * shGetDT());
+        D_01F72D98_amusement_00 = float1;
+        if (float1 < 0.0f) {
             D_01F72D98_amusement_00 = 0.0f;
             D_01F72D80_amusement_00 = 8;
             func_001C2290(0.8f, 3);
@@ -415,14 +421,14 @@ int func_01F6E590_amusement_00(void) {
     switch (D_01F72D80_amusement_00) {
         case 0:
             func_00190A20(2);
-            SeCall(1.0f, 0.0f, 19025);
+            SeCall(19025, 1.0f, 0.0f);
             D_01F72D80_amusement_00++;
         case 1:
             if (func_0016C1C0(63) == 0) {
                 return 0;
             }
             func_001C2290(0.5f, 3);
-            SeCall(1.0f, 0.0f, 19023);
+            SeCall(19023, 1.0f, 0.0f);
             D_01F72D80_amusement_00++;
         case 2:
             if (func_001C2580(2) == 0) {
@@ -487,14 +493,14 @@ void func_01F6E6D0_amusement_00(void) {
 }
 
 void func_01F6E810_amusement_00(void) {
-    Vector4 sp10;
-    Vector4 sp20;
+    Vector4 vector1;
+    Vector4 vector2;
     D_01F72D90_amusement_00 = 1;
     switch ((short)RoomName()) {
         case 214:
             if (!GET_BIT(D_1D3169C, 6)) {
-                sp10 = D_01F72C20_amusement_00;
-                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &sp10, 0, 0);
+                vector1 = D_01F72C20_amusement_00;
+                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &vector1, 0, 0);
                 break;
             } else {
                 D_01F72DA0_amusement_00 = -1;
@@ -502,8 +508,8 @@ void func_01F6E810_amusement_00(void) {
             }
         case 215:
             if (!GET_BIT(D_1D3169C, 6)) {
-                sp20 = D_01F72C30_amusement_00;
-                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &sp20, 0, 0);
+                vector2 = D_01F72C30_amusement_00;
+                D_01F72DA0_amusement_00 = func_0016D240(1.0f, 5000.0f, 15200, &vector2, 0, 0);
                 break;
             } else {
                 D_01F72DA0_amusement_00 = -1;
@@ -512,17 +518,16 @@ void func_01F6E810_amusement_00(void) {
     }
 }
 
-//#ifdef HOLY_CANDLE
+#ifdef HOLY_CANDLE
 void func_01F6E920_amusement_00(void) {
-    Vector4 sp10;
-    Vector4 sp20;
+    Vector4 vector1;
+    Vector4 vector2;
 
     if (D_01F72D90_amusement_00 == 0) {
         func_01F6E810_amusement_00();
     }
 
     switch ((short)RoomName()) {
-    case 209:
     case 210: 
         if (!GET_BIT(D_01D31640, 1) || GET_BIT(D_1D31648, 15)) {
             func_0016CA40(1);
@@ -586,8 +591,8 @@ void func_01F6E920_amusement_00(void) {
             clAddDynamicWall(&D_01F71BE0_amusement_00);
         }
         if (D_01F72DA0_amusement_00 != -1) {
-            sp10 = D_01F72C40_amusement_00;
-            func_0016D170(15200, &sp10, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
+            vector1 = D_01F72C40_amusement_00;
+            func_0016D170(15200, &vector1, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
             return;
         }
         break;
@@ -603,20 +608,21 @@ void func_01F6E920_amusement_00(void) {
             clAddDynamicWall(&D_01F718C0_amusement_00);
         }
         if (D_01F72DA0_amusement_00 != -1) {
-            sp20 = D_01F72C50_amusement_00;
-            func_0016D170(15200, &sp20, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
+            vector2 = D_01F72C50_amusement_00;
+            func_0016D170(15200, &vector2, 0, 0, 1.0f, 5000.0f, D_01F72DA0_amusement_00);
         }
         break;
+    case 209:
     default:
         break;
     }
 }
-//#else
-//INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
-//#endif
+#else
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
+#endif
 
 
-//#ifdef HOLY_CANDLE
+#ifdef HOLY_CANDLE
 int func_01F6ED00_amusement_00(void) {
     Vector4 vector;
     Vector4 rotation;
@@ -656,6 +662,6 @@ int func_01F6ED00_amusement_00(void) {
             return true;
     }
 }
-//#else
-//INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);
-//#endif
+#else
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);
+#endif
