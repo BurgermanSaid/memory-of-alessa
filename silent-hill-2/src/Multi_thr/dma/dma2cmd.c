@@ -38,8 +38,8 @@
 
 
 
-int last_regist_cid; // size: 0x4, address: 0x10138B0
-int last_flush_cid; // size: 0x4, address: 0x10138A8
+static int last_regist_cid; // size: 0x4, address: 0x10138B0
+static int last_flush_cid; // size: 0x4, address: 0x10138A8
 
 static int d2cCmdInit(void);
 
@@ -99,7 +99,7 @@ static int d2cCmdInit(void) {
 
 int d2cInit(void) {
 
-    int ret = DMA2_PUT(0, d2cCmdInit);
+    int ret = D2S_PUT_CMD(0, d2cCmdInit);
     d2cSubCmdUpdataLastRegistCid(ret);
     return ret;
 }
