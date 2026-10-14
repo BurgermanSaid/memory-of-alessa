@@ -34,10 +34,10 @@ void PictureLoadImage(sh2gfw_AREA_HEAD* ap, int otp, int tex_adr, int clut_adr) 
         );
     }
     if (tp->drawpsm != 0)
-        spkSetEnvLoadImage((u_char*) cp + cp->toRawClut + sizeof(sh2gfw_CLUTS_HEAD), clut_adr, cp->clw >> 6, 0, 0, 0, cp->clw, cp->clh);
-
-
-
+        spkSetEnvLoadImage(
+            (u_char*) cp + cp->toRawClut + sizeof(sh2gfw_CLUTS_HEAD),
+            clut_adr, cp->clw >> 6, 0, 0, 0, cp->clw, cp->clh
+        );
 
     spkEndEnvLoadImage();    
 
