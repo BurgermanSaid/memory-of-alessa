@@ -119,9 +119,10 @@ int SeCall(int, float, float);
 float shRandF(void);
 
 // General Data
-extern unsigned int D_01D31640;
-extern unsigned int D_1D31644;
-extern unsigned int D_1D31648;
-extern unsigned int D_1D3169C;
-extern unsigned int D_1D316AC;
+extern u_int D_01D31640;
+extern u_int D_1D31644;
+extern u_int D_1D31648;
+extern u_int D_1D3169C;
+extern u_int D_1D316AC;
+
 #endif
