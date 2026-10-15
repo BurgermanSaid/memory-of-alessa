@@ -57,7 +57,7 @@ def main():
     extract_parser.add_argument(
         "--archive-path",
         type=Path,
-        default=f"{ROM}/{MFA_ARCHIVE}"
+        default=f"{ROM}/{SERIAL}/{MFA_ARCHIVE}"
     )
     extract_parser.add_argument(
         "--output-dir",
