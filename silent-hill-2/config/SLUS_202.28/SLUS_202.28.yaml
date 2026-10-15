@@ -503,7 +503,7 @@ segments:
       - { start: 0x0016a4b0,    type: c,          name: Effect2/hh_effect_object_def                     }
       - { start: 0x0016ab10,    type: c,          name: Effect2/hh_effect_object_texture                 }
       - { start: 0x0016b9c0,    type: c,          name: Effect2/hh_math_wrapper                          }
-      - { start: 0x0016bae0,    type: asm,        name: Effect2/hh_packet                                }
+      - { start: 0x0016bae0,    type: c,          name: Effect2/hh_packet                                }
       - { start: 0x0016c1c0,    type: c,          name: Multi_thr/filesys/fcread                         }
       - { start: 0x0016c4c0,    type: asm,        name: Chacter/m3_boat_jms                              }
       - { start: 0x0016c780,    type: asm,        name: Chacter/m3_boat                                  }
@@ -1055,7 +1055,7 @@ segments:
       - { start: 0x0029a920,    type: .rodata,    name: Effect2/hh_dbg_wrapper                           }
       - { start: 0x0029a960,    type: .rodata,    name: Effect2/hh_effect_object_def                     }
       - { start: 0x0029a990,    type: .rodata,    name: Effect2/hh_effect_object_texture                 }
-      - { start: 0x0029ac00,    type: rodata,     name: Effect2/hh_packet                                }
+      - { start: 0x0029ac00,    type: .rodata,    name: Effect2/hh_packet                                }
       - { start: 0x0029ace0,    type: .rodata,    name: Multi_thr/filesys/fcread                         }
       - { start: 0x0029ad10,    type: rodata,     name: Chacter/m3_boat                                  }
       - { start: 0x0029ad80,    type: .rodata,    name: Chacter/lake_wave                                }
@@ -1264,7 +1264,7 @@ segments:
       - { vram:  0x011eb8f0,    type: .bss,       name: Effect2/hh_dbg_wrapper                           }
       - { vram:  0x011eb930,    type: bss,        name: Effect2/hh_effect_object_def                     }
       - { vram:  0x01201b80,    type: bss,        name: Effect2/hh_effect_object_texture                 }
-      - { vram:  0x01202258,    type: bss,        name: Effect2/hh_packet                                }
+      - { vram:  0x01202258,    type: .bss,       name: Effect2/hh_packet                                }
       - { vram:  0x012022b0,    type: bss,        name: Chacter/m3_boat_jms                              }
       - { vram:  0x012022f0,    type: bss,        name: Chacter/m3_boat                                  }
       - { vram:  0x01202580,    type: .bss,       name: Chacter/lake_wave                                }
