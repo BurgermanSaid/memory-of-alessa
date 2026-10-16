@@ -17,6 +17,7 @@
 #include "GFW/sh2gfw_structs.h"
 
 #include "Multi_thr/filesys/fileserv.h"
+#include "Multi_thr/filesys/fcread.h"
 #include "Multi_thr/dma/dma1cmd.h"
 
 #include "SH2_common/sh2dt.h"
@@ -48,6 +49,9 @@ extern int chizu_disp_step; // size: 0x4, address: 0x116DBB0
 extern float chizu_center_y; // size: 0x4, address: 0x116DBB8
 extern float chizu_center_x; // size: 0x4, address: 0x116DBC0
 
+extern /* static */ char* layer_adr; // size: 0x4, address 0x1133140
+extern /* static */ fsFileIndex* base_file_list_1218[9]; // size: 0x90, address: 0x33db10
+extern /* static */ fsFileIndex* marker_file_list_1219[9]; // size: 0x90, address: 0x33dba0
 extern /* static */ Chizu_CurrentBlock chz_crt_block[190]; // size: 0x8E8, address: 0x33BEF0
 extern /* static */ Chizu_ConnectInfo chz_connect[36]; // size: 0x90, address: 0x33C7E0
 
@@ -428,7 +432,24 @@ static int ChizuPossessionCheck(int chizu) {
     return false;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/chizu", ChizuFileLoad);
+#line 497
+static void ChizuFileLoad(int load_chizu) {
+    #line 576
+    if (base_file_list_1218[load_chizu] && base_file != base_file_list_1218[load_chizu]) {
+        
+        FcRead(base_file_list_1218[load_chizu], get_gp_data_buf_addr());
+        base_file = base_file_list_1218[load_chizu];
+    }
+
+
+    if (marker_file_list_1219[load_chizu] && marker_file != marker_file_list_1219[load_chizu]) {
+
+        layer_adr = (char*) (get_gp_data_buf_addr() + 0x104800);
+
+        FcRead(marker_file_list_1219[load_chizu], layer_adr);
+        marker_file = marker_file_list_1219[load_chizu];
+    }
+}
 
 static void ChizuDisplay(void) {
     PicDraw_Data pic0;
