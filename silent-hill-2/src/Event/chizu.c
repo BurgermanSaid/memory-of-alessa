@@ -444,7 +444,7 @@ static void ChizuFileLoad(int load_chizu) {
 
     if (marker_file_list_1219[load_chizu] && marker_file != marker_file_list_1219[load_chizu]) {
 
-        layer_adr = (char*) (get_gp_data_buf_addr() + MARKER_FILE_HEAP_ADDRESS);
+        layer_adr = (s_char*) (get_gp_data_buf_addr() + MARKER_FILE_HEAP_ADDRESS);
 
         FcRead(marker_file_list_1219[load_chizu], layer_adr);
         marker_file = marker_file_list_1219[load_chizu];
