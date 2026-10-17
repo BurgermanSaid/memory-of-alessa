@@ -3,6 +3,8 @@
 
 #include "sh2_common.h"
 
+#define MARKER_FILE_HEAP_ADDRESS 0x104800
+
 // total size: 0xC
 typedef struct Chizu_CurrentBlock {    
     int chizu; // offset 0x0, size 0x4
