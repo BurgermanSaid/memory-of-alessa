@@ -49,7 +49,7 @@ extern int chizu_disp_step; // size: 0x4, address: 0x116DBB0
 extern float chizu_center_y; // size: 0x4, address: 0x116DBB8
 extern float chizu_center_x; // size: 0x4, address: 0x116DBC0
 
-extern /* static */ char* layer_adr; // size: 0x4, address 0x1133140
+extern /* static */ s_char* layer_adr; // size: 0x4, address 0x1133140
 extern /* static */ fsFileIndex* base_file_list_1218[9]; // size: 0x90, address: 0x33db10
 extern /* static */ fsFileIndex* marker_file_list_1219[9]; // size: 0x90, address: 0x33dba0
 extern /* static */ Chizu_CurrentBlock chz_crt_block[190]; // size: 0x8E8, address: 0x33BEF0
