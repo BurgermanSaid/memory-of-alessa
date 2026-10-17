@@ -783,6 +783,7 @@ segments:
       - { start: 0x002731c0,    type: .data,      name: LoadBg/loadbg_kg2                                }
       - { start: 0x00273210,    type: .data,      name: LoadBg/loadbg_map                                }
       - { start: 0x00273270,    type: data,       name: data_0x273270                                    }
+      - { start: 0x00273770,    type: .data,      name: Chacter/charaboundtbl                            }
       - { start: 0x00273ed0,    type: .data,      name: Effect2/hh_class_water_03                        }
       - { start: 0x002742f8,    type: .data,      name: Effect2/hh_class_water_04                        }
       - { start: 0x002749a8,    type: .data,      name: Effect2/hh_class_water_06                        }
