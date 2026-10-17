@@ -198,7 +198,7 @@ RODATA_PAD_TO(0x00391AD0);
 int ThreadPadStart(void* stack /* r20 */, int stackSize /* r19 */, int prio /* r18 */, int option /* r17 */, int wait_sid /* r2 */) {
 
     void* arg = (void*)wait_sid;
-    if (finish_sid == -1)  finish_sid = CreateSema2(NULL, 256, 0);
+    if (finish_sid == -1)  finish_sid = CreateSema2(NULL, 256, NULL);
     if (finish_sid != -1) {
         if (pad_tid == -1) {
             pad_tid = CreateThread2(&ThreadPad, stack, stackSize, prio, option);

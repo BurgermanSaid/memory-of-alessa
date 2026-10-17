@@ -1,8 +1,8 @@
 #include "Multi_thr/dma/texslot.h"
+#include "sdk.h"
+
 
 static texSlotCtrlT texSlotCtrl[5] = {}; // size: 0x50, address: 0x2B6450
-
-
 
 
 
@@ -21,7 +21,7 @@ int texSlotInit(void) {
     int sid; // r2
     for (i = 0; i < 5; i++) {
         if (!texSlotCtrl[i].init) {
-            sid = CreateSema2(1, 1, (u_int)"for exclusively using one of tex slots");
+            sid = CreateSema2(1, 1, "for exclusively using one of tex slots");
             if (sid != -1) {
                 texSlotCtrl[i].sid = sid;
                 texSlotCtrl[i].init = 1;

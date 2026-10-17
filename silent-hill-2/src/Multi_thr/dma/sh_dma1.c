@@ -105,10 +105,10 @@ int shDmaVif1Init(void) {
     int ret; // r16
 
 
-    if (excl_sid == -1) excl_sid = CreateSema2(NULL, 1, 0);
+    if (excl_sid == -1) excl_sid = CreateSema2(NULL, 1, NULL);
     else WaitSema(excl_sid);
 
-    if (wait_sid == -1) wait_sid = CreateSema2(NULL, 1, 0);
+    if (wait_sid == -1) wait_sid = CreateSema2(NULL, 1, NULL);
 
     shDmaVif1Halt();
     DPUT_D_STAT(D_STAT_CIS1_M); // clear CIS1 interrupts
