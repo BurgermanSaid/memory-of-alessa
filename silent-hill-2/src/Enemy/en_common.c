@@ -1,4 +1,5 @@
 #include "Enemy/en_common.h"
+#include "en_common.h"
 #include "sce/libvu0.h"
 #include "Enemy/en_effect.h"
 #include "Enemy/en_arm.h"
@@ -437,15 +438,15 @@ int enCheckNoDamageHuman(struct EnLOCAL_DATA* dp /* r2 */) {
 
 void enAttackStart(struct EnLOCAL_DATA* dp /* r16 */) {
     shBattleAttackHitCheckInit(dp->scp);
-    SET_BIT(dp->flag, 2);
+    ENEMY_FLAG_SET(ENEMY_FLAG_2);
 }
 
 int enAttackCheck(struct EnLOCAL_DATA* dp /* r2 */, int ID /* r2 */) {
     int result; // r16
-    if (!(dp->flag & 0x4)) return 0;
+    if (!ENEMY_FLAG_CHECK(ENEMY_FLAG_2)) return 0;
     result = dp->scp->battle.atk_result;
     if (result != NULL) {
-        dp->flag &= ~0x4;
+        ENEMY_FLAG_UNSET(ENEMY_FLAG_2);
         return result;
     }
 
@@ -632,17 +633,17 @@ void enFlagResetDead(struct EnLOCAL_DATA* dp) {
 }
 
 void enFlagSetRotFloor(struct EnLOCAL_DATA* dp) {
-    dp->flag |= 0x800;
+    ENEMY_FLAG_SET(ENEMY_FLAG_11);
     dp->scp->status |= 0x80;
 }
 
 void enFlagResetRotFloor(struct EnLOCAL_DATA* dp) {
-    dp->flag &= ~0x800;
+    ENEMY_FLAG_UNSET(ENEMY_FLAG_11);
     dp->trx = dp->trz = 0.0f;
 }
 
 void enFlagResetRotFloorJust(struct EnLOCAL_DATA* dp) {
-    dp->flag &= ~0x800;
+    ENEMY_FLAG_UNSET(ENEMY_FLAG_11);
     dp->trx = dp->trz = 0.0f;
     dp->scp->rot.x = dp->scp->rot.z = 0.0f;
     dp->scp->status &= ~0x80;
@@ -716,7 +717,7 @@ int enCalcTimer(int t /* r2 */) {
 
 void enSetTimer(struct EnLOCAL_DATA* dp /* r16 */, int t /* r2 */) {
     if ((dp->timer = enCalcTimer(t) - 1) < 0) dp->timer = 0.0f;
-    dp->flag &= ~0x2000;
+    ENEMY_FLAG_UNSET(ENEMY_FLAG_13);
 }
 
 int enReduceTimer(struct EnLOCAL_DATA* dp /* r18 */) {    
@@ -727,9 +728,9 @@ int enReduceTimer(struct EnLOCAL_DATA* dp /* r18 */) {
         t = 0;
     }
     if ((t / 60) < n) {
-        dp->flag |= 0x2000;
+        ENEMY_FLAG_SET(ENEMY_FLAG_13);
     } else {
-        dp->flag &= ~0x2000;
+        ENEMY_FLAG_UNSET(ENEMY_FLAG_13);
     }
     dp->timer = t;
     return t;
@@ -878,7 +879,10 @@ void enWaitRegenerate(EnLOCAL_DATA* dp) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enFlyingFunc);
+//#line 1911
+void enFlyingFunc(void) {
+
+}
 
 void enDeleteCharacter(struct EnLOCAL_DATA* dp /* r2 */) {
     shCharacter_Manage_Delete(dp->scp, dp->scp->kind, dp->scp->id);
@@ -896,8 +900,8 @@ float enCheckPath(EnLOCAL_DATA* dp, float* tpos, float* mpos) {
     sceVu0FVECTOR sp, ep; // r29+0x10
     volatile_vec_copy(sp, mpos);
     volatile_vec_copy(ep, tpos);
-    if (dp->flag & 0x40) {
-        if (dp->flag & 0x100) {
+    if (ENEMY_FLAG_CHECK(ENEMY_FLAG_6)) {
+        if (ENEMY_FLAG_CHECK(ENEMY_FLAG_8)) {
             
             sp[1] = ep[1] = dp->scp->pos.y + dp->eye_y;
         } else {
@@ -905,7 +909,7 @@ float enCheckPath(EnLOCAL_DATA* dp, float* tpos, float* mpos) {
             sp[1] = ep[1] = 50.0f + dp->scp->pos.y;
         }
     } else {
-        if (dp->flag & 0x100) {
+        if (ENEMY_FLAG_CHECK(ENEMY_FLAG_8)) {
                 
             sp[1] = ep[1] = dp->scp->pos.y - dp->eye_y;
         } else {
@@ -920,7 +924,7 @@ float enCheckPath2(EnLOCAL_DATA* dp, float* tpos, float* mpos) {
     sceVu0FVECTOR sp, ep;
     volatile_vec_copy(sp, mpos);
     volatile_vec_copy(ep, tpos);
-    if (dp->flag & 0x40) {
+    if (ENEMY_FLAG_CHECK(ENEMY_FLAG_6)) {
         
         sp[1] = ep[1] = dp->scp->pos.y + dp->eye_y;
     } else {
@@ -951,7 +955,7 @@ float enCheckHitEyes(EnLOCAL_DATA* dp, float* sp, float* ep) {
         if (f != 0) return vec3_dist(sp, cp);
         else return -vec3_dist(sp, cp);    
     if (res->kind == 3) {
-        if (((res->hobj.chara.sc)->kind < 302) && !(dp->flag & 0x200)) 
+        if (((res->hobj.chara.sc)->kind < 302) && !ENEMY_FLAG_CHECK(ENEMY_FLAG_9)) 
             
             return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
         
@@ -970,7 +974,7 @@ float enCheckHitEyes2(EnLOCAL_DATA* dp, float* sp, float* ep) {
     if (res->kind == 0) 
         return -vec3_dist(sp, ep);    
     if (res->kind == 3) {
-        if (((res->hobj.chara.sc)->kind < 302) && !(dp->flag & 0x200)) {
+        if (((res->hobj.chara.sc)->kind < 302) && !ENEMY_FLAG_CHECK(ENEMY_FLAG_9)) {
             
             return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
         }
@@ -1249,9 +1253,9 @@ void enAnimeSet(struct EnLOCAL_DATA* dp /* r17 */, int anim /* r18 */, int id /*
     dp->anim_n = 0;
     dp->anim_loop = 0;
     dp->anim_step = 0;
-    dp->flag &= ~0x4080;
+    ENEMY_FLAG_UNSET((ENEMY_FLAG_14 | ENEMY_FLAG_7));
     if (EnAnimeSetFunc[dp->kind] != NULL) {
-        EnAnimeSetFunc[dp->kind](dp->scp, id, !(dp->flag & 0x8000) ? 1 : 0);
+        EnAnimeSetFunc[dp->kind](dp->scp, id, !ENEMY_FLAG_CHECK(ENEMY_FLAG_15) ? 1 : 0);
     }
     enSetTrans(dp);
     dp->tx2 = dp->tx;
@@ -1265,7 +1269,7 @@ void enAnimeSetDirectFrame(EnLOCAL_DATA* dp, int anim, int id, int frame) {
     dp->anim_s = 0x1000;
     dp->anim_loop = 0;
     dp->anim_step = 0;
-    dp->flag &= ~0x4080;
+    ENEMY_FLAG_UNSET((ENEMY_FLAG_14 | ENEMY_FLAG_7));
     EnAnimeSetFunc[dp->kind](dp->scp, id, 0);
     ai = shCharacterAnimeGetInfo(dp->scp);
     if (frame < 0) {
@@ -1275,14 +1279,88 @@ void enAnimeSetDirectFrame(EnLOCAL_DATA* dp, int anim, int id, int frame) {
         if (frame >= ai->frame) frame = ai->frame - 1;
     }
     shCharacterAnimeFrameSet(dp->scp, frame);
-    dp->anim_n = frame * 0x960;
+    dp->anim_n = frame * 2400;
     
     enSetTrans(dp);
     dp->tx2 = dp->tx;
     dp->tz2 = dp->tz;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enAnimeExec);
+#line 2554
+void enAnimeExec(struct EnLOCAL_DATA * dp /* r22 */, struct EnANIME_DATA * pa /* r21 */, signed short anm_none /* r20 */) {
+    int n; /* r16 */ int limit; /* r17 */ int speed; /* r18 */ int loop; /* r2 */ int f; /* r19 */
+    AnimeInfo* ai; /* r2 */
+    if (ENEMY_FLAG_CHECK(ENEMY_FLAG_0) || dp->anim_n < 0) { return; }
+    pa += dp->anim;
+    ai = shCharacterAnimeGetInfo(dp->scp);
+    limit = ai->frame;
+    speed = ai->speed;
+    pa->Anime != anm_none ? 0 : 0; // TODO: figure out the proper source
+
+    
+    
+    
+    f = shCharacterAnimeFrameGet(dp->scp) * 2400;
+    if (ENEMY_FLAG_CHECK(ENEMY_FLAG_14)) {
+        n = f;
+        ENEMY_FLAG_UNSET(ENEMY_FLAG_14);
+    } else {
+        n = dp->anim_n;
+    } // TODO: Figure out cast on below line
+    n += ((dp->anim_s * ((ftoi(144000.0f * shGetDT()) * int_abs(speed)) >> 0xC)) >> 0xC);
+    if (ENEMY_FLAG_CHECK(ENEMY_FLAG_7)) {
+        if (dp->anim_s > 0) {
+            if (n >= dp->anim_step) {
+                n = -1;
+            }    
+        } 
+        else if (n <= -dp->anim_step) {
+            n = -1;
+        }
+    
+    } 
+    else if (pa->Loop == 0 && pa->Anime != anm_none) {
+        if (f == 0) {
+            ENEMY_FLAG_SET(ENEMY_FLAG_14);
+        } else if (n >= 24000 && shCharacterAnimeIsEnd(dp->scp) != 0) {
+            
+            n = -1;
+        }
+    } 
+    else if (dp->anim_s > 0) {
+        if (n >= (limit * 2400)) {
+            if (pa->Loop != 0) {
+                n = 0;
+                ENEMY_FLAG_SET(ENEMY_FLAG_14);
+                dp->anim_loop++;
+            } else {
+                n = -1;
+            }
+        } else if (f == 0) {
+            ENEMY_FLAG_SET(ENEMY_FLAG_14);
+        }
+    }
+    else if (n <= 0) {
+        if (pa->Loop != 0) {
+            if (f != 0) {
+                n = limit * 2400;
+                dp->anim_loop++;
+            } else {
+                n = 0;
+            }
+            ENEMY_FLAG_SET(ENEMY_FLAG_14);
+        } else {
+            n = -1;
+        }
+    } else if (f == 0) {
+        ENEMY_FLAG_SET(ENEMY_FLAG_14);
+    }
+
+    
+    dp->anim_n = n;
+    
+   shCharacterAnimeSpeedAdd(dp->scp, ((speed * dp->anim_s) / 4096) - speed);
+}
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetTrans);
 
@@ -1301,17 +1379,17 @@ void enSetTransForward(EnLOCAL_DATA* dp, float s) {
 }
 
 void enAnimePause(struct EnLOCAL_DATA* dp /* r2 */) {
-    dp->flag |= 1;
+    ENEMY_FLAG_SET(ENEMY_FLAG_0)
     shCharacterAnimePause(dp->scp);
 }
 
 void enAnimeRestart(struct EnLOCAL_DATA* dp /* r2 */) {
-    dp->flag &= ~1;
+    ENEMY_FLAG_UNSET(ENEMY_FLAG_0)
     shCharacterAnimeRestart(dp->scp);
 }
 
 void enAnimeFrameSet(struct EnLOCAL_DATA* dp /* r2 */, u_short frame /* r2 */) {
-    dp->anim_n = frame * 0x960;
+    dp->anim_n = frame * 2400;
     shCharacterAnimeFrameSet(dp->scp, frame);
 }
 
@@ -1320,15 +1398,15 @@ void enAnimeReverse(struct EnLOCAL_DATA* dp /* r16 */) {
     if (dp->anim_s > 0) {
         dp->anim_s = -dp->anim_s;
         if (dp->anim_n == 0) {
-            dp->anim_n = ai->frame * 0x960;
+            dp->anim_n = ai->frame * 2400;
         }
     }
 }
 
 void enSetAnimeCount(struct EnLOCAL_DATA* dp /* r17 */, int count /* r16 */) {
     int limit = shCharacterAnimeGetInfo(dp->scp)->frame; // r2    
-    dp->flag |= 0x80;
-    dp->anim_step = (count * (limit * 0x960)) >> 0xC;
+    ENEMY_FLAG_SET(ENEMY_FLAG_7)
+    dp->anim_step = (count * (limit * 2400)) >> 0xC;
 }
 
 void enEfctBloodPool(struct EnLOCAL_DATA* dp /* r2 */) {

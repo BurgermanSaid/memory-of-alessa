@@ -17,6 +17,28 @@
 #define ENEMY_NEXT_SUB_STEP() do { dp->sslv++; } while (0)
 #define ENEMY_SUB_STEP(_sslv) do { dp->sslv = _sslv; } while (0)
 #define ENEMY_MLV(_mlv) do { dp->mlv = _mlv; } while (0)
+#define ENEMY_FLAG_SET(_flag) dp->flag |= _flag;
+#define ENEMY_FLAG_UNSET(_flag) dp->flag &= ~_flag;
+#define ENEMY_FLAG_CHECK(_flag) (dp->flag & _flag)
+
+typedef enum ENEMY_FLAG {
+    ENEMY_FLAG_0 = 1 << 0,
+    ENEMY_FLAG_1 = 1 << 1,
+    ENEMY_FLAG_2 = 1 << 2,
+    ENEMY_FLAG_3 = 1 << 3,
+    ENEMY_FLAG_4 = 1 << 4,
+    ENEMY_FLAG_5 = 1 << 5,
+    ENEMY_FLAG_6 = 1 << 6,
+    ENEMY_FLAG_7 = 1 << 7,
+    ENEMY_FLAG_8 = 1 << 8,
+    ENEMY_FLAG_9 = 1 << 9,
+    ENEMY_FLAG_10 = 1 << 10,
+    ENEMY_FLAG_11 = 1 << 11,
+    ENEMY_FLAG_12 = 1 << 12,
+    ENEMY_FLAG_13 = 1 << 13,
+    ENEMY_FLAG_14 = 1 << 14,
+    ENEMY_FLAG_15 = 1 << 15,
+} ENEMY_FLAG;
 
 typedef struct EnSOUND_QUEUE {
     // total size: 0x10
