@@ -660,7 +660,7 @@ segments:
       - { start: 0x001b9dd0,    type: data,       name: Event/event                                      }
       - { start: 0x001ba050,    type: .data,      name: Event/event_sub                                  }
       - { start: 0x001ba0f0,    type: data,       name: Event/item                                       }
-      - { start: 0x001ba1a0,    type: data,       name: Event/stg_name                                   }
+      - { start: 0x001ba1a0,    type: .data,      name: Event/stg_name                                   }
       - { start: 0x001ba780,    type: .data,      name: Event/demoview                                   }
       - { start: 0x001bb3d8,    type: data,       name: data_0x1bb3d8                                    }
       - { start: 0x001bb580,    type: .data,      name: Font/font                                        }
