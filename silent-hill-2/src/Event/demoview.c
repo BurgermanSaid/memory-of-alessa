@@ -1031,12 +1031,12 @@ int DdsPlay(DramaDemo_PlayInfo* info) {
     interest[0] += info->add_pos_x;
     interest[2] += info->add_pos_z;
     position[3] = interest[3] = 1.0f;
-    plane = next.camera.roll * frm_dcm + last.camera.roll * (1.0f - frm_dcm);
-    roll = next.camera.plane * frm_dcm + last.camera.plane * (1.0f - frm_dcm);
-    vcSetEventCamParamRefView(position, NULL, interest, NULL, plane, 1);
+    roll = next.camera.roll * frm_dcm + last.camera.roll * (1.0f - frm_dcm);
+    plane = next.camera.plane * frm_dcm + last.camera.plane * (1.0f - frm_dcm);
+    vcSetEventCamParamRefView(position, NULL, interest, NULL, roll, 1);
     
     
-    VbScreenInfo.scr_z = 1.14702f * roll;
+    VbScreenInfo.scr_z = 1.14702f * plane;
     vbCalcViewScreenMatrix();
     vcMoveAndSetCamera(0, 0, 0, 0, 0, 0, 0, 0);
     
