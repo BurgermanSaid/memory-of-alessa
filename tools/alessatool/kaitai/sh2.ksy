@@ -171,6 +171,317 @@ types:
         repeat: expr
         repeat-expr: 16
 
+  sh_game_key_assign:
+    seq:
+      - id: type
+        type: u2
+
+      - id: dir_ax
+        type: u1
+
+      - id: dir_ay
+        type: u1
+
+      - id: dir_bx
+        type: u1
+
+      - id: dir_by
+        type: u1
+
+      - id: dir_cx
+        type: u1
+
+      - id: dir_cy
+        type: u1
+
+      - id: drink
+        type: u2
+
+      - id: radio
+        type: u2
+
+      - id: light
+        type: u2
+
+      - id: item
+        type: u2
+
+      - id: map
+        type: u2
+
+      - id: decide
+        type: u2
+
+      - id: cancel
+        type: u2
+
+      - id: skip
+        type: u2
+
+      - id: pause
+        type: u2
+
+      - id: action
+        type: u2
+
+      - id: dash
+        type: u2
+
+      - id: lslide
+        type: u2
+
+      - id: rslide
+        type: u2
+
+      - id: ready
+        type: u2
+
+      - id: view
+        type: u2
+
+  pad_key_config:
+    seq:
+      - id: enter
+        type: s4
+
+      - id: cancel
+        type: s4
+
+      - id: skip
+        type: s4
+
+      - id: front_move
+        type: s4
+
+      - id: back_move
+        type: s4
+
+      - id: right_turn
+        type: s4
+
+      - id: left_turn
+        type: s4
+
+      - id: right_move
+        type: s4
+
+      - id: left_move
+        type: s4
+
+      - id: action
+        type: s4
+
+      - id: attack
+        type: s4
+
+      - id: dash
+        type: s4
+
+      - id: light
+        type: s4
+
+      - id: item
+        type: s4
+
+      - id: search_view
+        type: s4
+
+      - id: ready
+        type: s4
+
+      - id: pause
+        type: s4
+
+      - id: map
+        type: s4
+
+      - id: padding
+        type: s4
+        repeat: expr
+        repeat-expr: 6
+
+  playing_info:
+    seq:
+      - id: stage
+        type: u1
+
+      - id: enemy_off
+        type: u1
+
+      - id: voice_off
+        type: u1
+
+      - id: memo_select
+        type: u1
+
+      - id: clear_end_kind
+        type: u1
+
+      - id: clear_end_number
+        type: u1
+
+      - id: rank
+        type: u1
+
+      - id: game_stage
+        type: u1
+
+      - id: hidden_item_get
+        type: u1
+
+      - id: spray_pow
+        type: s1
+
+      - id: savecount
+        type: u2
+
+      - id: clearcount
+        type: u2
+
+      - id: item_get
+        type: u2
+
+      - id: kill_by_shot
+        type: u2
+
+      - id: kill_by_fight
+        type: u2
+
+      - id: time
+        type: f4
+
+      - id: walk_distance
+        type: f4
+
+      - id: run_distance
+        type: f4
+
+      - id: boat_clear_time
+        type: f4
+
+      - id: boat_max_speed
+        type: f4
+
+      - id: jms_damage_total
+        type: f4
+
+      - id: mar_damage_by_enemy
+        type: f4
+
+      - id: mar_damage_by_jms
+        type: f4
+
+      - id: stage_check_point
+        type: f4
+        repeat: expr
+        repeat-expr: 7
+
+      - id: stage_score
+        type: u4
+        repeat: expr
+        repeat-expr: 7
+
+      - id: total_score
+        type: u4
+
+      - id: total_time
+        type: f4
+
+      - id: battle_level
+        type: u1
+
+      - id: riddle_level
+        type: u1
+
+      - id: brightness_level
+        type: u1
+
+      - id: screen_position_x
+        type: s1
+
+      - id: screen_position_y
+        type: s1
+
+      - id: vibration
+        type: u1
+
+      - id: auto_load
+        type: u1
+
+      - id: sound
+        type: u1
+
+      - id: bgm_volume
+        type: u1
+
+      - id: se_volume
+        type: u1
+
+      - id: weapon_control
+        type: u1
+
+      - id: blood_color
+        type: u1
+
+      - id: view_control
+        type: u1
+
+      - id: retreat_turn
+        type: u1
+
+      - id: walk_run_control
+        type: u1
+
+      - id: auto_aiming
+        type: u1
+
+      - id: view_mode
+        type: u1
+
+      - id: bullet_adjust
+        type: u1
+
+      - id: language
+        type: u1
+
+      - id: subtitles
+        type: u1
+
+      - id: control_type
+        type: u1
+
+      - id: radar
+        type: u1
+
+      - size: 2
+
+  sh2_sys:
+    seq:
+      - id: step
+        type: u4
+        repeat: expr
+        repeat-expr: 8
+
+      - id: pre_playable
+        type: u4
+
+      - id: main_status
+        type: s4
+
+      - id: soft_reset
+        type: u4
+
+      - id: frame_cnt
+        type: u4
+
+  chara_bound:
+    seq:
+      - id: chara_id
+        type: s4
+
+      - id: r
+        type: f4
+
   sh_skelton:
     seq:
       - id: next
@@ -2320,6 +2631,19 @@ types:
       - id: texture_no
         type: u4
 
+  sh_item_screen_object_setting_data:
+    seq:
+      - id: chara_id
+        type: s4
+
+      - id: scale
+        type: f4
+
+      - size: 8
+
+      - id: rot
+        type: vector4
+
   sh_in_area:
     seq:
       - id: look_on
@@ -2760,6 +3084,343 @@ types:
 
       - size: 12
 
+  debug_print_info:
+    seq:
+      - id: xofs
+        type: s4
+
+      - id: yofs
+        type: s4
+
+      - id: x
+        type: s4
+
+      - id: y
+        type: s4
+
+      - id: w
+        type: s4
+
+      - id: h
+        type: s4
+
+      - id: tab
+        type: s4
+
+      - id: xofs_r
+        type: s4
+
+      - id: yofs_r
+        type: s4
+
+      - id: y_r
+        type: s4
+
+  screen_effect_parameter:
+    seq:
+      - id: fade_status
+        type: s4
+
+      - id: fade_type
+        type: s4
+
+      - id: fade_timer_now
+        type: f4
+
+      - id: fade_timer_max
+        type: f4
+
+  impact_queue_element_option:
+    seq:
+      - id: vector
+        type: f4
+        repeat: expr
+        repeat-expr: 8
+
+      - id: float_value
+        type: f4
+        repeat: expr
+        repeat-expr: 2
+
+      - id: int_value
+        type: s4
+        repeat: expr
+        repeat-expr: 2
+
+  impact_queue_element:
+    seq:
+      - id: class_descriptor
+        type: u4
+
+      - id: h_instance
+        type: u4
+
+      - id: p_result_handle_address
+        type: pointer('data')
+
+      - id: reserved
+        type: u4
+
+      - id: option
+        type: impact_queue_element_option
+
+  object_instance:
+    seq:
+      - id: element
+        type: impact_queue_element
+
+      - id: enable
+        type: u4
+
+      - id: h_instance
+        type: u4
+
+      - id: p_block
+        type: pointer('data')
+
+      - id: timer
+        type: f4
+
+      - id: p_prev
+        type: pointer('object_instance')
+
+      - id: p_next
+        type: pointer('object_instance')
+
+      - size: 8
+
+  object_data_block_header:
+    seq:
+      - id: enable
+        type: u4
+
+      - id: p_next
+        type: pointer('object_data_block_header')
+
+      - size: 8
+
+  object_data_pool_infomeation:
+    seq:
+      - id: block_size
+        type: u4
+
+      - id: block_index_max
+        type: u4
+
+      - id: p_block_table
+        type: pointer('data')
+
+      - id: p_free_block_list
+        type: pointer('object_data_block_header')
+
+  object_instance_table_infomeation:
+    seq:
+      - id: p_instance_table
+        type: pointer('object_instance')
+
+      - id: instance_max
+        type: u4
+
+      - id: h_instance_history
+        type: u4
+
+      - id: p_hierarchy_table
+        type: pointer('data')
+
+      - id: p_free_table
+        type: pointer('object_instance')
+
+      - size: 12
+
+  object_class:
+    seq:
+      - id: p_prefix
+        type: pointer('data')
+
+      - id: p_main
+        type: pointer('data')
+
+      - id: p_suffix
+        type: pointer('data')
+
+      - id: disable
+        type: u4
+
+  impact_queue_object:
+    seq:
+      - id: en_queue
+        type: u4
+
+      - id: de_queue
+        type: u4
+
+      - id: length_current
+        type: u4
+
+      - id: length_max
+        type: u4
+
+      - id: p_element
+        type: pointer('impact_queue_element')
+
+      - size: 12
+
+  object_class_association_infomeation:
+    seq:
+      - id: p_class_list
+        type: pointer('object_class')
+
+      - id: p_data_pool_info
+        type: pointer('object_data_pool_infomeation')
+
+      - id: p_class_priority_list
+        type: pointer('data')
+
+      - id: class_max
+        type: u4
+
+  object_group_infomeation:
+    seq:
+      - id: association_info
+        type: object_class_association_infomeation
+
+      - id: instance_table_info
+        type: object_instance_table_infomeation
+
+      - id: queue_info
+        type: impact_queue_object
+
+      - id: enable
+        type: u4
+
+      - id: step
+        type: u4
+
+      - size: 8
+
+  hh_class_wrapper_work:
+    seq:
+      - id: view_frustum_primitive_clip_matrix
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: view_frustum_bounding_box_clip_matrix
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: always_front_world_view_matrix
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+  memory_pool_association_infomeation:
+    seq:
+      - id: existent
+        type: u4
+
+      - size: 12
+
+      - id: data_pool_info
+        type: object_data_pool_infomeation
+
+      - id: link_list_max
+        type: u4
+
+      - id: p_link_list
+        type: pointer('data')
+
+      - size: 8
+
+  en_sound_queue:
+    seq:
+      - id: scp
+        type: pointer('sub_character')
+
+      - id: num
+        type: s4
+
+      - id: vol
+        type: f4
+
+      - id: time
+        type: f4
+
+  en_forbiddenarea:
+    seq:
+      - id: x0
+        type: f4
+
+      - id: z0
+        type: f4
+
+      - id: x1
+        type: f4
+
+      - id: z1
+        type: f4
+
+  en_local_work:
+    seq:
+      - id: data
+        type: en_local_data
+        repeat: expr
+        repeat-expr: 32
+
+      - id: communication
+        type: en_communication
+        repeat: expr
+        repeat-expr: 8
+
+      - id: forbidden_area
+        type: en_forbiddenarea
+        repeat: expr
+        repeat-expr: 2
+
+      - id: sound_queue
+        type: en_sound_queue
+        repeat: expr
+        repeat-expr: 8
+
+      - id: communication_num
+        type: s4
+
+      - id: forbidden_num
+        type: s4
+
+      - id: sound_queue_num
+        type: s4
+
+      - id: status
+        type: u4
+
+      - id: this
+        type: pointer('en_local_data')
+
+      - size: 12
+
+      - id: hit_result
+        type: cl_vhit_result
+
+      - id: max3d_sounds
+        type: s4
+
+      - id: active_enemy
+        type: s4
+
+      - size: 8
+
+  en_anime_data:
+    seq:
+      - id: anime
+        type: u2
+
+      - id: loop
+        type: u1
+
+      - size: 1
+
   item:
     seq:
       - id: flag
@@ -3059,106 +3720,1147 @@ types:
       - id: reserve_11
         type: s4
 
-  en_sound_queue:
+  fs_mgc_file:
     seq:
-      - id: scp
-        type: pointer('sub_character')
+      - id: type
+        type: b8
 
-      - id: num
+      - id: padding
+        type: b24
+
+      - id: parent
+        type: pointer('fs_file')
+
+      - id: start
+        type: pointer('data')
+
+      - id: end
+        type: pointer('data')
+
+  fs_cd_file:
+    seq:
+      - id: type
+        type: b8
+
+      - id: number
+        type: b24
+
+      - id: name
+        type: pointer('data')
+
+      - id: lsn
         type: s4
 
-      - id: vol
-        type: f4
+      - id: size
+        type: s4
 
-      - id: time
-        type: f4
-
-  en_forbiddenarea:
+  fs_hd_file:
     seq:
-      - id: x0
-        type: f4
+      - id: type
+        type: b8
 
-      - id: z0
-        type: f4
+      - id: padding
+        type: b24
 
-      - id: x1
-        type: f4
+      - id: name
+        type: pointer('data')
 
-      - id: z1
-        type: f4
+      - id: offset
+        type: s4
 
-  en_local_work:
+      - id: size
+        type: s4
+
+  fs_mgp_file:
     seq:
+      - id: type
+        type: b8
+
+      - id: padding
+        type: b24
+
+      - id: file
+        type: pointer('fs_file')
+
+      - id: start
+        type: pointer('fs_mgc_file')
+
+      - id: end
+        type: pointer('fs_mgc_file')
+
+  fs_mgf_file:
+    seq:
+      - id: type
+        type: b8
+
+      - id: padding
+        type: b24
+
+      - id: parent
+        type: pointer('fs_file')
+
+      - id: offset
+        type: s4
+
+      - id: size
+        type: s4
+
+  fs_file:
+    instances:
+      check:
+        pos: 0
+        type: fs_file_anon_7
+
+      pack:
+        pos: 0
+        type: u16
+
+      cd:
+        pos: 0
+        type: fs_cd_file
+
+      hd:
+        pos: 0
+        type: fs_hd_file
+
+      mgc:
+        pos: 0
+        type: fs_mgc_file
+
+      mgf:
+        pos: 0
+        type: fs_mgf_file
+
+      mgp:
+        pos: 0
+        type: fs_mgp_file
+
+    seq:
+      - size: 16
+
+  fs_file_anon_7:
+    seq:
+      - id: type
+        type: b8
+
+      - id: number
+        type: b24
+
+      - id: pad0
+        type: s4
+
+      - id: pad1
+        type: s4
+
+      - id: pad2
+        type: s4
+
+  fs_file_index:
+    instances:
+      index:
+        pos: 0
+        type: fs_file_index_anon_8
+
+      pack:
+        pos: 0
+        type: u8
+
+    seq:
+      - size: 8
+
+  fs_file_index_anon_8:
+    seq:
+      - id: fp
+        type: pointer('fs_file')
+
+      - id: name
+        type: pointer('data')
+
+  files_bg_block:
+    seq:
+      - id: map
+        type: pointer('fs_file_index')
+
+      - id: cld
+        type: pointer('fs_file_index')
+
+      - id: cam
+        type: pointer('fs_file_index')
+
+      - id: kg2
+        type: pointer('fs_file_index')
+
+      - id: tex
+        type: pointer('fs_file_index')
+
+      - id: ex0
+        type: pointer('fs_file_index')
+
+      - id: ex1
+        type: pointer('fs_file_index')
+
+      - id: ex2
+        type: pointer('fs_file_index')
+
+  chara_data_mem_admin_one:
+    seq:
+      - id: file
+        type: pointer('fs_file_index')
+
+      - id: adress
+        type: pointer('data')
+
+      - id: size
+        type: s4
+
+  chara_data_mem_admin:
+    seq:
+      - id: category
+        type: s1
+
+      - id: priority
+        type: s1
+
+      - id: kind
+        type: s2
+
+      - id: model
+        type: chara_data_mem_admin_one
+
+      - id: animation
+        type: chara_data_mem_admin_one
+
+      - id: shadow
+        type: chara_data_mem_admin_one
+
+      - id: cluster
+        type: chara_data_mem_admin_one
+
+  chara_data_item_file:
+    seq:
+      - id: kind
+        type: s4
+
+      - id: file
+        type: pointer('fs_file_index')
+
+  chara_data_entry_list_one:
+    seq:
+      - id: load
+        type: s4
+
+      - id: file
+        type: pointer('fs_file_index')
+
+      - id: adress
+        type: pointer('data')
+
+  chara_data_weapon_file:
+    seq:
+      - id: equip
+        type: s2
+
+      - id: kind
+        type: s2
+
+      - id: james_anim
+        type: pointer('fs_file_index')
+
+      - id: weapon_model
+        type: pointer('fs_file_index')
+
+      - id: weapon_model_r
+        type: pointer('fs_file_index')
+
+      - id: shadow_model
+        type: pointer('fs_file_index')
+
+  chara_data_entry_list:
+    seq:
+      - id: category
+        type: s4
+
+      - id: delete
+        type: s2
+
+      - id: kind
+        type: s2
+
+      - id: model
+        type: chara_data_entry_list_one
+
+      - id: animation
+        type: chara_data_entry_list_one
+
+      - id: shadow
+        type: chara_data_entry_list_one
+
+      - id: cluster
+        type: chara_data_entry_list_one
+
+  chara_data_demo_list:
+    seq:
+      - id: kind
+        type: s4
+
+      - id: model
+        type: pointer('fs_file_index')
+
+      - id: animation
+        type: pointer('fs_file_index')
+
+      - id: shadow
+        type: pointer('fs_file_index')
+
+      - id: cluster
+        type: pointer('fs_file_index')
+
+  chara_data_standard_list:
+    seq:
+      - id: kind
+        type: s4
+
+      - id: model
+        type: pointer('fs_file_index')
+
+      - id: animation
+        type: pointer('fs_file_index')
+
+      - id: shadow
+        type: pointer('fs_file_index')
+
+  chara_data_extra:
+    seq:
+      - id: adress
+        type: pointer('data')
+
+      - id: size
+        type: s4
+
+  chara_admin_room_distance:
+    seq:
+      - id: rm0
+        type: s2
+
+      - id: rm1
+        type: s2
+
+  chizu_current_block:
+    seq:
+      - id: chizu
+        type: s4
+
+      - id: cp_x
+        type: f4
+
+      - id: cp_y
+        type: f4
+
+  chizu_marker_tex:
+    seq:
+      - id: u0
+        type: s2
+
+      - id: v0
+        type: s2
+
+      - id: u1
+        type: s2
+
+      - id: v1
+        type: s2
+
+  chizu_marker_list:
+    seq:
+      - id: tex
+        type: pointer('chizu_marker_tex')
+
       - id: data
-        type: en_local_data
+        type: pointer('data')
+
+      - id: head
+        type: s4
+
+      - id: tail
+        type: s4
+
+  chizu_connect_info:
+    seq:
+      - id: up
+        type: s1
+
+      - id: down
+        type: s1
+
+      - id: right
+        type: s1
+
+      - id: left
+        type: s1
+
+  drama_demo_message_time:
+    seq:
+      - id: start
+        type: u2
+
+      - id: end
+        type: u2
+
+  drama_demo_play_info:
+    seq:
+      - id: demo_no
+        type: s4
+
+      - id: adr_dds_top
+        type: pointer('data')
+
+      - id: adr_anim
+        type: pointer('data')
+
+      - id: adr_msg_time
+        type: pointer('drama_demo_message_time')
+
+      - id: msg_start
+        type: s2
+
+      - id: voice_sd_no
+        type: s2
+
+      - id: adr_voice
+        type: pointer('data')
+
+      - id: stream_no
+        type: s4
+
+      - id: stream_start
+        type: f4
+
+      - id: add_pos_x
+        type: f4
+
+      - id: add_pos_z
+        type: f4
+
+  drama_demo_anim_info:
+    seq:
+      - id: name
+        type: s1
         repeat: expr
         repeat-expr: 32
 
-      - id: communication
-        type: en_communication
-        repeat: expr
-        repeat-expr: 8
+      - id: kind
+        type: s2
 
-      - id: forbidden_area
-        type: en_forbiddenarea
-        repeat: expr
-        repeat-expr: 2
+      - id: id
+        type: s2
 
-      - id: sound_queue
-        type: en_sound_queue
-        repeat: expr
-        repeat-expr: 8
+      - id: start
+        type: s2
 
-      - id: communication_num
-        type: s4
+      - id: end
+        type: s2
 
-      - id: forbidden_num
-        type: s4
-
-      - id: sound_queue_num
-        type: s4
-
-      - id: status
-        type: u4
-
-      - id: this
-        type: pointer('en_local_data')
+  dds_frame:
+    seq:
+      - id: frame
+        type: f4
 
       - size: 12
 
-      - id: hit_result
-        type: cl_vhit_result
+      - id: camera
+        type: dds_frame_anon_9
 
-      - id: max3d_sounds
-        type: s4
+      - id: light
+        type: dds_frame_anon_10
+        repeat: expr
+        repeat-expr: 6
 
-      - id: active_enemy
-        type: s4
+      - id: character
+        type: dds_frame_anon_11
+        repeat: expr
+        repeat-expr: 7
 
-      - size: 8
-
-  en_anime_data:
+  dds_frame_anon_9:
     seq:
-      - id: anime
-        type: u2
+      - id: position
+        type: f4
+        repeat: expr
+        repeat-expr: 4
 
-      - id: loop
-        type: u1
+      - id: interest
+        type: f4
+        repeat: expr
+        repeat-expr: 4
 
-      - size: 1
+      - id: roll
+        type: f4
 
-  sh_item_screen_object_setting_data:
-    seq:
-      - id: chara_id
-        type: s4
-
-      - id: scale
+      - id: plane
         type: f4
 
       - size: 8
 
-      - id: rot
-        type: vector4
+  dds_frame_anon_10:
+    seq:
+      - id: position
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: interest
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: roll
+        type: f4
+
+      - size: 12
+
+      - id: color
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: falloff
+        type: f4
+        repeat: expr
+        repeat-expr: 2
+
+      - id: cone
+        type: f4
+        repeat: expr
+        repeat-expr: 2
+
+      - id: visible
+        type: s4
+
+      - size: 12
+
+  dds_frame_anon_11:
+    seq:
+      - id: position
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: visible
+        type: s4
+
+      - size: 12
+
+  sh2gfw_area_head:
+    seq:
+      - id: area_id
+        type: u4
+
+      - id: to_global_tex_head
+        type: u4
+
+      - id: to_global_cluts_head
+        type: u4
+
+      - id: date
+        type: u4
+
+  sh2gfw_block_head:
+    seq:
+      - id: block_id
+        type: u4
+
+      - id: to_globaldef
+        type: u4
+
+      - id: to_localdef
+        type: u4
+
+      - id: to_rawblockdata_parms
+        type: u4
+
+      - id: to_local_tex
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: to_localcluts
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: texnum
+        type: u4
+
+      - id: globaltexnum
+        type: u1
+
+      - id: transtexnum
+        type: u1
+
+      - id: divflg
+        type: u1
+
+      - id: padc
+        type: u1
+
+  sh2gfw_blockglobal_head:
+    seq:
+      - id: gsregsamount
+        type: u4
+
+      - id: transamount
+        type: u4
+
+      - id: gtexnum
+        type: u1
+
+      - id: gtransnum
+        type: u1
+
+      - id: pads
+        type: u2
+
+      - id: pad2
+        type: u4
+
+  sh2gfw_blocklocal_head:
+    seq:
+      - id: gsregsamount
+        type: u2
+        repeat: expr
+        repeat-expr: 3
+
+      - id: transamount
+        type: u2
+        repeat: expr
+        repeat-expr: 3
+
+      - id: ltexnum
+        type: u2
+
+      - id: pads
+        type: u2
+
+  sh2gfw_gsregs_head:
+    seq:
+      - id: clutssize
+        type: u4
+
+      - id: to_next_data
+        type: u4
+
+      - id: to_tex_head
+        type: u4
+
+      - id: clutamount
+        type: u1
+
+      - id: transamount
+        type: u1
+
+      - id: eop_flg
+        type: u1
+
+      - id: tr_flg
+        type: u1
+
+      - id: fmt
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+      - id: transparency
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+  sh2gfw_giftag_head:
+    seq:
+      - id: gsregs_amount
+        type: u2
+
+      - id: trans_flg
+        type: u1
+
+      - id: eop_flg
+        type: u1
+
+      - id: to_next_gifhead
+        type: u4
+
+      - id: id
+        type: u2
+
+      - id: tcc
+        type: u1
+
+      - id: tfx
+        type: u1
+
+      - id: abe
+        type: u1
+
+      - id: pad1
+        type: u1
+
+      - id: pad2
+        type: u1
+
+      - id: pad3
+        type: u1
+
+  sh2gfw_tex_head:
+    seq:
+      - id: texture_no
+        type: u4
+
+      - id: x
+        type: u2
+
+      - id: y
+        type: u2
+
+      - id: w
+        type: u2
+
+      - id: h
+        type: u2
+
+      - id: color
+        type: u1
+
+      - id: padbyte
+        type: u1
+
+      - id: importance
+        type: u2
+
+      - id: datasize
+        type: u4
+
+      - id: allsize
+        type: u4
+
+      - id: sendpsm
+        type: u1
+
+      - id: drawpsm
+        type: u1
+
+      - id: bitshift
+        type: u1
+
+      - id: tagpoint
+        type: u1
+
+      - id: bitw
+        type: u1
+
+      - id: bith
+        type: u1
+
+      - id: check
+        type: u2
+
+      - id: giftag
+        type: q_worddata
+        size: 16
+
+  sh2gfw_cluts_head:
+    seq:
+      - id: clutssize
+        type: u4
+
+      - id: to_gsregs
+        type: u4
+
+      - id: to_raw_clut
+        type: u4
+
+      - id: clutamount
+        type: u1
+
+      - id: transcluts
+        type: u1
+
+      - id: clw
+        type: u1
+
+      - id: clh
+        type: u1
+
+      - id: fmt
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+      - id: transparency
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+  sh2gfw_effect_man:
+    seq:
+      - id: effectid
+        type: u2
+
+      - id: vifmark
+        type: u2
+
+      - id: valid_id
+        type: u2
+
+      - id: pads
+        type: u2
+
+      - id: thr_cid
+        type: s4
+
+      - id: thr_sid
+        type: s4
+
+      - id: tex0_data
+        type: u16
+
+      - id: alpha
+        type: u16
+
+      - id: p_tex_man
+        type: pointer('data')
+
+      - id: p_tex_head
+        type: pointer('data')
+
+      - id: p_top
+        type: pointer('data')
+
+      - id: p_pad
+        type: pointer('data')
+
+  sh2gfw_area_data_man:
+    seq:
+      - id: areaid
+        type: u4
+
+      - id: use_globalflg
+        type: u1
+        repeat: expr
+        repeat-expr: 7
+
+      - id: use_transflg
+        type: u1
+        repeat: expr
+        repeat-expr: 7
+
+      - id: block_id
+        type: u2
+        repeat: expr
+        repeat-expr: 7
+
+      - id: block_man
+        type: pointer('data')
+        repeat: expr
+        repeat-expr: 7
+
+      - id: p_ah
+        type: pointer('sh2gfw_area_head')
+
+      - id: global_tex
+        type: pointer('sh2gfw_tex_head')
+
+      - id: global_clut
+        type: pointer('sh2gfw_cluts_head')
+
+      - id: global_transtex
+        type: pointer('sh2gfw_tex_head')
+
+      - id: global_transclut
+        type: pointer('sh2gfw_cluts_head')
+
+      - id: g_tex_man
+        type: pointer('sh2gfw_tex_man')
+
+      - id: g_transtex_man
+        type: pointer('sh2gfw_tex_man')
+
+      - id: gtex_mode
+        type: u2
+
+      - id: gtrans_mode
+        type: u2
+
+      - id: pad1
+        type: u4
+
+  sh2gfw_trans_man:
+    seq:
+      - id: blockid
+        type: u4
+
+      - id: p_am
+        type: pointer('sh2gfw_area_data_man')
+
+      - id: objnum
+        type: u2
+        repeat: expr
+        repeat-expr: 4
+
+      - id: trans_clutnum
+        type: u4
+
+      - id: pad2
+        type: u4
+
+      - id: pad3
+        type: u4
+
+      - id: pad4
+        type: u4
+
+      - id: trgehead
+        type: pointer('data')
+        repeat: expr
+        repeat-expr: 4
+
+      - id: p_tr_global_gif_h
+        type: pointer('sh2gfw_giftag_head')
+        repeat: expr
+        repeat-expr: 64
+
+      - id: p_g_tex_head
+        type: pointer('sh2gfw_tex_head')
+
+      - id: p_g_clut_head
+        type: pointer('sh2gfw_cluts_head')
+
+      - id: p_g_tex_man
+        type: pointer('sh2gfw_tex_man')
+
+      - id: used_ggifnum
+        type: u1
+        repeat: expr
+        repeat-expr: 4
+
+      - id: p_tr_trans_gif_h
+        type: pointer('sh2gfw_giftag_head')
+        repeat: expr
+        repeat-expr: 64
+
+      - id: p_tr_tex_head
+        type: pointer('sh2gfw_tex_head')
+
+      - id: p_tr_clut_head
+        type: pointer('sh2gfw_cluts_head')
+
+      - id: p_tr_tex_man
+        type: pointer('sh2gfw_tex_man')
+
+      - id: used_t_rgifnum
+        type: u1
+        repeat: expr
+        repeat-expr: 4
+
+  sh2gfw_model_header:
+    seq:
+      - id: no_texture_id
+        type: u1
+
+      - id: padc
+        type: u1
+        repeat: expr
+        repeat-expr: 3
+
+      - id: chara_id
+        type: u4
+
+      - id: texnum
+        type: u4
+
+      - id: to_tex_head_offset
+        type: u4
+
+      - id: to_cluts_head_offset
+        type: u4
+
+      - id: to_model_offset
+        type: u4
+
+      - id: to_kg1_offset
+        type: s4
+
+      - id: padi
+        type: s4
+
+      - id: p_tex_man
+        type: pointer('data')
+        repeat: expr
+        repeat-expr: 8
+
+  sh2gfw_all_model_data_man:
+    seq:
+      - id: n_active_character
+        type: s4
+
+      - id: n_load_character
+        type: s4
+
+      - id: p_mdm
+        type: pointer('sh2gfw_model_draw_man')
+        repeat: expr
+        repeat-expr: 32
+
+      - id: file_struct
+        type: pointer('data')
+        repeat: expr
+        repeat-expr: 32
+
+      - id: fid_model
+        type: s4
+        repeat: expr
+        repeat-expr: 32
+
+      - id: fid_anim
+        type: s4
+        repeat: expr
+        repeat-expr: 32
+
+      - id: fid_clus
+        type: s4
+        repeat: expr
+        repeat-expr: 32
+
+      - id: fid_kg1
+        type: s4
+        repeat: expr
+        repeat-expr: 32
+
+  sh2gfw_load_model_memman:
+    seq:
+      - id: index_model
+        type: u4
+
+      - id: index_anime
+        type: u4
+
+      - id: index_clus
+        type: u4
+
+      - id: p_lm_head
+        type: pointer('data')
+
+      - id: p_la_head
+        type: pointer('data')
+
+      - id: p_cl_head
+        type: pointer('data')
+
+  pic_draw_data:
+    seq:
+      - id: ap
+        type: pointer('sh2gfw_area_head')
+
+      - id: tex
+        type: s4
+
+      - id: clut
+        type: s4
+
+      - id: x0
+        type: s2
+
+      - id: y0
+        type: s2
+
+      - id: x1
+        type: s2
+
+      - id: y1
+        type: s2
+
+      - id: x2
+        type: s2
+
+      - id: y2
+        type: s2
+
+      - id: x3
+        type: s2
+
+      - id: y3
+        type: s2
+
+      - id: us0
+        type: s4
+
+      - id: vt0
+        type: s4
+
+      - id: us1
+        type: s4
+
+      - id: vt1
+        type: s4
+
+      - id: r
+        type: u1
+
+      - id: g
+        type: u1
+
+      - id: b
+        type: u1
+
+      - id: a
+        type: u1
+
+      - id: alpha_a
+        type: u1
+
+      - id: alpha_b
+        type: u1
+
+      - id: alpha_c
+        type: u1
+
+      - id: alpha_d
+        type: u1
+
+      - id: alpha_fix
+        type: u1
+
+      - id: test_ate
+        type: u1
+
+      - id: test_atst
+        type: u1
+
+      - id: test_aref
+        type: u1
+
+      - id: test_afail
+        type: u1
+
+      - id: test_date
+        type: u1
+
+      - id: test_datm
+        type: u1
+
+      - id: test_zte
+        type: u1
+
+      - id: test_ztst
+        type: u1
+
+      - id: pad
+        type: u1
+        repeat: expr
+        repeat-expr: 3
+
+      - id: otp
+        type: s2
+
+      - id: status
+        type: s2
 
   block:
     seq:
@@ -3168,465 +4870,161 @@ types:
       - id: block
         type: s2
 
-  hh_class_wrapper_work:
+  opd_w:
     seq:
-      - id: view_frustum_primitive_clip_matrix
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: view_frustum_bounding_box_clip_matrix
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: always_front_world_view_matrix
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-  impact_queue_element_option:
-    seq:
-      - id: vector
-        type: f4
-        repeat: expr
-        repeat-expr: 8
-
-      - id: float_value
-        type: f4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: int_value
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-  impact_queue_element:
-    seq:
-      - id: class_descriptor
-        type: u4
-
-      - id: h_instance
-        type: u4
-
-      - id: p_result_handle_address
-        type: pointer('data')
-
-      - id: reserved
-        type: u4
-
-      - id: option
-        type: impact_queue_element_option
-
-  object_instance:
-    seq:
-      - id: element
-        type: impact_queue_element
-
-      - id: enable
-        type: u4
-
-      - id: h_instance
-        type: u4
-
-      - id: p_block
-        type: pointer('data')
-
-      - id: timer
+      - id: u0
         type: f4
 
-      - id: p_prev
-        type: pointer('object_instance')
+      - id: u1
+        type: f4
 
-      - id: p_next
-        type: pointer('object_instance')
+      - id: v0
+        type: f4
 
-      - size: 8
+      - id: v1
+        type: f4
 
-  object_data_block_header:
-    seq:
-      - id: enable
-        type: u4
+      - id: x0
+        type: f4
 
-      - id: p_next
-        type: pointer('object_data_block_header')
+      - id: y0
+        type: f4
 
-      - size: 8
+      - id: x1
+        type: f4
 
-  object_data_pool_infomeation:
-    seq:
-      - id: block_size
-        type: u4
+      - id: y1
+        type: f4
 
-      - id: block_index_max
-        type: u4
+      - id: offset_x
+        type: f4
 
-      - id: p_block_table
-        type: pointer('data')
+      - id: offset_y
+        type: f4
 
-      - id: p_free_block_list
-        type: pointer('object_data_block_header')
+      - id: scale_x
+        type: f4
 
-  object_instance_table_infomeation:
-    seq:
-      - id: p_instance_table
-        type: pointer('object_instance')
+      - id: scale_y
+        type: f4
 
-      - id: instance_max
-        type: u4
-
-      - id: h_instance_history
-        type: u4
-
-      - id: p_hierarchy_table
-        type: pointer('data')
-
-      - id: p_free_table
-        type: pointer('object_instance')
-
-      - size: 12
-
-  object_class:
-    seq:
-      - id: p_prefix
-        type: pointer('data')
-
-      - id: p_main
-        type: pointer('data')
-
-      - id: p_suffix
-        type: pointer('data')
-
-      - id: disable
-        type: u4
-
-  impact_queue_object:
-    seq:
-      - id: en_queue
-        type: u4
-
-      - id: de_queue
-        type: u4
-
-      - id: length_current
-        type: u4
-
-      - id: length_max
-        type: u4
-
-      - id: p_element
-        type: pointer('impact_queue_element')
-
-      - size: 12
-
-  object_class_association_infomeation:
-    seq:
-      - id: p_class_list
-        type: pointer('object_class')
-
-      - id: p_data_pool_info
-        type: pointer('object_data_pool_infomeation')
-
-      - id: p_class_priority_list
-        type: pointer('data')
-
-      - id: class_max
-        type: u4
-
-  object_group_infomeation:
-    seq:
-      - id: association_info
-        type: object_class_association_infomeation
-
-      - id: instance_table_info
-        type: object_instance_table_infomeation
-
-      - id: queue_info
-        type: impact_queue_object
-
-      - id: enable
-        type: u4
+      - id: rgb
+        type: u1
 
       - id: step
-        type: u4
+        type: u1
 
-      - size: 8
+      - id: timer
+        type: u1
 
-  sh_game_key_assign:
+      - size: 1
+
+  title_spr_work:
     seq:
-      - id: type
-        type: u2
+      - id: u0
+        type: s2
 
-      - id: dir_ax
-        type: u1
+      - id: v0
+        type: s2
 
-      - id: dir_ay
-        type: u1
+      - id: u1
+        type: s2
 
-      - id: dir_bx
-        type: u1
+      - id: v1
+        type: s2
 
-      - id: dir_by
-        type: u1
+      - id: w
+        type: s2
 
-      - id: dir_cx
-        type: u1
+      - id: h
+        type: s2
 
-      - id: dir_cy
-        type: u1
+      - size: 4
 
-      - id: drink
-        type: u2
-
-      - id: radio
-        type: u2
-
-      - id: light
-        type: u2
-
-      - id: item
-        type: u2
-
-      - id: map
-        type: u2
-
-      - id: decide
-        type: u2
-
-      - id: cancel
-        type: u2
-
-      - id: skip
-        type: u2
-
-      - id: pause
-        type: u2
-
-      - id: action
-        type: u2
-
-      - id: dash
-        type: u2
-
-      - id: lslide
-        type: u2
-
-      - id: rslide
-        type: u2
-
-      - id: ready
-        type: u2
-
-      - id: view
-        type: u2
-
-  pad_key_config:
-    seq:
-      - id: enter
-        type: s4
-
-      - id: cancel
-        type: s4
-
-      - id: skip
-        type: s4
-
-      - id: front_move
-        type: s4
-
-      - id: back_move
-        type: s4
-
-      - id: right_turn
-        type: s4
-
-      - id: left_turn
-        type: s4
-
-      - id: right_move
-        type: s4
-
-      - id: left_move
-        type: s4
-
-      - id: action
-        type: s4
-
-      - id: attack
-        type: s4
-
-      - id: dash
-        type: s4
-
-      - id: light
-        type: s4
-
-      - id: item
-        type: s4
-
-      - id: search_view
-        type: s4
-
-      - id: ready
-        type: s4
-
-      - id: pause
-        type: s4
-
-      - id: map
-        type: s4
-
-      - id: padding
+      - id: rgba
         type: s4
         repeat: expr
-        repeat-expr: 6
+        repeat-expr: 4
 
-  memory_pool_association_infomeation:
+  title_point_list:
     seq:
-      - id: existent
-        type: u4
+      - id: pos_x
+        type: f4
 
-      - size: 12
+      - id: pos_y
+        type: f4
 
-      - id: data_pool_info
-        type: object_data_pool_infomeation
+      - id: pos_z
+        type: f4
 
-      - id: link_list_max
-        type: u4
+      - id: rot
+        type: f4
 
-      - id: p_link_list
-        type: pointer('data')
-
-      - size: 8
-
-  filter_work:
-    seq:
-      - id: gs_filter_kind
+      - id: stg
         type: s4
 
-      - id: flg
+      - id: jump_nemu_id
         type: s4
 
-      - id: kind_history
+  title_data_work:
+    seq:
+      - id: memcard
         type: s4
 
       - id: mode
         type: s4
 
-      - id: filter_data
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 8
-
-      - id: copy_filter_color
-        type: q_worddata
-        size: 16
-
-  filter_params:
-    seq:
-      - id: base_ix
-        type: s2
-
-      - id: base_iy
-        type: s2
-
-      - id: fo_timer
-        type: s2
-
-      - id: max_timer
-        type: s2
-
-      - id: target_sec
-        type: s1
-
-      - id: fio_ratio
-        type: s1
-
-      - id: blur_mode
-        type: s1
-
-      - id: blur_ratio
-        type: s1
-
-      - id: lesser_a
-        type: s1
-
-      - id: greater_a
-        type: s1
-
-      - id: sw_flg
-        type: s1
-
-      - id: dp_flg
-        type: s1
-
-      - id: soft_iter
-        type: u1
-
-      - id: soft_cit
-        type: u1
-
-      - id: soft_aref
-        type: u1
-
-      - id: soft_mode
-        type: s1
-
-      - id: soft_shift
-        type: s1
-
-      - id: trim_alpha
-        type: s1
-
-      - id: tex_trim_ex
-        type: s2
-
-      - id: tex_trim_ey
-        type: s2
-
-      - id: tex_trim_sx
-        type: s2
-
-      - id: tex_trim_sy
-        type: s2
-
-      - size: 2
-
-      - id: dof_z_depth
+      - id: sel
         type: s4
 
-      - id: key_alpha
-        type: u1
+      - id: timer
+        type: f4
 
-      - id: testkind
-        type: u1
+      - id: alpha
+        type: s4
 
-      - id: s1_iter
-        type: u1
+      - id: alphar
+        type: f4
 
-      - id: s1_alpha
-        type: u1
+      - id: menu
+        type: u4
+        repeat: expr
+        repeat-expr: 10
 
-      - id: s1_shift
-        type: s1
+      - id: pic0
+        type: pic_draw_data
 
-      - id: s1_base_ix
-        type: s1
+      - id: pload0
+        type: pointer('data')
 
-      - id: s2_iter
-        type: u1
+      - id: pload1
+        type: pointer('data')
 
-      - id: s2_alpha
-        type: u1
+      - id: texadr
+        type: s4
 
-      - id: s2_shift
-        type: s1
+      - id: clutadr
+        type: s4
 
-      - id: s2_base_ix
-        type: s1
+  title_spr_chg_color_work:
+    seq:
+      - id: start_rgba
+        type: s4
+        repeat: expr
+        repeat-expr: 4
 
-      - size: 2
+      - id: end_rgba
+        type: s4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cycle
+        type: f4
+
+      - id: timer
+        type: f4
+
+      - size: 8
 
   fog_part_data:
     seq:
@@ -4157,7 +5555,7 @@ types:
       - id: load_step
         type: s1
 
-      - id: global_
+      - id: global
         type: s1
 
       - size: 1
@@ -4253,583 +5651,1074 @@ types:
         repeat: expr
         repeat-expr: 4
 
-  change_list:
+  wfont_stream_data:
     seq:
-      - id: sd_se
-        type: s4
+      - id: x
+        type: u2
 
-      - id: sd_3d
-        type: s4
+      - id: y
+        type: u2
 
-      - id: file
-        type: s4
+      - id: vw
+        type: u2
 
-  se_track_buffer:
+      - id: vh
+        type: u2
+
+      - id: u
+        type: u2
+
+      - id: v
+        type: u2
+
+      - id: rgb_u
+        type: u4
+
+      - id: rgb_d
+        type: u4
+
+      - id: w
+        type: u2
+
+      - id: h
+        type: u2
+
+  mfont_stream_data:
     seq:
-      - id: status
-        type: u1
+      - id: x
+        type: u2
 
-      - id: fade_in_type
-        type: u1
+      - id: y
+        type: u2
 
-      - id: fade_out_type
-        type: u1
+      - id: u
+        type: u2
 
-      - id: pad
-        type: u1
+      - id: v
+        type: u2
 
-      - id: volume
-        type: f4
-
-  se_bgm_buffer:
+  font_stream_data:
     seq:
-      - id: current
-        type: s4
+      - id: x
+        type: u2
 
-      - id: next
-        type: s4
+      - id: y
+        type: u2
 
-      - id: read
-        type: s4
+      - id: w
+        type: u2
 
-      - id: sdb_no
-        type: s4
+      - id: h
+        type: u2
 
-      - id: volume
-        type: f4
+      - id: u
+        type: u2
 
-      - id: track
-        type: se_track_buffer
+      - id: v
+        type: u2
+
+      - id: rgb_u
+        type: u4
+
+      - id: rgb_d
+        type: u4
+
+  font_data:
+    seq:
+      - id: tex_head
+        type: u4
         repeat: expr
-        repeat-expr: 7
+        repeat-expr: 12
 
-  se2d_manage_data:
-    seq:
-      - id: sd
-        type: s4
-
-      - size: 12
-
-      - id: pos
-        type: f4
+      - id: clut_head
+        type: u4
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 12
 
-      - id: vol
-        type: f4
-
-      - id: room
-        type: s2
-
-      - id: pos_on
-        type: u1
-
-      - id: pre_dist
-        type: u1
-
-      - id: pre_pan
-        type: s2
-
-      - id: status
-        type: s2
-
-      - id: timer
-        type: f4
-
-      - id: base
-        type: f4
-
-      - size: 12
-
-  se3d_channel_data:
-    seq:
-      - id: sd
-        type: s4
-
-      - id: room
-        type: s4
-
-      - id: status
-        type: s4
-
-      - size: 4
-
-      - id: pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: vol
-        type: f4
-
-      - size: 12
-
-  snd_road_area:
-    seq:
-      - id: x0
-        type: f4
-
-      - id: z0
-        type: f4
-
-      - id: x1
-        type: f4
-
-      - id: z1
-        type: f4
-
-      - id: x2
-        type: f4
-
-      - id: z2
-        type: f4
-
-      - id: min_hy
-        type: f4
-
-      - id: max_hy
-        type: f4
-
-  sound_data:
-    seq:
-      - id: lim_sw
-        type: snd_road_area
-
-      - id: flags
-        type: s4
-
-      - id: chanstat
-        type: s4
-        repeat: expr
-        repeat-expr: 7
-
-  near_sound_data:
-    seq:
-      - id: in_vol
-        type: s1
-        repeat: expr
-        repeat-expr: 7
-
-      - id: out_vol
-        type: s1
-        repeat: expr
-        repeat-expr: 7
-
-      - size: 2
-
-      - id: err_code
-        type: s4
-
-      - id: abs_index
-        type: s4
-
-      - id: len
-        type: f4
-
-  sound_work:
-    seq:
-      - id: sound_ary
-        type: pointer('sound_data')
-
-      - size: 12
-
-      - id: chara_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: half_w
-        type: f4
-
-      - id: page
-        type: s4
-
-      - id: near_sound_num
-        type: s4
-
-      - id: near_sound_ary
-        type: near_sound_data
+      - id: clut
+        type: u4
         repeat: expr
         repeat-expr: 8
 
-      - id: on_num
-        type: s4
-
-      - id: on_chan
-        type: s1
+      - id: texbuf
+        type: u1
         repeat: expr
-        repeat-expr: 7
+        repeat-expr: 131072
 
-      - size: 1
+      - id: tex0
+        type: u8
 
-      - id: abs_num
+      - id: fonttype
         type: s4
 
-      - id: nearindex
+      - id: rgb_u
+        type: u4
+
+      - id: rgb_d
+        type: u4
+
+      - id: rgb_s
+        type: u4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: alpha
+        type: u4
+
+      - id: alpha_base
+        type: u4
+
+      - id: flag
+        type: u4
+
+      - id: x
+        type: u2
+
+      - id: y
+        type: u2
+
+      - id: wide_w
+        type: u2
+
+      - id: wide_h
+        type: u2
+
+      - id: right_x
+        type: u2
+
+      - id: right_y
+        type: u2
+
+      - id: wm
+        type: u2
+
+      - id: hm
+        type: u2
+
+      - id: wait_count
+        type: s2
+
+      - id: wait_type
+        type: s2
+
+      - id: page_sound
+        type: s2
+
+      - id: code
+        type: u2
+        repeat: expr
+        repeat-expr: 400
+
+      - id: upper
+        type: s2
+        repeat: expr
+        repeat-expr: 400
+
+      - id: lower
+        type: s2
+        repeat: expr
+        repeat-expr: 400
+
+      - id: top
+        type: s2
+
+      - id: bottom
+        type: s2
+
+      - id: st_num
+        type: s2
+
+      - id: w_st_num
+        type: s2
+
+      - id: prl_count
+        type: s2
+
+      - id: preload
+        type: s2
+
+      - id: shadow_max
+        type: s2
+
+      - id: shadow_now
+        type: s2
+
+      - id: sel_xl
+        type: u2
+
+      - id: sel_xr
+        type: u2
+
+      - id: sel_yu
+        type: u2
+        repeat: expr
+        repeat-expr: 4
+
+      - id: sel_yd
+        type: u2
+        repeat: expr
+        repeat-expr: 4
+
+      - id: sel_max
+        type: s2
+
+      - id: sel_now
+        type: s2
+
+      - id: mes_v
+        type: u2
+        repeat: expr
+        repeat-expr: 640
+
+      - size: 2
+
+      - id: mes_str_now
+        type: pointer('data')
+
+      - id: mes_str
+        type: pointer('data')
+
+      - id: prl_str
+        type: pointer('data')
+
+      - id: stream
+        type: pointer('font_stream_data')
+
+      - id: w_stream
+        type: pointer('wfont_stream_data')
+
+      - id: m_stream
+        type: pointer('mfont_stream_data')
+
+      - id: stream_max
+        type: u2
+
+      - id: w_stream_max
+        type: u2
+
+      - id: m_stream_max
+        type: u2
+
+      - id: m_code
+        type: u2
+        repeat: expr
+        repeat-expr: 256
+
+      - id: m_upper
+        type: s2
+        repeat: expr
+        repeat-expr: 256
+
+      - id: m_lower
+        type: s2
+        repeat: expr
+        repeat-expr: 256
+
+      - id: m_top
+        type: s2
+
+      - id: m_bottom
+        type: s2
+
+      - id: m_st_num
+        type: s2
+
+      - id: m_base_x
         type: s4
 
-  playing_info:
+      - id: m_base_y
+        type: s4
+
+      - id: m_base_z
+        type: s4
+
+      - id: m_rgba
+        type: u4
+
+      - id: m_sx
+        type: s4
+
+      - id: m_sy
+        type: s4
+
+      - id: m_w
+        type: s4
+
+      - id: m_h
+        type: s4
+
+      - id: m_x
+        type: s4
+
+      - id: m_y
+        type: s4
+
+      - id: bar_blink
+        type: f4
+
+      - id: p_cur
+        type: pointer('data')
+
+      - id: base_x
+        type: s4
+
+      - id: base_y
+        type: s4
+
+      - id: base_z
+        type: s4
+
+  filter_work:
     seq:
-      - id: stage
-        type: u1
+      - id: gs_filter_kind
+        type: s4
 
-      - id: enemy_off
-        type: u1
+      - id: flg
+        type: s4
 
-      - id: voice_off
-        type: u1
+      - id: kind_history
+        type: s4
 
-      - id: memo_select
-        type: u1
+      - id: mode
+        type: s4
 
-      - id: clear_end_kind
-        type: u1
+      - id: filter_data
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 8
 
-      - id: clear_end_number
-        type: u1
+      - id: copy_filter_color
+        type: q_worddata
+        size: 16
 
-      - id: rank
-        type: u1
+  filter_params:
+    seq:
+      - id: base_ix
+        type: s2
 
-      - id: game_stage
-        type: u1
+      - id: base_iy
+        type: s2
 
-      - id: hidden_item_get
-        type: u1
+      - id: fo_timer
+        type: s2
 
-      - id: spray_pow
+      - id: max_timer
+        type: s2
+
+      - id: target_sec
         type: s1
+
+      - id: fio_ratio
+        type: s1
+
+      - id: blur_mode
+        type: s1
+
+      - id: blur_ratio
+        type: s1
+
+      - id: lesser_a
+        type: s1
+
+      - id: greater_a
+        type: s1
+
+      - id: sw_flg
+        type: s1
+
+      - id: dp_flg
+        type: s1
+
+      - id: soft_iter
+        type: u1
+
+      - id: soft_cit
+        type: u1
+
+      - id: soft_aref
+        type: u1
+
+      - id: soft_mode
+        type: s1
+
+      - id: soft_shift
+        type: s1
+
+      - id: trim_alpha
+        type: s1
+
+      - id: tex_trim_ex
+        type: s2
+
+      - id: tex_trim_ey
+        type: s2
+
+      - id: tex_trim_sx
+        type: s2
+
+      - id: tex_trim_sy
+        type: s2
+
+      - size: 2
+
+      - id: dof_z_depth
+        type: s4
+
+      - id: key_alpha
+        type: u1
+
+      - id: testkind
+        type: u1
+
+      - id: s1_iter
+        type: u1
+
+      - id: s1_alpha
+        type: u1
+
+      - id: s1_shift
+        type: s1
+
+      - id: s1_base_ix
+        type: s1
+
+      - id: s2_iter
+        type: u1
+
+      - id: s2_alpha
+        type: u1
+
+      - id: s2_shift
+        type: s1
+
+      - id: s2_base_ix
+        type: s1
+
+      - size: 2
+
+  load_bg_common_info_t:
+    seq:
+      - id: glb_crd
+        type: s4
+
+      - id: px
+        type: f4
+
+      - id: pz
+        type: f4
+
+      - id: fcx
+        type: f4
+
+      - id: fcz
+        type: f4
+
+      - id: icx
+        type: s4
+
+      - id: icz
+        type: s4
+
+      - id: minx
+        type: s4
+
+      - id: minz
+        type: s4
+
+      - id: outdoor
+        type: s4
+
+      - id: room_id
+        type: s4
+
+      - id: block_id
+        type: s4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: around_id
+        type: s4
+        repeat: expr
+        repeat-expr: 25
+
+      - id: unit
+        type: s4
+
+      - id: load
+        type: s4
+
+      - id: need
+        type: s4
+
+      - id: lock
+        type: s4
+
+      - id: miss
+        type: s4
+
+      - id: hide_map
+        type: s4
+
+      - id: hide_map_request
+        type: s4
+
+  sce_mc_st_date_time:
+    seq:
+      - id: resv2
+        type: u1
+
+      - id: sec
+        type: u1
+
+      - id: min
+        type: u1
+
+      - id: hour
+        type: u1
+
+      - id: day
+        type: u1
+
+      - id: month
+        type: u1
+
+      - id: year
+        type: u2
+
+  sce_mc_tbl_get_dir:
+    seq:
+      - id: create
+        type: sce_mc_st_date_time
+
+      - id: modify
+        type: sce_mc_st_date_time
+
+      - id: file_size_byte
+        type: u4
+
+      - id: attr_file
+        type: u2
+
+      - id: reserve1
+        type: u2
+
+      - id: reserve2
+        type: u4
+
+      - id: pda_apl_no
+        type: u4
+
+      - id: entry_name
+        type: u1
+        repeat: expr
+        repeat-expr: 32
+
+  mc_fileinfo:
+    seq:
+      - id: dirid
+        type: u1
+
+      - id: fileid
+        type: u1
+
+      - id: scene
+        type: u1
+
+      - id: b_level
+        type: u1
+
+      - id: r_level
+        type: u1
+
+      - id: status
+        type: u1
 
       - id: savecount
-        type: u2
-
-      - id: clearcount
-        type: u2
-
-      - id: item_get
-        type: u2
-
-      - id: kill_by_shot
-        type: u2
-
-      - id: kill_by_fight
         type: u2
 
       - id: time
         type: f4
 
-      - id: walk_distance
-        type: f4
-
-      - id: run_distance
-        type: f4
-
-      - id: boat_clear_time
-        type: f4
-
-      - id: boat_max_speed
-        type: f4
-
-      - id: jms_damage_total
-        type: f4
-
-      - id: mar_damage_by_enemy
-        type: f4
-
-      - id: mar_damage_by_jms
-        type: f4
-
-      - id: stage_check_point
-        type: f4
-        repeat: expr
-        repeat-expr: 7
-
-      - id: stage_score
-        type: u4
-        repeat: expr
-        repeat-expr: 7
-
-      - id: total_score
-        type: u4
-
       - id: total_time
         type: f4
 
-      - id: battle_level
-        type: u1
+      - id: csum
+        type: u4
 
-      - id: riddle_level
-        type: u1
+  mc_dirdata:
+    seq:
+      - id: message
+        type: s1
+        repeat: expr
+        repeat-expr: 28
 
-      - id: brightness_level
-        type: u1
+      - id: flag
+        type: u4
 
-      - id: screen_position_x
+      - id: file
+        type: mc_fileinfo
+        repeat: expr
+        repeat-expr: 15
+
+      - id: playing
+        type: playing_info
+
+      - id: lastsave
+        type: s4
+
+      - id: id
+        type: u4
+
+      - id: csum
+        type: u4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: pad
+        type: u4
+        repeat: expr
+        repeat-expr: 130
+
+      - id: csum_all
+        type: u8
+
+  mc_savedata:
+    seq:
+      - id: csum1
+        type: u4
+
+      - id: csum2
+        type: u4
+
+      - id: data
+        type: u1
+        repeat: expr
+        repeat-expr: 8168
+
+      - id: csum3
+        type: u4
+
+      - id: pad
+        type: u4
+
+      - id: csum4
+        type: u8
+
+  mc_jobs:
+    seq:
+      - id: job
         type: s1
 
-      - id: screen_position_y
+      - id: port
         type: s1
 
-      - id: vibration
-        type: u1
+      - id: data
+        type: s2
 
-      - id: auto_load
+  mc_codec_data:
+    seq:
+      - id: key1
         type: u1
+        repeat: expr
+        repeat-expr: 24
 
-      - id: sound
+      - id: key2
         type: u1
+        repeat: expr
+        repeat-expr: 16
 
-      - id: bgm_volume
-        type: u1
+      - id: mode
+        type: s4
 
-      - id: se_volume
-        type: u1
+      - id: step
+        type: s4
 
-      - id: weapon_control
-        type: u1
+      - id: pos
+        type: pointer('data')
 
-      - id: blood_color
-        type: u1
+      - id: count
+        type: s4
 
-      - id: view_control
-        type: u1
+      - id: zcount
+        type: s4
 
-      - id: retreat_turn
-        type: u1
+      - id: csum1
+        type: u4
 
-      - id: walk_run_control
-        type: u1
+      - id: csum2
+        type: u4
 
-      - id: auto_aiming
-        type: u1
+      - size: 4
 
-      - id: view_mode
-        type: u1
+      - id: csum4
+        type: u8
 
-      - id: bullet_adjust
-        type: u1
+  mc_work:
+    seq:
+      - id: status
+        type: u2
 
-      - id: language
-        type: u1
+      - id: ls_port
+        type: s1
 
-      - id: subtitles
-        type: u1
+      - id: ls_dir
+        type: s1
 
-      - id: control_type
-        type: u1
+      - id: ls_file
+        type: s1
 
-      - id: radar
-        type: u1
+      - size: 3
+
+      - id: ls_dir_id
+        type: u4
+
+  mc_work2:
+    seq:
+      - id: dirdata
+        type: mc_dirdata
+
+      - id: savedata
+        type: mc_savedata
+
+      - id: dirtbl
+        type: sce_mc_tbl_get_dir
+        repeat: expr
+        repeat-expr: 20
+
+      - id: tmpinfo
+        type: mc_fileinfo
+        repeat: expr
+        repeat-expr: 75
+
+      - id: fileinfo
+        type: mc_fileinfo
+        repeat: expr
+        repeat-expr: 225
+
+      - id: jobs
+        type: mc_jobs
+        repeat: expr
+        repeat-expr: 16
+
+      - id: port
+        type: s1
+
+      - id: dirnum
+        type: s1
+
+      - id: files
+        type: s1
+
+      - id: tbl_files
+        type: s1
+
+      - id: job
+        type: s1
+
+      - id: job_port
+        type: s1
+
+      - id: job_data
+        type: s1
+
+      - id: job_step
+        type: s1
+
+      - id: job_num
+        type: s1
+
+      - id: job_end
+        type: s1
 
       - size: 2
 
-  camera_dat:
-    seq:
-      - id: pos
-        type: f4
+      - id: result
+        type: s4
+
+      - id: type
+        type: s4
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 2
 
-      - id: zdir
-        type: f4
+      - id: free
+        type: s4
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 2
 
-      - id: ydir
-        type: f4
+      - id: format
+        type: s4
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 2
 
-      - id: rot
-        type: f4
+      - id: info
+        type: s4
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 2
 
-      - id: clip_volume
-        type: f4
+      - id: d_ent
+        type: u1
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 2
 
-      - id: world_view
-        type: f4
+      - id: portstatus
+        type: s1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 3
 
-      - id: view_screen
-        type: f4
+      - id: dirstatus
+        type: s1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 15
 
-      - id: view_clip
-        type: f4
+      - id: filemax
+        type: s1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 3
 
-      - id: world_screen
-        type: f4
+      - id: tmp_status
+        type: s1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 3
 
-      - id: world_clip
-        type: f4
+      - size: 2
+
+      - id: type_old
+        type: s4
+
+      - id: retry
+        type: s2
+
+      - id: info_count
+        type: s2
+
+      - id: fd
+        type: s4
+
+      - id: fid
+        type: s4
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 2
 
-      - id: clip_screen
-        type: f4
+      - id: autoload
+        type: s2
+
+      - id: saveload
+        type: s1
+
+      - id: menu_step
+        type: s1
+
+      - id: menu_sstep
+        type: s1
+
+      - id: menu_base
+        type: s1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 3
 
-      - id: camera_pam
-        type: f4
+      - id: menu_num
+        type: s1
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 3
 
-      - id: screen_pam1
+      - id: tmp_num
+        type: s1
+
+      - id: menu_info
+        type: s1
+
+      - id: menu_infotype
+        type: s1
+
+      - id: menu_timer
+        type: s1
+
+      - id: menu_port
+        type: s1
+
+      - id: menu_yesno
+        type: s1
+
+      - id: menu_newdir
+        type: s1
+
+      - id: menu_bk
+        type: s1
+
+      - size: 1
+
+      - id: menu_scroll
         type: f4
-        repeat: expr
-        repeat-expr: 4
 
-      - id: screen_pam2
+      - id: menu_count
         type: f4
-        repeat: expr
-        repeat-expr: 4
 
-      - id: rot_zdir
+      - id: menu_an_count
         type: f4
+
+      - id: extra_name
+        type: s1
         repeat: expr
-        repeat-expr: 4
+        repeat-expr: 8
 
-      - id: rot_ydir
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-  vb_coordinate:
-    seq:
-      - id: flg
-        type: u4
-
-      - size: 12
-
-      - id: coord
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: work
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: param
+      - id: extra_adr
         type: pointer('data')
 
-      - id: super
-        type: pointer('vb_coordinate')
+      - id: extra_size
+        type: s4
 
-      - id: sub
-        type: pointer('vb_coordinate')
+      - id: dirid
+        type: u4
+        repeat: expr
+        repeat-expr: 15
 
-      - id: r
-        type: vb_coordinate_anon_7
+      - id: dirid_new
+        type: u4
 
-      - size: 12
+      - id: fname
+        type: s1
+        repeat: expr
+        repeat-expr: 64
 
-      - id: lw
-        type: f4
+      - id: dtime
+        type: u8
+        repeat: expr
+        repeat-expr: 2
+
+      - id: loaddata
+        type: pointer('mc_fileinfo')
+
+      - size: 4
+
+      - id: cd
+        type: mc_codec_data
+
+      - size: 24
+
+  mc_icon_sys:
+    seq:
+      - id: head
+        type: u1
+        repeat: expr
+        repeat-expr: 4
+
+      - id: reserv1
+        type: u2
+
+      - id: offs_lf
+        type: u2
+
+      - id: reserv2
+        type: u4
+
+      - id: trans_rate
+        type: u4
+
+      - id: bg_color
+        type: s4
         repeat: expr
         repeat-expr: 16
 
-      - id: ls
+      - id: light_dir
         type: f4
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 12
 
-      - id: rot
+      - id: light_color
+        type: f4
+        repeat: expr
+        repeat-expr: 12
+
+      - id: ambient
         type: f4
         repeat: expr
         repeat-expr: 4
 
-  vb_coordinate_anon_7:
+      - id: title_name
+        type: u1
+        repeat: expr
+        repeat-expr: 68
+
+      - id: fname_view
+        type: u1
+        repeat: expr
+        repeat-expr: 64
+
+      - id: fname_copy
+        type: u1
+        repeat: expr
+        repeat-expr: 64
+
+      - id: fname_del
+        type: u1
+        repeat: expr
+        repeat-expr: 64
+
+      - id: reserve3
+        type: u1
+        repeat: expr
+        repeat-expr: 512
+
+  sce_cd_clock:
     seq:
-      - id: vx
-        type: s2
+      - id: stat
+        type: u1
 
-      - id: vy
-        type: s2
+      - id: second
+        type: u1
 
-      - id: vz
-        type: s2
+      - id: minute
+        type: u1
+
+      - id: hour
+        type: u1
 
       - id: pad
-        type: s2
+        type: u1
 
-  vb_rview:
+      - id: day
+        type: u1
+
+      - id: month
+        type: u1
+
+      - id: year
+        type: u1
+
+  sce_cd_rmode:
     seq:
-      - id: vp
-        type: f4
-        repeat: expr
-        repeat-expr: 4
+      - id: trycount
+        type: u1
 
-      - id: vr
-        type: f4
-        repeat: expr
-        repeat-expr: 4
+      - id: spindlctrl
+        type: u1
 
-      - id: rz
-        type: f4
+      - id: datapattern
+        type: u1
 
-      - id: super
-        type: pointer('vb_coordinate')
+      - id: pad
+        type: u1
 
-      - size: 8
-
-  vb_wvsmatrix:
+  sce_cdl_file:
     seq:
-      - id: wvm
-        type: f4
+      - id: lsn
+        type: u4
+
+      - id: size
+        type: u4
+
+      - id: name
+        type: s1
         repeat: expr
         repeat-expr: 16
 
-      - id: vsm
-        type: f4
+      - id: date
+        type: u1
         repeat: expr
-        repeat-expr: 16
+        repeat-expr: 8
 
-      - id: wsm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-  vb_screeninfo:
-    seq:
-      - id: scr_z
-        type: f4
-
-      - id: sx
-        type: f4
-
-      - id: sy
-        type: f4
-
-      - id: cx
-        type: f4
-
-      - id: cy
-        type: f4
-
-      - id: zmin
-        type: f4
-
-      - id: zmax
-        type: f4
-
-      - id: nearz
-        type: f4
-
-      - id: farz
-        type: f4
+      - id: flag
+        type: u4
 
   sema_param:
     seq:
@@ -4887,6 +6776,64 @@ types:
         type: s4
 
       - id: wakeup_count
+        type: s4
+
+  movie_wrk:
+    seq:
+      - id: play_event_no
+        type: s4
+
+      - id: play_event_sta
+        type: s4
+
+  qword:
+    instances:
+      q:
+        pos: 0
+        type: u16
+
+      l:
+        pos: 0
+        type: u8
+        repeat: expr
+        repeat-expr: 2
+
+      i:
+        pos: 0
+        type: u4
+        repeat: expr
+        repeat-expr: 4
+
+      s:
+        pos: 0
+        type: u2
+        repeat: expr
+        repeat-expr: 8
+
+      c:
+        pos: 0
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+    seq:
+      - size: 16
+
+  str_file:
+    seq:
+      - id: is_on_cd
+        type: s4
+
+      - id: size
+        type: s4
+
+      - id: fp
+        type: sce_cdl_file
+
+      - id: iop_buf
+        type: pointer('data')
+
+      - id: fd
         type: s4
 
   t_tcount:
@@ -5001,7 +6948,7 @@ types:
       - id: p0
         type: b2
 
-      - id: as_
+      - id: as
         type: b1
 
       - id: ivf
@@ -6181,209 +8128,6 @@ types:
       - id: lblid
         type: b32
 
-  sce_dma_tag:
-    seq:
-      - id: qwc
-        type: u2
-
-      - id: mark
-        type: u1
-
-      - id: id
-        type: u1
-
-      - id: next
-        type: pointer('sce_dma_tag')
-
-      - id: p
-        type: u4
-        repeat: expr
-        repeat-expr: 2
-
-  sce_dma_env:
-    seq:
-      - id: sts
-        type: u1
-
-      - id: std
-        type: u1
-
-      - id: mfd
-        type: u1
-
-      - id: rcycle
-        type: u1
-
-      - id: express
-        type: u2
-
-      - id: notify
-        type: u2
-
-      - id: sqwc
-        type: u2
-
-      - id: tqwc
-        type: u2
-
-      - id: rbadr
-        type: pointer('data')
-
-      - id: rbmsk
-        type: u4
-
-  sce_dma_chan:
-    seq:
-      - id: chcr
-        type: t_dchcr
-
-      - id: p0
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: madr
-        type: pointer('data')
-
-      - id: p1
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: qwc
-        type: u4
-
-      - id: p2
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: tadr
-        type: pointer('sce_dma_tag')
-
-      - id: p3
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: as0
-        type: pointer('data')
-
-      - id: p4
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: as1
-        type: pointer('data')
-
-      - id: p5
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: p6
-        type: u4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: p7
-        type: u4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: sadr
-        type: pointer('data')
-
-      - id: p8
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-  sce_cd_clock:
-    seq:
-      - id: stat
-        type: u1
-
-      - id: second
-        type: u1
-
-      - id: minute
-        type: u1
-
-      - id: hour
-        type: u1
-
-      - id: pad
-        type: u1
-
-      - id: day
-        type: u1
-
-      - id: month
-        type: u1
-
-      - id: year
-        type: u1
-
-  sce_cd_rmode:
-    seq:
-      - id: trycount
-        type: u1
-
-      - id: spindlctrl
-        type: u1
-
-      - id: datapattern
-        type: u1
-
-      - id: pad
-        type: u1
-
-  sce_cdl_file:
-    seq:
-      - id: lsn
-        type: u4
-
-      - id: size
-        type: u4
-
-      - id: name
-        type: s1
-        repeat: expr
-        repeat-expr: 16
-
-      - id: date
-        type: u1
-        repeat: expr
-        repeat-expr: 8
-
-      - id: flag
-        type: u4
-
-  sce_scf_t10k_config:
-    seq:
-      - id: time_zone
-        type: s2
-
-      - id: aspect
-        type: u1
-
-      - id: date_notation
-        type: u1
-
-      - id: language
-        type: u1
-
-      - id: spdif
-        type: u1
-
-      - id: summer_time
-        type: u1
-
-      - id: time_notation
-        type: u1
-
   sce_gif_tag:
     seq:
       - id: nloop
@@ -7318,2114 +9062,6 @@ types:
       - id: pad33
         type: b31
 
-  sce_vif0_packet:
-    seq:
-      - id: p_current
-        type: pointer('data')
-
-      - id: p_base
-        type: pointer('data')
-
-      - id: p_dma_tag
-        type: pointer('data')
-
-      - id: p_vif_code
-        type: pointer('data')
-
-      - id: numlen
-        type: u4
-
-      - id: pad11
-        type: u4
-
-      - id: pad12
-        type: u4
-
-      - id: pad13
-        type: u4
-
-  sce_vif1_packet:
-    seq:
-      - id: p_current
-        type: pointer('data')
-
-      - id: p_base
-        type: pointer('data')
-
-      - id: p_dma_tag
-        type: pointer('data')
-
-      - id: p_vif_code
-        type: pointer('data')
-
-      - id: numlen
-        type: u4
-
-      - id: p_gif_tag
-        type: pointer('data')
-
-      - id: pad12
-        type: u4
-
-      - id: pad13
-        type: u4
-
-  sh2_sys:
-    seq:
-      - id: step
-        type: u4
-        repeat: expr
-        repeat-expr: 8
-
-      - id: pre_playable
-        type: u4
-
-      - id: main_status
-        type: s4
-
-      - id: soft_reset
-        type: u4
-
-      - id: frame_cnt
-        type: u4
-
-  chara_bound:
-    seq:
-      - id: chara_id
-        type: s4
-
-      - id: r
-        type: f4
-
-  drama_demo_message_time:
-    seq:
-      - id: start
-        type: u2
-
-      - id: end
-        type: u2
-
-  drama_demo_play_info:
-    seq:
-      - id: demo_no
-        type: s4
-
-      - id: adr_dds_top
-        type: pointer('data')
-
-      - id: adr_anim
-        type: pointer('data')
-
-      - id: adr_msg_time
-        type: pointer('drama_demo_message_time')
-
-      - id: msg_start
-        type: s2
-
-      - id: voice_sd_no
-        type: s2
-
-      - id: adr_voice
-        type: pointer('data')
-
-      - id: stream_no
-        type: s4
-
-      - id: stream_start
-        type: f4
-
-      - id: add_pos_x
-        type: f4
-
-      - id: add_pos_z
-        type: f4
-
-  drama_demo_anim_info:
-    seq:
-      - id: name
-        type: s1
-        repeat: expr
-        repeat-expr: 32
-
-      - id: kind
-        type: s2
-
-      - id: id
-        type: s2
-
-      - id: start
-        type: s2
-
-      - id: end
-        type: s2
-
-  dds_frame:
-    seq:
-      - id: frame
-        type: f4
-
-      - size: 12
-
-      - id: camera
-        type: dds_frame_anon_8
-
-      - id: light
-        type: dds_frame_anon_9
-        repeat: expr
-        repeat-expr: 6
-
-      - id: character
-        type: dds_frame_anon_10
-        repeat: expr
-        repeat-expr: 7
-
-  dds_frame_anon_8:
-    seq:
-      - id: position
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: interest
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: roll
-        type: f4
-
-      - id: plane
-        type: f4
-
-      - size: 8
-
-  dds_frame_anon_9:
-    seq:
-      - id: position
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: interest
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: roll
-        type: f4
-
-      - size: 12
-
-      - id: color
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: falloff
-        type: f4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: cone
-        type: f4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: visible
-        type: s4
-
-      - size: 12
-
-  dds_frame_anon_10:
-    seq:
-      - id: position
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: visible
-        type: s4
-
-      - size: 12
-
-  chizu_current_block:
-    seq:
-      - id: chizu
-        type: s4
-
-      - id: cp_x
-        type: f4
-
-      - id: cp_y
-        type: f4
-
-  chizu_marker_tex:
-    seq:
-      - id: u0
-        type: s2
-
-      - id: v0
-        type: s2
-
-      - id: u1
-        type: s2
-
-      - id: v1
-        type: s2
-
-  chizu_marker_list:
-    seq:
-      - id: tex
-        type: pointer('chizu_marker_tex')
-
-      - id: data
-        type: pointer('data')
-
-      - id: head
-        type: s4
-
-      - id: tail
-        type: s4
-
-  chizu_connect_info:
-    seq:
-      - id: up
-        type: s1
-
-      - id: down
-        type: s1
-
-      - id: right
-        type: s1
-
-      - id: left
-        type: s1
-
-  sh2gfw_area_head:
-    seq:
-      - id: area_id
-        type: u4
-
-      - id: to_global_tex_head
-        type: u4
-
-      - id: to_global_cluts_head
-        type: u4
-
-      - id: date
-        type: u4
-
-  sh2gfw_block_head:
-    seq:
-      - id: block_id
-        type: u4
-
-      - id: to_globaldef
-        type: u4
-
-      - id: to_localdef
-        type: u4
-
-      - id: to_rawblockdata_parms
-        type: u4
-
-      - id: to_local_tex
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: to_localcluts
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: texnum
-        type: u4
-
-      - id: globaltexnum
-        type: u1
-
-      - id: transtexnum
-        type: u1
-
-      - id: divflg
-        type: u1
-
-      - id: padc
-        type: u1
-
-  sh2gfw_blockglobal_head:
-    seq:
-      - id: gsregsamount
-        type: u4
-
-      - id: transamount
-        type: u4
-
-      - id: gtexnum
-        type: u1
-
-      - id: gtransnum
-        type: u1
-
-      - id: pads
-        type: u2
-
-      - id: pad2
-        type: u4
-
-  sh2gfw_blocklocal_head:
-    seq:
-      - id: gsregsamount
-        type: u2
-        repeat: expr
-        repeat-expr: 3
-
-      - id: transamount
-        type: u2
-        repeat: expr
-        repeat-expr: 3
-
-      - id: ltexnum
-        type: u2
-
-      - id: pads
-        type: u2
-
-  sh2gfw_gsregs_head:
-    seq:
-      - id: clutssize
-        type: u4
-
-      - id: to_next_data
-        type: u4
-
-      - id: to_tex_head
-        type: u4
-
-      - id: clutamount
-        type: u1
-
-      - id: transamount
-        type: u1
-
-      - id: eop_flg
-        type: u1
-
-      - id: tr_flg
-        type: u1
-
-      - id: fmt
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-      - id: transparency
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-  sh2gfw_giftag_head:
-    seq:
-      - id: gsregs_amount
-        type: u2
-
-      - id: trans_flg
-        type: u1
-
-      - id: eop_flg
-        type: u1
-
-      - id: to_next_gifhead
-        type: u4
-
-      - id: id
-        type: u2
-
-      - id: tcc
-        type: u1
-
-      - id: tfx
-        type: u1
-
-      - id: abe
-        type: u1
-
-      - id: pad1
-        type: u1
-
-      - id: pad2
-        type: u1
-
-      - id: pad3
-        type: u1
-
-  sh2gfw_tex_head:
-    seq:
-      - id: texture_no
-        type: u4
-
-      - id: x
-        type: u2
-
-      - id: y
-        type: u2
-
-      - id: w
-        type: u2
-
-      - id: h
-        type: u2
-
-      - id: color
-        type: u1
-
-      - id: padbyte
-        type: u1
-
-      - id: importance
-        type: u2
-
-      - id: datasize
-        type: u4
-
-      - id: allsize
-        type: u4
-
-      - id: sendpsm
-        type: u1
-
-      - id: drawpsm
-        type: u1
-
-      - id: bitshift
-        type: u1
-
-      - id: tagpoint
-        type: u1
-
-      - id: bitw
-        type: u1
-
-      - id: bith
-        type: u1
-
-      - id: check
-        type: u2
-
-      - id: giftag
-        type: q_worddata
-        size: 16
-
-  sh2gfw_cluts_head:
-    seq:
-      - id: clutssize
-        type: u4
-
-      - id: to_gsregs
-        type: u4
-
-      - id: to_raw_clut
-        type: u4
-
-      - id: clutamount
-        type: u1
-
-      - id: transcluts
-        type: u1
-
-      - id: clw
-        type: u1
-
-      - id: clh
-        type: u1
-
-      - id: fmt
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-      - id: transparency
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-  sh2gfw_effect_man:
-    seq:
-      - id: effectid
-        type: u2
-
-      - id: vifmark
-        type: u2
-
-      - id: valid_id
-        type: u2
-
-      - id: pads
-        type: u2
-
-      - id: thr_cid
-        type: s4
-
-      - id: thr_sid
-        type: s4
-
-      - id: tex0_data
-        type: u16
-
-      - id: alpha
-        type: u16
-
-      - id: p_tex_man
-        type: pointer('data')
-
-      - id: p_tex_head
-        type: pointer('data')
-
-      - id: p_top
-        type: pointer('data')
-
-      - id: p_pad
-        type: pointer('data')
-
-  sh2gfw_area_data_man:
-    seq:
-      - id: areaid
-        type: u4
-
-      - id: use_globalflg
-        type: u1
-        repeat: expr
-        repeat-expr: 7
-
-      - id: use_transflg
-        type: u1
-        repeat: expr
-        repeat-expr: 7
-
-      - id: block_id
-        type: u2
-        repeat: expr
-        repeat-expr: 7
-
-      - id: block_man
-        type: pointer('data')
-        repeat: expr
-        repeat-expr: 7
-
-      - id: p_ah
-        type: pointer('sh2gfw_area_head')
-
-      - id: global_tex
-        type: pointer('sh2gfw_tex_head')
-
-      - id: global_clut
-        type: pointer('sh2gfw_cluts_head')
-
-      - id: global_transtex
-        type: pointer('sh2gfw_tex_head')
-
-      - id: global_transclut
-        type: pointer('sh2gfw_cluts_head')
-
-      - id: g_tex_man
-        type: pointer('sh2gfw_tex_man')
-
-      - id: g_transtex_man
-        type: pointer('sh2gfw_tex_man')
-
-      - id: gtex_mode
-        type: u2
-
-      - id: gtrans_mode
-        type: u2
-
-      - id: pad1
-        type: u4
-
-  sh2gfw_trans_man:
-    seq:
-      - id: blockid
-        type: u4
-
-      - id: p_am
-        type: pointer('sh2gfw_area_data_man')
-
-      - id: objnum
-        type: u2
-        repeat: expr
-        repeat-expr: 4
-
-      - id: trans_clutnum
-        type: u4
-
-      - id: pad2
-        type: u4
-
-      - id: pad3
-        type: u4
-
-      - id: pad4
-        type: u4
-
-      - id: trgehead
-        type: pointer('data')
-        repeat: expr
-        repeat-expr: 4
-
-      - id: p_tr_global_gif_h
-        type: pointer('sh2gfw_giftag_head')
-        repeat: expr
-        repeat-expr: 64
-
-      - id: p_g_tex_head
-        type: pointer('sh2gfw_tex_head')
-
-      - id: p_g_clut_head
-        type: pointer('sh2gfw_cluts_head')
-
-      - id: p_g_tex_man
-        type: pointer('sh2gfw_tex_man')
-
-      - id: used_ggifnum
-        type: u1
-        repeat: expr
-        repeat-expr: 4
-
-      - id: p_tr_trans_gif_h
-        type: pointer('sh2gfw_giftag_head')
-        repeat: expr
-        repeat-expr: 64
-
-      - id: p_tr_tex_head
-        type: pointer('sh2gfw_tex_head')
-
-      - id: p_tr_clut_head
-        type: pointer('sh2gfw_cluts_head')
-
-      - id: p_tr_tex_man
-        type: pointer('sh2gfw_tex_man')
-
-      - id: used_t_rgifnum
-        type: u1
-        repeat: expr
-        repeat-expr: 4
-
-  sh2gfw_model_header:
-    seq:
-      - id: no_texture_id
-        type: u1
-
-      - id: padc
-        type: u1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: chara_id
-        type: u4
-
-      - id: texnum
-        type: u4
-
-      - id: to_tex_head_offset
-        type: u4
-
-      - id: to_cluts_head_offset
-        type: u4
-
-      - id: to_model_offset
-        type: u4
-
-      - id: to_kg1_offset
-        type: s4
-
-      - id: padi
-        type: s4
-
-      - id: p_tex_man
-        type: pointer('data')
-        repeat: expr
-        repeat-expr: 8
-
-  sh2gfw_all_model_data_man:
-    seq:
-      - id: n_active_character
-        type: s4
-
-      - id: n_load_character
-        type: s4
-
-      - id: p_mdm
-        type: pointer('sh2gfw_model_draw_man')
-        repeat: expr
-        repeat-expr: 32
-
-      - id: file_struct
-        type: pointer('data')
-        repeat: expr
-        repeat-expr: 32
-
-      - id: fid_model
-        type: s4
-        repeat: expr
-        repeat-expr: 32
-
-      - id: fid_anim
-        type: s4
-        repeat: expr
-        repeat-expr: 32
-
-      - id: fid_clus
-        type: s4
-        repeat: expr
-        repeat-expr: 32
-
-      - id: fid_kg1
-        type: s4
-        repeat: expr
-        repeat-expr: 32
-
-  sh2gfw_load_model_memman:
-    seq:
-      - id: index_model
-        type: u4
-
-      - id: index_anime
-        type: u4
-
-      - id: index_clus
-        type: u4
-
-      - id: p_lm_head
-        type: pointer('data')
-
-      - id: p_la_head
-        type: pointer('data')
-
-      - id: p_cl_head
-        type: pointer('data')
-
-  pic_draw_data:
-    seq:
-      - id: ap
-        type: pointer('sh2gfw_area_head')
-
-      - id: tex
-        type: s4
-
-      - id: clut
-        type: s4
-
-      - id: x0
-        type: s2
-
-      - id: y0
-        type: s2
-
-      - id: x1
-        type: s2
-
-      - id: y1
-        type: s2
-
-      - id: x2
-        type: s2
-
-      - id: y2
-        type: s2
-
-      - id: x3
-        type: s2
-
-      - id: y3
-        type: s2
-
-      - id: us0
-        type: s4
-
-      - id: vt0
-        type: s4
-
-      - id: us1
-        type: s4
-
-      - id: vt1
-        type: s4
-
-      - id: r
-        type: u1
-
-      - id: g
-        type: u1
-
-      - id: b
-        type: u1
-
-      - id: a
-        type: u1
-
-      - id: alpha_a
-        type: u1
-
-      - id: alpha_b
-        type: u1
-
-      - id: alpha_c
-        type: u1
-
-      - id: alpha_d
-        type: u1
-
-      - id: alpha_fix
-        type: u1
-
-      - id: test_ate
-        type: u1
-
-      - id: test_atst
-        type: u1
-
-      - id: test_aref
-        type: u1
-
-      - id: test_afail
-        type: u1
-
-      - id: test_date
-        type: u1
-
-      - id: test_datm
-        type: u1
-
-      - id: test_zte
-        type: u1
-
-      - id: test_ztst
-        type: u1
-
-      - id: pad
-        type: u1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: otp
-        type: s2
-
-      - id: status
-        type: s2
-
-  fs_mgc_file:
-    seq:
-      - id: type
-        type: b8
-
-      - id: padding
-        type: b24
-
-      - id: parent
-        type: pointer('fs_file')
-
-      - id: start
-        type: pointer('data')
-
-      - id: end
-        type: pointer('data')
-
-  fs_cd_file:
-    seq:
-      - id: type
-        type: b8
-
-      - id: number
-        type: b24
-
-      - id: name
-        type: pointer('data')
-
-      - id: lsn
-        type: s4
-
-      - id: size
-        type: s4
-
-  fs_hd_file:
-    seq:
-      - id: type
-        type: b8
-
-      - id: padding
-        type: b24
-
-      - id: name
-        type: pointer('data')
-
-      - id: offset
-        type: s4
-
-      - id: size
-        type: s4
-
-  fs_mgp_file:
-    seq:
-      - id: type
-        type: b8
-
-      - id: padding
-        type: b24
-
-      - id: file
-        type: pointer('fs_file')
-
-      - id: start
-        type: pointer('fs_mgc_file')
-
-      - id: end
-        type: pointer('fs_mgc_file')
-
-  fs_mgf_file:
-    seq:
-      - id: type
-        type: b8
-
-      - id: padding
-        type: b24
-
-      - id: parent
-        type: pointer('fs_file')
-
-      - id: offset
-        type: s4
-
-      - id: size
-        type: s4
-
-  fs_file:
-    instances:
-      check:
-        pos: 0
-        type: fs_file_anon_11
-
-      pack:
-        pos: 0
-        type: u16
-
-      cd:
-        pos: 0
-        type: fs_cd_file
-
-      hd:
-        pos: 0
-        type: fs_hd_file
-
-      mgc:
-        pos: 0
-        type: fs_mgc_file
-
-      mgf:
-        pos: 0
-        type: fs_mgf_file
-
-      mgp:
-        pos: 0
-        type: fs_mgp_file
-
-    seq:
-      - size: 16
-
-  fs_file_anon_11:
-    seq:
-      - id: type
-        type: b8
-
-      - id: number
-        type: b24
-
-      - id: pad0
-        type: s4
-
-      - id: pad1
-        type: s4
-
-      - id: pad2
-        type: s4
-
-  fs_file_index:
-    instances:
-      index:
-        pos: 0
-        type: fs_file_index_anon_12
-
-      pack:
-        pos: 0
-        type: u8
-
-    seq:
-      - size: 8
-
-  fs_file_index_anon_12:
-    seq:
-      - id: fp
-        type: pointer('fs_file')
-
-      - id: name
-        type: pointer('data')
-
-  chara_data_mem_admin_one:
-    seq:
-      - id: file
-        type: pointer('fs_file_index')
-
-      - id: adress
-        type: pointer('data')
-
-      - id: size
-        type: s4
-
-  chara_data_mem_admin:
-    seq:
-      - id: category
-        type: s1
-
-      - id: priority
-        type: s1
-
-      - id: kind
-        type: s2
-
-      - id: model
-        type: chara_data_mem_admin_one
-
-      - id: animation
-        type: chara_data_mem_admin_one
-
-      - id: shadow
-        type: chara_data_mem_admin_one
-
-      - id: cluster
-        type: chara_data_mem_admin_one
-
-  chara_data_item_file:
-    seq:
-      - id: kind
-        type: s4
-
-      - id: file
-        type: pointer('fs_file_index')
-
-  chara_data_entry_list_one:
-    seq:
-      - id: load
-        type: s4
-
-      - id: file
-        type: pointer('fs_file_index')
-
-      - id: adress
-        type: pointer('data')
-
-  chara_data_weapon_file:
-    seq:
-      - id: equip
-        type: s2
-
-      - id: kind
-        type: s2
-
-      - id: james_anim
-        type: pointer('fs_file_index')
-
-      - id: weapon_model
-        type: pointer('fs_file_index')
-
-      - id: weapon_model_r
-        type: pointer('fs_file_index')
-
-      - id: shadow_model
-        type: pointer('fs_file_index')
-
-  chara_data_entry_list:
-    seq:
-      - id: category
-        type: s4
-
-      - id: delete
-        type: s2
-
-      - id: kind
-        type: s2
-
-      - id: model
-        type: chara_data_entry_list_one
-
-      - id: animation
-        type: chara_data_entry_list_one
-
-      - id: shadow
-        type: chara_data_entry_list_one
-
-      - id: cluster
-        type: chara_data_entry_list_one
-
-  chara_data_demo_list:
-    seq:
-      - id: kind
-        type: s4
-
-      - id: model
-        type: pointer('fs_file_index')
-
-      - id: animation
-        type: pointer('fs_file_index')
-
-      - id: shadow
-        type: pointer('fs_file_index')
-
-      - id: cluster
-        type: pointer('fs_file_index')
-
-  chara_data_standard_list:
-    seq:
-      - id: kind
-        type: s4
-
-      - id: model
-        type: pointer('fs_file_index')
-
-      - id: animation
-        type: pointer('fs_file_index')
-
-      - id: shadow
-        type: pointer('fs_file_index')
-
-  chara_data_extra:
-    seq:
-      - id: adress
-        type: pointer('data')
-
-      - id: size
-        type: s4
-
-  chara_admin_room_distance:
-    seq:
-      - id: rm0
-        type: s2
-
-      - id: rm1
-        type: s2
-
-  vc_through_door_cam_param:
-    seq:
-      - id: active_f
-        type: s4
-
-      - id: timer
-        type: f4
-
-      - id: rail_ang_y
-        type: f4
-
-      - size: 4
-
-      - id: rail_sta_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: rail_sta_to_chara_dist
-        type: f4
-
-      - size: 12
-
-  vc_cam_mv_param:
-    seq:
-      - id: accel_xz
-        type: f4
-
-      - id: accel_y
-        type: f4
-
-      - id: max_spd_xz
-        type: f4
-
-      - id: max_spd_y
-        type: f4
-
-  vc_watch_mv_param:
-    seq:
-      - id: ang_accel_x
-        type: f4
-
-      - id: ang_accel_y
-        type: f4
-
-      - id: max_ang_spd_x
-        type: f4
-
-      - id: max_ang_spd_y
-        type: f4
-
-  vc_fix_cam_manager:
-    seq:
-      - id: exception_f
-        type: s4
-
-      - id: add_ang_y
-        type: f4
-
-      - id: add_rd_x
-        type: f4
-
-      - id: add_rd_z
-        type: f4
-
-  vc_cir_cam_manager:
-    seq:
-      - id: origin
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: sw_l
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-  vc_limit_area:
-    seq:
-      - id: min_hx
-        type: f4
-
-      - id: max_hx
-        type: f4
-
-      - id: min_hz
-        type: f4
-
-      - id: max_hz
-        type: f4
-
-      - id: min_hy
-        type: f4
-
-      - id: max_hy
-        type: f4
-
-  vc_road_area:
-    seq:
-      - id: x0
-        type: f4
-
-      - id: z0
-        type: f4
-
-      - id: x1
-        type: f4
-
-      - id: z1
-        type: f4
-
-      - id: x2
-        type: f4
-
-      - id: z2
-        type: f4
-
-      - id: min_hy
-        type: f4
-
-      - id: max_hy
-        type: f4
-
-  vc_chase_cam_param:
-    seq:
-      - id: ofs_hy
-        type: f4
-
-      - id: ratio_r_xz
-        type: f4
-
-      - id: lr_lim_ang_y
-        type: f4
-
-      - id: rr_lim_ang_y
-        type: f4
-
-  vc_settle_cam_param:
-    seq:
-      - id: sta_base_ang_y
-        type: f4
-
-      - id: end_base_ang_y
-        type: f4
-
-      - id: lr_lim_ang_y
-        type: f4
-
-      - id: rr_lim_ang_y
-        type: f4
-
-  vc_fix_ang_cam_param:
-    seq:
-      - id: ang_x
-        type: f4
-
-      - id: ang_y
-        type: f4
-
-      - id: ofs_hy
-        type: f4
-
-      - id: cam2wth_dist
-        type: f4
-
-  vc_locus_circle_cam_param:
-    seq:
-      - id: origin_x
-        type: f4
-
-      - id: origin_z
-        type: f4
-
-      - id: ang_y
-        type: f4
-
-      - id: radius
-        type: f4
-
-  vc_road_data:
-    seq:
-      - id: lim_sw
-        type: vc_road_area
-
-      - id: lim_rd
-        type: vc_road_area
-
-      - id: kind_id
-        type: s4
-
-      - id: flags
-        type: s4
-
-      - id: area_size_type
-        type: s4
-
-      - id: rd_type
-        type: s4
-
-      - id: mv_y_type
-        type: s4
-
-      - id: ofs_watch_hy
-        type: f4
-
-      - id: trace_btm_hy
-        type: f4
-
-      - id: rd_dir_type
-        type: s4
-
-      - id: projection
-        type: f4
-
-      - id: proj_volume
-        type: f4
-
-      - id: proj_sec
-        type: f4
-
-      - id: cam_mv_type
-        type: s4
-
-      - id: tmp
-        type: vc_road_data_anon_13
-        size: 16
-
-  vc_road_data_anon_13:
-    instances:
-      data:
-        pos: 0
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-      chs:
-        pos: 0
-        type: vc_chase_cam_param
-
-      stl:
-        pos: 0
-        type: vc_settle_cam_param
-
-      fix:
-        pos: 0
-        type: vc_fix_ang_cam_param
-
-      cir:
-        pos: 0
-        type: vc_locus_circle_cam_param
-
-    seq:
-      - size: 16
-
-  vc_near_road_data:
-    seq:
-      - id: road_p
-        type: pointer('vc_road_data')
-
-      - id: rd_dir_type
-        type: s4
-
-      - id: use_priority
-        type: s4
-
-      - id: chara2road_sum_dist
-        type: f4
-
-      - id: chara2road_vec_x
-        type: f4
-
-      - id: chara2road_vec_z
-        type: f4
-
-      - id: rd
-        type: vc_limit_area
-
-      - id: sw
-        type: vc_limit_area
-
-      - size: 8
-
-      - id: rd_rzm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: rd_rim
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: sw_rzm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: sw_rim
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-  vc_work:
-    seq:
-      - id: view_cam_active_f
-        type: s4
-
-      - id: vc_road_ary_list
-        type: pointer('data')
-
-      - id: flags
-        type: u2
-
-      - size: 2
-
-      - id: through_door_activate_init_f
-        type: s4
-
-      - id: through_door
-        type: vc_through_door_cam_param
-
-      - id: scr_half_ang_wy
-        type: f4
-
-      - id: scr_half_ang_wx
-        type: f4
-
-      - id: user_cam_mv_prm
-        type: vc_cam_mv_param
-
-      - size: 8
-
-      - id: cam_tgt_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cam_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cam_mv_ang_y
-        type: f4
-
-      - size: 12
-
-      - id: cam_velo
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: old_cam_excl_area_r
-        type: f4
-
-      - id: ideal_cam_pos_h
-        type: f4
-
-      - id: user_watch_mv_prm
-        type: vc_watch_mv_param
-
-      - size: 8
-
-      - id: watch_tgt_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: watch_tgt_max_y
-        type: f4
-
-      - id: watch_tgt_ang_z
-        type: f4
-
-      - size: 8
-
-      - id: cam_mat_ang
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cam_mat
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: ofs_cam_ang
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: ofs_cam_ang_spd
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: base_cam_ang
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: old_base_cam_ang
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cam_chara2ideal_ang_y
-        type: f4
-
-      - size: 12
-
-      - id: cam_tgt_velo
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cam_tgt_mv_ang_y
-        type: f4
-
-      - id: cam_tgt_spd
-        type: f4
-
-      - size: 8
-
-      - id: chara_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: chara_bottom_y
-        type: f4
-
-      - id: chara_top_y
-        type: f4
-
-      - id: chara_center_y
-        type: f4
-
-      - id: chara_grnd_y
-        type: f4
-
-      - id: chara_head_pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: chara_mv_spd
-        type: f4
-
-      - id: chara_mv_ang_y
-        type: f4
-
-      - id: chara_ang_spd_y
-        type: f4
-
-      - id: chara_eye_ang_y
-        type: f4
-
-      - id: chara_eye_ang_wy
-        type: f4
-
-      - id: chara_watch_xz_r
-        type: f4
-
-      - id: fix_man
-        type: vc_fix_cam_manager
-
-      - size: 8
-
-      - id: cir_man
-        type: vc_cir_cam_manager
-
-      - id: near_road_ary
-        type: vc_near_road_data
-        repeat: expr
-        repeat-expr: 128
-
-      - id: near_road_suu
-        type: s4
-
-      - size: 12
-
-      - id: cur_near_road
-        type: vc_near_road_data
-
-      - id: nearest_enemy_p
-        type: pointer('sub_character')
-
-      - id: nearest_enemy_xz_dist
-        type: f4
-
-      - id: enemy_input_watch_y
-        type: f4
-
-      - id: nearest_item_p
-        type: pointer('sub_character')
-
-      - id: nearest_item_xz_dist
-        type: f4
-
-      - size: 12
-
-  vc_camera_intinfo:
-    seq:
-      - id: mode
-        type: s4
-
-      - id: mv_smooth
-        type: s4
-
-      - id: ev_cam_rate
-        type: f4
-
-  vc_projection_params:
-    seq:
-      - id: new
-        type: f4
-
-      - id: old
-        type: f4
-
-      - id: delta
-        type: f4
-
-      - id: flg
-        type: s4
-
-  vc_pre_info:
-    seq:
-      - id: hero_neck_wm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: hero_neck_lm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: hero_neck_lwm
-        type: f4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: hero_head_ang_x
-        type: f4
-
-      - id: hero_head_ang_y
-        type: f4
-
-      - id: hero_eye_y
-        type: f4
-
-  kanri:
-    seq:
-      - id: pos
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: ang
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: rot_spd
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: velo_y
-        type: f4
-
-      - id: velo_xz
-        type: f4
-
-      - id: velo_houi
-        type: f4
-
-  sys_w:
-    seq:
-      - id: cam_ang_y
-        type: f4
-
-      - id: cam_ang_z
-        type: f4
-
-      - id: cam_r_xz
-        type: f4
-
-      - id: cam_y
-        type: f4
-
-      - id: hero
-        type: kanri
-
-  wfont_stream_data:
-    seq:
-      - id: x
-        type: u2
-
-      - id: y
-        type: u2
-
-      - id: vw
-        type: u2
-
-      - id: vh
-        type: u2
-
-      - id: u
-        type: u2
-
-      - id: v
-        type: u2
-
-      - id: rgb_u
-        type: u4
-
-      - id: rgb_d
-        type: u4
-
-      - id: w
-        type: u2
-
-      - id: h
-        type: u2
-
-  mfont_stream_data:
-    seq:
-      - id: x
-        type: u2
-
-      - id: y
-        type: u2
-
-      - id: u
-        type: u2
-
-      - id: v
-        type: u2
-
-  font_stream_data:
-    seq:
-      - id: x
-        type: u2
-
-      - id: y
-        type: u2
-
-      - id: w
-        type: u2
-
-      - id: h
-        type: u2
-
-      - id: u
-        type: u2
-
-      - id: v
-        type: u2
-
-      - id: rgb_u
-        type: u4
-
-      - id: rgb_d
-        type: u4
-
-  font_data:
-    seq:
-      - id: tex_head
-        type: u4
-        repeat: expr
-        repeat-expr: 12
-
-      - id: clut_head
-        type: u4
-        repeat: expr
-        repeat-expr: 12
-
-      - id: clut
-        type: u4
-        repeat: expr
-        repeat-expr: 8
-
-      - id: texbuf
-        type: u1
-        repeat: expr
-        repeat-expr: 131072
-
-      - id: tex0
-        type: u8
-
-      - id: fonttype
-        type: s4
-
-      - id: rgb_u
-        type: u4
-
-      - id: rgb_d
-        type: u4
-
-      - id: rgb_s
-        type: u4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: alpha
-        type: u4
-
-      - id: alpha_base
-        type: u4
-
-      - id: flag
-        type: u4
-
-      - id: x
-        type: u2
-
-      - id: y
-        type: u2
-
-      - id: wide_w
-        type: u2
-
-      - id: wide_h
-        type: u2
-
-      - id: right_x
-        type: u2
-
-      - id: right_y
-        type: u2
-
-      - id: wm
-        type: u2
-
-      - id: hm
-        type: u2
-
-      - id: wait_count
-        type: s2
-
-      - id: wait_type
-        type: s2
-
-      - id: page_sound
-        type: s2
-
-      - id: code
-        type: u2
-        repeat: expr
-        repeat-expr: 400
-
-      - id: upper
-        type: s2
-        repeat: expr
-        repeat-expr: 400
-
-      - id: lower
-        type: s2
-        repeat: expr
-        repeat-expr: 400
-
-      - id: top
-        type: s2
-
-      - id: bottom
-        type: s2
-
-      - id: st_num
-        type: s2
-
-      - id: w_st_num
-        type: s2
-
-      - id: prl_count
-        type: s2
-
-      - id: preload
-        type: s2
-
-      - id: shadow_max
-        type: s2
-
-      - id: shadow_now
-        type: s2
-
-      - id: sel_xl
-        type: u2
-
-      - id: sel_xr
-        type: u2
-
-      - id: sel_yu
-        type: u2
-        repeat: expr
-        repeat-expr: 4
-
-      - id: sel_yd
-        type: u2
-        repeat: expr
-        repeat-expr: 4
-
-      - id: sel_max
-        type: s2
-
-      - id: sel_now
-        type: s2
-
-      - id: mes_v
-        type: u2
-        repeat: expr
-        repeat-expr: 640
-
-      - size: 2
-
-      - id: mes_str_now
-        type: pointer('data')
-
-      - id: mes_str
-        type: pointer('data')
-
-      - id: prl_str
-        type: pointer('data')
-
-      - id: stream
-        type: pointer('font_stream_data')
-
-      - id: w_stream
-        type: pointer('wfont_stream_data')
-
-      - id: m_stream
-        type: pointer('mfont_stream_data')
-
-      - id: stream_max
-        type: u2
-
-      - id: w_stream_max
-        type: u2
-
-      - id: m_stream_max
-        type: u2
-
-      - id: m_code
-        type: u2
-        repeat: expr
-        repeat-expr: 256
-
-      - id: m_upper
-        type: s2
-        repeat: expr
-        repeat-expr: 256
-
-      - id: m_lower
-        type: s2
-        repeat: expr
-        repeat-expr: 256
-
-      - id: m_top
-        type: s2
-
-      - id: m_bottom
-        type: s2
-
-      - id: m_st_num
-        type: s2
-
-      - id: m_base_x
-        type: s4
-
-      - id: m_base_y
-        type: s4
-
-      - id: m_base_z
-        type: s4
-
-      - id: m_rgba
-        type: u4
-
-      - id: m_sx
-        type: s4
-
-      - id: m_sy
-        type: s4
-
-      - id: m_w
-        type: s4
-
-      - id: m_h
-        type: s4
-
-      - id: m_x
-        type: s4
-
-      - id: m_y
-        type: s4
-
-      - id: bar_blink
-        type: f4
-
-      - id: p_cur
-        type: pointer('data')
-
-      - id: base_x
-        type: s4
-
-      - id: base_y
-        type: s4
-
-      - id: base_z
-        type: s4
-
   sce_gs_disp_env:
     seq:
       - id: pmode
@@ -9833,1163 +9469,7 @@ types:
       - id: sce_gs_vs_cid
         type: s4
 
-  sh_gs_loop_env:
-    seq:
-      - id: gs_draw_fb_ps
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: gs_now_disp_fb_ps
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: gs_next_disp_fb_ps
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: gs_tex_tb_ps
-        type: u4
-        repeat: expr
-        repeat-expr: 24
-
-      - id: gs_shadow_fbp
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: gs_shadow_work_fbp
-        type: u4
-        repeat: expr
-        repeat-expr: 3
-
-      - id: clutsize
-        type: u2
-
-      - id: clutamount
-        type: u2
-
-      - id: gs_clut_page
-        type: u2
-        repeat: expr
-        repeat-expr: 8
-
-  sh_gs_draw_env:
-    seq:
-      - id: giftag
-        type: sce_gif_tag
-
-      - id: draw
-        type: sce_gs_draw_env1
-
-      - id: drawq2
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 5
-
-      - id: clear
-        type: sce_gs_clear
-
-      - id: giftag_nc
-        type: sce_gif_tag
-
-      - id: draw_nc
-        type: sce_gs_draw_env1
-
-      - id: drawq2_nc
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 5
-
-      - id: gifad_frame_normal
-        type: q_worddata
-        size: 16
-
-      - id: frame_normal
-        type: q_worddata
-        size: 16
-
-      - id: gifad_frame_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: gifad_frame_msk_dalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_msk_dalpha
-        type: q_worddata
-        size: 16
-
-      - id: gifad_frame_msk_rgb
-        type: q_worddata
-        size: 16
-
-      - id: frame_msk_rgb
-        type: q_worddata
-        size: 16
-
-  sh_gs_stencil_draw_env:
-    seq:
-      - id: giftag
-        type: sce_gif_tag
-
-      - id: draw
-        type: sce_gs_draw_env1
-
-      - id: alpha1
-        type: q_worddata
-        size: 16
-
-      - id: drawq2
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 6
-
-      - id: clear
-        type: sce_gs_clear
-
-      - id: frame
-        type: q_worddata
-        size: 16
-
-      - id: giftag_nc
-        type: sce_gif_tag
-
-      - id: draw_nc
-        type: sce_gs_draw_env1
-
-      - id: alpha1_nc
-        type: q_worddata
-        size: 16
-
-      - id: drawq2_nc
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 6
-
-      - id: gifad_frame_normal
-        type: q_worddata
-        size: 16
-
-      - id: frame_normal
-        type: q_worddata
-        size: 16
-
-      - id: gifad_frame_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: gifad_frame_msk_dalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_msk_dalpha
-        type: q_worddata
-        size: 16
-
-  sh_gs_tiny_draw_env:
-    seq:
-      - id: giftag
-        type: q_worddata
-        size: 16
-
-      - id: frame
-        type: q_worddata
-        size: 16
-
-      - id: scissor
-        type: q_worddata
-        size: 16
-
-      - id: xyoffset
-        type: q_worddata
-        size: 16
-
-      - id: zbuf
-        type: q_worddata
-        size: 16
-
-      - id: test
-        type: q_worddata
-        size: 16
-
-      - id: gifad_normal
-        type: q_worddata
-        size: 16
-
-      - id: frame_normal
-        type: q_worddata
-        size: 16
-
-      - id: gifad_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_mskalpha
-        type: q_worddata
-        size: 16
-
-      - id: gifad_msk_dalpha
-        type: q_worddata
-        size: 16
-
-      - id: frame_msk_dalpha
-        type: q_worddata
-        size: 16
-
-  sh_gs_all_env:
-    seq:
-      - id: loop_counter
-        type: u8
-
-      - id: loop
-        type: u4
-
-      - id: loop3
-        type: u4
-
-      - id: loop_env
-        type: sh_gs_loop_env
-
-      - id: disp_env
-        type: sce_gs_disp_env
-        repeat: expr
-        repeat-expr: 3
-
-      - size: 8
-
-      - id: draw_env
-        type: sh_gs_draw_env
-        repeat: expr
-        repeat-expr: 3
-
-      - id: stencil_buf
-        type: sh_gs_stencil_draw_env
-        repeat: expr
-        repeat-expr: 3
-
-      - id: stencil_work
-        type: sh_gs_tiny_draw_env
-        repeat: expr
-        repeat-expr: 6
-
-      - id: default_env
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: stencil_env
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: compshadow_env
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: filter_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: filter_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: filter_c
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: filter_d
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 10
-
-      - id: move_gtex
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 8
-
-      - id: gs_reg_alpha_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_alpha_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_alpha_c
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_alpha_d
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_alpha_e
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_test_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_test_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_test_c
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_test_d
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_texa_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_texa_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_zbuf_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_zbuf_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_pabe_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_pabe_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_fba_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_fba_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_prmodecont_a
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_reg_prmodecont_b
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_sync_dummy_label
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: gs_sync_dummy_texflush
-        type: q_worddata
-        repeat: expr
-        repeat-expr: 2
-
-      - id: now_draw_env
-        type: sh_gs_draw_env
-
-  sce_mc_st_date_time:
-    seq:
-      - id: resv2
-        type: u1
-
-      - id: sec
-        type: u1
-
-      - id: min
-        type: u1
-
-      - id: hour
-        type: u1
-
-      - id: day
-        type: u1
-
-      - id: month
-        type: u1
-
-      - id: year
-        type: u2
-
-  sce_mc_tbl_get_dir:
-    seq:
-      - id: create
-        type: sce_mc_st_date_time
-
-      - id: modify
-        type: sce_mc_st_date_time
-
-      - id: file_size_byte
-        type: u4
-
-      - id: attr_file
-        type: u2
-
-      - id: reserve1
-        type: u2
-
-      - id: reserve2
-        type: u4
-
-      - id: pda_apl_no
-        type: u4
-
-      - id: entry_name
-        type: u1
-        repeat: expr
-        repeat-expr: 32
-
-  mc_fileinfo:
-    seq:
-      - id: dirid
-        type: u1
-
-      - id: fileid
-        type: u1
-
-      - id: scene
-        type: u1
-
-      - id: b_level
-        type: u1
-
-      - id: r_level
-        type: u1
-
-      - id: status
-        type: u1
-
-      - id: savecount
-        type: u2
-
-      - id: time
-        type: f4
-
-      - id: total_time
-        type: f4
-
-      - id: csum
-        type: u4
-
-  mc_dirdata:
-    seq:
-      - id: message
-        type: s1
-        repeat: expr
-        repeat-expr: 28
-
-      - id: flag
-        type: u4
-
-      - id: file
-        type: mc_fileinfo
-        repeat: expr
-        repeat-expr: 15
-
-      - id: playing
-        type: playing_info
-
-      - id: lastsave
-        type: s4
-
-      - id: id
-        type: u4
-
-      - id: csum
-        type: u4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: pad
-        type: u4
-        repeat: expr
-        repeat-expr: 130
-
-      - id: csum_all
-        type: u8
-
-  mc_savedata:
-    seq:
-      - id: csum1
-        type: u4
-
-      - id: csum2
-        type: u4
-
-      - id: data
-        type: u1
-        repeat: expr
-        repeat-expr: 8168
-
-      - id: csum3
-        type: u4
-
-      - id: pad
-        type: u4
-
-      - id: csum4
-        type: u8
-
-  mc_jobs:
-    seq:
-      - id: job
-        type: s1
-
-      - id: port
-        type: s1
-
-      - id: data
-        type: s2
-
-  mc_codec_data:
-    seq:
-      - id: key1
-        type: u1
-        repeat: expr
-        repeat-expr: 24
-
-      - id: key2
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-      - id: mode
-        type: s4
-
-      - id: step
-        type: s4
-
-      - id: pos
-        type: pointer('data')
-
-      - id: count
-        type: s4
-
-      - id: zcount
-        type: s4
-
-      - id: csum1
-        type: u4
-
-      - id: csum2
-        type: u4
-
-      - size: 4
-
-      - id: csum4
-        type: u8
-
-  mc_work:
-    seq:
-      - id: status
-        type: u2
-
-      - id: ls_port
-        type: s1
-
-      - id: ls_dir
-        type: s1
-
-      - id: ls_file
-        type: s1
-
-      - size: 3
-
-      - id: ls_dir_id
-        type: u4
-
-  mc_work2:
-    seq:
-      - id: dirdata
-        type: mc_dirdata
-
-      - id: savedata
-        type: mc_savedata
-
-      - id: dirtbl
-        type: sce_mc_tbl_get_dir
-        repeat: expr
-        repeat-expr: 20
-
-      - id: tmpinfo
-        type: mc_fileinfo
-        repeat: expr
-        repeat-expr: 75
-
-      - id: fileinfo
-        type: mc_fileinfo
-        repeat: expr
-        repeat-expr: 225
-
-      - id: jobs
-        type: mc_jobs
-        repeat: expr
-        repeat-expr: 16
-
-      - id: port
-        type: s1
-
-      - id: dirnum
-        type: s1
-
-      - id: files
-        type: s1
-
-      - id: tbl_files
-        type: s1
-
-      - id: job
-        type: s1
-
-      - id: job_port
-        type: s1
-
-      - id: job_data
-        type: s1
-
-      - id: job_step
-        type: s1
-
-      - id: job_num
-        type: s1
-
-      - id: job_end
-        type: s1
-
-      - size: 2
-
-      - id: result
-        type: s4
-
-      - id: type
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: free
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: format
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: info
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: d_ent
-        type: u1
-        repeat: expr
-        repeat-expr: 2
-
-      - id: portstatus
-        type: s1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: dirstatus
-        type: s1
-        repeat: expr
-        repeat-expr: 15
-
-      - id: filemax
-        type: s1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: tmp_status
-        type: s1
-        repeat: expr
-        repeat-expr: 3
-
-      - size: 2
-
-      - id: type_old
-        type: s4
-
-      - id: retry
-        type: s2
-
-      - id: info_count
-        type: s2
-
-      - id: fd
-        type: s4
-
-      - id: fid
-        type: s4
-        repeat: expr
-        repeat-expr: 2
-
-      - id: autoload
-        type: s2
-
-      - id: saveload
-        type: s1
-
-      - id: menu_step
-        type: s1
-
-      - id: menu_sstep
-        type: s1
-
-      - id: menu_base
-        type: s1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: menu_num
-        type: s1
-        repeat: expr
-        repeat-expr: 3
-
-      - id: tmp_num
-        type: s1
-
-      - id: menu_info
-        type: s1
-
-      - id: menu_infotype
-        type: s1
-
-      - id: menu_timer
-        type: s1
-
-      - id: menu_port
-        type: s1
-
-      - id: menu_yesno
-        type: s1
-
-      - id: menu_newdir
-        type: s1
-
-      - id: menu_bk
-        type: s1
-
-      - size: 1
-
-      - id: menu_scroll
-        type: f4
-
-      - id: menu_count
-        type: f4
-
-      - id: menu_an_count
-        type: f4
-
-      - id: extra_name
-        type: s1
-        repeat: expr
-        repeat-expr: 8
-
-      - id: extra_adr
-        type: pointer('data')
-
-      - id: extra_size
-        type: s4
-
-      - id: dirid
-        type: u4
-        repeat: expr
-        repeat-expr: 15
-
-      - id: dirid_new
-        type: u4
-
-      - id: fname
-        type: s1
-        repeat: expr
-        repeat-expr: 64
-
-      - id: dtime
-        type: u8
-        repeat: expr
-        repeat-expr: 2
-
-      - id: loaddata
-        type: pointer('mc_fileinfo')
-
-      - size: 4
-
-      - id: cd
-        type: mc_codec_data
-
-      - size: 24
-
-  mc_icon_sys:
-    seq:
-      - id: head
-        type: u1
-        repeat: expr
-        repeat-expr: 4
-
-      - id: reserv1
-        type: u2
-
-      - id: offs_lf
-        type: u2
-
-      - id: reserv2
-        type: u4
-
-      - id: trans_rate
-        type: u4
-
-      - id: bg_color
-        type: s4
-        repeat: expr
-        repeat-expr: 16
-
-      - id: light_dir
-        type: f4
-        repeat: expr
-        repeat-expr: 12
-
-      - id: light_color
-        type: f4
-        repeat: expr
-        repeat-expr: 12
-
-      - id: ambient
-        type: f4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: title_name
-        type: u1
-        repeat: expr
-        repeat-expr: 68
-
-      - id: fname_view
-        type: u1
-        repeat: expr
-        repeat-expr: 64
-
-      - id: fname_copy
-        type: u1
-        repeat: expr
-        repeat-expr: 64
-
-      - id: fname_del
-        type: u1
-        repeat: expr
-        repeat-expr: 64
-
-      - id: reserve3
-        type: u1
-        repeat: expr
-        repeat-expr: 512
-
-  opd_w:
-    seq:
-      - id: u0
-        type: f4
-
-      - id: u1
-        type: f4
-
-      - id: v0
-        type: f4
-
-      - id: v1
-        type: f4
-
-      - id: x0
-        type: f4
-
-      - id: y0
-        type: f4
-
-      - id: x1
-        type: f4
-
-      - id: y1
-        type: f4
-
-      - id: offset_x
-        type: f4
-
-      - id: offset_y
-        type: f4
-
-      - id: scale_x
-        type: f4
-
-      - id: scale_y
-        type: f4
-
-      - id: rgb
-        type: u1
-
-      - id: step
-        type: u1
-
-      - id: timer
-        type: u1
-
-      - size: 1
-
-  title_spr_work:
-    seq:
-      - id: u0
-        type: s2
-
-      - id: v0
-        type: s2
-
-      - id: u1
-        type: s2
-
-      - id: v1
-        type: s2
-
-      - id: w
-        type: s2
-
-      - id: h
-        type: s2
-
-      - size: 4
-
-      - id: rgba
-        type: s4
-        repeat: expr
-        repeat-expr: 4
-
-  title_point_list:
-    seq:
-      - id: pos_x
-        type: f4
-
-      - id: pos_y
-        type: f4
-
-      - id: pos_z
-        type: f4
-
-      - id: rot
-        type: f4
-
-      - id: stg
-        type: s4
-
-      - id: jump_nemu_id
-        type: s4
-
-  title_data_work:
-    seq:
-      - id: memcard
-        type: s4
-
-      - id: mode
-        type: s4
-
-      - id: sel
-        type: s4
-
-      - id: timer
-        type: f4
-
-      - id: alpha
-        type: s4
-
-      - id: alphar
-        type: f4
-
-      - id: menu
-        type: u4
-        repeat: expr
-        repeat-expr: 10
-
-      - id: pic0
-        type: pic_draw_data
-
-      - id: pload0
-        type: pointer('data')
-
-      - id: pload1
-        type: pointer('data')
-
-      - id: texadr
-        type: s4
-
-      - id: clutadr
-        type: s4
-
-  title_spr_chg_color_work:
-    seq:
-      - id: start_rgba
-        type: s4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: end_rgba
-        type: s4
-        repeat: expr
-        repeat-expr: 4
-
-      - id: cycle
-        type: f4
-
-      - id: timer
-        type: f4
-
-      - size: 8
-
-  debug_print_info:
-    seq:
-      - id: xofs
-        type: s4
-
-      - id: yofs
-        type: s4
-
-      - id: x
-        type: s4
-
-      - id: y
-        type: s4
-
-      - id: w
-        type: s4
-
-      - id: h
-        type: s4
-
-      - id: tab
-        type: s4
-
-      - id: xofs_r
-        type: s4
-
-      - id: yofs_r
-        type: s4
-
-      - id: y_r
-        type: s4
-
-  screen_effect_parameter:
-    seq:
-      - id: fade_status
-        type: s4
-
-      - id: fade_type
-        type: s4
-
-      - id: fade_timer_now
-        type: f4
-
-      - id: fade_timer_max
-        type: f4
-
-  movie_wrk:
-    seq:
-      - id: play_event_no
-        type: s4
-
-      - id: play_event_sta
-        type: s4
-
-  qword:
-    instances:
-      q:
-        pos: 0
-        type: u16
-
-      l:
-        pos: 0
-        type: u8
-        repeat: expr
-        repeat-expr: 2
-
-      i:
-        pos: 0
-        type: u4
-        repeat: expr
-        repeat-expr: 4
-
-      s:
-        pos: 0
-        type: u2
-        repeat: expr
-        repeat-expr: 8
-
-      c:
-        pos: 0
-        type: u1
-        repeat: expr
-        repeat-expr: 16
-
-    seq:
-      - size: 16
-
-  str_file:
-    seq:
-      - id: is_on_cd
-        type: s4
-
-      - id: size
-        type: s4
-
-      - id: fp
-        type: sce_cdl_file
-
-      - id: iop_buf
-        type: pointer('data')
-
-      - id: fd
-        type: s4
-
-  anon_14:
+  anon_12:
     seq:
       - id: status
         type: s4
@@ -11492,71 +9972,1617 @@ types:
       - id: adr_msg_time
         type: pointer('pss_message_time')
 
-  load_bg_common_info_t:
+  sh_gs_loop_env:
     seq:
-      - id: glb_crd
-        type: s4
+      - id: gs_draw_fb_ps
+        type: u4
+        repeat: expr
+        repeat-expr: 3
 
-      - id: px
-        type: f4
+      - id: gs_now_disp_fb_ps
+        type: u4
+        repeat: expr
+        repeat-expr: 3
 
-      - id: pz
-        type: f4
+      - id: gs_next_disp_fb_ps
+        type: u4
+        repeat: expr
+        repeat-expr: 3
 
-      - id: fcx
-        type: f4
+      - id: gs_tex_tb_ps
+        type: u4
+        repeat: expr
+        repeat-expr: 24
 
-      - id: fcz
-        type: f4
+      - id: gs_shadow_fbp
+        type: u4
+        repeat: expr
+        repeat-expr: 3
 
-      - id: icx
-        type: s4
+      - id: gs_shadow_work_fbp
+        type: u4
+        repeat: expr
+        repeat-expr: 3
 
-      - id: icz
-        type: s4
+      - id: clutsize
+        type: u2
 
-      - id: minx
-        type: s4
+      - id: clutamount
+        type: u2
 
-      - id: minz
-        type: s4
+      - id: gs_clut_page
+        type: u2
+        repeat: expr
+        repeat-expr: 8
 
-      - id: outdoor
-        type: s4
+  sh_gs_draw_env:
+    seq:
+      - id: giftag
+        type: sce_gif_tag
 
-      - id: room_id
-        type: s4
+      - id: draw
+        type: sce_gs_draw_env1
 
-      - id: block_id
-        type: s4
+      - id: drawq2
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 5
+
+      - id: clear
+        type: sce_gs_clear
+
+      - id: giftag_nc
+        type: sce_gif_tag
+
+      - id: draw_nc
+        type: sce_gs_draw_env1
+
+      - id: drawq2_nc
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 5
+
+      - id: gifad_frame_normal
+        type: q_worddata
+        size: 16
+
+      - id: frame_normal
+        type: q_worddata
+        size: 16
+
+      - id: gifad_frame_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: gifad_frame_msk_dalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_msk_dalpha
+        type: q_worddata
+        size: 16
+
+      - id: gifad_frame_msk_rgb
+        type: q_worddata
+        size: 16
+
+      - id: frame_msk_rgb
+        type: q_worddata
+        size: 16
+
+  sh_gs_stencil_draw_env:
+    seq:
+      - id: giftag
+        type: sce_gif_tag
+
+      - id: draw
+        type: sce_gs_draw_env1
+
+      - id: alpha1
+        type: q_worddata
+        size: 16
+
+      - id: drawq2
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 6
+
+      - id: clear
+        type: sce_gs_clear
+
+      - id: frame
+        type: q_worddata
+        size: 16
+
+      - id: giftag_nc
+        type: sce_gif_tag
+
+      - id: draw_nc
+        type: sce_gs_draw_env1
+
+      - id: alpha1_nc
+        type: q_worddata
+        size: 16
+
+      - id: drawq2_nc
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 6
+
+      - id: gifad_frame_normal
+        type: q_worddata
+        size: 16
+
+      - id: frame_normal
+        type: q_worddata
+        size: 16
+
+      - id: gifad_frame_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: gifad_frame_msk_dalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_msk_dalpha
+        type: q_worddata
+        size: 16
+
+  sh_gs_tiny_draw_env:
+    seq:
+      - id: giftag
+        type: q_worddata
+        size: 16
+
+      - id: frame
+        type: q_worddata
+        size: 16
+
+      - id: scissor
+        type: q_worddata
+        size: 16
+
+      - id: xyoffset
+        type: q_worddata
+        size: 16
+
+      - id: zbuf
+        type: q_worddata
+        size: 16
+
+      - id: test
+        type: q_worddata
+        size: 16
+
+      - id: gifad_normal
+        type: q_worddata
+        size: 16
+
+      - id: frame_normal
+        type: q_worddata
+        size: 16
+
+      - id: gifad_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_mskalpha
+        type: q_worddata
+        size: 16
+
+      - id: gifad_msk_dalpha
+        type: q_worddata
+        size: 16
+
+      - id: frame_msk_dalpha
+        type: q_worddata
+        size: 16
+
+  sh_gs_all_env:
+    seq:
+      - id: loop_counter
+        type: u8
+
+      - id: loop
+        type: u4
+
+      - id: loop3
+        type: u4
+
+      - id: loop_env
+        type: sh_gs_loop_env
+
+      - id: disp_env
+        type: sce_gs_disp_env
+        repeat: expr
+        repeat-expr: 3
+
+      - size: 8
+
+      - id: draw_env
+        type: sh_gs_draw_env
+        repeat: expr
+        repeat-expr: 3
+
+      - id: stencil_buf
+        type: sh_gs_stencil_draw_env
+        repeat: expr
+        repeat-expr: 3
+
+      - id: stencil_work
+        type: sh_gs_tiny_draw_env
+        repeat: expr
+        repeat-expr: 6
+
+      - id: default_env
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: stencil_env
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: compshadow_env
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: filter_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: filter_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: filter_c
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: filter_d
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 10
+
+      - id: move_gtex
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 8
+
+      - id: gs_reg_alpha_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_alpha_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_alpha_c
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_alpha_d
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_alpha_e
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_test_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_test_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_test_c
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_test_d
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_texa_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_texa_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_zbuf_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_zbuf_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_pabe_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_pabe_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_fba_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_fba_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_prmodecont_a
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_reg_prmodecont_b
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_sync_dummy_label
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: gs_sync_dummy_texflush
+        type: q_worddata
+        repeat: expr
+        repeat-expr: 2
+
+      - id: now_draw_env
+        type: sh_gs_draw_env
+
+  sce_dma_tag:
+    seq:
+      - id: qwc
+        type: u2
+
+      - id: mark
+        type: u1
+
+      - id: id
+        type: u1
+
+      - id: next
+        type: pointer('sce_dma_tag')
+
+      - id: p
+        type: u4
+        repeat: expr
+        repeat-expr: 2
+
+  sce_dma_env:
+    seq:
+      - id: sts
+        type: u1
+
+      - id: std
+        type: u1
+
+      - id: mfd
+        type: u1
+
+      - id: rcycle
+        type: u1
+
+      - id: express
+        type: u2
+
+      - id: notify
+        type: u2
+
+      - id: sqwc
+        type: u2
+
+      - id: tqwc
+        type: u2
+
+      - id: rbadr
+        type: pointer('data')
+
+      - id: rbmsk
+        type: u4
+
+  sce_dma_chan:
+    seq:
+      - id: chcr
+        type: t_dchcr
+
+      - id: p0
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: madr
+        type: pointer('data')
+
+      - id: p1
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: qwc
+        type: u4
+
+      - id: p2
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: tadr
+        type: pointer('sce_dma_tag')
+
+      - id: p3
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: as0
+        type: pointer('data')
+
+      - id: p4
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: as1
+        type: pointer('data')
+
+      - id: p5
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+      - id: p6
+        type: u4
         repeat: expr
         repeat-expr: 4
 
-      - id: around_id
+      - id: p7
+        type: u4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: sadr
+        type: pointer('data')
+
+      - id: p8
+        type: u4
+        repeat: expr
+        repeat-expr: 3
+
+  sce_scf_t10k_config:
+    seq:
+      - id: time_zone
+        type: s2
+
+      - id: aspect
+        type: u1
+
+      - id: date_notation
+        type: u1
+
+      - id: language
+        type: u1
+
+      - id: spdif
+        type: u1
+
+      - id: summer_time
+        type: u1
+
+      - id: time_notation
+        type: u1
+
+  sce_vif0_packet:
+    seq:
+      - id: p_current
+        type: pointer('data')
+
+      - id: p_base
+        type: pointer('data')
+
+      - id: p_dma_tag
+        type: pointer('data')
+
+      - id: p_vif_code
+        type: pointer('data')
+
+      - id: numlen
+        type: u4
+
+      - id: pad11
+        type: u4
+
+      - id: pad12
+        type: u4
+
+      - id: pad13
+        type: u4
+
+  sce_vif1_packet:
+    seq:
+      - id: p_current
+        type: pointer('data')
+
+      - id: p_base
+        type: pointer('data')
+
+      - id: p_dma_tag
+        type: pointer('data')
+
+      - id: p_vif_code
+        type: pointer('data')
+
+      - id: numlen
+        type: u4
+
+      - id: p_gif_tag
+        type: pointer('data')
+
+      - id: pad12
+        type: u4
+
+      - id: pad13
+        type: u4
+
+  change_list:
+    seq:
+      - id: sd_se
+        type: s4
+
+      - id: sd_3d
+        type: s4
+
+      - id: file
+        type: s4
+
+  se_track_buffer:
+    seq:
+      - id: status
+        type: u1
+
+      - id: fade_in_type
+        type: u1
+
+      - id: fade_out_type
+        type: u1
+
+      - id: pad
+        type: u1
+
+      - id: volume
+        type: f4
+
+  se_bgm_buffer:
+    seq:
+      - id: current
+        type: s4
+
+      - id: next
+        type: s4
+
+      - id: read
+        type: s4
+
+      - id: sdb_no
+        type: s4
+
+      - id: volume
+        type: f4
+
+      - id: track
+        type: se_track_buffer
+        repeat: expr
+        repeat-expr: 7
+
+  se2d_manage_data:
+    seq:
+      - id: sd
+        type: s4
+
+      - size: 12
+
+      - id: pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: vol
+        type: f4
+
+      - id: room
+        type: s2
+
+      - id: pos_on
+        type: u1
+
+      - id: pre_dist
+        type: u1
+
+      - id: pre_pan
+        type: s2
+
+      - id: status
+        type: s2
+
+      - id: timer
+        type: f4
+
+      - id: base
+        type: f4
+
+      - size: 12
+
+  se3d_channel_data:
+    seq:
+      - id: sd
+        type: s4
+
+      - id: room
+        type: s4
+
+      - id: status
+        type: s4
+
+      - size: 4
+
+      - id: pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: vol
+        type: f4
+
+      - size: 12
+
+  snd_road_area:
+    seq:
+      - id: x0
+        type: f4
+
+      - id: z0
+        type: f4
+
+      - id: x1
+        type: f4
+
+      - id: z1
+        type: f4
+
+      - id: x2
+        type: f4
+
+      - id: z2
+        type: f4
+
+      - id: min_hy
+        type: f4
+
+      - id: max_hy
+        type: f4
+
+  sound_data:
+    seq:
+      - id: lim_sw
+        type: snd_road_area
+
+      - id: flags
+        type: s4
+
+      - id: chanstat
         type: s4
         repeat: expr
-        repeat-expr: 25
+        repeat-expr: 7
 
-      - id: unit
+  near_sound_data:
+    seq:
+      - id: in_vol
+        type: s1
+        repeat: expr
+        repeat-expr: 7
+
+      - id: out_vol
+        type: s1
+        repeat: expr
+        repeat-expr: 7
+
+      - size: 2
+
+      - id: err_code
         type: s4
 
-      - id: load
+      - id: abs_index
         type: s4
 
-      - id: need
+      - id: len
+        type: f4
+
+  sound_work:
+    seq:
+      - id: sound_ary
+        type: pointer('sound_data')
+
+      - size: 12
+
+      - id: chara_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: half_w
+        type: f4
+
+      - id: page
         type: s4
 
-      - id: lock
+      - id: near_sound_num
         type: s4
 
-      - id: miss
+      - id: near_sound_ary
+        type: near_sound_data
+        repeat: expr
+        repeat-expr: 8
+
+      - id: on_num
         type: s4
 
-      - id: hide_map
+      - id: on_chan
+        type: s1
+        repeat: expr
+        repeat-expr: 7
+
+      - size: 1
+
+      - id: abs_num
         type: s4
 
-      - id: hide_map_request
+      - id: nearindex
         type: s4
+
+  camera_dat:
+    seq:
+      - id: pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: zdir
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: ydir
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rot
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: clip_volume
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: world_view
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: view_screen
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: view_clip
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: world_screen
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: world_clip
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: clip_screen
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: camera_pam
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: screen_pam1
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: screen_pam2
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rot_zdir
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rot_ydir
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+  vb_coordinate:
+    seq:
+      - id: flg
+        type: u4
+
+      - size: 12
+
+      - id: coord
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: work
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: param
+        type: pointer('data')
+
+      - id: super
+        type: pointer('vb_coordinate')
+
+      - id: sub
+        type: pointer('vb_coordinate')
+
+      - id: r
+        type: vb_coordinate_anon_13
+
+      - size: 12
+
+      - id: lw
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: ls
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: rot
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+  vb_coordinate_anon_13:
+    seq:
+      - id: vx
+        type: s2
+
+      - id: vy
+        type: s2
+
+      - id: vz
+        type: s2
+
+      - id: pad
+        type: s2
+
+  vb_rview:
+    seq:
+      - id: vp
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: vr
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rz
+        type: f4
+
+      - id: super
+        type: pointer('vb_coordinate')
+
+      - size: 8
+
+  vb_wvsmatrix:
+    seq:
+      - id: wvm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: vsm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: wsm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+  vb_screeninfo:
+    seq:
+      - id: scr_z
+        type: f4
+
+      - id: sx
+        type: f4
+
+      - id: sy
+        type: f4
+
+      - id: cx
+        type: f4
+
+      - id: cy
+        type: f4
+
+      - id: zmin
+        type: f4
+
+      - id: zmax
+        type: f4
+
+      - id: nearz
+        type: f4
+
+      - id: farz
+        type: f4
+
+  vc_through_door_cam_param:
+    seq:
+      - id: active_f
+        type: s4
+
+      - id: timer
+        type: f4
+
+      - id: rail_ang_y
+        type: f4
+
+      - size: 4
+
+      - id: rail_sta_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rail_sta_to_chara_dist
+        type: f4
+
+      - size: 12
+
+  vc_cam_mv_param:
+    seq:
+      - id: accel_xz
+        type: f4
+
+      - id: accel_y
+        type: f4
+
+      - id: max_spd_xz
+        type: f4
+
+      - id: max_spd_y
+        type: f4
+
+  vc_watch_mv_param:
+    seq:
+      - id: ang_accel_x
+        type: f4
+
+      - id: ang_accel_y
+        type: f4
+
+      - id: max_ang_spd_x
+        type: f4
+
+      - id: max_ang_spd_y
+        type: f4
+
+  vc_fix_cam_manager:
+    seq:
+      - id: exception_f
+        type: s4
+
+      - id: add_ang_y
+        type: f4
+
+      - id: add_rd_x
+        type: f4
+
+      - id: add_rd_z
+        type: f4
+
+  vc_cir_cam_manager:
+    seq:
+      - id: origin
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: sw_l
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+  vc_limit_area:
+    seq:
+      - id: min_hx
+        type: f4
+
+      - id: max_hx
+        type: f4
+
+      - id: min_hz
+        type: f4
+
+      - id: max_hz
+        type: f4
+
+      - id: min_hy
+        type: f4
+
+      - id: max_hy
+        type: f4
+
+  vc_road_area:
+    seq:
+      - id: x0
+        type: f4
+
+      - id: z0
+        type: f4
+
+      - id: x1
+        type: f4
+
+      - id: z1
+        type: f4
+
+      - id: x2
+        type: f4
+
+      - id: z2
+        type: f4
+
+      - id: min_hy
+        type: f4
+
+      - id: max_hy
+        type: f4
+
+  vc_chase_cam_param:
+    seq:
+      - id: ofs_hy
+        type: f4
+
+      - id: ratio_r_xz
+        type: f4
+
+      - id: lr_lim_ang_y
+        type: f4
+
+      - id: rr_lim_ang_y
+        type: f4
+
+  vc_settle_cam_param:
+    seq:
+      - id: sta_base_ang_y
+        type: f4
+
+      - id: end_base_ang_y
+        type: f4
+
+      - id: lr_lim_ang_y
+        type: f4
+
+      - id: rr_lim_ang_y
+        type: f4
+
+  vc_fix_ang_cam_param:
+    seq:
+      - id: ang_x
+        type: f4
+
+      - id: ang_y
+        type: f4
+
+      - id: ofs_hy
+        type: f4
+
+      - id: cam2wth_dist
+        type: f4
+
+  vc_locus_circle_cam_param:
+    seq:
+      - id: origin_x
+        type: f4
+
+      - id: origin_z
+        type: f4
+
+      - id: ang_y
+        type: f4
+
+      - id: radius
+        type: f4
+
+  vc_road_data:
+    seq:
+      - id: lim_sw
+        type: vc_road_area
+
+      - id: lim_rd
+        type: vc_road_area
+
+      - id: kind_id
+        type: s4
+
+      - id: flags
+        type: s4
+
+      - id: area_size_type
+        type: s4
+
+      - id: rd_type
+        type: s4
+
+      - id: mv_y_type
+        type: s4
+
+      - id: ofs_watch_hy
+        type: f4
+
+      - id: trace_btm_hy
+        type: f4
+
+      - id: rd_dir_type
+        type: s4
+
+      - id: projection
+        type: f4
+
+      - id: proj_volume
+        type: f4
+
+      - id: proj_sec
+        type: f4
+
+      - id: cam_mv_type
+        type: s4
+
+      - id: tmp
+        type: vc_road_data_anon_14
+        size: 16
+
+  vc_road_data_anon_14:
+    instances:
+      data:
+        pos: 0
+        type: u1
+        repeat: expr
+        repeat-expr: 16
+
+      chs:
+        pos: 0
+        type: vc_chase_cam_param
+
+      stl:
+        pos: 0
+        type: vc_settle_cam_param
+
+      fix:
+        pos: 0
+        type: vc_fix_ang_cam_param
+
+      cir:
+        pos: 0
+        type: vc_locus_circle_cam_param
+
+    seq:
+      - size: 16
+
+  vc_near_road_data:
+    seq:
+      - id: road_p
+        type: pointer('vc_road_data')
+
+      - id: rd_dir_type
+        type: s4
+
+      - id: use_priority
+        type: s4
+
+      - id: chara2road_sum_dist
+        type: f4
+
+      - id: chara2road_vec_x
+        type: f4
+
+      - id: chara2road_vec_z
+        type: f4
+
+      - id: rd
+        type: vc_limit_area
+
+      - id: sw
+        type: vc_limit_area
+
+      - size: 8
+
+      - id: rd_rzm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: rd_rim
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: sw_rzm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: sw_rim
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+  vc_work:
+    seq:
+      - id: view_cam_active_f
+        type: s4
+
+      - id: vc_road_ary_list
+        type: pointer('data')
+
+      - id: flags
+        type: u2
+
+      - size: 2
+
+      - id: through_door_activate_init_f
+        type: s4
+
+      - id: through_door
+        type: vc_through_door_cam_param
+
+      - id: scr_half_ang_wy
+        type: f4
+
+      - id: scr_half_ang_wx
+        type: f4
+
+      - id: user_cam_mv_prm
+        type: vc_cam_mv_param
+
+      - size: 8
+
+      - id: cam_tgt_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cam_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cam_mv_ang_y
+        type: f4
+
+      - size: 12
+
+      - id: cam_velo
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: old_cam_excl_area_r
+        type: f4
+
+      - id: ideal_cam_pos_h
+        type: f4
+
+      - id: user_watch_mv_prm
+        type: vc_watch_mv_param
+
+      - size: 8
+
+      - id: watch_tgt_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: watch_tgt_max_y
+        type: f4
+
+      - id: watch_tgt_ang_z
+        type: f4
+
+      - size: 8
+
+      - id: cam_mat_ang
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cam_mat
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: ofs_cam_ang
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: ofs_cam_ang_spd
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: base_cam_ang
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: old_base_cam_ang
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cam_chara2ideal_ang_y
+        type: f4
+
+      - size: 12
+
+      - id: cam_tgt_velo
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: cam_tgt_mv_ang_y
+        type: f4
+
+      - id: cam_tgt_spd
+        type: f4
+
+      - size: 8
+
+      - id: chara_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: chara_bottom_y
+        type: f4
+
+      - id: chara_top_y
+        type: f4
+
+      - id: chara_center_y
+        type: f4
+
+      - id: chara_grnd_y
+        type: f4
+
+      - id: chara_head_pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: chara_mv_spd
+        type: f4
+
+      - id: chara_mv_ang_y
+        type: f4
+
+      - id: chara_ang_spd_y
+        type: f4
+
+      - id: chara_eye_ang_y
+        type: f4
+
+      - id: chara_eye_ang_wy
+        type: f4
+
+      - id: chara_watch_xz_r
+        type: f4
+
+      - id: fix_man
+        type: vc_fix_cam_manager
+
+      - size: 8
+
+      - id: cir_man
+        type: vc_cir_cam_manager
+
+      - id: near_road_ary
+        type: vc_near_road_data
+        repeat: expr
+        repeat-expr: 128
+
+      - id: near_road_suu
+        type: s4
+
+      - size: 12
+
+      - id: cur_near_road
+        type: vc_near_road_data
+
+      - id: nearest_enemy_p
+        type: pointer('sub_character')
+
+      - id: nearest_enemy_xz_dist
+        type: f4
+
+      - id: enemy_input_watch_y
+        type: f4
+
+      - id: nearest_item_p
+        type: pointer('sub_character')
+
+      - id: nearest_item_xz_dist
+        type: f4
+
+      - size: 12
+
+  vc_camera_intinfo:
+    seq:
+      - id: mode
+        type: s4
+
+      - id: mv_smooth
+        type: s4
+
+      - id: ev_cam_rate
+        type: f4
+
+  vc_projection_params:
+    seq:
+      - id: new
+        type: f4
+
+      - id: old
+        type: f4
+
+      - id: delta
+        type: f4
+
+      - id: flg
+        type: s4
+
+  vc_pre_info:
+    seq:
+      - id: hero_neck_wm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: hero_neck_lm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: hero_neck_lwm
+        type: f4
+        repeat: expr
+        repeat-expr: 16
+
+      - id: hero_head_ang_x
+        type: f4
+
+      - id: hero_head_ang_y
+        type: f4
+
+      - id: hero_eye_y
+        type: f4
+
+  kanri:
+    seq:
+      - id: pos
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: ang
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: rot_spd
+        type: f4
+        repeat: expr
+        repeat-expr: 4
+
+      - id: velo_y
+        type: f4
+
+      - id: velo_xz
+        type: f4
+
+      - id: velo_houi
+        type: f4
+
+  sys_w:
+    seq:
+      - id: cam_ang_y
+        type: f4
+
+      - id: cam_ang_z
+        type: f4
+
+      - id: cam_r_xz
+        type: f4
+
+      - id: cam_y
+        type: f4
+
+      - id: hero
+        type: kanri
 
   u16:
     seq:
