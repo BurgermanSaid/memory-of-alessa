@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from dataclasses import dataclass
 from ctypes import c_float
+from functools import reduce
 from pathlib import Path
 from struct import unpack, calcsize
 from io import BytesIO
@@ -9,10 +10,10 @@ from re import sub
 
 from kaitaistruct import KaitaiStream, KaitaiStruct
 from kaitai.data.config import PROJECT_DATA_CONFIG
-from kaitai.data.data_types import SimpleData, StructData
+from kaitai.data.data_types import Pointer, SimpleData, StructData
 
 from constants import CONFIG, INDENT_SIZE, PROJECT_CONFIG
-from utils import SplatSymbolAddrsAtlas, get_exe_info_by_name, get_from_vram_conversion, load_yaml
+from utils import AddressConversion, SplatSymbolAddrsAtlas, get_exe_info_by_name, get_from_vram_conversion, load_yaml
 
 @dataclass
 class DataMigrationRequest:
@@ -52,8 +53,11 @@ class KaitaiCFormatterOptions:
     '''
     request: StructDataMigrationRequest
     executable_file: BytesIO
-    from_vram: Callable[[int], int]
+    from_vram: AddressConversion
     index: int
+
+class AlessastructDataOptions:
+    SILENCE_DEV_WARNINGS = False
 
 def read_string(file: BytesIO, offset: int) -> str:
     '''
@@ -148,6 +152,9 @@ def reflect_kaitai_structure(yaml: dict, type: Type[KaitaiStruct]):
     '''
     name = type.__name__
     typename = to_kaitai_id(name)
+    if typename not in yaml["types"]:
+        # try a different way
+        typename = camel_to_snake(name)
     return yaml["types"][typename]
 
 def c_print_kaitai(object: KaitaiStruct, options: KaitaiCFormatterOptions, indent=" " * (INDENT_SIZE * 2)):
@@ -172,11 +179,15 @@ def c_print_kaitai(object: KaitaiStruct, options: KaitaiCFormatterOptions, inden
     object_class = object.__class__
     type_structure = reflect_kaitai_structure(kaitai_yaml, object.__class__)
 
+    # union
     if "instances" in type_structure:
-        first_union_member = list(type_structure["instances"].keys())[0]
-        print("🟠 warning: there is no way to choose union options yet")
-        print(f"\tthe first union member was chosen for {object_class.__name__}:", first_union_member)
+        first_union_member = next(iter(type_structure["instances"]))
         own_properties = [first_union_member]
+        if not AlessastructDataOptions.SILENCE_DEV_WARNINGS:
+            print("🟠 warning: there is no way to choose union options yet")
+            print(f"\tthe first union member was chosen for {object_class.__name__}:", first_union_member)
+
+    # struct
     elif "seq" in type_structure:
         own_properties = map(lambda t : t["id"], filter(lambda t : "id" in t, type_structure["seq"]))
     stream.write(f"{indent[INDENT_SIZE:]}{{\n") # indent braces less
@@ -189,15 +200,7 @@ def c_print_kaitai(object: KaitaiStruct, options: KaitaiCFormatterOptions, inden
 
         if hasattr(namespace, "Pointer") and isinstance(value, getattr(namespace, "Pointer")):
             # pointer! look up the symbol name
-            adr = value.address
-            val = adr
-            if adr in atlas.syms_by_addr:
-                sym = atlas.syms_by_addr[adr]
-                val = sym.name
-                if isinstance(val, str) and val.startswith("@"):
-                    val = '"' + read_string(executable_file, from_vram(adr)) + '"'
-            elif adr == 0:
-                val = "NULL"
+            val = lookup_pointer(atlas, executable_file, from_vram, value.address)
             stream.write(f"{indent}/* .{attr_str} = */ {val},\n")
 
         elif isinstance(value, KaitaiStruct):
@@ -274,23 +277,45 @@ def default_to_str(value):
         return str(int(value[0]))
     return str(value)
 
+def make_pointer_to_str(atlas: SplatSymbolAddrsAtlas, executable_file: BytesIO, from_vram: AddressConversion):
+    return lambda address : lookup_pointer(atlas, executable_file, from_vram, address)
+
+def lookup_pointer(atlas: SplatSymbolAddrsAtlas, executable_file: BytesIO, from_vram: AddressConversion, address: int):
+    if address in atlas.syms_by_addr:
+        sym = atlas.syms_by_addr[address]
+        val = sym.name
+        if isinstance(val, str) and val.startswith("@"):
+            val = '"' + read_string(executable_file, from_vram(address)) + '"'
+    elif address == 0:
+        val = "NULL"
+    return val
+
 def migrate_simple_data(request: SimpleDataMigrationRequest):
     data = request.data
     stream = request.stream
     atlas = request.atlas
 
-    fmt = data.type
     pattern = data.pattern
-    to_str = data.to_str or default_to_str
-    
-    vram = get_from_vram_conversion(request.splat_yaml, rom=False)
-    sym = data.address >= 0 and atlas.syms_by_addr[data.address] or atlas.syms_by_name[data.name]
 
     with open(request.executable_path, "rb") as file:
+        vram = get_from_vram_conversion(request.splat_yaml, rom=False)
+
+        is_pointer = data.type == Pointer
+        if is_pointer:
+            total = reduce(lambda a, b : a * b, pattern or [1])
+            fmt = f"<{total}L"
+            to_str = data.to_str or make_pointer_to_str(atlas, file, vram)
+        else:
+            fmt = data.type
+            to_str = data.to_str or default_to_str
+
+        assert type(fmt) == str, fmt
+
+        sym = data.address >= 0 and atlas.syms_by_addr[data.address] or atlas.syms_by_name[data.name]
         file.seek(vram(sym.addr))
 
         unpacked_values = unpack(fmt, file.read(calcsize(fmt)))
-        n = len(pattern)
+        n = pattern and len(pattern) or 0
 
         if n < 2:
             stream.write(f"{{ {", ".join(map(lambda value : to_str(value), unpacked_values))} }}\n")
