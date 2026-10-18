@@ -3,7 +3,7 @@
 
 /**
  * This header is not intended to be included in project source files. It can be
- * used for decomp.me contextx and alessastruct.
+ * used for decomp.me contexts and alessastruct.
  */
 
  /*
@@ -23,8 +23,6 @@ then:
 ```sh
 kaitai-struct-compiler --target python tools/alessatool/kaitai/sh2.ksy --outdir tools/alessatool/kaitai
 ```
-
-
 
  */
 #define __ALESSASTRUCT_README__
