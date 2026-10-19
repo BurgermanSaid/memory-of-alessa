@@ -1295,7 +1295,7 @@ segments:
       - { vram:  0x0122b2f0,    type: bss,        name: LoadBg/loadbg_chara                              }
       - { vram:  0x0122b308,    type: bss,        name: sound/sh_sd_call                                 }
       - { vram:  0x0122b3c0,    type: .bss,       name: Effect2/hh_memory_manage                         }
-      - { vram:  0x0126fbc0,    type: bss,        name: SH2_common/mem_share                             }
+      - { vram:  0x0126fbc0,    type: .bss,       name: SH2_common/mem_share                             }
       - { vram:  0x01f01bc0,    type: bss,        name: Effect2/hh_class_water_80                        }
       - { vram:  0x01f01bf0,    type: bss,        name: Effect2/hh_class_water_90                        }
       - { vram:  0x01f01c28,    type: bss,        name: pause                                            }

@@ -4,6 +4,7 @@
 #define LIS_CMD_PUT(_index, ...) ((((int (*)())(&lisPutCmd##_index))(__VA_ARGS__)))
 
 UNMIGRATED(/* static */ MemShareCtrl mem_share_ctrl);
+s_char MemShare_gp_data_buf[0xC92000]; // size: 0xC92000, address: 0x126FBC0
 
 #line 103
 static int ___MemShareRemove(void) {

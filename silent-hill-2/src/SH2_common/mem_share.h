@@ -93,6 +93,6 @@ typedef struct MemShareCtrl {
 } MemShareCtrl;
 #endif
 
-extern char MemShare_gp_data_buf[13180928]; // size: 0xC92000, address: 0x126FBC0
+extern s_char MemShare_gp_data_buf[13180928]; // size: 0xC92000, address: 0x126FBC0
 
 #endif
