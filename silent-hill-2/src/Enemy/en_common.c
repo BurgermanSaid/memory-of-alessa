@@ -1,4 +1,5 @@
 #include "Enemy/en_common.h"
+#include "en_common.h"
 #include "sce/libvu0.h"
 #include "Enemy/en_effect.h"
 #include "Enemy/en_arm.h"
@@ -108,7 +109,8 @@ void enInitData(EnLOCAL_DATA* dp /* r18 */, SubCharacter* scp /* r17 */) {
     volatile_vec_copy(&dp->scp->b_pos, &dp->scp->pos);
     
     
-    dp->scp->battle.status &= ~0x4F;
+    ENEMY_BATTLE_FLAG_UNSET((MOVED_FLAG | DEAD_FLAG | LIE_DOWN_FLAG | CRITICAL_FLAG | NO_DAMAGE_FLAG));
+
     
     
     enInitDataFunc[kind - 1](dp);
@@ -467,14 +469,14 @@ int enCheckHuggedPlayer(void) {
 }
 
 int enCheckSleepIn(struct EnLOCAL_DATA* dp) {
-    if ((!(dp->scp->battle.status & 0x400) || ((BgIsOut(0) != 0) && !(dp->p_dist <= 15000.0f))) && !(dp->scp->battle.status & 2)) {
+    if ((!ENEMY_BATTLE_FLAG_CHECK(BATTLE_STATS_FLAG_10) || ((BgIsOut(0) != 0) && !(dp->p_dist <= 15000.0f))) && !(ENEMY_BATTLE_FLAG_CHECK(DEAD_FLAG))) {
         return 1;
     }
     return 0;
 }
 
 int enCheckSleepOut(struct EnLOCAL_DATA* dp) {
-    if ((dp->scp->battle.status & 0x400) && ((BgIsOut(0) == 0) || (dp->p_dist < 7500.0f))) {
+    if (ENEMY_BATTLE_FLAG_CHECK(BATTLE_STATS_FLAG_10) && ((BgIsOut(0) == 0) || (dp->p_dist < 7500.0f))) {
         return 1;
     }
     return 0;
@@ -482,13 +484,13 @@ int enCheckSleepOut(struct EnLOCAL_DATA* dp) {
 
 void enSleepIn(struct EnLOCAL_DATA* dp /* r2 */) {
     dp->mlv = 2;
-    dp->scp->battle.status &= ~1;
+    ENEMY_BATTLE_FLAG_UNSET(MOVED_FLAG);
 }
 
 void enSleepOut(struct EnLOCAL_DATA* dp /* r2 */) {
     dp->mlv = 1;
-    dp->scp->battle.status &= ~0x4C;
-    dp->scp->battle.status |= 1;
+    ENEMY_BATTLE_FLAG_UNSET((LIE_DOWN_FLAG | CRITICAL_FLAG | NO_DAMAGE_FLAG));
+    ENEMY_BATTLE_FLAG_SET(MOVED_FLAG);
 }
 
 void enKillCountUp(struct EnLOCAL_DATA* dp /* r2 */) {
@@ -588,47 +590,47 @@ void enSetGameOver(void) {
 }
 
 void enFlagSetMoved(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status |= 1;
+    ENEMY_BATTLE_FLAG_SET(MOVED_FLAG);
 }
 
 void enFlagResetMoved(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status &= ~1;
+    ENEMY_BATTLE_FLAG_UNSET(MOVED_FLAG);
 }
 
 void enFlagSetLieDown(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status |= 4;
+    ENEMY_BATTLE_FLAG_SET(LIE_DOWN_FLAG);
 }
 
 void enFlagResetLieDown(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status &= ~4;
+    ENEMY_BATTLE_FLAG_UNSET(LIE_DOWN_FLAG);
 }
 
 void enFlagSetCritical(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status |= 8;
+    ENEMY_BATTLE_FLAG_SET(CRITICAL_FLAG)
 }
 
 void enFlagResetCritical(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status &= ~8;
+    ENEMY_BATTLE_FLAG_UNSET(CRITICAL_FLAG)
 }
 
 int enCheckCritical(struct EnLOCAL_DATA* dp) {
-    return (dp->scp->battle.status & 8) != 0;
+    return ENEMY_BATTLE_FLAG_CHECK(CRITICAL_FLAG) != 0;
 }
 
 void enFlagSetNoDamage(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status |= 0x40;
+    ENEMY_BATTLE_FLAG_SET(NO_DAMAGE_FLAG);
 }
 
 void enFlagResetNoDamage(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status &= ~0x40;
+    ENEMY_BATTLE_FLAG_UNSET(NO_DAMAGE_FLAG);
 }
 
 void enFlagSetDead(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status |= 2;
+    ENEMY_BATTLE_FLAG_SET(DEAD_FLAG);
 }
 
 void enFlagResetDead(struct EnLOCAL_DATA* dp) {
-    dp->scp->battle.status &= ~2;
+    ENEMY_BATTLE_FLAG_UNSET(DEAD_FLAG);
 }
 
 void enFlagSetRotFloor(struct EnLOCAL_DATA* dp) {
@@ -799,12 +801,12 @@ void enSetRadioVolume(struct EnLOCAL_DATA* dp /* r2 */) {
         dp->radio = 0;
         return;
     }
-    if (dp->scp->battle.status & 1) {
+    if (ENEMY_BATTLE_FLAG_CHECK(MOVED_FLAG)) {
         if (dp->kind == 3) {
             dp->radio = 0.5f;
             return;
         }
-        if (dp->scp->battle.status & 4) {
+        if (ENEMY_BATTLE_FLAG_CHECK(LIE_DOWN_FLAG)) {
             dp->radio = 0.8;
             return;
         }
@@ -840,7 +842,7 @@ INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enIKETrans);
 
 void enARMTrans(EnLOCAL_DATA* dp) {
     sceVu0FVECTOR vec; // r29+0x20
-    if ((dp == NULL) || (dp->scp->battle.status & 2) != 0) return;    
+    if ((dp == NULL) || (ENEMY_BATTLE_FLAG_CHECK(DEAD_FLAG)) != 0) return;    
     volatile_vec_copy(&dp->scp->b_pos, &dp->scp->pos);    
     vu0_sub_vector(vec,&dp->scp->pos, dp->arm.old_pos);   
     vec_add_xyz(dp->arm.hand_pos, vec, dp->arm.hand_pos);
@@ -864,13 +866,13 @@ void enWaitRegenerate(EnLOCAL_DATA* dp) {
     
     switch (dp->sslv) {
         case 0:
-            if (!(dp->scp->battle.status & 0x400) || ((BgIsOut(0) != 0) && (dp->p_dist > 30000.0f))) {
+            if (!ENEMY_BATTLE_FLAG_CHECK(BATTLE_STATS_FLAG_10) || ((BgIsOut(0) != 0) && (dp->p_dist > 30000.0f))) {
                 
                 ENEMY_NEXT_SUB_STEP();          
             }
             break;
         case 1:
-            if ((dp->scp->battle.status & 0x400) && ((BgIsOut(0) == 0) || (dp->p_dist < 15000.0f))) {
+            if (ENEMY_BATTLE_FLAG_CHECK(BATTLE_STATS_FLAG_10) && ((BgIsOut(0) == 0) || (dp->p_dist < 15000.0f))) {
                 
                 enInitData(dp, dp->scp);
             }

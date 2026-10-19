@@ -20,6 +20,9 @@
 #define ENEMY_FLAG_SET(_flag) dp->flag |= _flag;
 #define ENEMY_FLAG_UNSET(_flag) dp->flag &= ~_flag;
 #define ENEMY_FLAG_CHECK(_flag) (dp->flag & _flag)
+#define ENEMY_BATTLE_FLAG_SET(_flag) dp->scp->battle.status |= _flag;
+#define ENEMY_BATTLE_FLAG_UNSET(_flag) dp->scp->battle.status &= ~_flag;
+#define ENEMY_BATTLE_FLAG_CHECK(_flag) (dp->scp->battle.status & _flag)
 
 typedef enum ENEMY_FLAG {
     ENEMY_FLAG_0 = 1 << 0,
