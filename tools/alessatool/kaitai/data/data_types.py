@@ -6,6 +6,10 @@ from collections.abc import Callable
 from kaitaistruct import KaitaiStruct
 
 @dataclass
+class Pointer:
+    address: int
+
+@dataclass
 class StructData:
     name: str
     type: Type[KaitaiStruct]
@@ -88,6 +92,3 @@ class StgName(Enum):
     Stg_end_dog = 0x34
     Stg_num = 0x35
 
-@dataclass
-class Pointer:
-    address: int
