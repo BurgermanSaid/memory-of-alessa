@@ -341,7 +341,7 @@ def migrate_simple_data(request: SimpleDataMigrationRequest):
             raise NotImplementedError("n > 2")
 
 
-def run_data_migration(request: DataMigrationRequest, data=None, io=None):
+def run_data_migration(request: DataMigrationRequest):
     name = request.name
     project = request.project
     output_path = request.output_path
@@ -355,7 +355,7 @@ def run_data_migration(request: DataMigrationRequest, data=None, io=None):
     namespace = data_config.namespace
 
     try:
-        data_entry = data or next(filter(lambda entry : entry.name == name, table))
+        data_entry = next(filter(lambda entry : entry.name == name, table))
 
         executable = data_entry.executable or serial
         exe_info_by_name = get_exe_info_by_name(root, serial, filter=executable)
@@ -366,8 +366,7 @@ def run_data_migration(request: DataMigrationRequest, data=None, io=None):
         splat_yaml = load_yaml(exe_info.yaml_path)
         kaitai_yaml = load_yaml(data_config.library_path)
 
-        with open(output_path, "w") as file:
-            stream = io or file
+        with open(output_path, "w") as stream:
             if isinstance(data_entry, SimpleData):
                 request = SimpleDataMigrationRequest(
                     name=name,
