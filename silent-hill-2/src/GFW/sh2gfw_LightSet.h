@@ -4,13 +4,16 @@
 #include "sh2_common.h"
 #include "sce/eetypes.h"
 
+#define DEMO_MAX_PARALLEL_LIGHT 3
+#define DEMO_MAX_POINT_LIGHT 3
+
 // total size: 0x1B0
 typedef struct DemoLight_Work {
     // Members
-    short Parallel[3]; // offset 0x0, size 0x6
-    short Parallel_Cid[3]; // offset 0x6, size 0x6
-    short Point[3]; // offset 0xC, size 0x6
-    short Point_Cid[3]; // offset 0x12, size 0x6
+    short Parallel[DEMO_MAX_PARALLEL_LIGHT]; // offset 0x0, size 0x6
+    short Parallel_Cid[DEMO_MAX_PARALLEL_LIGHT]; // offset 0x6, size 0x6
+    short Point[DEMO_MAX_POINT_LIGHT]; // offset 0xC, size 0x6
+    short Point_Cid[DEMO_MAX_POINT_LIGHT]; // offset 0x12, size 0x6
     short Spot; // offset 0x18, size 0x2
     short Amb; // offset 0x1A, size 0x2
     short Ref; // offset 0x1C, size 0x2

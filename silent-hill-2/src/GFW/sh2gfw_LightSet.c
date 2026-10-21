@@ -49,9 +49,9 @@ int sh2gfw_Set_PallarelLight(float* dir, float* color, int n) {
 
 
 
-    k = (n < 0) ? -n : n;
+    k = n < 0 ? -n : n;
     
-    if (k < 3) {
+    if (k < DEMO_MAX_PARALLEL_LIGHT) {
         switch (k) {
         case 0:
             if (!sh2gfw_Get_NightOrDay()) {
@@ -88,11 +88,11 @@ int sh2gfw_Check_ParallelDemoLight(int n) {
 }
 
 int sh2gfw_Get_ParallelDemoLight(int n, float* dir, float* col) {
-    float (* svt)[4];
+    sceVu0FVECTOR* svt;
 
     if (DemoLightWork.Parallel[n] != 0) {
         
-        svt = (float (*)[4])DemoLightWork.demo_p_light0 + (n * 2);
+        svt = (sceVu0FVECTOR*) DemoLightWork.demo_p_light0 + n * 2;
         
         volatile_vec_copy(dir, svt[0]);
         volatile_vec_copy(col, svt[1]);
