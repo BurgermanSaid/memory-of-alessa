@@ -42,14 +42,10 @@
 
 #include "sound/sh_sd_call.h"
 #include "Font/font.h"
+#include "GFW/sh2gfw_LightSet.h"
 #include "GFW/sh2gfw_2d_filters.h"
 
 #pragma fast_fptosi on
-
-// @todo: move these 3 to GFW/sh2gfw_LightSet.h
-extern void sh2gfw_Set_DemoPointLight(int n /* r2 */, float* pos, float* col, float falloff_start, float falloff_end);
-extern void sh2gfw_Set_SpotLight(float* dir, float* pos, float* color, int unused, float falloff_start, float falloff_end, float spread_pi);
-extern int sh2gfw_Set_PallarelLight(float* dir, float* color, int n);
 
 static int DdsPlay(DramaDemo_PlayInfo* info);
 static int DramaDemoInit(DramaDemo_PlayInfo* info);

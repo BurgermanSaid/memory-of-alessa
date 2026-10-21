@@ -114,7 +114,7 @@ segments:
       - { start: 0x000773e0,    type: c,          name: GFW/sh2gfw_2d_filters                            }
       - { start: 0x0007bde0,    type: c,          name: GFW/sh2gfw_GSCTL_man                             }
       - { start: 0x0007bfa0,    type: c,          name: GFW/sh2gfw_Init_ModelDrawData                    }
-      - { start: 0x0007d9a0,    type: asm,        name: GFW/sh2gfw_LightSet                              }
+      - { start: 0x0007d9a0,    type: c,          name: GFW/sh2gfw_LightSet                              }
       - { start: 0x0007eb80,    type: c,          name: GFW/sh2gfw_Texpacket                             }
       - { start: 0x0007ff40,    type: asm,        name: GFW/sh2gfw_Vertexpacket                          }
       - { start: 0x00080830,    type: asm,        name: GFW/sh2gfw_alltexman                             }
@@ -1161,7 +1161,7 @@ segments:
       - { vram:  0x00614ed0,    type: bss,        name: GFW/sh2_shadow_filters                           }
       - { vram:  0x00615f20,    type: bss,        name: GFW/sh2gfw_2d_filters                            }
       - { vram:  0x00616ac0,    type: bss,        name: bss_0x00616AC0                                   }
-      - { vram:  0x00e1ca80,    type: bss,        name: GFW/sh2gfw_LightSet                              }
+      - { vram:  0x00e1ca80,    type: .bss,       name: GFW/sh2gfw_LightSet                              }
       - { vram:  0x00e1cc30,    type: bss,        name: GFW/sh2gfw_Texpacket                             }
       - { vram:  0x00e1d1a0,    type: bss,        name: GFW/sh2gfw_Init_ModelDrawData                    }
       - { vram:  0x00e1d1a0,    type: bss,        name: GFW/sh2gfw_globaldef                             }
