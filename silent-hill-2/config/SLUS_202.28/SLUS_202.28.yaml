@@ -152,7 +152,7 @@ segments:
       - { start: 0x0009ed40,    type: c,          name: view/vw_calc                                     }
       - { start: 0x0009f720,    type: c,          name: view/vw_main                                     }
       - { start: 0x0009f9f0,    type: c,          name: main                                             }
-      - { start: 0x0009fe30,    type: asm,        name: sh2gfw_all_sysinit                               }
+      - { start: 0x0009fe30,    type: c,          name: sh2gfw_all_sysinit                               }
       - { start: 0x000a0280,    type: c,          name: sh2gfw_drawloop_main                             }
       - { start: 0x000a1020,    type: asm,        name: sh2shd/sh2shd_outdoor                            }
       - { start: 0x000a2350,    type: c,          name: sh2shd/sh2shd_shadow_model                       }
