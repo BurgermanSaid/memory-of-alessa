@@ -730,19 +730,18 @@ static void mar_sub_onestep(SubCharacter* p) {
     }
 }
 
-#ifdef NON_MATCHING
 static void mar_sub_walk(SubCharacter* p) {
 
     mar_timer_set(1);
 
     if (p->spd > 1.4f) {
 
-        p->spd -= 4.0f * dtf;
-        CLAMP_MAX(p->spd, 1.4f);
+        p->spd -= (4.0f * dtf);
+        p->spd = (p->spd > 1.4f) ? p->spd : 1.4f; // CLAMP_MAX(p->spd, 1.4f);
     } else {
 
         p->spd += (2.0f * dtf);
-        CLAMP_MIN(p->spd, 1.4f);
+        p->spd = (p->spd > 1.4f) ? 1.4f : p->spd; // CLAMP_MIN(p->spd, 1.4f);
     }
     if (sh2mar.look_jms != 0) {
         sh2mar.to_target = shAtan2(sh2jms.player->pos.z - p->pos.z, sh2jms.player->pos.x - p->pos.x);
@@ -754,9 +753,6 @@ static void mar_sub_walk(SubCharacter* p) {
         mar_flg_on(&sh2mar.sub_st_flg, 1 << MAR_SUB_ST_STAND);
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_maria_sub", mar_sub_walk);
-#endif
 
 static void mar_sub_run(SubCharacter* p) {
     float var_f1;
