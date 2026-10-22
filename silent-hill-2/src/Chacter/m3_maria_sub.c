@@ -772,48 +772,66 @@ static void mar_sub_run(SubCharacter* p) {
     }
 }
 
-const char pad_0x297e98[] = "\0\0\0\0";
-
-#ifdef BROKEN
 static void mar_sub_damage(SubCharacter* p) {
     AnimeInfo* a_info = shCharacterAnimeGetInfo(p);
     float damage_angle;
     short cur_frame;
 
+    
     mar_timer_set(0);
+    
+    
     MariaSpeedDownToStand(p);
+    
     cur_frame = shCharacterAnimeFrameGet(p);
     if (p->battle.id != 0) {
-        p->spd_roty = shAngleRegulate(shAtan2(p->battle.vec.z, p->battle.vec.x) - p->rot.y);
-    } else if (a_info->name == 20) {
+        damage_angle = shAtan2(p->battle.vec[2], p->battle.vec[0]);
+        p->spd_roty = shAngleRegulate(damage_angle - p->rot.y);
+    } else 
+    if (a_info->name == 20) {
         p->spd_roty = TO_RAD(180);
     } else {
         p->spd_roty = 0.0f;
     }
-    if (mar_anime_flg_on(2) == 0) {
+    
+    
+    if (!mar_anime_flg_on(2)) {
         switch (a_info->name) {
             case 20:
             case 22:
             case 26:
             case 34:
-                if (2 < cur_frame && (cur_frame < 7)) {
+                
+                if ((cur_frame > 1) && (cur_frame < 7)) {
                     p->spd = 1.0f;
                 } else {
                     p->spd = 0.2f;
                 }
                 break;
-
             case 21:
             case 23:
             case 27:
             case 35:
-                if (cur_frame >= 6) {
+                if (cur_frame > 5) {
                     p->spd = 0.3f;
-                } else if (cur_frame >= 3) {
+                } else if (cur_frame > 2) {
                     p->spd = 1.2f;
                 }
                 break;
-
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             case 24:
             case 28:
             case 32:
@@ -821,36 +839,37 @@ static void mar_sub_damage(SubCharacter* p) {
             case 38:
             case 41:
             case 46:
-                if (2 < cur_frame && (cur_frame < 15)) {
-                    p->spd = 0.05f * (float) cur_frame;
+                if ((cur_frame > 1) && (cur_frame < 15)) {
+                    p->spd = 0.05f * cur_frame;
                 }
                 break;
-
             case 25:
             case 29:
             case 33:
             case 37:
             case 42:
             case 45:
-                if (2 < cur_frame && (cur_frame < 15)) {
-                    p->spd = 0.05f * (float) cur_frame;
+                if ((cur_frame > 1) && (cur_frame < 15)) {
+                    p->spd = 0.05f * cur_frame;
                 }
+                break;            
+            case 30: case 31: case 39: case 40: case 43: case 44: case 47:
                 break;
         }
     }
     if (sh2mar.anime_pause & 1) {
         MariaStatusClear();
+        
+        
         if (sh2mar.dead != 0) {
-            sh2jms.dead = 2;
-            return;
+            sh2jms.dead = 2;            
+        } else {
+            
+            mar_flg_off(&sh2mar.sub_st_flg, 1 << MAR_SUB_ST_DAMAGE);
+            mar_flg_on(&sh2mar.sub_st_flg, 1 << MAR_SUB_ST_STAND);
         }
-        mar_flg_off(&sh2mar.sub_st_flg, 256);
-        mar_flg_on(&sh2mar.sub_st_flg, 1 << MAR_SUB_ST_STAND);
     }
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_maria_sub", mar_sub_damage);
-#endif
 
 static int MariaCheckJamesLook(float* sp, float* ep) {
     CL_VHIT_RESULT result;
