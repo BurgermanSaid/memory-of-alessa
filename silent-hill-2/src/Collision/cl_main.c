@@ -1846,7 +1846,6 @@ CL_SELECT_MAP* clGetHitSectListMOVE(float* bpos) {
     return clGetHitSectListMOVEInDoor(bpos);
 }
 
-#ifdef NON_MATCHING
 #line 3516
 CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
     int j, k; // r7, r9
@@ -1861,12 +1860,12 @@ CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
     vec_zero(cpos);
     
     if (clCollisionEnable != 0) {
-        int* ptr;
+        
 
         
         list = loadBgCLD_GetLoadedDataAddrList();
         for (; (ch = *list) != NULL; list++) {
-            float* x;
+            
             
             
             
@@ -1883,7 +1882,7 @@ CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
             cpos[2] = ch->sz;
             volatile_vec_copy(bcpos, cpos); 
             // @note: different from the rest! has no `y` computations. not an inline based on the line numbers.
-            ptr = &dist;
+            
             asm("lqc2 vf1, 0(%0)\n\
                  lqc2 vf2, 0(%1)\n\
                  \
@@ -1893,7 +1892,7 @@ CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
                  \
                  qmfc2 t0, vf3\n\
                  mtc1 t0, f12\n\
-                 sw t0, 0(%2)":: "r"(bpos), "r"(bcpos), "r"(ptr) : "t0");
+                 sw t0, 0(%2)":: "r"(bpos), "r"(cpos), "r"(&dist) : "t0");
            
             
             
@@ -1926,7 +1925,7 @@ CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
                     
                         
                         
-                        clSelectMap[use].base = (u_char* ) ch;
+                        clSelectMap[use].base = (u_char*) ch;
                         clSelectMap[use].sect = k + (j * 4);
                         
                         use++;
@@ -1942,10 +1941,6 @@ CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos) {
     
     return clSelectMap;
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Collision/cl_main", clGetHitSectListMOVEOutDoor);
-#endif
-
 
 static CL_SELECT_MAP* clGetHitSectListMOVEInDoor(float* bpos /* @note unused */) {
     int use = 0;
@@ -2444,4 +2439,3 @@ INCLUDE_ASM("asm/nonmatchings/Collision/cl_main", clCheckHitEyeVectorCharacter);
 int clPermitColumnExpansion(void) {
     return clPermColExpFlg[RoomNameJms()];
 }
-
