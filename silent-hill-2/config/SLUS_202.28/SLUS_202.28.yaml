@@ -610,7 +610,7 @@ segments:
       - { start: 0x001a9e50,    type: data,       name: Chacter_Draw/model3_vu1_n                        }
       - { start: 0x001a9ef0,    type: data,       name: Chacter_Draw/sh2gfw_Draw_Character               }
       - { start: 0x001a9ef8,    type: data,       name: Chacter_Draw/sh2gfw_model_light                  }
-      - { start: 0x001aa060,    type: .data,      name: Collision/cl_main                                }
+      - { start: 0x001a9f80,    type: .data,      name: Collision/cl_main                                }
       - { start: 0x001aa0b8,    type: data,       name: Effect/ef_broken_glass                           }
       - { start: 0x001aa0c0,    type: data,       name: Effect/ef_common_0x1aa0c0                        }
       - { start: 0x001aa160,    type: .data,      name: Enemy/en_bos                                     }
@@ -1137,7 +1137,7 @@ segments:
       - { vram:  0x00438588,    type: bss,        name: Chacter_Draw/sh2gfw_CharacterOT                  }
       - { vram:  0x004896c0,    type: bss,        name: Chacter_Draw/sh2gfw_Draw_Character               }
       - { vram:  0x00489740,    type: bss,        name: Chacter_Draw/sh2gfw_model_light                  }
-      - { vram:  0x00489ba0,    type: bss,        name: Collision/cl_main                                }
+      - { vram:  0x00489ba0,    type: .bss,       name: Collision/cl_main                                }
       - { vram:  0x004917c8,    type: .bss,       name: Collision/kari_atari_allinit                     }
       - { vram:  0x00491820,    type: bss,        name: bss_0x0491820                                    }
       - { vram:  0x00491820,    type: bss,        name: DBG/sh2gfw_SyncDBG                               }
