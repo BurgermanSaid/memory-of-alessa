@@ -1,4 +1,3 @@
-#include "sh2_common.h"
 #include "sce/libvu0.h"
 #include "SH2_common/sh_vu0.h"
 #include "SH2_common/sh2dt.h"
@@ -14,85 +13,64 @@
 #include "Collision/cl_calc2.h"
 
 static void clCollectCharaALL(void);
-
 static void clAddCollectVector(float* v0, float* v1);
-
 static void clCheckBg2Chara(int no);
-
 static void clCheckHitWallCollision(CL_HITPOLY_COLUMN* col, int* whnum, CL_HITPOLY_PLANE* pl, int* ptr);
-
 static void clCheckHitDynamicWallCollision(CL_HITPOLY_COLUMN* col, int* whnum);
-
 static int clMakeWallHitCollectVector(SubCharacter* sc, float* wcv, float mang, int* flg, int num);
-
 static void clAddWallCollectVector(float* v0, float* v1, int* flg);
-
 static void clCheckColumn2WallHit(CL_HITRESULT* cres, CL_HITPOLY_PLANE* pl, CL_HITPOLY_COLUMN* col);
-
 static void clCheckColumn2ColumnHit(CL_HITPOLY_COLUMN* col, int* whnum, CL_HITPOLY_COLUMN* cl, int* ptr);
-
 static void clCollectCharaHeightNormal(SubCharacter* sc);
-
 static void clModifiedBattleData(void);
-
 static void clSetOneBattleResult(CL_BATTLE_QUE* que, CL_VHIT_RESULT* vres, float* vec);
-
 static void clSetThrustBattleResult(CL_BATTLE_QUE* que, float* vec);
-
 static void clCheckHitSwordWeapon(CL_VHIT_RESULT* res, u_int id, float* svs, float* sve, float* evs, float* eve);
-
 static void clCheckHitGunWeapon(CL_VHIT_RESULT* res, u_int id, float* st, float* ed);
-
 static void clCheckHitSwordVector(CL_VHIT_RESULT* res, u_int id, float* sp, float* ep);
-
 static void clCheckHitSwordVectorWall(CL_VHIT_RESULT* res, float* sp, float* ep, float* min, CL_HITPOLY_PLANE* pl, int* ptr);
-
 static void clCheckHitNoThruVectorWall(CL_VHIT_RESULT* res, float* sp, float* ep, float* min, CL_HITPOLY_PLANE* pl, int* ptr);
-
 static void clCheckHitSwordVectorDynamicWall(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitSwordVectorDynamicWallNoThru(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitSwordVectorDynamicFloor(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitSwordVectorDynamicFloorNoThru(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitSwordWeaponThrust(u_int id, float* svs, float* sve, float* evs, float* eve);
-
 static int clCheckHitThrustSwordVector(u_int id, float* sp, float* ep);
-
 static void clCheckHitGunWeaponThrust(u_int id, float* st, float* ed);
-
 static void clCheckHitThrustGunVector(u_int id, float* sp, float* ep);
-
 static void clCheckHitThrustGunVectorCharacter(float* sp, float* ep, float min, u_int id);
-
 static CL_SELECT_MAP* clGetHitSectListVECHITOutDoor(float* st, float* ed);
-
 static CL_SELECT_MAP* clGetHitSectListVECHITInDoor(float* st, float* ed); // @note dwarf missed these args.
-
 static int Line2PlaneBoundaryCheckXZ(float (* l0)[4], float (* l1)[4], float (* p0)[4], float (* p1)[4], float (* p2)[4], float (* p3)[4]);
-
 static CL_SELECT_MAP* clGetHitSectListMOVEOutDoor(float* bpos);
-
 static CL_SELECT_MAP* clGetHitSectListMOVEInDoor(float* bpos);
-
 static void clCheckHitEyeVector(CL_VHIT_RESULT* res, u_int id, float* sp, float* ep);
-
 static void clCheckHitEyeVectorNoThru(CL_VHIT_RESULT* res, u_int id, float* sp, float* ep);
-
 static void clCheckHitEyeVectorAllNoThru(CL_VHIT_RESULT* res, u_int id, float* sp, float* ep);
-
 static void clCheckHitEyeVectorWall(CL_VHIT_RESULT* res, float* sp, float* ep, float* min, CL_HITPOLY_PLANE* pl, int* ptr);
-
 static void clCheckHitEyeVectorBGColumn(CL_VHIT_RESULT* res, float* sp, float* ep, float* min, CL_HITPOLY_COLUMN* cl, int* ptr);
-
 static void clCheckHitEyeVectorDynamicWall(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitEyeVectorDynamicFloor(CL_VHIT_RESULT* res, float* sp, float* ep, float* min);
-
 static void clCheckHitEyeVectorCharacter(CL_VHIT_RESULT* res, float* sp, float* ep, float* min, u_int id);
 
+u_char clPermColExpFlg[210] = { 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // size: 0xD2, address: 0x2A9880
+
+int clCollisionEnable;                                  // size: 0x4, address: 0x4917C0
+int clCharaListAct;                                     // size: 0x4, address: 0x4917B8
+int clCharaListUse[2];                                  // size: 0x8, address: 0x4917B0
+CL_CHARA_LIST clCharaList[2][32];                       // size: 0x3800, address: 0x48DFB0
+CL_WALLHITDAT clWallHitData[32];                        // size: 0xA00, address: 0x48D5B0
+CL_SELECT_MAP clSelectMap[128];                         // size: 0x400, address: 0x48D1B0
+int clDynamicWallListAct;                               // size: 0x4, address: 0x48D1A8
+CL_DYNAMICWALL_LIST clDynamicWallList[2];               // size: 0x108, address: 0x48D0A0
+int clDynamicFloorListAct;                              // size: 0x4, address: 0x48D098
+CL_DYNAMICFLOOR_LIST clDynamicFloorList[2];             // size: 0x88, address: 0x48D010
+int clVHitListUse;                                      // size: 0x4, address: 0x48D000
+CL_VHIT_RESULT clVHitResult[64];                        // size: 0x1000, address: 0x48C000
+int clUseBattleQue;                                     // size: 0x4, address: 0x48BFF0
+CL_BATTLE_QUE clBattleQue[64];                          // size: 0x1400, address: 0x48ABF0
+int clUseBattleResult;                                  // size: 0x4, address: 0x48ABE0
+CL_BATTLE_RESULT clBattleResult[CL_BATTLE_RESULT_SIZE]; // size: 0x1040, address: 0x489BA0
 
 // @todo: figure out wtf these are
 #define SMAP_WALL_BASE_START 88
