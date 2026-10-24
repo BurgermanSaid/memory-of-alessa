@@ -1068,7 +1068,7 @@ int enGetDamageMotion(EnLOCAL_DATA* dp) { // @note: left like this since I dont 
 
     bi = &dp->scp->battle;
     a = shAngleRegulate(shAtanV(&bi->vec) - dp->scp->rot.y);
-    if (float_abs(a) > QUARTER_TURN) {
+    if (shFloatAbs(a) > QUARTER_TURN) {
         var_v0 = 0;
     } else {
         var_v0 = 1;
@@ -1154,7 +1154,7 @@ int enGetDownMotion(EnLOCAL_DATA* dp) {
     
     bi = &dp->scp->battle;
     a = shAngleRegulate(shAtanV(&bi->vec) - dp->scp->rot.y);
-    if (float_abs(a) > QUARTER_TURN) {
+    if (shFloatAbs(a) > QUARTER_TURN) {
         id = 0;
     } else {
         id = 1;
