@@ -19,7 +19,8 @@
 #define SQUARE(_x) ((_x) * (_x))
 #define MIN(a, b) ((a) > (b) ? (b) : (a))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
-#define CLAMP(x, min, max) ((x) < (min) ? (min) : (x) > (max) ? (max) : (x))
+#define CLAMP(x, min, max) \
+    (((x) < (min)) ? (min) : (((x) > (max)) ? (max) : (x)))
 #define CLAMP_MAX(_val, _max) do { (_val) = (_val) > (_max) ? (_val) : (_max); } while (0)
 #define CLAMP_MIN(_val, _min) do { (_val) = (_val) > (_min) ? (_min) : (_val); } while (0)
 #define IS_IN_RANGE(x, min, max) (((x) >= (min) && (x) < max) ? 1 : 0)

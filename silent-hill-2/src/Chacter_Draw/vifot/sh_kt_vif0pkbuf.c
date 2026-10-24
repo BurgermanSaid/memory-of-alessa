@@ -11,7 +11,7 @@ void ktVif0PkBufInit(void* buf0, void* buf1, int size) {
 }
 
 #line 37
-void sh2_ktVif0PkBufInit() {
+void sh2_ktVif0PkBufInit(void) {
 
     ktVif0PkBufInit(vif0_pk_buf_db, vif0_pk_buf_db[1], sizeof(vif0_pk_buf_db[0]));
 
@@ -22,11 +22,11 @@ void sh2_ktVif0PkBufInit() {
 }
 
 #line 50
-void* ktVif0PkBufNext() {
+void* ktVif0PkBufNext(void) {
     return ktPkBufNext(&vif0_pkbuf);
 }
 
 #line 70
-void* ktVif0PkBufCurrent() {
+void* ktVif0PkBufCurrent(void) {
     return ktPkBufCurrent(&vif0_pkbuf);
 }
