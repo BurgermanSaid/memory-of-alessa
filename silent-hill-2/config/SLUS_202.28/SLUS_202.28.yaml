@@ -39,7 +39,7 @@ segments:
       - { start: 0x00005550,    type: c,          name: Chacter/m3_eddie                                 }
       - { start: 0x00005830,    type: asm,        name: Chacter/m3_ike                                   }
       - { start: 0x00005d20,    type: c,          name: Chacter/m3_laura                                 }
-      - { start: 0x00005fc0,    type: asm,        name: Chacter/m3_mkn                                   }
+      - { start: 0x00005fc0,    type: c,          name: Chacter/m3_mkn                                   }
       - { start: 0x00006560,    type: asm,        name: Chacter/m3_pap                                   }
       - { start: 0x00006aa0,    type: c,          name: Chacter/m3_play                                  }
       - { start: 0x00011a70,    type: c,          name: Chacter/m3_play_2d                               }
@@ -51,12 +51,12 @@ segments:
       - { start: 0x00020ca0,    type: c,          name: Chacter/sh_character_battle                      }
       - { start: 0x00024170,    type: c,          name: Chacter/sh_character_status                      }
       - { start: 0x000255f0,    type: c,          name: Chacter/skelton                                  }
-      - { start: 0x00025880,    type: asm,        name: Chacter_Draw/vifot/sh_kt_pkbuf                   }
-      - { start: 0x000258e0,    type: asm,        name: Chacter_Draw/vifot/sh_kt_vif0                    }
-      - { start: 0x00025a20,    type: asm,        name: Chacter_Draw/vifot/sh_kt_vif0pkbuf               }
-      - { start: 0x00025b00,    type: asm,        name: Chacter_Draw/vifot/sh_kt_vif1                    }
+      - { start: 0x00025880,    type: c,          name: Chacter_Draw/vifot/sh_kt_pkbuf                   }
+      - { start: 0x000258e0,    type: c,          name: Chacter_Draw/vifot/sh_kt_vif0                    }
+      - { start: 0x00025a20,    type: c,          name: Chacter_Draw/vifot/sh_kt_vif0pkbuf               }
+      - { start: 0x00025b00,    type: c,          name: Chacter_Draw/vifot/sh_kt_vif1                    }
       - { start: 0x00025b50,    type: asm,        name: Chacter_Draw/vifot/sh_kt_vif1ot2                 }
-      - { start: 0x00025f10,    type: asm,        name: Chacter_Draw/vifot/sh_kt_vif1pkbuf               }
+      - { start: 0x00025f10,    type: c,          name: Chacter_Draw/vifot/sh_kt_vif1pkbuf               }
       - { start: 0x00025fc0,    type: c,          name: Chacter_Draw/clani                               }
       - { start: 0x00026760,    type: c,          name: Chacter_Draw/light_n                             }
       - { start: 0x00027f80,    type: c,          name: Chacter_Draw/model3_cluster_n                    }
@@ -110,11 +110,11 @@ segments:
       - { start: 0x000758d0,    type: asm,        name: GFW/sh2_get_drawenv                              }
       - { start: 0x00075eb0,    type: asm,        name: GFW/sh2_set_drawenv                              }
       - { start: 0x00076690,    type: asm,        name: GFW/sh2_shadow_filters                           }
-      - { start: 0x000771c0,    type: asm,        name: GFW/sh2_shadow_main                              }
+      - { start: 0x000771c0,    type: c,          name: GFW/sh2_shadow_main                              }
       - { start: 0x000773e0,    type: c,          name: GFW/sh2gfw_2d_filters                            }
       - { start: 0x0007bde0,    type: c,          name: GFW/sh2gfw_GSCTL_man                             }
       - { start: 0x0007bfa0,    type: c,          name: GFW/sh2gfw_Init_ModelDrawData                    }
-      - { start: 0x0007d9a0,    type: asm,        name: GFW/sh2gfw_LightSet                              }
+      - { start: 0x0007d9a0,    type: c,          name: GFW/sh2gfw_LightSet                              }
       - { start: 0x0007eb80,    type: c,          name: GFW/sh2gfw_Texpacket                             }
       - { start: 0x0007ff40,    type: asm,        name: GFW/sh2gfw_Vertexpacket                          }
       - { start: 0x00080830,    type: asm,        name: GFW/sh2gfw_alltexman                             }
@@ -135,7 +135,7 @@ segments:
       - { start: 0x00089270,    type: c,          name: Multi_thr/dma/dma2tscmd                          }
       - { start: 0x000893f0,    type: c,          name: Multi_thr/dma/sh_dma1                            }
       - { start: 0x000897d0,    type: c,          name: Multi_thr/dma/sh_dma2                            }
-      - { start: 0x00089bc0,    type: asm,        name: Multi_thr/dma/texslot                            }
+      - { start: 0x00089bc0,    type: c,          name: Multi_thr/dma/texslot                            }
       - { start: 0x00089e30,    type: c,          name: Multi_thr/util/cmd_serv                          }
       - { start: 0x0008b280,    type: asm,        name: Multi_thr/util/utilexcl                          }
       - { start: 0x0008b390,    type: asm,        name: Multi_thr/util/utilstr                           }
@@ -152,12 +152,12 @@ segments:
       - { start: 0x0009ed40,    type: c,          name: view/vw_calc                                     }
       - { start: 0x0009f720,    type: c,          name: view/vw_main                                     }
       - { start: 0x0009f9f0,    type: c,          name: main                                             }
-      - { start: 0x0009fe30,    type: asm,        name: sh2gfw_all_sysinit                               }
+      - { start: 0x0009fe30,    type: c,          name: sh2gfw_all_sysinit                               }
       - { start: 0x000a0280,    type: c,          name: sh2gfw_drawloop_main                             }
       - { start: 0x000a1020,    type: asm,        name: sh2shd/sh2shd_outdoor                            }
       - { start: 0x000a2350,    type: c,          name: sh2shd/sh2shd_shadow_model                       }
       - { start: 0x000a66c0,    type: asm,        name: sh2shd/sh2shd_shadow_vu1_packet                  }
-      - { start: 0x000a6d00,    type: asm,        name: sh2shd/sh2shd_stencil_shadow_main                }
+      - { start: 0x000a6d00,    type: c,          name: sh2shd/sh2shd_stencil_shadow_main                }
       - { start: 0x000a6ed0,    type: asm,        name: sh2shd/sh2shd_structs                            }
       - { start: 0x000a6ef0,    type: c,          name: view/vc_calc                                     }
       - { start: 0x000a7580,    type: c,          name: Event/event                                      }
@@ -169,7 +169,7 @@ segments:
       - { start: 0x000b1480,    type: c,          name: Event/demoview                                   }
       - { start: 0x000b3e30,    type: c,          name: Font/font                                        }
       - { start: 0x000bab70,    type: asm,        name: Multi_thr/filesys/filecmd                        }
-      - { start: 0x000bc760,    type: asm,        name: Multi_thr/filesys/filepath                       }
+      - { start: 0x000bc760,    type: c,          name: Multi_thr/filesys/filepath                       }
       - { start: 0x000bcd30,    type: c,          name: Multi_thr/filesys/fileserv                       }
       - { start: 0x000bd2c0,    type: c,          name: Multi_thr/filesys/iopload                        }
       - { start: 0x000bd3a0,    type: c,          name: Multi_thr/filesys/sh_cdvd                        }
@@ -441,7 +441,7 @@ segments:
       - { start: 0x00130be0,    type: c,          name: Event/memo                                       }
       - { start: 0x00132c90,    type: c,          name: Effect/ef_sparks                                 }
       - { start: 0x00133550,    type: c,          name: DS_Pad/ds_sequencer                              }
-      - { start: 0x00134ec0,    type: asm,        name: DS_Pad/dss_wrapper                               }
+      - { start: 0x00134ec0,    type: c,          name: DS_Pad/dss_wrapper                               }
       - { start: 0x00135050,    type: c,          name: DBG/dbsw_all                                     }
       - { start: 0x001354a0,    type: c,          name: DBG/dbsw_sys                                     }
       - { start: 0x00136350,    type: c,          name: Event/chara_data_load                            }
@@ -451,7 +451,7 @@ segments:
       - { start: 0x00139db0,    type: asm,        name: Enemy/en_arm                                     }
       - { start: 0x0013b3b0,    type: c,          name: MC/mc                                            }
       - { start: 0x00143370,    type: c,          name: MC/mc_menu                                       }
-      - { start: 0x001480d0,    type: asm,        name: MC/savedata                                      }
+      - { start: 0x001480d0,    type: c,          name: MC/savedata                                      }
       - { start: 0x00148790,    type: c,          name: Event/stage/stg_tgs_trial                        }
       - { start: 0x0014c2b0,    type: asm,        name: Chacter/m3_rpjames                               }
       - { start: 0x0014ca60,    type: c,          name: Chacter/m3_rwep                                  }
@@ -506,7 +506,7 @@ segments:
       - { start: 0x0016bae0,    type: c,          name: Effect2/hh_packet                                }
       - { start: 0x0016c1c0,    type: c,          name: Multi_thr/filesys/fcread                         }
       - { start: 0x0016c4c0,    type: asm,        name: Chacter/m3_boat_jms                              }
-      - { start: 0x0016c780,    type: asm,        name: Chacter/m3_boat                                  }
+      - { start: 0x0016c780,    type: c,          name: Chacter/m3_boat                                  }
       - { start: 0x0016f630,    type: c,          name: Chacter/lake_wave                                }
       - { start: 0x0016fbf0,    type: c,          name: Chacter/m3_inu                                   }
       - { start: 0x0016fe80,    type: c,          name: view/vc_play                                     }
@@ -552,14 +552,14 @@ segments:
       - { start: 0x0018e590,    type: asm,        name: movie/pss_vobuf                                  }
       - { start: 0x0018e7b0,    type: asm,        name: Chacter_Draw/sh2_JmsSpot_Man                     }
       - { start: 0x0018f7c0,    type: c,          name: LoadBg/loadbg_event                              }
-      - { start: 0x0018fe00,    type: asm,        name: LoadBg/loadbg_chara                              }
+      - { start: 0x0018fe00,    type: c,          name: LoadBg/loadbg_chara                              }
       - { start: 0x001909d0,    type: c,          name: Chacter/player_result                            }
       - { start: 0x001913a0,    type: c,          name: sound/sh_sd_call                                 }
       - { start: 0x00191c00,    type: asm,        name: Chacter/m3_ty23                                  }
       - { start: 0x00191d20,    type: c,          name: Effect2/hh_class_blood_04                        }
       - { start: 0x001924f0,    type: c,          name: Effect2/hh_class_blood_pool_phenomenon_01        }
       - { start: 0x00192aa0,    type: c,          name: Effect2/hh_memory_manage                         }
-      - { start: 0x00192f50,    type: asm,        name: SH2_common/mem_share                             }
+      - { start: 0x00192f50,    type: c,          name: SH2_common/mem_share                             }
       - { start: 0x001937c0,    type: asm,        name: Effect2/hh_class_flame_03                        }
       - { start: 0x00194300,    type: asm,        name: SH2_common/result                                }
       - { start: 0x001951b0,    type: c,          name: view/vc_prio                                     }
@@ -590,7 +590,7 @@ segments:
       - { start: 0x001a8e90,    type: data,       name: Chacter/m3_eddie                                 }
       - { start: 0x001a8f70,    type: data,       name: Chacter/m3_ike                                   }
       - { start: 0x001a8fb0,    type: data,       name: Chacter/m3_laura                                 }
-      - { start: 0x001a9110,    type: data,       name: Chacter/m3_mkn                                   }
+      - { start: 0x001a9110,    type: .data,      name: Chacter/m3_mkn                                   }
       - { start: 0x001a9140,    type: data,       name: Chacter/m3_pap                                   }
       - { start: 0x001a9180,    type: data,       name: Chacter/m3_play                                  }
       - { start: 0x001a95d0,    type: data,       name: Chacter/m3_play_2d                               }
@@ -610,7 +610,7 @@ segments:
       - { start: 0x001a9e50,    type: data,       name: Chacter_Draw/model3_vu1_n                        }
       - { start: 0x001a9ef0,    type: data,       name: Chacter_Draw/sh2gfw_Draw_Character               }
       - { start: 0x001a9ef8,    type: data,       name: Chacter_Draw/sh2gfw_model_light                  }
-      - { start: 0x001aa060,    type: .data,      name: Collision/cl_main                                }
+      - { start: 0x001a9f80,    type: .data,      name: Collision/cl_main                                }
       - { start: 0x001aa0b8,    type: data,       name: Effect/ef_broken_glass                           }
       - { start: 0x001aa0c0,    type: data,       name: Effect/ef_common_0x1aa0c0                        }
       - { start: 0x001aa160,    type: .data,      name: Enemy/en_bos                                     }
@@ -646,13 +646,13 @@ segments:
       - { start: 0x001b6b10,    type: .data,      name: Lens/lens_th_draw                                }
       - { start: 0x001b6b20,    type: .data,      name: Multi_thr/dma/sh_dma1                            }
       - { start: 0x001b6b38,    type: .data,      name: Multi_thr/dma/sh_dma2                            }
-      - { start: 0x001b6b50,    type: data,       name: Multi_thr/dma/texslot                            }
+      - { start: 0x001b6b50,    type: .data,      name: Multi_thr/dma/texslot                            }
       - { start: 0x001b6ba0,    type: data,       name: Multi_thr/util/utilexcl                          }
       - { start: 0x001b6bb0,    type: data,       name: Multi_thr/pad/lib_sh_pad                         }
       - { start: 0x001b6c00,    type: data,       name: sh2shd/sh2shd_char_jms                           }
       - { start: 0x001b6c20,    type: .data,      name: shGs/sh2gfw_GS_NewLoopEnv                        }
       - { start: 0x001b6c30,    type: data,       name: select/sound/sd0712/ee/sd_call                   }
-      - { start: 0x001b8c70,    type: data,       name: sound/sh_sound                                   }
+      - { start: 0x001b8c70,    type: .data,      name: sound/sh_sound                                   }
       - { start: 0x001b9ae0,    type: data,       name: view/vb_main                                     }
       - { start: 0x001b9af0,    type: data,       name: view/vc_main                                     }
       - { start: 0x001b9da0,    type: data,       name: sh2gfw_drawloop_main                             }
@@ -660,14 +660,14 @@ segments:
       - { start: 0x001b9dd0,    type: data,       name: Event/event                                      }
       - { start: 0x001ba050,    type: .data,      name: Event/event_sub                                  }
       - { start: 0x001ba0f0,    type: data,       name: Event/item                                       }
-      - { start: 0x001ba1a0,    type: data,       name: Event/stg_name                                   }
+      - { start: 0x001ba1a0,    type: .data,      name: Event/stg_name                                   }
       - { start: 0x001ba780,    type: .data,      name: Event/demoview                                   }
       - { start: 0x001bb3d8,    type: data,       name: data_0x1bb3d8                                    }
       - { start: 0x001bb580,    type: .data,      name: Font/font                                        }
       - { start: 0x001bb5c0,    type: data,       name: data_0x1bb5c0                                    }
       - { start: 0x001bb648,    type: data,       name: sdk/lib_002BAF48                                 }
       - { start: 0x0023b920,    type: data,       name: Multi_thr/filesys/filecmd                        }
-      - { start: 0x0023bab8,    type: data,       name: Multi_thr/filesys/filepath                       }
+      - { start: 0x0023bab8,    type: .data,      name: Multi_thr/filesys/filepath                       }
       - { start: 0x0023bad0,    type: data,       name: Multi_thr/filesys/sh_cdvd                        }
       - { start: 0x0023baf8,    type: data,       name: Multi_thr/filesys/sh_chk_syscnf                  }
       - { start: 0x0023bb08,    type: data,       name: Multi_thr/intc/syncv                             }
@@ -778,11 +778,18 @@ segments:
       - { start: 0x00270a88,    type: .data,      name: Effect2/hh_class_water_30                        }
       - { start: 0x00270c30,    type: .data,      name: Effect2/hh_class_water_splash_phenomenon_00      }
       - { start: 0x00270c50,    type: data,       name: data_0x270c50                                    }
+      - { start: 0x00270c60,    type: .data,      name: Effect2/hh_effect_object_def                     }
+      - { start: 0x00271a70,    type: data,       name: Effect2/hh_effect_object_texture                 }
+      - { start: 0x00271e20,    type: data,       name: Effect2/hh_packet                                }
+      - { start: 0x00271E90,    type: .data,      name: Chacter/m3_boat                                  }
+      - { start: 0x002722A0,    type: data,       name: Chacter/m3_inu                                   }
+      - { start: 0x002722B0,    type: data,       name: FilesList/fileslist_bg_ma                        }
       - { start: 0x00272f90,    type: .data,      name: LoadBg/loadbg_cam                                }
       - { start: 0x002730b0,    type: .data,      name: LoadBg/loadbg_cld                                }
       - { start: 0x002731c0,    type: .data,      name: LoadBg/loadbg_kg2                                }
       - { start: 0x00273210,    type: .data,      name: LoadBg/loadbg_map                                }
       - { start: 0x00273270,    type: data,       name: data_0x273270                                    }
+      - { start: 0x00273770,    type: .data,      name: Chacter/charaboundtbl                            }
       - { start: 0x00273ed0,    type: .data,      name: Effect2/hh_class_water_03                        }
       - { start: 0x002742f8,    type: .data,      name: Effect2/hh_class_water_04                        }
       - { start: 0x002749a8,    type: .data,      name: Effect2/hh_class_water_06                        }
@@ -845,7 +852,7 @@ segments:
       - { start: 0x0028b040,    type: rodata,     name: Chacter/m3_eddie_rodata                          }
       - { start: 0x0028b1c0,    type: rodata,     name: Chacter/m3_ike                                   }
       - { start: 0x0028b350,    type: rodata,     name: Chacter/m3_laura_rodata                          }
-      - { start: 0x0028b570,    type: rodata,     name: Chacter/m3_mkn                                   }
+      - { start: 0x0028b570,    type: .rodata,    name: Chacter/m3_mkn                                   }
       - { start: 0x0028b780,    type: rodata,     name: Chacter/m3_pap                                   }
       - { start: 0x0028c3d0,    type: .rodata,    name: Chacter/m3_play                                  }
       - { start: 0x0028cab0,    type: .rodata,    name: Chacter/m3_play_3d                               }
@@ -893,7 +900,7 @@ segments:
       - { start: 0x00290100,    type: .rodata,    name: Lens/kari_lf_draw                                }
       - { start: 0x00290160,    type: .rodata,    name: Multi_thr/dma/sh_dma1                            }
       - { start: 0x00290270,    type: .rodata,    name: Multi_thr/dma/sh_dma2                            }
-      - { start: 0x00290370,    type: rodata,     name: Multi_thr/dma/texslot                            }
+      - { start: 0x00290370,    type: .rodata,    name: Multi_thr/dma/texslot                            }
       - { start: 0x002903a0,    type: rodata,     name: Multi_thr/util/cmd_serv_rodata                   }
       - { start: 0x00290488,    type: rodata,     name: Multi_thr/util/utilstr                           }
       - { start: 0x00290490,    type: rodata,     name: shPad/lib_sh_pad                                 }
@@ -913,7 +920,7 @@ segments:
       - { start: 0x00291ac0,    type: .rodata,    name: Font/font                                        }
       - { start: 0x00291c20,    type: rodata,     name: Multi_thr/filesys/filecmd                        }
 #     - { start: 0x00291d98,    type: rodata,     name: unaff_00391698                                   }
-      - { start: 0x00291da8,    type: rodata,     name: Multi_thr/filesys/filepath                       }
+      - { start: 0x00291d98,    type: .rodata,    name: Multi_thr/filesys/filepath                       }
       - { start: 0x00291db0,    type: .rodata,    name: Multi_thr/filesys/fileserv                       }
       - { start: 0x00291de0,    type: .rodata,    name: Multi_thr/filesys/iopload                        }
       - { start: 0x00291df0,    type: .rodata,    name: Multi_thr/filesys/sh_cdvd                        }
@@ -1036,7 +1043,7 @@ segments:
       - { start: 0x002999f0,    type: rodata,     name: Enemy/en_arm                                     }
       - { start: 0x00299a90,    type: .rodata,    name: MC/mc                                            }
       - { start: 0x0029a050,    type: .rodata,    name: MC/mc_menu                                       }
-      - { start: 0x0029a160,    type: rodata,     name: MC/savedata                                      }
+      - { start: 0x0029a160,    type: .rodata,    name: MC/savedata                                      }
       - { start: 0x0029a230,    type: .rodata,    name: Event/stage/stg_tgs_trial                        }
       - { start: 0x0029a280,    type: rodata,     name: GFW/sh2_DrawEnvData                              }
       - { start: 0x0029a310,    type: .rodata,    name: LoadBg/loadbg_camdata                            }
@@ -1057,7 +1064,7 @@ segments:
       - { start: 0x0029a990,    type: .rodata,    name: Effect2/hh_effect_object_texture                 }
       - { start: 0x0029ac00,    type: .rodata,    name: Effect2/hh_packet                                }
       - { start: 0x0029ace0,    type: .rodata,    name: Multi_thr/filesys/fcread                         }
-      - { start: 0x0029ad10,    type: rodata,     name: Chacter/m3_boat                                  }
+      - { start: 0x0029ad10,    type: .rodata,    name: Chacter/m3_boat                                  }
       - { start: 0x0029ad80,    type: .rodata,    name: Chacter/lake_wave                                }
       - { start: 0x0029aea0,    type: rodata,     name: Chacter/m3_inu_rodata                            }
       - { start: 0x0029aee0,    type: .rodata,    name: LoadBg/loadbg_2x2                                }
@@ -1080,10 +1087,10 @@ segments:
       - { start: 0x0029c640,    type: .rodata,    name: movie/pss_vibuf                                  }
       - { start: 0x0029c660,    type: .rodata,    name: movie/pss_videodec                               }
       - { start: 0x0029c760,    type: .rodata,    name: LoadBg/loadbg_event                              }
-      - { start: 0x0029c8d8,    type: rodata,     name: LoadBg/loadbg_chara                              }
+      - { start: 0x0029c8d8,    type: .rodata,    name: LoadBg/loadbg_chara                              }
       - { start: 0x0029ca80,    type: .rodata,    name: Chacter/player_result                            }
       - { start: 0x0029cb00,    type: .rodata,    name: Effect2/hh_memory_manage                         }
-      - { start: 0x0029cb80,    type: rodata,     name: SH2_common/mem_share                             }
+      - { start: 0x0029cb80,    type: .rodata,    name: SH2_common/mem_share                             }
       - { start: 0x0029cc20,    type: rodata,     name: SH2_common/result                                }
       - { start: 0x0029ccb0,    type: rodata,     name: pause                                            }
       - { start: 0x0029cce0,    type: .rodata,    name: now_loading                                      }
@@ -1130,7 +1137,7 @@ segments:
       - { vram:  0x00438588,    type: bss,        name: Chacter_Draw/sh2gfw_CharacterOT                  }
       - { vram:  0x004896c0,    type: bss,        name: Chacter_Draw/sh2gfw_Draw_Character               }
       - { vram:  0x00489740,    type: bss,        name: Chacter_Draw/sh2gfw_model_light                  }
-      - { vram:  0x00489ba0,    type: bss,        name: Collision/cl_main                                }
+      - { vram:  0x00489ba0,    type: .bss,       name: Collision/cl_main                                }
       - { vram:  0x004917c8,    type: .bss,       name: Collision/kari_atari_allinit                     }
       - { vram:  0x00491820,    type: bss,        name: bss_0x0491820                                    }
       - { vram:  0x00491820,    type: bss,        name: DBG/sh2gfw_SyncDBG                               }
@@ -1154,7 +1161,7 @@ segments:
       - { vram:  0x00614ed0,    type: bss,        name: GFW/sh2_shadow_filters                           }
       - { vram:  0x00615f20,    type: bss,        name: GFW/sh2gfw_2d_filters                            }
       - { vram:  0x00616ac0,    type: bss,        name: bss_0x00616AC0                                   }
-      - { vram:  0x00e1ca80,    type: bss,        name: GFW/sh2gfw_LightSet                              }
+      - { vram:  0x00e1ca80,    type: .bss,       name: GFW/sh2gfw_LightSet                              }
       - { vram:  0x00e1cc30,    type: bss,        name: GFW/sh2gfw_Texpacket                             }
       - { vram:  0x00e1d1a0,    type: bss,        name: GFW/sh2gfw_Init_ModelDrawData                    }
       - { vram:  0x00e1d1a0,    type: bss,        name: GFW/sh2gfw_globaldef                             }
@@ -1174,7 +1181,7 @@ segments:
       - { vram:  0x01013900,    type: bss,        name: shPad/lib_sh_pad                                 }
       - { vram:  0x01013b80,    type: bss,        name: sh2shd/sh2shd_char_jms                           }
       - { vram:  0x01013b90,    type: bss,        name: sound/sd0712/ee/sd_call                          }
-      - { vram:  0x010e0480,    type: bss,        name: sound/sh_sound                                   }
+      - { vram:  0x010e0480,    type: .bss,       name: sound/sh_sound                                   }
       - { vram:  0x010e58d8,    type: bss,        name: taskman/shtskman                                 }
       - { vram:  0x010e5910,    type: bss,        name: view/vb_main                                     }
       - { vram:  0x010e5a90,    type: bss,        name: view/vc_main                                     }
@@ -1188,7 +1195,7 @@ segments:
       - { vram:  0x01133148,    type: .bss,       name: Event/demoview                                   }
       - { vram:  0x01133c30,    type: bss,        name: Font/font                                        }
       - { vram:  0x011591e0,    type: bss,        name: Multi_thr/filesys/filecmd                        }
-      - { vram:  0x01159208,    type: bss,        name: Multi_thr/filesys/filepath                       }
+      - { vram:  0x01159208,    type: .bss,       name: Multi_thr/filesys/filepath                       }
       - { vram:  0x01159230,    type: .bss,       name: Multi_thr/filesys/fileserv                       }
       - { vram:  0x01159238,    type: bss,        name: Multi_thr/filesys/sh_cdvd                        }
       - { vram:  0x01159280,    type: bss,        name: Multi_thr/filesys/sh_chk_syscnf                  }
@@ -1205,7 +1212,7 @@ segments:
       - { vram:  0x0116dd40,    type: bss,        name: DBG/dbflag                                       }
       - { vram:  0x0116e3d0,    type: .bss,       name: Item/otn_itemmain                                }
       - { vram:  0x0116e670,    type: bss,        name: Enemy/en_fly                                     }
-      - { vram:  0x0116e670,    type: bss,        name: Enemy/en_fly                                     }
+      - { vram:  0x0116e940,    type: bss,        name: wrap_printf_bss                                  }
       - { vram:  0x0116E980,    type: bss,        name: crt0                                             } # GCC data
       - { vram:  0x0116EB00,    type: .bss,       name: sdk/lib_001E7928                                 } # GCC data
       - { vram:  0x0116EDD8,    type: .bss,       name: sdk/lib_001EBB18                                 } # GCC data
@@ -1266,7 +1273,7 @@ segments:
       - { vram:  0x01201b80,    type: bss,        name: Effect2/hh_effect_object_texture                 }
       - { vram:  0x01202258,    type: .bss,       name: Effect2/hh_packet                                }
       - { vram:  0x012022b0,    type: bss,        name: Chacter/m3_boat_jms                              }
-      - { vram:  0x012022f0,    type: bss,        name: Chacter/m3_boat                                  }
+      - { vram:  0x012022f0,    type: .bss,       name: Chacter/m3_boat                                  }
       - { vram:  0x01202580,    type: .bss,       name: Chacter/lake_wave                                }
       - { vram:  0x01202730,    type: bss,        name: view/vc_play                                     }
       - { vram:  0x01202800,    type: .bss,       name: LoadBg/loadbg_2x2                                }
@@ -1288,10 +1295,10 @@ segments:
       - { vram:  0x01217fc0,    type: bss,        name: movie/pss_main                                   }
       - { vram:  0x01219310,    type: bss,        name: LoadBg/loadbg_event                              }
       - { vram:  0x0122a330,    type: bss,        name: LoadBg/mem/loadbg_buf                            }
-      - { vram:  0x0122b2f0,    type: bss,        name: LoadBg/loadbg_chara                              }
+      - { vram:  0x0122b2f0,    type: .bss,       name: LoadBg/loadbg_chara                              }
       - { vram:  0x0122b308,    type: bss,        name: sound/sh_sd_call                                 }
       - { vram:  0x0122b3c0,    type: .bss,       name: Effect2/hh_memory_manage                         }
-      - { vram:  0x0126fbc0,    type: bss,        name: SH2_common/mem_share                             }
+      - { vram:  0x0126fbc0,    type: .bss,       name: SH2_common/mem_share                             }
       - { vram:  0x01f01bc0,    type: bss,        name: Effect2/hh_class_water_80                        }
       - { vram:  0x01f01bf0,    type: bss,        name: Effect2/hh_class_water_90                        }
       - { vram:  0x01f01c28,    type: bss,        name: pause                                            }

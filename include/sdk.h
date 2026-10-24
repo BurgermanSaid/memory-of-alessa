@@ -22,4 +22,6 @@ extern double dpdiv(double, double);
 
 extern void qsort(int*, int, int, int (*)(void*, void*));
 
+extern int CreateSema2(int, int, const s_char*);
+
 #endif // ALESSA_SDK_H

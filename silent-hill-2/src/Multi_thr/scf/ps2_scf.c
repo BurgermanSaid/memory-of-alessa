@@ -31,7 +31,7 @@ static int excl_sid = -1;
 
 void ps2ScfInit(void) {
     if (excl_sid == -1) {
-        excl_sid = CreateSema2(NULL, 1, 0);
+        excl_sid = CreateSema2(NULL, 1, NULL);
         sceScfSetT10kConfig(&ps2ScfDefault);
         SignalSema(excl_sid);
     }
