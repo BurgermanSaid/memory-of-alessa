@@ -652,7 +652,7 @@ segments:
       - { start: 0x001b6c00,    type: data,       name: sh2shd/sh2shd_char_jms                           }
       - { start: 0x001b6c20,    type: .data,      name: shGs/sh2gfw_GS_NewLoopEnv                        }
       - { start: 0x001b6c30,    type: data,       name: select/sound/sd0712/ee/sd_call                   }
-      - { start: 0x001b8c70,    type: data,       name: sound/sh_sound                                   }
+      - { start: 0x001b8c70,    type: .data,      name: sound/sh_sound                                   }
       - { start: 0x001b9ae0,    type: data,       name: view/vb_main                                     }
       - { start: 0x001b9af0,    type: data,       name: view/vc_main                                     }
       - { start: 0x001b9da0,    type: data,       name: sh2gfw_drawloop_main                             }
@@ -1181,7 +1181,7 @@ segments:
       - { vram:  0x01013900,    type: bss,        name: shPad/lib_sh_pad                                 }
       - { vram:  0x01013b80,    type: bss,        name: sh2shd/sh2shd_char_jms                           }
       - { vram:  0x01013b90,    type: bss,        name: sound/sd0712/ee/sd_call                          }
-      - { vram:  0x010e0480,    type: bss,        name: sound/sh_sound                                   }
+      - { vram:  0x010e0480,    type: .bss,       name: sound/sh_sound                                   }
       - { vram:  0x010e58d8,    type: bss,        name: taskman/shtskman                                 }
       - { vram:  0x010e5910,    type: bss,        name: view/vb_main                                     }
       - { vram:  0x010e5a90,    type: bss,        name: view/vc_main                                     }
