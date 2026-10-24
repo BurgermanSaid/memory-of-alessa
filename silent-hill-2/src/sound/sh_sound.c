@@ -718,7 +718,7 @@ int Se3dControl(int sd_no /* r17 */, float volume /* r20 */, float* pos /* r16 *
     if (i == 8) {
         return -1;
     }
-    shVectorCopyNonvolatile(se_3d_channel_data[i].pos, pos);
+    shVectorCopy(se_3d_channel_data[i].pos, pos);
     se_3d_channel_data[i].vol = volume;
     return 0x10;
 }

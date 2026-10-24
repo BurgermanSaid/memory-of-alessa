@@ -20,12 +20,12 @@ void vwInitViewInfo(void) {
 
 #line 100
 void vwGetViewPosition(sceVu0FVECTOR pos) {
-    shVectorCopyNonvolatile(pos, vwViewPointInfo.worldpos);
+    shVectorCopy(pos, vwViewPointInfo.worldpos);
 }
 
 #line 119
 void vwGetViewAngle(sceVu0FVECTOR pos) {
-    shVectorCopyNonvolatile(pos, vwViewPointInfo.worldang);
+    shVectorCopy(pos, vwViewPointInfo.worldang);
 }
 
 #line 184

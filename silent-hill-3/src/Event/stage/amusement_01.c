@@ -190,9 +190,9 @@ void func_01F6DC40_amusement_01(void) {
 }
 
 static void func_01F6DC70_amusement_01(u_long128* arg0, int* arg1, u_long128* arg2, int* arg3, int* arg4) {
-    shVectorCopyNonvolatile(arg0, &D_01F74680_amusement_01);
+    shVectorCopy(arg0, &D_01F74680_amusement_01);
     *arg1 = 1;
-    shVectorCopyNonvolatile(arg2, &D_01F74670_amusement_01);
+    shVectorCopy(arg2, &D_01F74670_amusement_01);
     *arg3 = 0;
     *arg4 = 0;
 }
@@ -207,12 +207,12 @@ static void func_01F6DCF0_amusement_01(u_long128* arg0, int* arg1, u_long128* ar
 
     func_0018FE60((u_long128*) &sp60);
     sp60[1] += -700.0f;
-    shVectorCopyNonvolatile(arg0, &D_01F74690_amusement_01[D_01F74CB0_amusement_01]);
+    shVectorCopy(arg0, &D_01F74690_amusement_01[D_01F74CB0_amusement_01]);
     *arg1 = 1;
     if (D_01F74CB0_amusement_01 != 2) {    
-        shVectorCopyNonvolatile(arg2, sp60);
+        shVectorCopy(arg2, sp60);
     } else {
-        shVectorCopyNonvolatile(arg2, D_01F74670_amusement_01);
+        shVectorCopy(arg2, D_01F74670_amusement_01);
     }
     *arg3 = 1;
     *arg4 = 0;
@@ -733,16 +733,16 @@ static void func_01F6F430_amusement_01(u_long128* arg0, int* arg1, u_long128* ar
     sp10 = D_01F748E0_amusement_01;
 
     if (D_01F74D18_amusement_01 != 0) {
-        shVectorCopyNonvolatile(arg0, &D_01F748B0_amusement_01);
+        shVectorCopy(arg0, &D_01F748B0_amusement_01);
         *arg1 = 0;
-        shVectorCopyNonvolatile(arg2, &D_01F748C0_amusement_01);
+        shVectorCopy(arg2, &D_01F748C0_amusement_01);
         *arg3 = 0;
         *arg4 = 0;
         D_01F74D18_amusement_01--;
     } else {
-        shVectorCopyNonvolatile(arg0, &sp0);
+        shVectorCopy(arg0, &sp0);
         *arg1 = 1;
-        shVectorCopyNonvolatile(arg2, &sp10);
+        shVectorCopy(arg2, &sp10);
         *arg3 = 1;
         *arg4 = 0;
     }

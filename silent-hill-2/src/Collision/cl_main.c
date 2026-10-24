@@ -754,7 +754,7 @@ void clAddWallCollectVector(float* v0, float* v1, int* flg) {
     float tv[4];
 
     if (*flg == 0) {
-        shVectorCopyNonvolatile(v0, v1);
+        shVectorCopy(v0, v1);
     } else {
         vec_add(v0, v1, tv);
 
@@ -768,7 +768,7 @@ void clAddWallCollectVector(float* v0, float* v1, int* flg) {
         else
             tv[2] = tv[2] < v0[2] ? v0[2] : MIN(tv[2], v1[2]);
 
-        shVectorCopyNonvolatile(v0, &tv[0]);
+        shVectorCopy(v0, &tv[0]);
     }
 
     *flg += 1;
@@ -816,7 +816,7 @@ static void clCollectCharaHeightNormal(SubCharacter* sc) {
         pos->y = res.hobj.wall.cp[1];
         pos->y = res.hobj.wall.cp[1];
 
-        shVectorCopyNonvolatile(&sc->grnd_normal, &res.hobj.wall.nl);
+        shVectorCopy(&sc->grnd_normal, &res.hobj.wall.nl);
         sc->grnd_height = res.hobj.wall.cp[1];
     }
 }

@@ -101,10 +101,10 @@ void vcSetFirstCamWork(sceVu0FVECTOR cam_pos, float chara_eye_ang_y, int use_thr
     vcWork.flags = VC_ALL_WARP_FLAGS;
 
     
-    shVectorCopyNonvolatile(vcWork.cam_pos, cam_pos);
+    shVectorCopy(vcWork.cam_pos, cam_pos);
     vcWork.cam_mv_ang_y = 0.0f;
     shVectorZero(vcWork.cam_velo);
-    shVectorCopyNonvolatile(vcWork.cam_tgt_pos, cam_pos);
+    shVectorCopy(vcWork.cam_tgt_pos, cam_pos);
     shVectorZero(vcWork.cam_tgt_velo);
     vcWork.cam_mv_ang_y = 0.0f;
     vcWork.cam_tgt_spd = 0.0f;
@@ -130,7 +130,7 @@ void vcUserWatchTarget(sceVu0FVECTOR watch_tgt_pos, VC_WATCH_MV_PARAM* watch_prm
     if (warp_watch_f) vcWork.flags |= VC_WARP_WATCH_F;
 
     
-    shVectorCopyNonvolatile(vcWork.watch_tgt_pos, watch_tgt_pos);
+    shVectorCopy(vcWork.watch_tgt_pos, watch_tgt_pos);
 
     
     vcWork.watch_tgt_ang_z = rot_z;
@@ -151,7 +151,7 @@ void vcUserCamTarget(sceVu0FVECTOR cam_tgt_pos, VC_CAM_MV_PARAM* cam_prm_p, int 
     if (warp_cam_f) vcWork.flags |= VC_WARP_CAM_F;
 
     
-    shVectorCopyNonvolatile(vcWork.cam_tgt_pos, cam_tgt_pos);
+    shVectorCopy(vcWork.cam_tgt_pos, cam_tgt_pos);
 
     
     if (cam_prm_p == NULL) {
@@ -202,7 +202,7 @@ void vcGetNowWatchPos(sceVu0FVECTOR watch_pos) {
 
 #line 738
 void vcGetNowCamPos(sceVu0FVECTOR cam_pos) {
-    shVectorCopyNonvolatile(cam_pos, vcWork.cam_pos);
+    shVectorCopy(cam_pos, vcWork.cam_pos);
     
 }
 
@@ -217,12 +217,12 @@ void vcReturnPreAutoCamWork(int warp_f) {
 
 #line 802
 void vcSetSubjChara(sceVu0FVECTOR chara_pos, float chara_bottom_y, float chara_top_y, float chara_grnd_y, sceVu0FVECTOR chara_head_pos, float chara_mv_spd, float chara_mv_ang_y, float chara_ang_spd_y, float chara_eye_ang_y, float chara_eye_ang_wy, float chara_watch_xz_r) {
-    shVectorCopyNonvolatile(vcWork.chara_pos, chara_pos);
+    shVectorCopy(vcWork.chara_pos, chara_pos);
     vcWork.chara_bottom_y = chara_bottom_y;
     vcWork.chara_top_y = chara_top_y;
     vcWork.chara_center_y = (chara_bottom_y + chara_top_y) / 2.0f;
     vcWork.chara_grnd_y = chara_grnd_y;
-    shVectorCopyNonvolatile(vcWork.chara_head_pos, chara_head_pos);
+    shVectorCopy(vcWork.chara_head_pos, chara_head_pos);
     vcWork.chara_mv_spd = chara_mv_spd;
     vcWork.chara_mv_ang_y = chara_mv_ang_y;
     vcWork.chara_ang_spd_y = chara_ang_spd_y;
@@ -1547,7 +1547,7 @@ void vcAutoRenewalWatchTgtPosAndAngZ(VC_WORK* w_p, VC_CAM_MV_TYPE cam_mv_type, V
     
     
                 if (playing.control_type == 1 && (vcWork.cur_near_road.road_p->cam_mv_type == 0 || vcWork.cur_near_road.road_p->cam_mv_type == 4)) {
-                    shVectorCopyNonvolatile(w_p->watch_tgt_pos, w_p->chara_pos);
+                    shVectorCopy(w_p->watch_tgt_pos, w_p->chara_pos);
                     w_p->watch_tgt_pos[1] = 225.0f + w_p->chara_top_y;
                 }
     
@@ -1559,7 +1559,7 @@ void vcAutoRenewalWatchTgtPosAndAngZ(VC_WORK* w_p, VC_CAM_MV_TYPE cam_mv_type, V
             }
             break;
         case 3:
-            shVectorCopyNonvolatile(w_p->watch_tgt_pos, far_watch_pos);
+            shVectorCopy(w_p->watch_tgt_pos, far_watch_pos);
             
             break;
     }
@@ -1937,7 +1937,7 @@ void vcAutoRenewalCamTgtPos(VC_WORK* w_p, VC_CAM_MV_TYPE cam_mv_type, VC_CAM_MV_
     }
     
     if (vcWork.flags & VC_WARP_CAM_TGT_F) {
-        shVectorCopyNonvolatile(w_p->cam_tgt_pos, ideal_pos);
+        shVectorCopy(w_p->cam_tgt_pos, ideal_pos);
     }
 
 
@@ -2371,13 +2371,13 @@ void vcMakeIdealCamPosForLocusCircleCam(sceVu0FVECTOR ideal_pos, VC_WORK* w_p) {
         origin[0] = w_p->cur_near_road.road_p->tmp.chs.ofs_hy;
         origin[2] = w_p->cur_near_road.road_p->tmp.chs.ratio_r_xz;
     } else {
-        shVectorCopyNonvolatile(origin, w_p->cir_man.origin);
+        shVectorCopy(origin, w_p->cir_man.origin);
     }
 
 
 
     
-    shVectorCopyNonvolatile(sw_l, w_p->cir_man.sw_l);
+    shVectorCopy(sw_l, w_p->cir_man.sw_l);
     
     ofs_ang_y = shAtan2(w_p->chara_pos[2] - origin[2], w_p->chara_pos[0] - origin[0]);
     
@@ -3074,7 +3074,7 @@ void vcRenewalCamData(VC_WORK* w_p, VC_CAM_MV_PARAM* cam_mv_prm_p) {
                                     w_p->cam_tgt_pos[0] - w_p->cam_pos[0]
                                    );
 
-        shVectorCopyNonvolatile(w_p->cam_pos, w_p->cam_tgt_pos);
+        shVectorCopy(w_p->cam_pos, w_p->cam_tgt_pos);
         shVectorZero(w_p->cam_velo);
         return; // removing this return affects the 0.4f floats below, weird
     } else {
@@ -3087,8 +3087,8 @@ void vcRenewalCamData(VC_WORK* w_p, VC_CAM_MV_PARAM* cam_mv_prm_p) {
 
 
         
-        shVectorCopyNonvolatile(cpos, w_p->cam_pos);
-        shVectorCopyNonvolatile(tpos, w_p->cam_tgt_pos);
+        shVectorCopy(cpos, w_p->cam_pos);
+        shVectorCopy(tpos, w_p->cam_tgt_pos);
         cpos[0] /= 500.0f;
         cpos[2] /= 500.0f;
         tpos[0] /= 500.0f;
@@ -3196,7 +3196,7 @@ void vcRenewalCamMatAng(VC_WORK* w_p, VC_WATCH_MV_PARAM* watch_mv_prm_p, VC_CAM_
 
     
     if (w_p->flags & VC_WARP_WATCH_F) {
-        shVectorCopyNonvolatile(w_p->ofs_cam_ang, ofs_tgt_ang);
+        shVectorCopy(w_p->ofs_cam_ang, ofs_tgt_ang);
         shVectorZero(w_p->ofs_cam_ang_spd);
     } else {
         
@@ -3369,7 +3369,7 @@ void vcRenewalBaseCamAngAndAdjustOfsCamAng(VC_WORK* w_p, sceVu0FVECTOR new_base_
     shMulMatrix(adj_ofs_mat, new_base_matT, old_base_mat);
     shMulMatrix(ofs_mat, adj_ofs_mat, ofs_mat);
     vwMatrixToAngleYXZ(w_p->ofs_cam_ang, ofs_mat);
-    shVectorCopyNonvolatile(w_p->base_cam_ang, new_base_cam_ang);
+    shVectorCopy(w_p->base_cam_ang, new_base_cam_ang);
 }
 
 #line 4846

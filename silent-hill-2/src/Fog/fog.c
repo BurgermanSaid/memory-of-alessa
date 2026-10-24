@@ -315,7 +315,7 @@ void fogSetObj(u_long ID, void* Center, float Size) {
         fjAssert(fwork.ObjMax < OBJ_MAX, "fog.c", 634);
         od = &fwork.Obj[fwork.ObjMax++];
     }
-    shVectorCopyNonvolatile(od->pos, Center);
+    shVectorCopy(od->pos, Center);
     shVectorZero(od->mv);
     od->pos[3] = Size;
     od->mv[3] = fwork.EscapeRange;
@@ -332,7 +332,7 @@ void fogSetObj2(u_long ID, void* Center, float Size) {
         fjAssert(fwork.ObjMax < OBJ_MAX, "fog.c", 685);
         od = &fwork.Obj[fwork.ObjMax++];
     }
-    shVectorCopyNonvolatile(od->pos, Center);
+    shVectorCopy(od->pos, Center);
     shVectorZero(od->mv);
     od->pos[3] = Size;
     od->mv[3] = fwork.EscapeRange;
@@ -450,7 +450,7 @@ void fogSetWorldViewM(void* WorldViewM) {
 
 void fogSetWorldPosV(void* WorldPosV) {
     if (!(fwork.Flag & 0x40)) {
-        shVectorCopyNonvolatile(fwork.WorldPosV, WorldPosV);
+        shVectorCopy(fwork.WorldPosV, WorldPosV);
     }
 }
 
@@ -472,7 +472,7 @@ void fogResetStayPoint(void) {
 }
 
 void fogSetCameraPosV(void* CameraPosV) {
-    shVectorCopyNonvolatile(fwork.CameraPosV, CameraPosV);
+    shVectorCopy(fwork.CameraPosV, CameraPosV);
 }
 
 void fogSetLocalPosV(void) {
@@ -482,7 +482,7 @@ void fogSetLocalPosV(void) {
     vec_sub_reverse(fwork.CameraPosV, fwork.WorldPosV, FVector);
     d = vec3_length(FVector);
     if (fwork.Flag & 0x20) {
-        shVectorCopyNonvolatile(TVector, fwork.LocalPosV);
+        shVectorCopy(TVector, fwork.LocalPosV);
         dx = FVector[0] / shFloatAbs(FVector[2]);
     }
     if (d > 2000.0f) {

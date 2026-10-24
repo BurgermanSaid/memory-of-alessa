@@ -106,7 +106,7 @@ static void shBattleSetEffectDamage(SubCharacter* scp, float* pos, float* vec, u
     if (!(atk == 53 || atk == 63 || atk == 62 || atk == 60 || atk == 59 ||
         atk == 58 || atk == 57 || atk == 55 || atk == 54 || atk == 48 ||
         atk == 47 || atk == 37 || atk == 36 || atk == 9 || atk == 8)) {
-        shVectorCopyNonvolatile(vec_tmp,vec);
+        shVectorCopy(vec_tmp,vec);
         HH_Effect_Object_Blood_Splash_Impact_Post(pos, vec_tmp, (u_int)scp, atk_type);        
     }
 
