@@ -82,8 +82,16 @@ typedef struct EnANIME_DATA {
     u_char Loop;   // offset 0x2, size 0x1
 } EnANIME_DATA;
 
-void enInitEnemy(void);
+// total size: 0x8
+typedef struct EnSKELETON_DATA {
+    // Members
+    signed short num1; // offset 0x0, size 0x2
+    signed short num2; // offset 0x2, size 0x2
+    float rate; // offset 0x4, size 0x4
+} EnSKELETON_DATA;
 
+void enInitEnemy(void);
+void enExecTask(void);
 EnLOCAL_DATA* enEntryEnemy(int kind /* r2 */);
 void enInitData(EnLOCAL_DATA* dp /* r18 */, SubCharacter* scp /* r17 */);
 void enDeleteEnemy(EnLOCAL_DATA* dp /* r2 */);
@@ -201,6 +209,7 @@ int enGetDownMotion(EnLOCAL_DATA* dp /* r18 */);
 int enGetLieDirection(int dm);
 void enAnimeSet(EnLOCAL_DATA* dp /* r17 */, int anim /* r18 */, int id /* r16 */);
 void enAnimeSetDirectFrame(EnLOCAL_DATA* dp, int anim, int id, int frame);
+void enSetTrans(EnLOCAL_DATA* dp);
 
 void enSetTransN(EnLOCAL_DATA* dp, int n);
 
@@ -222,9 +231,9 @@ void enSoundSetQueue(SubCharacter* scp /* r2 */, int num /* r2 */, float vol /* 
 EnCOMMUNICATION* enSetCommunication(int kind, int type, float* pos, float dist, int time);
 EnCOMMUNICATION* enCommunicateTribe(int kind /* r2 */, float* pos /* r2 */);
 void enResetForbiddenArea(void);
-
+void enRoomForbiddenArea(void);
 int enCheckForbiddenArea(float* sp, float* ep, float size);
-int enCheckForbiddenAreaSub(EnFORBIDDENAREA* fa /* r2 */, float* sp /* r2 */, float* ep /* r2 */, float size /* r29 */);
+int enCheckForbiddenAreaSub(EnFORBIDDENAREA * /* r2 */, Vector4 * /* r2 */, Vector4 * /* r2 */, float /* r29 */);
 void enEventDriven(int event /* r2 */, int id /* r2 */);
 
 #endif

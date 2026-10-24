@@ -3,6 +3,7 @@
 #include "sce/libvu0.h"
 #include "Enemy/en_effect.h"
 #include "Enemy/en_arm.h"
+#include "Enemy/en_scu.h"
 
 #include "Chacter/sh_character_status.h"
 #include "Chacter/sh_character_battle.h"
@@ -43,6 +44,88 @@ extern /* static */ int (* EnAnimeSetFunc[12])(struct SubCharacter*, int, int);
 
 extern /* static */ EnLOCAL_WORK enLocalWork; // size: 0x1E10, address: 0x5506A0
 
+extern /* static */ EnSKELETON_DATA EnSkeletonData[16]; //= { // size: 0x80, address: 0x2A9B60
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 20,
+//         /* .num2 */ 21,
+//         /* .float */ 0.75,
+//     },
+//     {
+//         /* .num1 */ 15,
+//         /* .num2 */ 16,
+//         /* .float */ 0.6,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 12,
+//         /* .num2 */ 13,
+//         /* .float */ 0.75,
+//     },
+//     {
+//         /* .num1 */ 12,
+//         /* .num2 */ 13,
+//         /* .float */ 0.75,
+//     },
+//     {
+//         /* .num1 */ 12,
+//         /* .num2 */ 13,
+//         /* .float */ 0.75,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 20,
+//         /* .num2 */ 24,
+//         /* .float */ 0.75,
+//     },
+//     {
+//         /* .num1 */ 18,
+//         /* .num2 */ 19,
+//         /* .float */ 0.75
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+//     {
+//         /* .num1 */ 0,
+//         /* .num2 */ 0,
+//         /* .float */ 0,
+//     },
+// };
 static inline float angle_add(struct EnPATH_DATA* p, float a0) { // what is the best place for this?
     float a1 = p->markangle;
     float temp_f0 = shAngleRegulate(a1 - p->angle);
@@ -59,7 +142,131 @@ void enInitEnemy(void) {
     enLocalWork.Max3DSounds = 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enExecTask);
+//#line 193
+void enExecTask() {
+    signed int i; /* r16 */
+    EnLOCAL_DATA * dp; /* r17 */
+    Vector4 * p_pos; /* r2 */
+    void (* enEnemyControlFunc[15])(EnLOCAL_DATA *) = {
+        enSCUCtrlMain,
+        enMKNCtrlMain,
+        enTYUCtrlMain,
+        enREDCtrlMain,
+        enONICtrlMain,
+        enNSECtrlMain,
+        enIKECtrlMain,
+        enPAPCtrlMain,
+        enEDBCtrlMain,
+        enARMCtrlMain,
+        enBOSCtrlMain,
+        enNIKCtrlMain,
+        enTY2CtrlMain,
+        enINSCtrlMain,
+        NULL
+    }; /* r29+0x40 */
+    float dist[32]; /* r29+0x80 */ int num[32]; /* r29+0x100 */ int j; /* r5 */
+    int max; /* r2 */ int max2; /* r3 */ int n; /* r6 */ float d; /* r1 */
+    EnFORBIDDENAREA * fa; /* r4 */ EnCOMMUNICATION * cp; /* r4 */ EnSOUND_QUEUE * que; /* r17 */ int f; /* r18 */
+    p_pos = &sh2jms.player->pos;
+    
+    
+    
+    
+    
+    dp = &enLocalWork.Data[0];
+    max = 0;
+    for(i = 0; i < 32; i++, dp ++) {
+        if (dp->kind > 0 && dp->kind < 16) {
+            dp->p_dist = vec3_dist((float *) &dp->scp->pos, (float *) p_pos);dist[max] = dp->p_dist;
+            num[max] = i;
+            dp->flag &= ~0x1000;
+            max++;
+        }
+    }
+    max2 = max;
+    if (enLocalWork.Max3DSounds < max) {max2 = enLocalWork.Max3DSounds;}
+    for(i = 0; i < max2; i++) {
+        d = dist[i];
+        f = i;
+        for(j = i + 1; j < max; j++) {
+            if (dist[j] < d) {
+                d = dist[j];
+                f = j;
+            }
+        }
+        enLocalWork.Data[num[f]].flag |= 0x1000;
+        dist[f] = dist[i];
+        num[f] = i;
+    }
+
+    
+    
+    enRoomForbiddenArea();
+    
+    fa = &enLocalWork.ForbiddenArea[0];
+    enLocalWork.Status &= ~0x1;
+    for (i = 0; i < enLocalWork.ForbiddenNum; i++, fa++) {
+        if (!(p_pos->x < fa->x0) && (p_pos->x  <= fa->x1) && !(p_pos->z < fa->z0) && (p_pos->z <= fa->z1)) {
+   
+            enLocalWork.Status |= 0x1;
+            break;
+        } 
+    }
+    
+    
+    
+    dp = &enLocalWork.Data[0];
+    for (i = 0; i < 32;i++,dp++) {
+        if ((dp->kind > 0) && (dp->kind < 16)) {
+            enLocalWork.This = dp;
+            shPushRandSeed(dp->randseed);
+            shBattleGetResult(dp->scp);
+            enEnemyControlFunc[dp->kind - 1](dp);
+            enSetRadioVolume(dp);
+            dp->scp->battle.id = 0;
+            dp->randseed = shPopRandSeed();
+        }
+    }
+    
+    enResetForbiddenArea();
+    
+    
+    if (enLocalWork.CommunicationNum != 0) {
+        cp = &enLocalWork.Communication[0];
+        for (i = 0; i < 8;i++,cp++) {
+            if ((cp->kind != 0) && (cp->time > 0) && (--cp->time) <= 0) {
+                cp->kind = 0;
+                enLocalWork.CommunicationNum--;
+            }
+        }
+    }
+    
+    
+    if(enLocalWork.SoundQueueNum != 0) {
+    
+    
+        for (i = 0; i < enLocalWork.SoundQueueNum; i++) {
+            que = &enLocalWork.SoundQueue[i];
+            n = 0;
+            if (que->scp->kind == 0) {
+                n = 1;
+            } else if ((que->time -= shGetDT()) <= 0.0f) {
+                enSoundCall(que->num, que->vol, (float *) &que->scp->pos.x);
+                n = 1;
+            }
+            if (n != 0) {
+                if(i != (--enLocalWork.SoundQueueNum)) {
+    
+                
+                    *que = enLocalWork.SoundQueue[enLocalWork.SoundQueueNum];
+                    i--;
+                } else {break;}
+            } 
+        }}
+    
+    
+    enLocalWork.This = NULL;
+}
 
 EnLOCAL_DATA* enEntryEnemy(int kind) {
     int i = 0;
@@ -93,10 +300,10 @@ void enInitData(EnLOCAL_DATA* dp /* r18 */, SubCharacter* scp /* r17 */) {
         enBOSInitData,
         enNIKInitData,
         enTY2InitData,
-        enTY3InitData, 
+        enTY3InitData,
         enINSInitData
-    };    
-        
+    };
+
     if ((dp == NULL) || (scp == NULL)) return;
     kind = dp->kind;
     ASSERT_ON_LINE(kind > EnKIND_NONE && kind <= EnKIND_INS, 372);
@@ -358,7 +565,43 @@ float enAddEnduranceDT(struct EnLOCAL_DATA* dp /* r17 */, float n /* r20 */) {
     return dp->endurance = en;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckDamage);
+//#line 777
+signed int enCheckDamage(EnLOCAL_DATA* dp /* r17 */) {
+   struct shBattleInfo * bi = &dp->scp->battle; /* r16 */
+   if (bi->damage == 0.0f) {
+        dp->d_count = (char) 0;
+        return 0;
+    }
+    if ((bi->status & 0x40) 
+    || (bi->id >= 25 && bi->id < 35 && !(bi->status & 0x4))
+    || (dp->kind == 1 && bi->id == 36) 
+    || (dp->kind == 3 && bi->id == 51)) {    
+        
+        
+        bi->damage = 0.0f;
+        bi->shock = 0.0f;
+        return 0;
+    }
+    if ((bi->id == 8) || (bi->id == 9)) {
+        if (dp->kind != 1 && dp->kind != 2 
+        && dp->kind != 6 && dp->kind != 3 
+        && dp->kind != 15 && dp->kind != 8 
+        && (enGetSprayPower() >= 0) && enGetSprayPower() < 2) {
+            
+            bi->damage = 0.0f;
+            bi->shock = 0.0f;
+            return 0;
+        }
+    }
+    
+    if (shPadGetPort() == 6 && shPadPress(0, 0x40000)) {
+        dp->endurance = 0.0f;bi->hp_rate = 0.0f;bi->hp = 0.0f;
+    }
+    
+    bi->damage /= itof(++dp->d_count);
+    dp->last_atk = bi->id;
+    return 1;
+}
 
 int enCheckSpray(struct EnLOCAL_DATA* dp /* r2 */) {
     if ((dp->last_atk == 8) || (dp->last_atk == 9)) {
@@ -1363,7 +1606,19 @@ void enAnimeExec(struct EnLOCAL_DATA * dp /* r22 */, struct EnANIME_DATA * pa /*
    shCharacterAnimeSpeedAdd(dp->scp, ((speed * dp->anim_s) / 4096) - speed);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetTrans);
+#line 2633
+void enSetTrans(EnLOCAL_DATA * dp /* r16 */) {
+    EnSKELETON_DATA * sd = &EnSkeletonData + dp->kind; // r17
+    float vec1[4]; /* r29+0x30 */ float vec2[4]; /* r29+0x40 */
+    if (sd->rate != 0.0f) {
+        enGetSkeletonVector(vec1, dp, sd->num1);
+        enGetSkeletonVector(vec2, dp, sd->num2);
+        vec_add(vec1, vec2, vec1);
+        vec_scale(sd->rate, vec1, vec1);
+        dp->tx = vec1[0];
+        dp->tz = vec1[2];
+    }
+}
 
 void enSetTransN(EnLOCAL_DATA* dp, int n) {
     sceVu0FVECTOR vec;
@@ -1372,7 +1627,27 @@ void enSetTransN(EnLOCAL_DATA* dp, int n) {
     dp->tz = vec[2];
 }
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetTransWalk);
+#line 2660
+void enSetTransWalk(EnLOCAL_DATA * dp /* r17 */) {
+    sceVu0FVECTOR vec[2]; /* r29+0x40 */ signed int sn[2]; /* r29+0x68 */ signed int d; /* r16 */ float od; /* r20 */
+    
+    
+    od = dp->tz - dp->tz2;
+    sn[0] = EnSkeletonData[dp->kind].num1;
+    sn[1] = EnSkeletonData[dp->kind].num2;
+    enGetSkeletonVector(vec[0], dp, sn[0]);
+    enGetSkeletonVector(vec[1], dp, sn[1]);
+    if ((d = dp->anim_step - 1) < 0) {
+        d = ((vec[0][1] > vec[1][1]));
+    }
+    if ((vec[0][1 + d * 4] < vec[0][1 + (d ^ 1) * 4]) != 0) d ^= 1; 
+    enSetTransN(dp, sn[0 + d]);
+    dp->tx2 = 0; dp->tx = 0;
+    if (dp->anim_step != d + 1) {
+        dp->anim_step = d + 1;
+        dp->tz2 = (dp->tz - od);
+    }
+}
 
 void enSetTransForward(EnLOCAL_DATA* dp, float s) {
     dp->tx = dp->tx2 = dp->tz2 = 0.0f;
@@ -1523,7 +1798,58 @@ void enSetForbiddenArea(float x0, float z0, float x1, float z1) {
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetForbiddenArea)
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enRoomForbiddenArea);
+#ifdef HOLY_CANDLE
+#line 2981
+void enRoomForbiddenArea(void) {
+    signed int f = 0;
+    switch(stage->glb_crd) {
+    case 3:
+        
+        enSetForbiddenArea(-20000.0f, 40000.0f, -4000.0f, 57000.0f);
+        
+        enSetForbiddenArea(-100000.0f, 60000.0f, -80000.0f, 100000.0f);
+        break;
+    default:
+        switch (RoomNameJms()) {
+        case 48:
+        case 101:
+        case 187:
+            f = 1;
+            break;
+        case 7:
+            enSetForbiddenArea(83500.0f, -71300.0f, 85000.0f, -69600.0f);
+            break;
+        case 146:
+            enSetForbiddenArea(-20800.0f, 18400.0f, -19200.0f, 22800.0f);
+            break;
+        case 153:
+            enSetForbiddenArea(-64000.0f, 20800.0f, -63200.0f, 23500.0f);
+            enSetForbiddenArea(-60750.0f, 20750.0f, -59250.0f, 25600.0f);
+            break;
+        case 160:
+        case 178:
+            enSetForbiddenArea(60000.0f, -19400.0f, 60750.0f, -16800.0f);
+            enSetForbiddenArea(61200.0f, -19400.0f, 62000.0f, -16800.0f);
+            break;
+        case 163:
+        case 181:
+            enSetForbiddenArea(16000.0f, 20000.0f, 16800.0f, 22600.0f);
+            break;
+        case 168:
+            enSetForbiddenArea(-20800, -60000.0f, -19200.0f, -55600.0f);
+            break;
+        }
+    } 
+    if (f != 0) {
+        enLocalWork.Status |= 2;
+    } else {
+        enLocalWork.Status &= ~2;
+        enLocalWork.ActiveEnemy = 0;
+    }
+}
+#else
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enRoomForbiddenArea)
+#endif
 
 int enCheckForbiddenArea(float* sp, float* ep, float size) {
     int i, f; 
@@ -1535,7 +1861,78 @@ int enCheckForbiddenArea(float* sp, float* ep, float size) {
     return f;
 }
 
+#ifdef HOLY_CANDLE
+int enCheckForbiddenAreaSub(EnFORBIDDENAREA * fa /* r2 */, Vector4 * sp /* r2 */, Vector4 * ep /* r2 */, float size /* r29 */) {
+    float x0; // r1
+    float z0; // r2
+    float x1; // r3
+    float z1; // r4
+    float sx; // r5
+    float sz; // r6
+    float vx; // r7
+    float vz; // r8
+    float c; // r29
+    signed int f; // r2
+
+    x0 = fa->x0 - size;
+    z0 = fa->z0 - size;
+    x1 = fa->x1 + size;
+    z1 = fa->z1 + size;
+    sx = sp->x;
+    sz = sp->z;
+    if ((sx <= x0 && ep->x <= x0) || (!(sx < x1) && !(ep->x < x1)) 
+        || (sz <= z0 && ep->z <= z0) || (!(sz < z1) && !(ep->z < z1))) {
+        
+        return 0;
+    }
+    f = 0;
+    vx = ep->x - sx;
+    vz = ep->z - sz;
+    if (sx < (x0 + (2.0f * size))) {
+        c = sz + ((vz * (x0 - sx)) / vx);
+        if (!(c < z0) && (c <= z1)) {
+            f = 1;
+            ep->x = x0;
+            ep->z = c;
+            vx = c;
+            vz = c - sz;
+        }
+    }
+    if (!(sx <= (x1 - (2.0f * size)))) {
+        c = sz + ((vz * (x1 - sx)) / vx);
+        if (!(c < z0) && (c <= z1)) {
+            f = 1;
+            ep->x = x1;
+            ep->z = c;
+            vx = c;
+            vz = c - sz;
+        }
+    }
+    if (sz < (z0 + (2.0f * size))) {
+        c = sx + ((vx * (z0 - sz)) / vz);
+        if (!(c < x0) && (c <= x1)) {
+            f = 1;
+            ep->x = c;
+            ep->z = z0;
+            vx = c - sx;
+            vz = c;
+        }
+    }
+    if (!(sz <= (z1 - (2.0f * size)))) {
+        c = sx + ((vx * (z1 - sz)) / vz);
+        if (!(c < x0) && (c <= x1)) {
+            f = 1;
+            ep->x = c;
+            ep->z = z1;
+        }
+    }
+    return f;
+
+
+}
+#else
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enCheckForbiddenAreaSub);
+#endif
 
 void enEventDriven(int event /* r2 */, int id /* r2 */) {
     int i; // r3
