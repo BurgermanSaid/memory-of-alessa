@@ -153,7 +153,7 @@ int SeCallPos(int sd_no, float volume, float* pos, int status) {
         se_2d_manage_data[i].sd = sd_no;
         se_2d_manage_data[i].room = RoomNameJms();
         if (pos != NULL) {
-            volatile_vec_copy(se_2d_manage_data[i].pos, pos);
+            shVectorCopy(se_2d_manage_data[i].pos, pos);
             se_2d_manage_data[i].pos_on = 1;
         } else se_2d_manage_data[i].pos_on = 0;        
         se_2d_manage_data[i].vol = volume;
@@ -188,7 +188,7 @@ int SeCallPos(int sd_no, float volume, float* pos, int status) {
         if (ret != -1) {
             se_3d_channel_data[ret].sd = sd_no;
             se_3d_channel_data[ret].status = status;
-            volatile_vec_copy(se_3d_channel_data[ret].pos, pos);
+            shVectorCopy(se_3d_channel_data[ret].pos, pos);
             se_3d_channel_data[ret].vol = volume;
             se_3d_channel_data[ret].room = RoomNameJms();
             if ((status & 3) == 1) se_3d_channel_number++;            
@@ -269,14 +269,14 @@ int SeCallPosDistance(float volume, float* pos) {
 
 
     vec_copy_vu0(pos0, pos);
-    vu0_sub_vector(fvec, vcWork.cam_pos, &sh2jms.player->pos);
+    shSubVector(fvec, vcWork.cam_pos, &sh2jms.player->pos);
     len = vec3_lenght_alt(fvec);    
     work_0 = (len - 1500.0f) * 0.000100000005f;
-    work_0 = 1.0f - float_min(float_max(0.0f, work_0), 1.0f);
-    vu0_sub_vector(fvec, pos0, &sh2jms.player->pos);
+    work_0 = 1.0f - shFloatMin(shFloatMax(0.0f, work_0), 1.0f);
+    shSubVector(fvec, pos0, &sh2jms.player->pos);
     len = vec3_lenght_alt(fvec);    
     work_1 = (len - 1500.0f) * 0.000100000005f;
-    work_1 = 1.0f - float_min(float_max(0.0f, work_1), 1.0f);
+    work_1 = 1.0f - shFloatMin(shFloatMax(0.0f, work_1), 1.0f);
 
     return 255.0f - (volume * (255.0f * work_0 * work_1));
 }
@@ -288,14 +288,14 @@ float SeCallPosDistanceF(float* pos) {
 
 
     vec_copy_vu0(pos0, pos);
-    vu0_sub_vector(fvec, vcWork.cam_pos, &sh2jms.player->pos);
+    shSubVector(fvec, vcWork.cam_pos, &sh2jms.player->pos);
     len = vec3_lenght_alt(fvec);    
     work_0 = (len - 1500.0f) * 0.000100000005f;
-    work_0 = 1.0f - float_min(float_max(0.0f, work_0), 1.0f);
-    vu0_sub_vector(fvec, pos0, &sh2jms.player->pos);
+    work_0 = 1.0f - shFloatMin(shFloatMax(0.0f, work_0), 1.0f);
+    shSubVector(fvec, pos0, &sh2jms.player->pos);
     len = vec3_lenght_alt(fvec);    
     work_1 = (len - 1500.0f) * 0.000100000005f;
-    work_1 = 1.0f - float_min(float_max(0.0f, work_1), 1.0f);
+    work_1 = 1.0f - shFloatMin(shFloatMax(0.0f, work_1), 1.0f);
 
     return work_0 * work_1;
 }
@@ -614,9 +614,9 @@ void Se2dManager(void) {
                     }
                 }
                 if (!(se_2d_manage_data[i].base <= volume)) {
-                    se_2d_manage_data[i].base = float_max(se_2d_manage_data[i].base - shGetDT(), volume);
+                    se_2d_manage_data[i].base = shFloatMax(se_2d_manage_data[i].base - shGetDT(), volume);
                 } else if (se_2d_manage_data[i].base < volume) {
-                    se_2d_manage_data[i].base = float_min(se_2d_manage_data[i].base + shGetDT(), volume);
+                    se_2d_manage_data[i].base = shFloatMin(se_2d_manage_data[i].base + shGetDT(), volume);
                 }
                 if (se_2d_manage_data[i].pos_on != 0) {
                     SeCallPosChange(se_2d_manage_data[i].sd, se_2d_manage_data[i].vol * se_2d_manage_data[i].base, se_2d_manage_data[i].pos, se_2d_manage_data[i].status);
@@ -718,7 +718,7 @@ int Se3dControl(int sd_no /* r17 */, float volume /* r20 */, float* pos /* r16 *
     if (i == 8) {
         return -1;
     }
-    vec_copy(se_3d_channel_data[i].pos, pos);
+    shVectorCopyNonvolatile(se_3d_channel_data[i].pos, pos);
     se_3d_channel_data[i].vol = volume;
     return 0x10;
 }
@@ -1103,7 +1103,7 @@ void SeBgmManager(void) {
         
         sound_work.sound_ary = (SOUND_DATA*) snd_data_buffer;
         
-        if (sh2jms.player == NULL) vu0_unit_vector(sound_work.chara_pos);
+        if (sh2jms.player == NULL) shUnitVector(sound_work.chara_pos);
         else {
             sound_work.chara_pos[0] = sh2jms.player->pos.x;
             sound_work.chara_pos[1] = sh2jms.player->pos.y;
@@ -1194,11 +1194,11 @@ void SeBgmManager(void) {
             break;
     }
     if (bgm.volume > volume) {
-        bgm.volume = float_max(bgm.volume - shGetDT() / 2.0f, volume);
+        bgm.volume = shFloatMax(bgm.volume - shGetDT() / 2.0f, volume);
         shSdCall(0x3FC, ftoi(127.0f * bgm.volume), 0, 0);
     }
     else if (bgm.volume < volume) {
-        bgm.volume = float_min(bgm.volume + shGetDT() / 2.0f, volume);
+        bgm.volume = shFloatMin(bgm.volume + shGetDT() / 2.0f, volume);
         shSdCall(0x3FC, ftoi(127.0f * bgm.volume), 0, 0);
     }
 }
