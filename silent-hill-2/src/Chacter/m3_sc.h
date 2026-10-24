@@ -15,6 +15,7 @@
 #define SCP_STATUS_BIT_NOW_DEMO_EVENT      13
 #define SCP_STATUS_BIT_NOW_PLAYABLE_EVENT  14
 #define SCP_STATUS_BIT_FREEFALL            16
+#define SCP_STATUS_BIT_17                  17
 
 extern struct shCharacterAll sh2chara; // size: 0x6810, address: 0x3C84D0
 
@@ -93,6 +94,6 @@ void shCharacterGetGroundInfoForShadow(float* pos, float* normal, float* height,
 
 // @todo move these out
 extern int demo_status; // correct home for this?
-extern sceVu0FMATRIX kt_unit_matrix; // correct home for this?
+extern Matrix4 kt_unit_matrix; // correct home for this?
 
 #endif

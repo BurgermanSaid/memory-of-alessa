@@ -3,6 +3,7 @@
 #include "Effect2/hh_class_manager.h"
 #include "Effect2/hh_class_wrapper.h"
 #include "Effect2/hh_effect_object_texture.h"
+#include "Effect2/hh_object_vertex_info.h"
 #include "Effect2/hh_math_wrapper.h"
 #include "Effect2/hh_packet.h"
 #include "sce/libvifpk.h"
@@ -356,7 +357,7 @@ u_int HH_Class_Water_20(void* pBlock, ImpactQueue_Element* pElement)
                 pThis->Step = 3;
             }
             Object_Draw(pThis, pElement, position);
-            pThis->Timer += (1.0f / 60.0f);
+            pThis->Timer += TIME_STEP_60FPS;
             break;
         
         default:

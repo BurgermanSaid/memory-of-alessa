@@ -876,25 +876,24 @@ static void titleMainSelect(void) {
     return;
 }
 
-#ifdef NON_MATCHING
 static int titleCheckPad(void) {
     int ret; // r16
     int an;  // r2
 
     ret = 0;
     an  = shPadPress(0, 128);
-    if ((an >= 97) && (an < 160)) {
+    if ((96 < an) && (an < 160)) {
         analog_data = 0.0f;
     } else if (an < 128) {
         if (analog_data == 0.0f) {
             analog_data = -1.000001f;
         } else {
-            analog_data -= ((96 - an) / 19.2f) * shGetDT();
+            analog_data -= (itof(96 - an) / 19.2f) * shGetDT();
         }
     } else if (analog_data == 0.0f) {
         analog_data = 1.000001f;
     } else {
-        analog_data += ((an - 160) / 19.2f) * shGetDT();
+        analog_data += (itof(an - 160) / 19.2f) * shGetDT();
     }
     if ((shPadTrigger(0, PAD_KEY_DPAD_UP) != 0) || (shPadRepeat(0, PAD_KEY_DPAD_UP) != 0) || (analog_data < -1.0f)) {
         analog_data += 1.0f;
@@ -932,9 +931,6 @@ static int titleCheckPad(void) {
     }
     return ret;
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Event/title", titleCheckPad);
-#endif
 
 static int titleGetCursorFromBattleLevel(u_char battle_level) {
     int ret; // r2
