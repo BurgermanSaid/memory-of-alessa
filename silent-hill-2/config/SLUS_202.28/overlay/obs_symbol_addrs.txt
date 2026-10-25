@@ -25,5 +25,5 @@ stg_ovservation_anim_01F02DD0                                    = 0x01f02dd0; /
 stg_ovservation_info_01F02DE0                                    = 0x01f02de0; // size:40
 stg_ovservation_chara_data_01F02E10                              = 0x01f02e10; // size:40
 stg_ovservation_anim_adr                                         = 0x01f02e80; // size:4
-stg_ovservation_pos                                              = 0x01f02e90; // size:16 allow_duplicated:True
-stg_ovservation_pos                                              = 0x01f02ea0; // size:16 allow_duplicated:True
+stg_ovservation_pos_01F02E90                                     = 0x01f02e90; // size:16 allow_duplicated:True
+stg_ovservation_pos_01F02EA0                                     = 0x01f02ea0; // size:16 allow_duplicated:True
