@@ -63,3 +63,27 @@ stg_town_east_ShadowPos                                          = 0x01F080B0; /
 stg_town_east_CB_Tonnel                                          = 0x01F080C0; // size:0x100
 stg_town_east_ScissorVertex                                      = 0x01F082D0; // size:0x360
 stg_town_east_OutputVertex                                       = 0x01F08630; // size:0x360
+
+stg_town_east_pos0_0x01F07E50                                    = 0x01F07E50; // size:0x10 align:0x10
+stg_town_east_pos1_0x01F07E60                                    = 0x01F07E60; // size:0x10 align:0x10
+stg_town_east_pos2_0x01F07E70                                    = 0x01F07E70; // size:0x10 align:0x10
+stg_town_east_scu_pos_0x01F07E80                                 = 0x01F07E80; // size:0x10 align:0x10
+stg_town_east_info_0x01F07E20                                    = 0x01F07E20; // size:0x28
+stg_town_east_cam_data_0x01F07DE0                                = 0x01F07DE0; // size:0x40
+
+stg_town_east_pos_0x01F08990                                     = 0x01F08990; // size:0x10 align:0x10
+
+stg_town_east_info_01F07EC0                                      = 0x01F07EC0; // size:0x28
+stg_town_east_scu_pos_0x01F07F00                                 = 0x01F07F00; // size:0x10 align:0x10
+stg_town_east_scu_rot_0x01F07F10                                 = 0x01F07F10; // size:0x10 align:0x10
+stg_town_east_jms_rot_0x01F08238                                 = 0x01F08238; // size:0x4
+stg_town_east_jms_pos_0x01F07EF0                                 = 0x01F07EF0; // size:0x10 align:0x10
+
+stg_town_east_jms_rot_0x01F08240                                 = 0x01F08240; // size:0x4
+stg_town_east_jms_pos_0x01F07F70                                 = 0x01F07F70; // size:0x10 align:0x10
+stg_town_east_info_a_0x01F07F40                                  = 0x01F07F40; // size:0x28
+
+stg_town_east_enemy_list_0x01F07FF0                              = 0x01F07FF0; // size:0x3C
+stg_town_east_info_b_0x01F07FC0                                  = 0x01F07FC0; // size:0x28
+stg_town_east_jms_pos_0x01F08030                                 = 0x01F08030; // size:0x10 align:0x10
+stg_town_east_jms_rot_0x01F08040                                 = 0x01F08040; // size:0x4
