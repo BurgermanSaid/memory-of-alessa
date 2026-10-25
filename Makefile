@@ -96,8 +96,7 @@ SPLAT_CONFIG := $(CONFIG)/splat.config.yaml
 D_FILES := \
 	$(patsubst $(CONFIG)/%.yaml, $(LINKERS)/%.d, $(YAMLS))
 SPLAT_FILES := $(SPLAT_CONFIG) $(wildcard $(CONFIG)/*.txt)
-OVERLAY_SPLAT_FILES = $(CONFIG)/overlay/%_symbol_addrs.txt \
-					  $(CONFIG)/overlay/%_reloc_addrs.txt
+OVERLAY_SPLAT_FILES = $(CONFIG)/overlay/%_symbol_addrs.txt
 LINKER_TEMPLATE := $(INCLUDE)/$(SERIAL).inc.lcf
 ###############################################################
 BINUTILS_FLAVOR := mips-ps2-decompals
