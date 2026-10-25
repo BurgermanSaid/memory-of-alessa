@@ -678,7 +678,7 @@ segments:
       - { start: 0x0023bda0,    type: data,       name: Multi_thr/boot/bootopt                           }
       - { start: 0x0023bda0,    type: .data,      name: Multi_thr/boot/bootoptitem                       }
       - { start: 0x0023bf80,    type: .data,      name: Event/title                                      }
-      - { start: 0x0023c5c0,    type: data,       name: DBG/dbfntprint                                   }
+      - { start: 0x0023c5c0,    type: .data,      name: DBG/dbfntprint                                   }
       - { start: 0x0023c5f0,    type: data,       name: Event/chizu                                      }
       - { start: 0x0023e370,    type: .data,      name: Event/chara_admin                                }
       - { start: 0x0023e3a0,    type: data,       name: data_0x23e3a0                                    }
@@ -727,14 +727,15 @@ segments:
       - { start: 0x00248700,    type: .data,      name: Chacter/m3_nse                                   }
       - { start: 0x00248710,    type: data,       name: data_0x248710                                    }
       - { start: 0x0024c8a0,    type: .data,      name: jump_menu                                        }
-      - { start: 0x0024c8d0,    type: data,       name: data_0x24c8d0                                    }
+      - { start: 0x0024c8d0,    type: .data,      name: DBG/dbflow                                       }
+      - { start: 0x0024c8d8,    type: data,       name: data_0x24c8d8                                    }
       - { start: 0x0024c900,    type: .data,      name: Chacter/m3_play_common                           }
       - { start: 0x0024c960,    type: data,       name: Chacter/m3_maria                                 }
       - { start: 0x0024c980,    type: .data,      name: Chacter/m3_tyu                                   }
       - { start: 0x0024c990,    type: data,       name: data_0x24c990                                    }
       - { start: 0x0024ca00,    type: .data,      name: Chacter/m3_oni                                   }
       - { start: 0x0024ca40,    type: data,       name: data_0x24ca40                                    }
-      - { start: 0x0024cbb0,    type: .data,      name: DBG/dbswitch                                     }
+      - { start: 0x0024cba8,    type: .data,      name: DBG/dbswitch                                     }
       - { start: 0x0024cbc0,    type: .data,      name: Chacter/m3_maria_sub                             }
       - { start: 0x0024cd90,    type: data,       name: data_0x24cd90                                    }
       - { start: 0x0024cff8,    type: .data,      name: Multi_thr/scf/ps2_scf                            }
@@ -1140,7 +1141,7 @@ segments:
       - { vram:  0x00489ba0,    type: .bss,       name: Collision/cl_main                                }
       - { vram:  0x004917c8,    type: .bss,       name: Collision/kari_atari_allinit                     }
       - { vram:  0x00491820,    type: bss,        name: bss_0x0491820                                    }
-      - { vram:  0x00491820,    type: bss,        name: DBG/sh2gfw_SyncDBG                               }
+      - { vram:  0x00491820,    type: .bss,       name: DBG/sh2gfw_SyncDBG                               }
       - { vram:  0x004918c0,    type: bss,        name: Effect/ef_broken_glass                           }
       - { vram:  0x0049fa20,    type: bss,        name: Effect/ef_common                                 }
       - { vram:  0x00550678,    type: bss,        name: Effect/ef_malloc                                 }
@@ -1234,10 +1235,13 @@ segments:
       - { vram:  0x011751C0,    type: .bss,       name: sdk/lib_00207E90                                 } # GCC data
       - { vram:  0x01175380,    type: .bss,       name: sdk/lib_002081D8                                 } # GCC data
       - { vram:  0x011b6990,    type: .bss,       name: jump_menu                                        }
-      - { vram:  0x011b69a0,    type: bss,        name: bss_0x11b69a0                                    }
+      - { vram:  0x011b69a0,    type: .bss,       name: DBG/dbflow                                       }
+      - { vram:  0x011b69e8,    type: bss,        name: bss_0x11b69e8                                    }
       - { vram:  0x011b6a70,    type: .bss,       name: Item/otn_option                                  }
       - { vram:  0x011b6af0,    type: .bss,       name: Chacter/m3_play_common                           }
       - { vram:  0x011b6b00,    type: bss,        name: bss_0x11b6b00                                    }
+      - { vram:  0x011b6e48,    type: .bss,       name: DBG/dbswitch                                     }
+      - { vram:  0x011b6e60,    type: bss,        name: bss_0x11b6e60                                    }
       - { vram:  0x011b6f00,    type: .bss,       name: Chacter/m3_maria_sub                             }
       - { vram:  0x011b6f40,    type: bss,        name: bss_0x11b6f40                                    }
       - { vram:  0x011b6f48,    type: .bss,       name: DBG/dbfreeze                                     }
