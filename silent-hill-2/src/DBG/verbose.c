@@ -8,7 +8,7 @@
 
 extern int vsprintf(char*, const char*, va_list);
 
-int verbose(int level, s_char* format, ...) {
+int verbose(int level, char* format, ...) {
     int len;
     char buf[1024];
     va_list argp;
