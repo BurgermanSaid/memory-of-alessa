@@ -202,6 +202,8 @@ int enCheckForbiddenArea(float* sp, float* ep, float size);
 int enCheckForbiddenAreaSub(EnFORBIDDENAREA* fa /* r2 */, float* sp /* r2 */, float* ep /* r2 */, float size /* r29 */);
 void enEventDriven(int event /* r2 */, int id /* r2 */);
 
-extern EnLOCAL_WORK enLocalWork; // size: 0x1E10, address: 0x5506A0
+void enDyingExec(EnLOCAL_DATA* dp);
+
+extern EnLOCAL_WORK enLocalWork;
 
 #endif
