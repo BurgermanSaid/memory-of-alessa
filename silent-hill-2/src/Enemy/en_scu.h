@@ -14,4 +14,19 @@
     void enNIKCtrlMain(struct EnLOCAL_DATA *);
     void enTY2CtrlMain(struct EnLOCAL_DATA *);
     void enINSCtrlMain(struct EnLOCAL_DATA *);
-    #endif // EN_SCU_H
+    void enSCUInitData(struct EnLOCAL_DATA *);
+    void enMKNInitData(struct EnLOCAL_DATA *);
+    void enTYUInitData(struct EnLOCAL_DATA *);
+    void enREDInitData(struct EnLOCAL_DATA *);
+    void enONIInitData(struct EnLOCAL_DATA *);
+    void enNSEInitData(struct EnLOCAL_DATA *);
+    void enIKEInitData(struct EnLOCAL_DATA *);
+    void enPAPInitData(struct EnLOCAL_DATA *);
+    void enEDBInitData(struct EnLOCAL_DATA *);
+    void enARMInitData(struct EnLOCAL_DATA *);
+    void enBOSInitData(struct EnLOCAL_DATA *);
+    void enNIKInitData(struct EnLOCAL_DATA *);
+    void enTY2InitData(struct EnLOCAL_DATA *);
+    void enTY3InitData(struct EnLOCAL_DATA *);
+    void enINSInitData(struct EnLOCAL_DATA *);
+#endif // EN_SCU_H

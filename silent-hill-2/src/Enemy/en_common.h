@@ -164,8 +164,9 @@ void enFlagSetRotFloor(EnLOCAL_DATA* dp /* r2 */);
 void enFlagResetRotFloor(EnLOCAL_DATA* dp /* r2 */);
 void enFlagResetRotFloorJust(EnLOCAL_DATA* dp /* r2 */);
 void enFlagSetDisplay(EnLOCAL_DATA* dp /* r2 */);
+void enFlyingFunc(struct SubCharacter * scp /* r2 */);
 void enFlagResetDisplay(EnLOCAL_DATA* dp /* r2 */);
-
+void enSetHitColumn(struct EnLOCAL_DATA * dp /* r17 */);
 float enCalcDirection(float* pa /* r2 */, float* pb /* r2 */);
 float enCalcAngleDifference(float angle1 /* r29+0x10 */, float angle2 /* r29+0x10 */);
 float enCalcSpeedRate(float angle, float* mpos, float* tpos);
