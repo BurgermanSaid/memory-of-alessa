@@ -205,7 +205,7 @@ void enExecTask() {
     max = 0;
     for(i = 0; i < 32; i++, dp ++) {
         if (dp->kind > 0 && dp->kind < 16) {
-            dp->p_dist = vec3_dist((float *) &dp->scp->pos, (float *) p_pos);dist[max] = dp->p_dist;
+            dp->p_dist = shVectorDist((float *) &dp->scp->pos, (float *) p_pos);dist[max] = dp->p_dist;
             num[max] = i;
             dp->flag &= ~0x1000;
             max++;
