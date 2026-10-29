@@ -30,7 +30,7 @@ used with the `make report` commands. Please see
 
 For more information on Ghidra, see [#working-in-ghidra](#working-in-ghidra).
 
-- PlayStation 2 extension: [chaoticgd/ghidra-emotionengine-reloaded](github.com/chaoticgd/ghidra-emotionengine-reloaded)
+- PlayStation 2 extension: [chaoticgd/ghidra-emotionengine-reloaded](https://github.com/chaoticgd/ghidra-emotionengine-reloaded)
 
 - When working on Silent Hill 2, we recommend this extension for the DWARF
 information: [zoikun/ghidra-dwarf1](https://github.com/zoikun/ghidra-dwarf1)
@@ -53,6 +53,8 @@ dtk dwarf dump SLUS_202.28 -o debug.c
 Due to performance concerns, it may be good to open `debug.c` in a text editor
 such as Sublime Text rather than an IDE, or otherwise turn off code analysis
 when the file is open.
+
+Silent Hill 2's DWARF has a couple of quirks to look out for. See [dwarf-quirks.md](dwarf-quirks.md)
 
 
 ### alessatool
@@ -140,7 +142,7 @@ This section will hopefully be filled out more soon. We would also like to have 
 
 These were listed above, but are listed again for convenience.
 
-- [chaoticgd/ghidra-emotionengine-reloaded](github.com/chaoticgd/ghidra-emotionengine-reloaded)
+- [chaoticgd/ghidra-emotionengine-reloaded](https://github.com/chaoticgd/ghidra-emotionengine-reloaded)
 - [zoikun/ghidra-dwarf1](https://github.com/zoikun/ghidra-dwarf1)
 
 ### setting up ghidra

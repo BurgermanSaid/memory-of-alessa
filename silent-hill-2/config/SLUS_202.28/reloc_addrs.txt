@@ -13822,10 +13822,10 @@ rom:0x057E14 reloc:MIPS_26                             symbol:shRandF
 rom:0x057E20 reloc:MIPS_26                             symbol:shGetDT
 rom:0x057E4C reloc:MIPS_26                             symbol:shRandF
 rom:0x057E84 reloc:MIPS_26                             symbol:enSoundCall
-rom:0x057EC8 reloc:MIPS_HI16                           symbol:"@913_0x002AA680"
-rom:0x057ECC reloc:MIPS_LO16                           symbol:"@913_0x002AA680"
-rom:0x057EE4 reloc:MIPS_HI16                           symbol:"@914_0x002AA690"
-rom:0x057EE8 reloc:MIPS_LO16                           symbol:"@914_0x002AA690"
+rom:0x057EC8 reloc:MIPS_HI16                           symbol:"vitarity_0x002AA680"
+rom:0x057ECC reloc:MIPS_LO16                           symbol:"vitarity_0x002AA680"
+rom:0x057EE4 reloc:MIPS_HI16                           symbol:"endurance_0x002AA690"
+rom:0x057EE8 reloc:MIPS_LO16                           symbol:"endurance_0x002AA690"
 rom:0x057F00 reloc:MIPS_26                             symbol:enGetMode
 rom:0x057F24 reloc:MIPS_26                             symbol:enSetBattleTarget
 rom:0x057F54 reloc:MIPS_26                             symbol:enSetSize

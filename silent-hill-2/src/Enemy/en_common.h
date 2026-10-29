@@ -4,7 +4,7 @@
 #include "sh2_common.h"
 #include "Chacter/character.h"
 
-#define EN_LOCAL_DATA_COUNT 32
+#define ENEMY_MAX 32
 #define EnKIND_NONE 0
 #define EnKIND_INS 15
 
@@ -61,7 +61,7 @@ typedef struct EnFORBIDDENAREA {
 
 typedef struct EnLOCAL_WORK {
     // total size: 0x1E10
-    struct EnLOCAL_DATA Data[32];            // offset 0x0, size 0x1C00
+    struct EnLOCAL_DATA Data[ENEMY_MAX];     // offset 0x0, size 0x1C00
     struct EnCOMMUNICATION Communication[8]; // offset 0x1C00, size 0x100
     struct EnFORBIDDENAREA ForbiddenArea[2]; // offset 0x1D00, size 0x20
     struct EnSOUND_QUEUE SoundQueue[8];      // offset 0x1D20, size 0x80
@@ -236,5 +236,9 @@ void enRoomForbiddenArea(void);
 int enCheckForbiddenArea(float* sp, float* ep, float size);
 int enCheckForbiddenAreaSub(EnFORBIDDENAREA * /* r2 */, Vector4 * /* r2 */, Vector4 * /* r2 */, float /* r29 */);
 void enEventDriven(int event /* r2 */, int id /* r2 */);
+
+void enDyingExec(EnLOCAL_DATA* dp);
+
+extern EnLOCAL_WORK enLocalWork;
 
 #endif

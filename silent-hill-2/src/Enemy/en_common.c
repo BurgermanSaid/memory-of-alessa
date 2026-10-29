@@ -42,7 +42,9 @@ extern float EnBattleCollisionRate[16];
 extern char EnSkeletonDataC[16];
 extern /* static */ int (* EnAnimeSetFunc[12])(struct SubCharacter*, int, int); 
 
-/* static */ EnLOCAL_WORK enLocalWork; // size: 0x1E10, address: 0x5506A0
+
+UNMIGRATED(EnLOCAL_WORK enLocalWork); // size: 0x1E10, address: 0x5506A0
+
 
 extern /* static */ EnSKELETON_DATA EnSkeletonData[16] = { // size: 0x80, address: 0x2A9B60
     {
@@ -298,7 +300,7 @@ EnLOCAL_DATA* enEntryEnemy(int kind) {
     int i = 0;
     struct EnLOCAL_DATA* dp = &enLocalWork.Data[0];
     while (dp->kind) {
-        if (++i >= EN_LOCAL_DATA_COUNT) {
+        if (++i >= ENEMY_MAX) {
             printf("enemy task empty.\n", i);
             return NULL;
         }
@@ -646,7 +648,7 @@ int enCheckDeath(EnLOCAL_DATA* dp) {
 void enSetHitBack(struct EnLOCAL_DATA* dp /* r2 */) {
     Vector4 vec; // r29
     struct shBattleInfo* bi = &dp->scp->battle; // r3
-    vec_normalize((float*)&bi->vec, (float*)&vec);
+    shNormalizeVector((float*)&bi->vec, (float*)&vec);
     dp->hb_x = vec.x;
     dp->hb_z = vec.z;
     dp->hb_s = (2.0f * bi->shock);
@@ -770,7 +772,7 @@ float* enGetPlayerPos(struct EnLOCAL_DATA* dp /* r2 */) {
 }
 
 float enGetPlayerDistance(EnLOCAL_DATA* dp) {
-    return vec3_dist_xz_reverse(enGetPlayerPos(dp), &dp->scp->pos);
+    return shVectorDistXz_reverse(enGetPlayerPos(dp), &dp->scp->pos);
 }
 
 float enGetPlayerDirection(EnLOCAL_DATA* dp) {
@@ -964,10 +966,10 @@ SubCharacter* enGetNearCharacter(EnLOCAL_DATA* dp) {
     int i;
     EnLOCAL_DATA* tp = enLocalWork.Data;
     SubCharacter* scp = shBattleGetTargetHuman(dp->scp, 0);
-    dist = vec3_dist_xz_reverse(&scp->pos, &dp->scp->pos);   
-    for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, tp++) {
+    dist = shVectorDistXz_reverse(&scp->pos, &dp->scp->pos);   
+    for (i = 0; i < ENEMY_MAX; i++, tp++) {
         if ((tp->kind != 0) && (tp != dp) && (tp->scp->battle.hp > 0.0f)) {
-            d = vec3_dist_xz_reverse(&tp->scp->pos, &dp->scp->pos);
+            d = shVectorDistXz_reverse(&tp->scp->pos, &dp->scp->pos);
             if (d < dist) {
                 dist = d;
                 scp = tp->scp;
@@ -1013,9 +1015,9 @@ EnLOCAL_DATA* enGetNearOtherEnemy(EnLOCAL_DATA* dp) {
     rp = NULL;
     
     m = MAX_FLOAT;
-    for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, tp++) {
+    for (i = 0; i < ENEMY_MAX; i++, tp++) {
         if ((tp->kind != 0) && (tp != dp) && !(tp->scp->battle.status & 2)) {
-            d = vec3_dist(&dp->scp->pos, &tp->scp->pos);
+            d = shVectorDist(&dp->scp->pos, &tp->scp->pos);
             if (d < m) {
                 rp = tp;
                 m = d;
@@ -1028,7 +1030,7 @@ EnLOCAL_DATA* enGetNearOtherEnemy(EnLOCAL_DATA* dp) {
 void enCheckNearPlayer(EnLOCAL_DATA* dp, int* count, float* dist, float limit) {
     float d; // r29+0x60
     sceVu0FVECTOR vec; // r29+0x50
-    if ((enCheckAimedByHuman(dp) == 0) || (d = vec3_dist_xz_reverse(&dp->scp->pos, enGetPlayerPos(dp)), (d > limit))) {
+    if ((enCheckAimedByHuman(dp) == 0) || (d = shVectorDistXz_reverse(&dp->scp->pos, enGetPlayerPos(dp)), (d > limit))) {
         
         *count = 0;
         return;
@@ -1617,17 +1619,17 @@ float enCheckHitEyes(EnLOCAL_DATA* dp, float* sp, float* ep) {
     if (enCheckForbiddenArea(sp, cp, dp->size) != 0) f = 1;
     clCheckHitEyes(res, (u_int) dp->scp, sp, cp, 2);
     if (res->kind == 0) 
-        if (f != 0) return vec3_dist(sp, cp);
-        else return -vec3_dist(sp, cp);    
+        if (f != 0) return shVectorDist(sp, cp);
+        else return -shVectorDist(sp, cp);    
     if (res->kind == 3) {
         if (((res->hobj.chara.sc)->kind < 302) && !ENEMY_FLAG_CHECK(ENEMY_FLAG_9)) 
             
-            return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
+            return -shVectorDist(sp, &((res->hobj.chara.sc)->pos));
         
-        return vec3_dist(sp, res->hobj.wall.nl);
+        return shVectorDist(sp, res->hobj.wall.nl);
     }
     
-    return vec3_dist(sp, res->hobj.wall.cp);
+    return shVectorDist(sp, res->hobj.wall.cp);
 }
 
 float enCheckHitEyes2(EnLOCAL_DATA* dp, float* sp, float* ep) {
@@ -1637,16 +1639,16 @@ float enCheckHitEyes2(EnLOCAL_DATA* dp, float* sp, float* ep) {
     
     clCheckHitEyes(res, (u_int) dp->scp, sp, ep, 0);
     if (res->kind == 0) 
-        return -vec3_dist(sp, ep);    
+        return -shVectorDist(sp, ep);    
     if (res->kind == 3) {
         if (((res->hobj.chara.sc)->kind < 302) && !ENEMY_FLAG_CHECK(ENEMY_FLAG_9)) {
             
-            return -vec3_dist(sp, &((res->hobj.chara.sc)->pos));
+            return -shVectorDist(sp, &((res->hobj.chara.sc)->pos));
         }
-        return vec3_dist(sp, res->hobj.wall.nl);
+        return shVectorDist(sp, res->hobj.wall.nl);
     }
     
-    return vec3_dist(sp, res->hobj.wall.cp);
+    return shVectorDist(sp, res->hobj.wall.cp);
 }
 
 float enCheckPlayerHitEyes(EnLOCAL_DATA* dp, float* ep) {
@@ -1662,9 +1664,9 @@ float enCheckPlayerHitEyes(EnLOCAL_DATA* dp, float* ep) {
     if (res->kind == 0) {
         return -vec3_dist_reverse(p2, p1);
     } else if (res->kind == 3) {
-        return vec3_dist(p1, res->hobj.wall.nl);
+        return shVectorDist(p1, res->hobj.wall.nl);
     }
-    return vec3_dist(p1, res->hobj.wall.cp);
+    return shVectorDist(p1, res->hobj.wall.cp);
 }
 
 int enCheckFloor(float* pos) {
@@ -2190,7 +2192,7 @@ EnCOMMUNICATION* enCommunicateTribe(int kind, float* pos) {
     d = MAX_FLOAT;
     for (i = 0; i < 8; i++, p++) {
         if (p->kind == kind) {
-            dist = vec3_dist(pos, p->pos);            
+            dist = shVectorDist(pos, p->pos);            
             if ((dist < p->dist) && (dist < d)) {
                 d = dist;
                 mp = p;
@@ -2361,28 +2363,28 @@ void enEventDriven(int event /* r2 */, int id /* r2 */) {
 
     switch (event) {
         case 0:
-            for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, dp++) {
+            for (i = 0; i < ENEMY_MAX; i++, dp++) {
                 if ((dp->kind != 0) && (dp->mlv != 0)) {
                     dp->mlv = 0;
                 }
             }
             break;
         case 1:
-            for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, dp++) {
+            for (i = 0; i < ENEMY_MAX; i++, dp++) {
                 if ((dp->kind != 0) && (dp->mlv != 1)) {
                     dp->mlv = 3;
                 }
             }
             break;
         case 2:
-            for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, dp++) {
+            for (i = 0; i < ENEMY_MAX; i++, dp++) {
                 if ((dp->kind == 2) && (dp->type == 6)) {
                     dp->type = 7;
                 }
             }
             break;
         case 3:
-            for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, dp++) {
+            for (i = 0; i < ENEMY_MAX; i++, dp++) {
                 if (dp->kind == 4) {
                     dp->mlv = 4;
                     dp->slv = 3;
@@ -2390,7 +2392,7 @@ void enEventDriven(int event /* r2 */, int id /* r2 */) {
             }
             break;
         case 4:
-            for (i = 0; i < EN_LOCAL_DATA_COUNT; i++, dp++) {
+            for (i = 0; i < ENEMY_MAX; i++, dp++) {
                 if ((dp->kind == 5) && (dp->mlv == 4)) {
                     dp->slv = event;
                     dp->sslv = id;
