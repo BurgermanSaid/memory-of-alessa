@@ -375,7 +375,7 @@ void enARMCtrlTurn(EnLOCAL_DATA* dp /* r16 */) {
         } else {
             enARMAnimeSet(dp, 3 - dp->scu.dc);
         }
-        ENEMY_NEXT_SUB_STEP();
+        dp->sslv++;
     }
     if (dp->anim == 4) {
         enAttackCheck(dp, 64);
@@ -657,7 +657,7 @@ int enARMCheckFloor(EnLOCAL_DATA * dp /* r2 */, int d /* r2 */) {
 }
 
 
-#ifdef HOLY_CANDLE
+
 float enARMGetMoveSpeed(EnLOCAL_DATA * dp /* r16 */) {
     float speed_rate[5] = { 0.7f, 0.8f, 1.0f, 1.2f, 1.5f }; // r29+0x20
     float r; // r29+0x40
@@ -670,11 +670,11 @@ float enARMGetMoveSpeed(EnLOCAL_DATA * dp /* r16 */) {
     r *= (0.6f + (dp->scp->battle.hp_rate / 250.0f));
     if (dp->p_dist > 5000.0f) { r *= 4.0f; }
     dp->anim_s = r * 4096.0f;
-    // return dp->anim_s;
+    return r;
 }
-#else
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enInitData); float speed_rate[5] = { 0.7f, 0.8f, 1.0f, 1.2f, 1.5f }; // r29+0x20
-#endif
+
+
+#ifdef HOLY_CANDLE
 void enARMSoundSigns(EnLOCAL_DATA * dp /* r16 */) {
     int signs; // r3
     if ((dp->arm.count -= shGetDF()) <= 0) {
@@ -688,3 +688,6 @@ void enARMSoundSigns(EnLOCAL_DATA * dp /* r16 */) {
     }
 
 }
+#else
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enARMSoundSigns);
+#endif

@@ -29,7 +29,10 @@
     } while (0)
 
 #define ENEMY_STEP(_slv) SET_DP_STATE_LV(dp, _slv, 0)
-#define ENEMY_NEXT_SUB_STEP() dp->sslv++;
+#define ENEMY_NEXT_SUB_STEP() \
+    do {                      \
+        dp->sslv++;          \
+    } while (0)
 #define ENEMY_SUB_STEP(_sslv) \
     do {                      \
         dp->sslv = _sslv;     \
@@ -255,7 +258,7 @@ EnCOMMUNICATION* enCommunicateTribe(int kind /* r2 */, float* pos /* r2 */);
 void enResetForbiddenArea(void);
 void enRoomForbiddenArea(void);
 int enCheckForbiddenArea(float* sp, float* ep, float size);
-int enCheckForbiddenAreaSub(EnFORBIDDENAREA* fa /* r2 */, Vector4* sp /* r2 */, Vector4* ep /* r2 */, float size /* r29 */);
+int enCheckForbiddenAreaSub(EnFORBIDDENAREA* fa /* r2 */, float* sp /* r2 */, float* ep /* r2 */, float size /* r29 */);
 void enEventDriven(int event /* r2 */, int id /* r2 */);
 
 void enDyingExec(EnLOCAL_DATA* dp);
