@@ -1,4 +1,3 @@
-#include "Enemy/en_scu.h"
 #include "sce/libvu0.h"
 #include "Enemy/en_effect.h"
 #include "Enemy/en_arm.h"
@@ -194,7 +193,7 @@ void enARMCtrlGoPlayable(EnLOCAL_DATA* dp /* r2 */) {
 
 
 void enARMCtrlEvent(EnLOCAL_DATA* dp /* r2 */) {
-    void* tmp; // r2
+    /* @note empty function */ void* tmp; // r2
 }
 
 
@@ -268,11 +267,11 @@ void enARMCtrlEvent(EnLOCAL_DATA* dp /* r2 */) {
 
 
 void enARMCtrlHand(EnLOCAL_DATA* dp) {
-    // TODO: Implement this?
+    /* @note empty function */
 }
 
 
-
+#ifdef HOLY_CANDLE
 void enARMCtrlWander(EnLOCAL_DATA* dp /* r17 */) {
     sceVu0FVECTOR vec;
     s_char s;
@@ -337,7 +336,7 @@ void enARMCtrlWander(EnLOCAL_DATA* dp /* r17 */) {
     enARMGetMoveSpeed(dp);
     if (dp->sslv == 1) {
         shSinCosV_Scale(&vec, dp->scp->rot.y, 1000.0f);
-        vec_add(&dp->scp->pos, &vec, &vec);
+        vec_add_alt(&vec, &dp->scp->pos, &vec);
         enSetPath(dp, &vec, &dp->scp->pos);
     } else {
         if (dp->sslv == 3) {
@@ -350,9 +349,9 @@ void enARMCtrlWander(EnLOCAL_DATA* dp /* r17 */) {
     dp->scp->rot.y = dp->path.angle;
     enARMCheckNearPlayer(dp);
 }
-
-
-
+#else
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enARMCtrlWander);
+#endif
 void enARMCtrlTurn(EnLOCAL_DATA* dp /* r16 */) {
     if (enCheckDamage(dp) != 0) {
         ENEMY_STEP(2);
@@ -544,7 +543,7 @@ int enARMCanSeePlayer(EnLOCAL_DATA * dp /* r16 */) {
     return 1;
 }
 #else
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enARMCanSeePlayer);
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enARMCanSeePlayer);
 #endif
 
 int enARMCheckNearOther(struct EnLOCAL_DATA * dp /* r18 */) {
@@ -592,7 +591,7 @@ void enARMAnimeReset(EnLOCAL_DATA * dp /* r17 */, int anim /* r16 */) {
 }
 
 
-
+#ifdef HOLY_CANDLE
 void enARMAnimeExec(struct EnLOCAL_DATA * dp /* r16 */) {
     int of; /* r2 */ sceVu0FVECTOR pos; // r29+0x20
     enAnimeExec(dp, &EnARMAnime, 5251);
@@ -619,19 +618,19 @@ void enARMAnimeExec(struct EnLOCAL_DATA * dp /* r16 */) {
     
     if ((dp->anim_n == -1) || (dp->flag & 1)) { return; }
 }
+#else
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enARMAnimeExec);
+#endif
 
-
-
-
-
+#ifdef HOLY_CANDLE
 void enARMSetHandPos(EnLOCAL_DATA * dp /* r16 */, int d /* r2 */) {
     sceVu0FVECTOR vec; // r29+0x20
     enARMGetHandPos(&vec, dp, d);
     vec_add_alt(&vec, &dp->scp->pos, &dp->arm.hand_pos);
 }
-
-
-
+#else
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enARMSetHandPos);
+#endif
 
 
 
@@ -674,7 +673,7 @@ float enARMGetMoveSpeed(EnLOCAL_DATA * dp /* r16 */) {
     // return dp->anim_s;
 }
 #else
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enInitData); float speed_rate[5] = { 0.7f, 0.8f, 1.0f, 1.2f, 1.5f }; // r29+0x20
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_arm", enInitData); float speed_rate[5] = { 0.7f, 0.8f, 1.0f, 1.2f, 1.5f }; // r29+0x20
 #endif
 void enARMSoundSigns(EnLOCAL_DATA * dp /* r16 */) {
     int signs; // r3
